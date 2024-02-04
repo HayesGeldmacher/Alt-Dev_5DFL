@@ -75,6 +75,7 @@ public class CameraController : MonoBehaviour
        
        //The below snippet lerps the camera forward and backward depending on which direction the player is walking 
         float yMove = Input.GetAxis("Vertical");
+
         if(Mathf.Abs(_yMove) > Mathf.Abs(yMove))
         {
             _yRotation = Mathf.Lerp(_yRotation, 0, _lerpYSpeed * Time.deltaTime);
