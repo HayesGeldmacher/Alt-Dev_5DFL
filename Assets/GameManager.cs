@@ -14,13 +14,11 @@ public class GameManager : MonoBehaviour
     {
         if (instance != null)
         {
-            Debug.LogWarning("More than one instance of inventory present!! NOT GOOD!");
+            Debug.LogWarning("More than one instance of Manager is present! NOT GOOD!");
             return;
         }
 
         instance = this;
-
-        _hudCanvas.SetActive(true);
     }
 
     #endregion
