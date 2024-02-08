@@ -23,6 +23,10 @@ public class CameraController : MonoBehaviour
     [SerializeField] private float _lerpYSpeed;
 
     [Header("")]
+
+    [SerializeField] private float _interactRange;
+
+    [Header("")]
      
 
     //Here, we are getting a reference to the actual player that the camera is a child of
@@ -103,7 +107,37 @@ public class CameraController : MonoBehaviour
 
         //This rotates the camera holder up and down when the player walks forward or backward
         transform.parent.transform.localRotation = Quaternion.Euler(_yRotation, 0f, 0f);
+
+        InteractUpdate();
     }
 
+    private void InteractUpdate()
+    {
+       //Every frame we are shooting a raycast out into the environment. 
+       //This checks if an interactable object is in front of us
+
+        RaycastHit _hitInfo = new RaycastHit();
+        if (Physics.Raycast(transform.position, transform.forward, out _hitInfo, _interactRange, _interactable))
+        {
+
+            //here we need to make a cursor appear on screen!
+
+            if (Input.GetMouseButtonDown(0))
+            {
+                _hitInfo.transform.GetComponent<Interactable>().Interact();
+            }
+            //cursorAnim.SetBool("active", true);
+            //GameObject hitObject = hitInfo.transform.gameObject;
+            //if (Input.GetKeyDown(KeyCode.E))
+            //{
+             //   hitObject.GetComponent<interactable>().Interact();
+              //  playInteractionSound();
+            //}
+        }
+        else
+        {
+            //cursorAnim.SetBool("active", false);
+        }
+    }
    
 }
