@@ -17,42 +17,7 @@ public class ScreenshotHandler : MonoBehaviour
         
     }
 
-    WaitForEndOfFrame _frameEnd = new WaitForEndOfFrame();
-
-    //This is where the screenshot and saving actually occur
-    private IEnumerator OnPostRender()
-    {
-
-        if (_shouldScreenShot)
-        {
-            _shouldScreenShot = false;
-            yield return _frameEnd;
-          
-
-            
-
-            RenderTexture _render = _cam.targetTexture;
-
-            Texture2D _renderResult = new Texture2D(_render.width, _render.height, TextureFormat.ARGB32, false);
-            Rect rect = new Rect(0, 0, _render.width, _render.height);
-            _renderResult.ReadPixels(rect, 0, 0);
-
-            byte[] _byteArray = _renderResult.EncodeToPNG();
-            //string _folderPath = Application.dataPath + "/CameraScreenshot.png";
-            string _folderPath = Application.dataPath + "/Screenshots" +  "/CameraScreenshot.png";
-            System.IO.File.WriteAllBytes(_folderPath, _byteArray);
-            Debug.Log("Saved Screenshot!");
-
-            RenderTexture.ReleaseTemporary(_render);
-           
-            _cam.targetTexture = null;
-
-            if(_ghostObject != null)
-            {
-                _ghostObject.Disappear();
-            }
-        }
-    }
+    WaitForEndOfFrame _frameEnd = new WaitForEndOfFrame(); 
 
     private void OtherScreenShotMethod()
     {
@@ -69,20 +34,18 @@ public class ScreenshotHandler : MonoBehaviour
         System.IO.File.WriteAllBytes(_folderPath, _byteArray);
 
     }
-        //This is called by the below function, and initiates the screenshot
-        private void TakeScreenshot(int _width, int _height)
+    
+    //This is called by the below function, and initiates the screenshot
+    private IEnumerator TakeScreenshot(int _width, int _height)
     {
-        //_cam.targetTexture = RenderTexture.GetTemporary(_width, _height, 16);
-        _shouldScreenShot = true;
-            OtherScreenShotMethod();
+        yield return _frameEnd;
+        OtherScreenShotMethod();
     }
 
     //This is the function that we call from other scripts!
     public void TakeScreenshot_Static(int _width, int _height, GhostObjects _ghost)
-    {
-        
-        TakeScreenshot( _width, _height);
-         
+    {   
+       StartCoroutine(TakeScreenshot( _width, _height));       
     }
 
 }
