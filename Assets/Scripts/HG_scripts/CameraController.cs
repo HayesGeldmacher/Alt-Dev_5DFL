@@ -25,6 +25,10 @@ public class CameraController : MonoBehaviour
     [SerializeField] private Animator _cursorAnim;
     [SerializeField] private float _interactRange;
 
+    [SerializeField] private GhostObjects _ghost;
+    [SerializeField] private ScreenshotHandler _handler;
+   
+
 
     [Header("")]
      
@@ -44,14 +48,7 @@ public class CameraController : MonoBehaviour
 
     private void Update()
     {
-        if (Input.GetKeyDown(KeyCode.Space))
-        {
-            ScreenshotHandler.TakeScreenshot_Static(Screen.width, Screen.height);
-            Debug.Log("screenTaken");
-        }
-        
-        
-        //Here, we are getting the actualy mouse movement from the player and converting it to variables
+         //Here, we are getting the actualy mouse movement from the player and converting it to variables
         //All inputs should be multiplied Time.deltaTime in order for physics to work correctly
         float mouseX = Input.GetAxis("Mouse X") * _mouseSensitivityX * Time.deltaTime;
         float mouseY = Input.GetAxis("Mouse Y") * _mouseSensitivityY * Time.deltaTime;
@@ -148,6 +145,29 @@ public class CameraController : MonoBehaviour
         {
             _cursorAnim.SetBool("isCasting", false);
         }
+
+        ScreenShotUpdate();
+    }
+
+    private void ScreenShotUpdate()
+    {
+        if (Input.GetKeyDown(KeyCode.Space))
+        {
+
+            StartCoroutine(ScreenShot());
+        }
+    }
+
+    private IEnumerator ScreenShot()
+    {
+            if (_ghost != null)
+        {
+            _ghost.Appear();
+        }
+        yield return new WaitForSeconds(0.01f);
+        Debug.Log("FUCKFO");
+
+        _handler.GetComponent<ScreenshotHandler>().TakeScreenshot_Static(Screen.width, Screen.height, _ghost);
     }
    
 }
