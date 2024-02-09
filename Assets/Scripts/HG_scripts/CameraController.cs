@@ -126,6 +126,7 @@ public class CameraController : MonoBehaviour
 
             if (Input.GetMouseButtonDown(0))
             {
+                _cursorAnim.SetTrigger("clicked");
                 _hitInfo.transform.GetComponent<Interactable>().Interact();
             }
             //cursorAnim.SetBool("active", true);
