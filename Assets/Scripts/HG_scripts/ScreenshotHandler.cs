@@ -15,6 +15,7 @@ public class ScreenshotHandler : MonoBehaviour
         _cam = transform.GetComponent<Camera>();
     }
 
+    //This is where the screenshot and saving actually occur
     private void OnPostRender()
     {
 
@@ -28,7 +29,9 @@ public class ScreenshotHandler : MonoBehaviour
             _renderResult.ReadPixels(rect, 0, 0);
 
             byte[] _byteArray = _renderResult.EncodeToPNG();
-            System.IO.File.WriteAllBytes(Application.dataPath + "/CameraScreenshot.png", _byteArray);
+            //string _folderPath = Application.dataPath + "/CameraScreenshot.png";
+            string _folderPath = Application.dataPath + "/Screenshots" +  "/CameraScreenshot.png";
+            System.IO.File.WriteAllBytes(_folderPath, _byteArray);
             Debug.Log("Saved Screenshot!");
 
             RenderTexture.ReleaseTemporary(_render);
@@ -37,6 +40,7 @@ public class ScreenshotHandler : MonoBehaviour
         }
     }
 
+    //This is called by the below function, and initiates the screenshot
     private void TakeScreenshot(int _width, int _height)
     {
         _cam.targetTexture = RenderTexture.GetTemporary(_width, _height, 16);
@@ -44,6 +48,7 @@ public class ScreenshotHandler : MonoBehaviour
         OnPostRender();
     }
 
+    //This is the function that we call from other scripts!
     public static void TakeScreenshot_Static(int _width, int _height)
     {
         instance.TakeScreenshot( _width, _height);
