@@ -280,7 +280,6 @@ MonoBehaviour:
   _lerpYSpeed: 3
   _cursorAnim: {fileID: 1758362386}
   _interactRange: 500
-  _ghost: {fileID: 1910494871}
   _handler: {fileID: 632853370}
   _playerBody: {fileID: 494813493}
   _interactable:
@@ -667,7 +666,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 747f23a76315b9c4e83942929c477682, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _ghostObject: {fileID: 1910494871}
 --- !u!114 &632853371
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1545,8 +1543,6 @@ GameObject:
   - component: {fileID: 1910494875}
   - component: {fileID: 1910494874}
   - component: {fileID: 1910494873}
-  - component: {fileID: 1910494872}
-  - component: {fileID: 1910494871}
   m_Layer: 9
   m_Name: Cube
   m_TagString: ghost
@@ -1554,40 +1550,6 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!114 &1910494871
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1910494870}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b2eb9b244105ec6419f8734d3551bf4c, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _visible: 0
---- !u!65 &1910494872
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1910494870}
-  m_Material: {fileID: 0}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_LayerOverridePriority: 0
-  m_IsTrigger: 0
-  m_ProvidesContacts: 0
-  m_Enabled: 1
-  serializedVersion: 3
-  m_Size: {x: 1, y: 1, z: 1}
-  m_Center: {x: 0, y: 0, z: 0}
 --- !u!23 &1910494873
 MeshRenderer:
   m_ObjectHideFlags: 0

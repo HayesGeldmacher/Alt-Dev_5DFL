@@ -25,8 +25,10 @@ public class CameraController : MonoBehaviour
     [SerializeField] private Animator _cursorAnim;
     [SerializeField] private float _interactRange;
 
-    [SerializeField] private GhostObjects _ghost;
+
+    [Header("Screenshot Variables")]
     [SerializeField] private ScreenshotHandler _handler;
+
    
 
 
@@ -153,21 +155,14 @@ public class CameraController : MonoBehaviour
     {
         if (Input.GetKeyDown(KeyCode.Space))
         {
-
-            StartCoroutine(ScreenShot());
+            ScreenShot();
         }
     }
 
-    private IEnumerator ScreenShot()
+    private void ScreenShot()
     {
-            if (_ghost != null)
-        {
-            _ghost.Appear();
-        }
-        yield return new WaitForSeconds(0.01f);
-        Debug.Log("FUCKFO");
-
-        _handler.GetComponent<ScreenshotHandler>().TakeScreenshot_Static(Screen.width, Screen.height, _ghost);
+      //This lines calls to the actual screenshot object
+        _handler.GetComponent<ScreenshotHandler>().TakeScreenshot_Static(Screen.width, Screen.height);
     }
    
 }

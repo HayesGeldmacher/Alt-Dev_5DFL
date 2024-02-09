@@ -8,7 +8,7 @@ public class ScreenshotHandler : MonoBehaviour
 
    private Camera _cam;
    private bool _shouldScreenShot;
-   public GhostObjects _ghostObject;
+
 
     private void Awake()
     {
@@ -43,7 +43,7 @@ public class ScreenshotHandler : MonoBehaviour
     }
 
     //This is the function that we call from other scripts!
-    public void TakeScreenshot_Static(int _width, int _height, GhostObjects _ghost)
+    public void TakeScreenshot_Static(int _width, int _height)
     {   
        StartCoroutine(TakeScreenshot( _width, _height));       
     }
