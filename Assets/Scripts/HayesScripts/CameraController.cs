@@ -18,13 +18,13 @@ public class CameraController : MonoBehaviour
     [Header("Lerp Variables")]
     [SerializeField] private float _lerpZMax;
     [SerializeField] private float _lerpZSpeed;
-
     [SerializeField] private float _lerpYMax;
     [SerializeField] private float _lerpYSpeed;
 
-    [Header("")]
-
+    [Header("Interact Variables")]
+    [SerializeField] private Animator _cursorAnim;
     [SerializeField] private float _interactRange;
+
 
     [Header("")]
      
@@ -120,7 +120,9 @@ public class CameraController : MonoBehaviour
         if (Physics.Raycast(transform.position, transform.forward, out _hitInfo, _interactRange, _interactable))
         {
 
-            //here we need to make a cursor appear on screen!
+            //here we make the cursor appear on screen!
+            _cursorAnim.SetBool("isCasting", true);
+
 
             if (Input.GetMouseButtonDown(0))
             {
@@ -136,7 +138,7 @@ public class CameraController : MonoBehaviour
         }
         else
         {
-            //cursorAnim.SetBool("active", false);
+            _cursorAnim.SetBool("isCasting", false);
         }
     }
    
