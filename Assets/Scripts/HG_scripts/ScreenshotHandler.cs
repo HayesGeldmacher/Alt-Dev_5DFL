@@ -17,6 +17,7 @@ public class ScreenshotHandler : MonoBehaviour
 
     private void OnPostRender()
     {
+
         if (_shouldScreenShot)
         {
             _shouldScreenShot = false;
@@ -31,6 +32,7 @@ public class ScreenshotHandler : MonoBehaviour
             Debug.Log("Saved Screenshot!");
 
             RenderTexture.ReleaseTemporary(_render);
+           // _render.active = null;
             _cam.targetTexture = null;
         }
     }
@@ -39,6 +41,7 @@ public class ScreenshotHandler : MonoBehaviour
     {
         _cam.targetTexture = RenderTexture.GetTemporary(_width, _height, 16);
         _shouldScreenShot = true;
+        OnPostRender();
     }
 
     public static void TakeScreenshot_Static(int _width, int _height)

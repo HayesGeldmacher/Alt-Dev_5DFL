@@ -44,6 +44,13 @@ public class CameraController : MonoBehaviour
 
     private void Update()
     {
+        if (Input.GetKeyDown(KeyCode.Space))
+        {
+            ScreenshotHandler.TakeScreenshot_Static(Screen.width, Screen.height);
+            Debug.Log("screenTaken");
+        }
+        
+        
         //Here, we are getting the actualy mouse movement from the player and converting it to variables
         //All inputs should be multiplied Time.deltaTime in order for physics to work correctly
         float mouseX = Input.GetAxis("Mouse X") * _mouseSensitivityX * Time.deltaTime;
