@@ -15,12 +15,15 @@ public class ScreenshotHandler : MonoBehaviour
         _cam = transform.GetComponent<Camera>();
     }
 
+    WaitForEndOfFrame _frameEnd = new WaitForEndOfFrame();
+
     //This is where the screenshot and saving actually occur
-    private void OnPostRender()
+    private IEnumerator OnPostRender()
     {
 
         if (_shouldScreenShot)
         {
+            yield return _frameEnd;
             _shouldScreenShot = false;
             RenderTexture _render = _cam.targetTexture;
 
@@ -45,7 +48,7 @@ public class ScreenshotHandler : MonoBehaviour
     {
         _cam.targetTexture = RenderTexture.GetTemporary(_width, _height, 16);
         _shouldScreenShot = true;
-        OnPostRender();
+        StartCoroutine(OnPostRender());
     }
 
     //This is the function that we call from other scripts!
