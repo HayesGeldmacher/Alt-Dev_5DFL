@@ -8,7 +8,7 @@ public class DialogueManager : MonoBehaviour
     private Queue<string> _sentences;
     public TMP_Text _dialogueText;
     private Interactable _currentTrigger;
-    private Animator _textAnim;
+    [SerializeField ]private Animator _textAnim;
 
     private void Start()
     {
@@ -19,7 +19,7 @@ public class DialogueManager : MonoBehaviour
     public void StartDialogue(Dialogue _dialogue, Interactable _trigger)
     {
         _currentTrigger = _trigger;
-        Debug.Log("Starting Conversation With" + _dialogue.gameObject.name);
+        
         _textAnim.SetBool("active", true);
 
         _sentences.Clear();
@@ -54,7 +54,7 @@ public class DialogueManager : MonoBehaviour
         if (_currentTrigger)
         {
             //This line will cause errors until we actually make the trigger!
-            //_currentTrigger._hasStarted = false;
+            _currentTrigger._startedTalking = false;
         }
     }
 }
