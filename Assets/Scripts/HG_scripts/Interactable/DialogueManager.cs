@@ -51,10 +51,22 @@ public class DialogueManager : MonoBehaviour
     {
         Debug.Log("End of Conversation");
         _textAnim.SetBool("active", false);
+        _dialogueText.text = "";
         if (_currentTrigger)
         {
             //This line will cause errors until we actually make the trigger!
             _currentTrigger._startedTalking = false;
         }
+    }
+
+    public void CallTimerEnd(float _textTime)
+    {
+        StartCoroutine(TimerEnd(_textTime));
+    }
+
+    private IEnumerator TimerEnd(float _textTime)
+    {
+        yield return new WaitForSeconds(_textTime);
+        EndDialogue();
     }
 }

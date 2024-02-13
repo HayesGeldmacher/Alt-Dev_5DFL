@@ -378,7 +378,7 @@ MonoBehaviour:
   _lerpYMax: 1
   _lerpYSpeed: 3
   _cursorAnim: {fileID: 1758362386}
-  _interactRange: 500
+  _interactRange: 5
   _handler: {fileID: 632853370}
   _playerBody: {fileID: 494813493}
   _interactable:
@@ -1151,7 +1151,8 @@ GameObject:
   - component: {fileID: 953426038}
   - component: {fileID: 953426037}
   - component: {fileID: 953426036}
-  m_Layer: 0
+  - component: {fileID: 953426040}
+  m_Layer: 8
   m_Name: testNPC
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1244,6 +1245,29 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &953426040
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 953426035}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ac51e0eab6a0c0c45b33bfebdb182cf5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _canTalk: 1
+  _startedTalking: 0
+  _canWalkAway: 1
+  _dialogueTimer: 1
+  _dialogueDistance: 5
+  _dialogue:
+    _sentences:
+    - This is test dialogue
+    - This is second test
+    - third test meeerow
+  _canBeGrabbed: 0
 --- !u!1 &1573914858
 GameObject:
   m_ObjectHideFlags: 0
@@ -1428,7 +1452,7 @@ MonoBehaviour:
   m_fontMaterials: []
   m_fontColor32:
     serializedVersion: 2
-    rgba: 1828716543
+    rgba: 4294967295
   m_fontColor: {r: 1, g: 1, b: 1, a: 1}
   m_enableVertexGradient: 0
   m_colorMode: 3
@@ -1870,6 +1894,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ac51e0eab6a0c0c45b33bfebdb182cf5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _canTalk: 0
+  _startedTalking: 0
+  _canWalkAway: 0
+  _dialogueTimer: 1
+  _dialogueDistance: 5
+  _dialogue:
+    _sentences: []
+  _canBeGrabbed: 0
 --- !u!1 &1910494870
 GameObject:
   m_ObjectHideFlags: 0
@@ -1963,6 +1995,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1936467892}
   - component: {fileID: 1936467891}
+  - component: {fileID: 1936467893}
   m_Layer: 0
   m_Name: GameManager
   m_TagString: Untagged
@@ -1997,6 +2030,20 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1936467893
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1936467890}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 27d8d83f2986440448346a15e67b43f8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _dialogueText: {fileID: 1632996843}
+  _textAnim: {fileID: 38630327}
 --- !u!1 &2106562590
 GameObject:
   m_ObjectHideFlags: 0
