@@ -17,7 +17,7 @@ public class ScreenshotHandler : MonoBehaviour
         
     }
 
-    WaitForEndOfFrame _frameEnd = new WaitForEndOfFrame(); 
+    WaitForEndOfFrame _frameEnd = new WaitForEndOfFrame();
 
     private void OtherScreenShotMethod()
     {
@@ -33,8 +33,10 @@ public class ScreenshotHandler : MonoBehaviour
         string _folderPath = Application.dataPath + "/Screenshots" + "/CameraScreenshot.png";
         System.IO.File.WriteAllBytes(_folderPath, _byteArray);
 
+        Debug.Log("Screenshot Taken!");
+
     }
-    
+
     //This is called by the below function, and initiates the screenshot
     private IEnumerator TakeScreenshot(int _width, int _height)
     {
