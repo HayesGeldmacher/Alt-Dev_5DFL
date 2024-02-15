@@ -24,11 +24,16 @@ public class CameraController : MonoBehaviour
     [Header("Interact Variables")]
     [SerializeField] private Animator _cursorAnim;
     [SerializeField] private float _interactRange;
+    [SerializeField] private float _doorRange;
+    private bool _isHolding = false;
+    private Door _door;
 
 
     [Header("Screenshot Variables")]
     [SerializeField] private ScreenshotHandler _handler;
 
+    
+  
    
 
 
@@ -50,7 +55,11 @@ public class CameraController : MonoBehaviour
 
     private void Update()
     {
-         //Here, we are getting the actualy mouse movement from the player and converting it to variables
+        InteractUpdate();
+        if (_isHolding)
+            return;
+
+        //Here, we are getting the actualy mouse movement from the player and converting it to variables
         //All inputs should be multiplied Time.deltaTime in order for physics to work correctly
         float mouseX = Input.GetAxis("Mouse X") * _mouseSensitivityX * Time.deltaTime;
         float mouseY = Input.GetAxis("Mouse Y") * _mouseSensitivityY * Time.deltaTime;
@@ -114,7 +123,7 @@ public class CameraController : MonoBehaviour
         //This rotates the camera holder up and down when the player walks forward or backward
         transform.parent.transform.localRotation = Quaternion.Euler(_yRotation, 0f, 0f);
 
-        InteractUpdate();
+        
     }
 
     private void InteractUpdate()
@@ -129,23 +138,66 @@ public class CameraController : MonoBehaviour
             //here we make the cursor appear on screen!
             _cursorAnim.SetBool("isCasting", true);
 
-
-            if (Input.GetMouseButtonDown(0))
+            if (Input.GetMouseButton(0))
             {
-                _cursorAnim.SetTrigger("clicked");
-                _hitInfo.transform.GetComponent<Interactable>().Interact();
+                if (_hitInfo.transform.tag == "door")
+                {
+                    _door = _hitInfo.transform.GetComponent<Door>();
+                    if (!_door._isLocked)
+                    {
+                    _door._isHeld = true;
+                    _isHolding = true;
+
+                    }
+                    else
+                    {
+                        _door = null;
+                    }
+                }
+
+                else if (Input.GetMouseButtonDown(0))
+                {
+                    _cursorAnim.SetTrigger("clicked");
+                    _hitInfo.transform.GetComponent<Interactable>().Interact();
+                }
+
             }
-            //cursorAnim.SetBool("active", true);
-            //GameObject hitObject = hitInfo.transform.gameObject;
-            //if (Input.GetKeyDown(KeyCode.E))
-            //{
-             //   hitObject.GetComponent<interactable>().Interact();
-              //  playInteractionSound();
-            //}
+            else if(Input.GetMouseButtonUp(0))
+            {
+                _isHolding = false;
+                _cursorAnim.SetBool("isCasting", false);
+
+                if (_door != null)
+                {
+                    _door._isHeld = false;
+                    _door = null;
+                }
+            }
         }
         else
         {
-            _cursorAnim.SetBool("isCasting", false);
+            if (_isHolding)
+            {
+                float distance = Vector3.Distance(_door.transform.position, transform.position);
+
+                if (Input.GetMouseButtonUp(0) || distance > _doorRange)
+                {
+                _isHolding = false;
+                _cursorAnim.SetBool("isCasting", false);
+                    
+                    if(_door != null)
+                    {
+                        _door._isHeld = false;
+                        _door = null;
+                    }
+                }
+            }
+            else
+            {
+                _cursorAnim.SetBool("isCasting", false);
+            }
+
+
         }
 
         ScreenShotUpdate();

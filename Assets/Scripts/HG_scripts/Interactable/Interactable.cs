@@ -19,9 +19,9 @@ public class Interactable : MonoBehaviour
     [Header("Item Variables")]
     [SerializeField] private bool _canBeGrabbed;
 
-    private Transform _player;
+    protected Transform _player;
 
-    private void Start()
+    protected void Start()
     {
         _manager = GameManager.instance.GetComponent<DialogueManager>();
         _player = PlayerController.instance.transform;
