@@ -17,6 +17,7 @@ public class PlayerController : MonoBehaviour
     [SerializeField] private CharacterController _controller;
     [SerializeField] private Vector3 _velocity;
     [SerializeField] private float _walkSpeed;
+    [SerializeField] private Animator _camAnim;
 
     [Header("Crouch Variables")]
     [SerializeField] private Transform _cameraParent;
@@ -81,6 +82,15 @@ public class PlayerController : MonoBehaviour
         _controller.Move(_move * _speed * Time.deltaTime);
         _controller.Move(_velocity * Time.deltaTime);
 
+        //Controls whether the camera is animating to walk or not
+        if(_move.magnitude > 0.1f) 
+        {
+            _camAnim.SetBool("walking", true);
+        }
+        else
+        {
+            _camAnim.SetBool("walking", false);
+        }
         CrouchUpdate();
     }
 
