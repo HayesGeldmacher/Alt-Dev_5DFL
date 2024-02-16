@@ -44,4 +44,12 @@ public class Door : Interactable
         _doorPivot.localRotation = newRotation;
 
     }
+
+    private void OnTriggerEnter(Collider collision)
+    {
+        if(collision.transform.tag == "Player")
+        {
+            StartCoroutine(collision.transform.GetComponent<PlayerController>().MoveBack());
+        }
+    }
 }
