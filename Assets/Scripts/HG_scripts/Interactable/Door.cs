@@ -49,7 +49,11 @@ public class Door : Interactable
     {
         if(collision.transform.tag == "Player")
         {
+            if (_isHeld)
+            {
             StartCoroutine(collision.transform.GetComponent<PlayerController>().MoveBack());
+
+            }
         }
     }
 }
