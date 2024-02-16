@@ -8,8 +8,9 @@ public class Door : Interactable
     public bool _isHeld = false;
     public bool _isLocked = false;
     [SerializeField] private float _doorSensitivity = 5;
-    [SerializeField] private float _swingSmoothness = 5;
     [SerializeField] private Transform _doorPivot;
+    [SerializeField] private float _minYRot = -0.9f;
+    [SerializeField] private float _maxYRot = 0.9f;
 
 
     
@@ -38,10 +39,9 @@ public class Door : Interactable
         newRotation.x = 0;
         newRotation.z = 0;
         newRotation.y += _mouseY;
-        float _newRotY  = Mathf.Clamp(newRotation.y, -110, 110);
-        newRotation.y = _newRotY;
+     
+        newRotation.y = Mathf.Clamp(newRotation.y, _minYRot, _maxYRot);
         _doorPivot.localRotation = newRotation;
-       //_doorPivot.localRotation = Quaternion.Slerp(_doorPivot.localRotation, newRotation, Time.deltaTime * _swingSmoothness);
-       
+
     }
 }
