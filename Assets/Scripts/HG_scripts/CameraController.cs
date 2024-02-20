@@ -31,6 +31,7 @@ public class CameraController : MonoBehaviour
 
     [Header("Screenshot Variables")]
     [SerializeField] private ScreenshotHandler _handler;
+    [SerializeField] private SoundManager _interactAudio;
 
     
   
@@ -158,6 +159,7 @@ public class CameraController : MonoBehaviour
                 else if (Input.GetMouseButtonDown(0))
                 {
                     _cursorAnim.SetTrigger("clicked");
+                    _interactAudio.PlayInteract();
                     _hitInfo.transform.GetComponent<Interactable>().Interact();
                 }
 
