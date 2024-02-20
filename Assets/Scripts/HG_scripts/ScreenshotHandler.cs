@@ -8,6 +8,10 @@ public class ScreenshotHandler : MonoBehaviour
 
    private Camera _cam;
    private bool _shouldScreenShot;
+    [SerializeField] private float _checkRadius;
+    [SerializeField] private float _checkLength;
+    [SerializeField] private LayerMask _checkMask;
+    [SerializeField] private Transform _checkPoint;
 
 
     private void Awake()
@@ -34,7 +38,17 @@ public class ScreenshotHandler : MonoBehaviour
         System.IO.File.WriteAllBytes(_folderPath, _byteArray);
 
         Debug.Log("Screenshot Taken!");
+        CheckForEvidence();
 
+    }
+
+    private void CheckForEvidence()
+    {
+        RaycastHit hit;
+        if (Physics.SphereCast(_checkPoint.position, _checkRadius, transform.forward, out hit, _checkLength,  _checkMask))
+        {
+            Debug.Log("Got a object!");
+        }
     }
 
     //This is called by the below function, and initiates the screenshot
