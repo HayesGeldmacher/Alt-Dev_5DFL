@@ -12,6 +12,7 @@ public class ScreenshotHandler : MonoBehaviour
     [SerializeField] private float _checkLength;
     [SerializeField] private LayerMask _checkMask;
     [SerializeField] private Transform _checkPoint;
+    [SerializeField] private EvidenceManager _evidenceManager;
 
 
     private void Awake()
@@ -48,6 +49,7 @@ public class ScreenshotHandler : MonoBehaviour
         if (Physics.SphereCast(_checkPoint.position, _checkRadius, transform.forward, out hit, _checkLength,  _checkMask))
         {
             Debug.Log("Got a object!");
+            _evidenceManager.PictureTaken(hit.transform.gameObject);
         }
     }
 

@@ -9,13 +9,14 @@ public class EvidenceManager : MonoBehaviour
 
     public void PictureTaken(GameObject evidence)
     {
-        float i = 0;
+        int i = 0;
         foreach(GameObject bit in _evidenceBits)
         {
             
-            if bit.name == evidence.name)
+            if (bit.name == evidence.name)
             {
-                _evidenceBits.Remove(i);
+                _evidenceBits.RemoveAt(i);
+                Destroy(evidence);
                 _picturesNeeded -= 1;
                 Debug.Log("Got a pic!");
                 if(_picturesNeeded <= 0)
