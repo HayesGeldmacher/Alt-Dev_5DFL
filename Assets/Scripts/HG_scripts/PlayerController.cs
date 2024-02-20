@@ -33,6 +33,8 @@ public class PlayerController : MonoBehaviour
     [SerializeField] private float _moveBackSpeed;
     private bool _isMovingBack = false;
     private Vector3 _moveBackTarget;
+    [SerializeField] private GameObject _light;
+    [SerializeField] private SoundManager _soundManager;
     
 
 
@@ -106,6 +108,20 @@ public class PlayerController : MonoBehaviour
                 _camAnim.SetBool("walking", false);
             }
 
+            //This lines allows the player to turn their flashlight on or off!
+            if (Input.GetKeyDown(KeyCode.F))
+            {
+                if (_light.active)
+                {
+                    _light.SetActive(false);
+                }
+                else
+                {
+                    _light.SetActive(true);
+                }
+
+                _soundManager.PlayClick();
+            }
        
         }
             CrouchUpdate();
