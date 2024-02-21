@@ -35,6 +35,7 @@ public class PlayerController : MonoBehaviour
     private Vector3 _moveBackTarget;
     [SerializeField] private GameObject _light;
     [SerializeField] private SoundManager _soundManager;
+   
     
 
 
