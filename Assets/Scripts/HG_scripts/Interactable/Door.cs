@@ -7,11 +7,12 @@ public class Door : Interactable
 
     public bool _isHeld = false;
     public bool _isLocked = false;
+    public Key _key;
+    [HideInInspector] public string _keyName;
     [SerializeField] private float _doorSensitivity = 5;
     [SerializeField] private Transform _doorPivot;
     [SerializeField] private float _minYRot = -0.9f;
     [SerializeField] private float _maxYRot = 0.9f;
-
 
     
     
@@ -19,6 +20,7 @@ public class Door : Interactable
     void Start()
     {
         base.Start();
+        _keyName = _key.gameObject.name.ToString();
     }
 
     // Update is called once per frame
@@ -55,5 +57,11 @@ public class Door : Interactable
 
             }
         }
+    }
+
+    public void Unlock()
+    {
+        _isLocked = false;
+        //play a sound!
     }
 }

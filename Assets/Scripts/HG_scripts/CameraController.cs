@@ -27,6 +27,7 @@ public class CameraController : MonoBehaviour
     [SerializeField] private float _doorRange;
     private bool _isHolding = false;
     private Door _door;
+     public List<string> _keys = new List<string>();
 
 
     [Header("Screenshot Variables")]
@@ -152,7 +153,18 @@ public class CameraController : MonoBehaviour
                     }
                     else
                     {
+                        string code = _door._keyName;
+                        if (_keys.Contains(code))
+                        {
+                            _door.Unlock();
+                           
+                        }
+                        else
+                        {
                         _door = null;
+
+                        }
+                        
                     }
                 }
 
