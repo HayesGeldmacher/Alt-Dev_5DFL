@@ -12,7 +12,6 @@ public class Door : Interactable
     [SerializeField] private float _minYRot = -0.9f;
     [SerializeField] private float _maxYRot = 0.9f;
 
-
     
     
     // Start is called before the first frame update
@@ -55,5 +54,11 @@ public class Door : Interactable
 
             }
         }
+    }
+
+    public void Unlock()
+    {
+        _isLocked = false;
+        //play a sound!
     }
 }
