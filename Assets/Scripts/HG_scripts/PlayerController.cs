@@ -61,6 +61,10 @@ public class PlayerController : MonoBehaviour
     {
         //Getting a reference for where the camera should be when standing
         _standingYCamPoint = _cameraParent.transform.localPosition.y;
+
+        //Disables the player capsule mesh so we dont see it during playtime!
+        MeshRenderer _mesh = GetComponent<MeshRenderer>();
+        _mesh.enabled = false;
     }
 
     private void Update()
