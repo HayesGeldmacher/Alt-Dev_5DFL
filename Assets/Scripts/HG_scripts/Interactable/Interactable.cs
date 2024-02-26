@@ -19,6 +19,11 @@ public class Interactable : MonoBehaviour
     [Header("Item Variables")]
     [SerializeField] private bool _canBeGrabbed;
 
+    [Header("Outline Variables")]
+    [SerializeField] private bool _outlined;
+    [HideInInspector] public bool _isOutlined = false;
+    
+
     protected Transform _player;
 
     protected void Start()
@@ -47,7 +52,32 @@ public class Interactable : MonoBehaviour
         {
             TriggerDialogue();
         }
+
+        //Adds an outline to object when interacting, if we set the bool 
+      
+
     }
+    
+    public virtual void OnOutline()
+    {
+        if (_outlined)
+        {
+            _isOutlined = true;
+            int _outlineLayer = LayerMask.NameToLayer("evidence");
+            gameObject.layer = _outlineLayer;
+
+        }
+    }
+    public virtual void StopInteract()
+    {
+        if (_outlined)
+        {
+            _isOutlined = false;
+            int _interactableLayer = LayerMask.NameToLayer("Interactable");
+            gameObject.layer = _interactableLayer;
+        }
+    }
+
 
     private void TriggerDialogue()
     {

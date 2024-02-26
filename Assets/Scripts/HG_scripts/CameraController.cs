@@ -27,12 +27,17 @@ public class CameraController : MonoBehaviour
     [SerializeField] private float _doorRange;
     private bool _isHolding = false;
     private Door _door;
-     public List<string> _keys = new List<string>();
+    public List<string> _keys = new List<string>();
+    private Interactable _currentInteractable;
 
 
     [Header("Screenshot Variables")]
     [SerializeField] private ScreenshotHandler _handler;
     [SerializeField] private SoundManager _interactAudio;
+    [SerializeField] private Animator _whiteAnimator;
+    [SerializeField] private AudioSource _camAudio;
+    [SerializeField] private float _shotWait;
+    private float _currentShotWait;
 
     
   
@@ -53,6 +58,9 @@ public class CameraController : MonoBehaviour
     {
         //This makes the cursor invisible and locked to screen when playing the game
         Cursor.lockState = CursorLockMode.Locked;
+
+        //Ensuring there is no camerashot lag when starting the game
+        _currentShotWait = _shotWait;
     }
 
     private void Update()
@@ -138,54 +146,63 @@ public class CameraController : MonoBehaviour
         {
 
             //here we make the cursor appear on screen!
-            _cursorAnim.SetBool("isCasting", true);
-
-            if (Input.GetMouseButton(0))
-            {
-                if (_hitInfo.transform.tag == "door")
+            if (_hitInfo.transform.GetComponent<Interactable>()) 
+            { 
+                _cursorAnim.SetBool("isCasting", true);
+                _currentInteractable = _hitInfo.transform.GetComponent<Interactable>();
+                if (!_currentInteractable._isOutlined)
                 {
-                    _door = _hitInfo.transform.GetComponent<Door>();
-                    if (!_door._isLocked)
-                    {
-                    _door._isHeld = true;
-                    _isHolding = true;
+                    _currentInteractable.OnOutline();
+                }
 
-                    }
-                    else
+                if (Input.GetMouseButton(0))
+                {
+                    if (_hitInfo.transform.tag == "door")
                     {
-                        string code = _door._keyName;
-                        if (_keys.Contains(code))
+                        _door = _hitInfo.transform.GetComponent<Door>();
+                        if (!_door._isLocked)
                         {
-                            _door.Unlock();
-                           
+                        _door._isHeld = true;
+                        _isHolding = true;
+
                         }
                         else
                         {
-                        _door = null;
+                            string code = _door._keyName;
+                            if (_keys.Contains(code))
+                            {
+                                _door.Unlock();
+                           
+                            }
+                            else
+                            {
+                            _door = null;
 
-                        }
+                            }
                         
+                        }
+                    }
+
+                    else if (Input.GetMouseButtonDown(0))
+                    {
+                        _cursorAnim.SetTrigger("clicked");
+                        _interactAudio.PlayInteract();
+                        _hitInfo.transform.GetComponent<Interactable>().Interact();
+                    }
+
+                }
+                else if(Input.GetMouseButtonUp(0))
+                {
+                    _isHolding = false;
+                    _cursorAnim.SetBool("isCasting", false);
+
+                    if (_door != null)
+                    {
+                        _door._isHeld = false;
+                        _door = null;
                     }
                 }
-
-                else if (Input.GetMouseButtonDown(0))
-                {
-                    _cursorAnim.SetTrigger("clicked");
-                    _interactAudio.PlayInteract();
-                    _hitInfo.transform.GetComponent<Interactable>().Interact();
-                }
-
-            }
-            else if(Input.GetMouseButtonUp(0))
-            {
-                _isHolding = false;
-                _cursorAnim.SetBool("isCasting", false);
-
-                if (_door != null)
-                {
-                    _door._isHeld = false;
-                    _door = null;
-                }
+            
             }
         }
         else
@@ -211,7 +228,11 @@ public class CameraController : MonoBehaviour
                 _cursorAnim.SetBool("isCasting", false);
             }
 
-
+            if (_currentInteractable)
+            {
+                _currentInteractable.StopInteract();
+                _currentInteractable = null;
+            }
         }
 
         ScreenShotUpdate();
@@ -219,16 +240,25 @@ public class CameraController : MonoBehaviour
 
     private void ScreenShotUpdate()
     {
-        if (Input.GetKeyDown(KeyCode.Space))
+       //Ensures that player has to wait between each shot, cant spam
+        if (Input.GetKeyDown(KeyCode.Space) && _currentShotWait >= _shotWait)
         {
             ScreenShot();
         }
+
+        _currentShotWait += Time.deltaTime;
     }
 
     private void ScreenShot()
     {
       //This lines calls to the actual screenshot object
         _handler.GetComponent<ScreenshotHandler>().TakeScreenshot_Static(Screen.width, Screen.height);
+        _whiteAnimator.SetTrigger("snap");
+
+        _camAudio.pitch = Random.Range(0.8f, 1.2f);
+        _camAudio.Play();
+
+        _currentShotWait = 0;
     }
    
 }
