@@ -6,6 +6,7 @@ public class EvidenceManager : MonoBehaviour
 {
     [SerializeField] private int _picturesNeeded;
     public List<GameObject> _evidenceBits = new List<GameObject>();
+    [HideInInspector] public bool _hasEvidence = false;
 
     public void PictureTaken(GameObject evidence)
     {
@@ -30,6 +31,6 @@ public class EvidenceManager : MonoBehaviour
 
     private void CompletePictures()
     {
-        Debug.Log("Got all of the pics!");
+        _hasEvidence = true;
     }
 }
