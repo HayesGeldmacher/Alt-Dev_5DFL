@@ -10,10 +10,10 @@ public class Interactable : MonoBehaviour
     [Header("Dialogue Variables")]
     [SerializeField] protected bool _canTalk = false;
     [HideInInspector] public bool _startedTalking = false;
-    [SerializeField] private bool _canWalkAway;
+    [SerializeField] protected bool _canWalkAway;
     [SerializeField] private float _dialogueTimer = 1;
-    [SerializeField] private float _dialogueDistance = 5;
-    private DialogueManager _manager;
+    [SerializeField] protected float _dialogueDistance = 5;
+    [HideInInspector] public DialogueManager _manager;
     public Dialogue _dialogue;
 
     [Header("Item Variables")]
@@ -24,9 +24,9 @@ public class Interactable : MonoBehaviour
     [HideInInspector] public bool _isOutlined = false;
     
 
-    protected Transform _player;
+    [HideInInspector] public Transform _player;
 
-    protected void Start()
+    public virtual void Start()
     {
         _manager = GameManager.instance.GetComponent<DialogueManager>();
         _player = PlayerController.instance.transform;
@@ -51,6 +51,7 @@ public class Interactable : MonoBehaviour
         if (_canTalk)
         {
             TriggerDialogue();
+            
         }
 
         //Adds an outline to object when interacting, if we set the bool 
@@ -79,26 +80,27 @@ public class Interactable : MonoBehaviour
     }
 
 
-    private void TriggerDialogue()
+    public virtual void TriggerDialogue()
     {
-      
+
         if (!_startedTalking)
         {
-            _manager.StartDialogue(_dialogue, this);
+            Interactable _interactable = transform.GetComponent<Interactable>();
+            _manager.StartDialogue(_dialogue, _interactable);
             _startedTalking = true;
         }
         else
         {
-            _manager.DisplayNextSentence();
+           _manager.DisplayNextSentence();
         }
     }
 
-    private void EndDialogue()
+    public virtual void EndDialogue()
     {
         _manager.EndDialogue();
     }
 
-    public void PickUpItem()
+    public virtual void PickUpItem()
     {
         //have all the pickup stuff happen here
         if (_canTalk)

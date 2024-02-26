@@ -4,31 +4,64 @@ using UnityEngine;
 
 public class Bed : Interactable
 {
+    private DialogueManager _bedManager;
+    private Dialogue _bedDialogue;
+   
 
-    [SerializeField] private EvidenceManager _manager;
-    // Start is called before the first frame update
-    void Start()
+    private void Start()
     {
-        
+        _bedManager = GameManager.instance.GetComponent<DialogueManager>();
+        _player = PlayerController.instance.transform;
+        _bedDialogue = base._dialogue;
     }
 
-    // Update is called once per frame
-    void Update()
+    private void Update()
     {
-        
+        if (base._canWalkAway && base._startedTalking)
+        {
+            float _distance = Vector3.Distance(_player.position, transform.position);
+            if (_distance > base._dialogueDistance)
+            {
+                EndDialogue();
+            }
+
+        }
     }
 
+    //writing "virtual" in front of a function means that children scripts can add to/edit the function
     public override void Interact()
     {
-       if(_manager._hasEvidence && _manager._hasFoundPhone)
+        if (base._canTalk)
         {
-            Debug.Log("Finished sequence!");
+            TriggerDialogue();
+
+        }
+
+        //Adds an outline to object when interacting, if we set the bool 
+
+
+    }
+
+    public override void TriggerDialogue()
+    {
+
+        if (!base._startedTalking)
+        {
+            Interactable _interactable = transform.GetComponent<Interactable>();
+            _bedManager.StartDialogue(_bedDialogue, _interactable);
+            base._startedTalking = true;
         }
         else
         {
-            Debug.Log("Theres more to do");
+            _bedManager.DisplayNextSentence();
         }
-       
-
     }
+
+    public override void EndDialogue()
+    {
+        _bedManager.EndDialogue();
+    }
+
+
+
 }

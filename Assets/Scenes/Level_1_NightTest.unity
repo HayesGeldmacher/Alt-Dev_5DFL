@@ -319,11 +319,13 @@ MonoBehaviour:
   _canWalkAway: 0
   _dialogueTimer: 1
   _dialogueDistance: 5
+  _manager: {fileID: 0}
   _dialogue:
     _sentences: []
   _canBeGrabbed: 0
   _outlined: 0
   _isOutlined: 0
+  _player: {fileID: 0}
   _textures:
   - {fileID: 2800000, guid: e4088556bf76f9240b99fa99f7fc123b, type: 3}
   - {fileID: 2800000, guid: 5afd5ff5ce5619a47b9ada861565a2ac, type: 3}
@@ -562,11 +564,13 @@ MonoBehaviour:
   _canWalkAway: 0
   _dialogueTimer: 1
   _dialogueDistance: 5
+  _manager: {fileID: 0}
   _dialogue:
     _sentences: []
   _canBeGrabbed: 0
   _outlined: 0
   _isOutlined: 0
+  _player: {fileID: 0}
   _textures:
   - {fileID: 2800000, guid: e4088556bf76f9240b99fa99f7fc123b, type: 3}
   - {fileID: 2800000, guid: 5afd5ff5ce5619a47b9ada861565a2ac, type: 3}
@@ -1261,11 +1265,13 @@ MonoBehaviour:
   _canWalkAway: 0
   _dialogueTimer: 1
   _dialogueDistance: 5
+  _manager: {fileID: 0}
   _dialogue:
     _sentences: []
   _canBeGrabbed: 0
   _outlined: 0
   _isOutlined: 0
+  _player: {fileID: 0}
   _textures:
   - {fileID: 2800000, guid: e4088556bf76f9240b99fa99f7fc123b, type: 3}
   - {fileID: 2800000, guid: 5afd5ff5ce5619a47b9ada861565a2ac, type: 3}
@@ -1397,11 +1403,13 @@ MonoBehaviour:
   _canWalkAway: 0
   _dialogueTimer: 1
   _dialogueDistance: 5
+  _manager: {fileID: 0}
   _dialogue:
     _sentences: []
   _canBeGrabbed: 0
   _outlined: 0
   _isOutlined: 0
+  _player: {fileID: 0}
   _textures:
   - {fileID: 2800000, guid: e4088556bf76f9240b99fa99f7fc123b, type: 3}
   - {fileID: 2800000, guid: 5afd5ff5ce5619a47b9ada861565a2ac, type: 3}
@@ -2756,11 +2764,13 @@ MonoBehaviour:
   _canWalkAway: 0
   _dialogueTimer: 1
   _dialogueDistance: 5
+  _manager: {fileID: 0}
   _dialogue:
     _sentences: []
   _canBeGrabbed: 0
   _outlined: 0
   _isOutlined: 0
+  _player: {fileID: 0}
   _textures:
   - {fileID: 2800000, guid: e4088556bf76f9240b99fa99f7fc123b, type: 3}
   - {fileID: 2800000, guid: 5afd5ff5ce5619a47b9ada861565a2ac, type: 3}
@@ -3277,12 +3287,14 @@ MonoBehaviour:
   _canWalkAway: 1
   _dialogueTimer: 1
   _dialogueDistance: 5
+  _manager: {fileID: 0}
   _dialogue:
     _sentences:
     - It won't turn on...
   _canBeGrabbed: 0
   _outlined: 0
   _isOutlined: 0
+  _player: {fileID: 0}
 --- !u!65 &702328762
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -28179,6 +28191,7 @@ MonoBehaviour:
   _canWalkAway: 1
   _dialogueTimer: 1
   _dialogueDistance: 5
+  _manager: {fileID: 0}
   _dialogue:
     _sentences:
     - hello
@@ -28186,6 +28199,7 @@ MonoBehaviour:
   _canBeGrabbed: 0
   _outlined: 0
   _isOutlined: 0
+  _player: {fileID: 0}
 --- !u!65 &1327817340
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -28330,11 +28344,13 @@ MonoBehaviour:
   _canWalkAway: 0
   _dialogueTimer: 1
   _dialogueDistance: 5
+  _manager: {fileID: 0}
   _dialogue:
     _sentences: []
   _canBeGrabbed: 0
   _outlined: 0
   _isOutlined: 0
+  _player: {fileID: 0}
   _textures:
   - {fileID: 2800000, guid: e4088556bf76f9240b99fa99f7fc123b, type: 3}
   - {fileID: 2800000, guid: 5afd5ff5ce5619a47b9ada861565a2ac, type: 3}
@@ -28676,11 +28692,13 @@ MonoBehaviour:
   _canWalkAway: 0
   _dialogueTimer: 1
   _dialogueDistance: 5
+  _manager: {fileID: 0}
   _dialogue:
     _sentences: []
   _canBeGrabbed: 0
   _outlined: 0
   _isOutlined: 0
+  _player: {fileID: 0}
   _textures:
   - {fileID: 2800000, guid: e4088556bf76f9240b99fa99f7fc123b, type: 3}
   - {fileID: 2800000, guid: 5afd5ff5ce5619a47b9ada861565a2ac, type: 3}
@@ -31668,7 +31686,8 @@ GameObject:
   - component: {fileID: 3469287836570304979}
   - component: {fileID: 1711813855997048089}
   - component: {fileID: 893834322}
-  - component: {fileID: 3469287836570304980}
+  - component: {fileID: 3469287836570304981}
+  - component: {fileID: 3469287836570304982}
   m_Layer: 8
   m_Name: Bed
   m_TagString: Untagged
@@ -31959,12 +31978,14 @@ MonoBehaviour:
   _canWalkAway: 1
   _dialogueTimer: 1
   _dialogueDistance: 5
+  _manager: {fileID: 0}
   _dialogue:
     _sentences:
     - keys
   _canBeGrabbed: 0
   _outlined: 0
   _isOutlined: 0
+  _player: {fileID: 0}
   _keyName: keybabyt
 --- !u!65 &3436473789381897579
 BoxCollider:
@@ -31995,7 +32016,32 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 919132149068862668}
   m_Mesh: {fileID: 6508942946276188115, guid: 4976c17501d09044eae4892674901e71, type: 3}
---- !u!114 &3469287836570304980
+--- !u!114 &3469287836570304981
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 919132149068862668}
+  m_Enabled: 0
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ac51e0eab6a0c0c45b33bfebdb182cf5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _canTalk: 1
+  _startedTalking: 0
+  _canWalkAway: 1
+  _dialogueTimer: 1
+  _dialogueDistance: 5
+  _manager: {fileID: 0}
+  _dialogue:
+    _sentences:
+    - I cant go to bed yet - there's more evidence to find
+  _canBeGrabbed: 0
+  _outlined: 0
+  _isOutlined: 0
+  _player: {fileID: 0}
+--- !u!114 &3469287836570304982
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -32007,17 +32053,20 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1856f533e9fded44dbb1cdeace767940, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _canTalk: 0
+  _canTalk: 1
   _startedTalking: 0
-  _canWalkAway: 0
+  _canWalkAway: 1
   _dialogueTimer: 1
   _dialogueDistance: 5
+  _manager: {fileID: 0}
   _dialogue:
-    _sentences: []
+    _sentences:
+    - I cant go to bed yet - theres more to find.
   _canBeGrabbed: 0
   _outlined: 0
   _isOutlined: 0
-  _manager: {fileID: 1726377461}
+  _player: {fileID: 0}
+  _evidenceManager: {fileID: 0}
 --- !u!33 &3469287838098547921
 MeshFilter:
   m_ObjectHideFlags: 0
@@ -32043,11 +32092,13 @@ MonoBehaviour:
   _canWalkAway: 0
   _dialogueTimer: 1
   _dialogueDistance: 5
+  _manager: {fileID: 0}
   _dialogue:
     _sentences: []
   _canBeGrabbed: 0
   _outlined: 0
   _isOutlined: 0
+  _player: {fileID: 0}
   _textures:
   - {fileID: 2800000, guid: e4088556bf76f9240b99fa99f7fc123b, type: 3}
   - {fileID: 2800000, guid: 5afd5ff5ce5619a47b9ada861565a2ac, type: 3}

@@ -20,7 +20,11 @@ public class Door : Interactable
     void Start()
     {
         base.Start();
+        if (_key)
+        {
         _keyName = _key.gameObject.name.ToString();
+
+        }
     }
 
     // Update is called once per frame
