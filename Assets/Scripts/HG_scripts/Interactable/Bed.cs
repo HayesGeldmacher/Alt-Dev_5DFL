@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class Bed : Interactable
 {
+
+    [SerializeField] private EvidenceManager _manager;
     // Start is called before the first frame update
     void Start()
     {
@@ -18,8 +20,15 @@ public class Bed : Interactable
 
     public override void Interact()
     {
-       base.Interact();
-
+       if(_manager._hasEvidence && _manager._hasFoundPhone)
+        {
+            Debug.Log("Finished sequence!");
+        }
+        else
+        {
+            Debug.Log("Theres more to do");
+        }
+       
 
     }
 }

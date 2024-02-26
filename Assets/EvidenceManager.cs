@@ -7,6 +7,7 @@ public class EvidenceManager : MonoBehaviour
     [SerializeField] private int _picturesNeeded;
     public List<GameObject> _evidenceBits = new List<GameObject>();
     [HideInInspector] public bool _hasEvidence = false;
+    [HideInInspector] public bool _hasFoundPhone = false;
 
     public void PictureTaken(GameObject evidence)
     {
@@ -32,5 +33,9 @@ public class EvidenceManager : MonoBehaviour
     private void CompletePictures()
     {
         _hasEvidence = true;
+    }
+    private void Phoned()
+    {
+        _hasFoundPhone = true;
     }
 }
