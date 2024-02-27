@@ -60,12 +60,12 @@ public class Bed : Interactable
             }
             else
             {
-                TriggerDialogue(_bedDialogue2);
+                TriggerDialogue(_bedDialogue1);
             }
         }
         else
         {
-            TriggerDialogue(_bedDialogue2);
+            TriggerDialogue(_bedDialogue1);
         }
 
     }
