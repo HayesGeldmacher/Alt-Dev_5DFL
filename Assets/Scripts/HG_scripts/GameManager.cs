@@ -30,7 +30,9 @@ public class GameManager : MonoBehaviour
     [SerializeField] private TMP_Text _pausedText;
     [SerializeField] private Animator _pausedAnimator;
     [SerializeField] private AudioSource _pausedAudio;
+
    
+  
 
     private void Update()
     {

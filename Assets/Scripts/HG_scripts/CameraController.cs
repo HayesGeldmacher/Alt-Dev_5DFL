@@ -15,6 +15,9 @@ public class CameraController : MonoBehaviour
     private float _xMove;
     private float _yMove;
 
+    [SerializeField] private bool _hasCamera;
+    [SerializeField] private Animator _camAnimator;
+
     [Header("Lerp Variables")]
     [SerializeField] private float _lerpZMax;
     [SerializeField] private float _lerpZSpeed;
@@ -61,6 +64,17 @@ public class CameraController : MonoBehaviour
 
         //Ensuring there is no camerashot lag when starting the game
         _currentShotWait = _shotWait;
+
+        //Makes it so the camera only animates to shift when camera is actually obtained
+        if (_hasCamera)
+        {
+            _camAnimator.SetBool("still", false);
+
+        }
+        else
+        {
+            _camAnimator.SetBool("still", true);
+        }
     }
 
     private void Update()
