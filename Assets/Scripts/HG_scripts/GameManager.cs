@@ -40,9 +40,13 @@ public class GameManager : MonoBehaviour
         {
             if (_isPaused )
             {
+                if (_controller._hasCamera)
+                {
                 _pausedAnimator.SetBool("paused", false);
-                _isPaused = false;
                 _pausedText.text = "RECORDING";
+
+                }
+                _isPaused = false;
                 _controller.enabled = true;
                 Time.timeScale = 1f;
                 
