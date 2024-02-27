@@ -278,5 +278,11 @@ public class CameraController : MonoBehaviour
 
         _currentShotWait = 0;
     }
+
+    private void GotCamera()
+    {
+       // Camera.main.GetUniversalAdditionalData().renderPostProcessing = true;
+        _hasCamera = true;
+    }
    
 }
