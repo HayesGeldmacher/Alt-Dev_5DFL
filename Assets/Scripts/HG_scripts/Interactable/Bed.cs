@@ -5,19 +5,31 @@ using UnityEngine;
 public class Bed : Interactable
 {
     private DialogueManager _bedManager;
-    private Dialogue _bedDialogue;
+    private Dialogue _bedDialogue1;
+    public Dialogue _bedDialogue2;
+    [SerializeField] private EvidenceManager _evidence;
+    [SerializeField] private Transform _anchorPoint;
+    [SerializeField] private Transform _lookPoint;
+    [SerializeField] private Transform _camHolder;
+    [SerializeField] private Animator _camAnim;
+    [SerializeField] private CameraController _camController;
+    [SerializeField] private Animator _blackAnim;
+    [SerializeField] private GameObject _monster;
+    [SerializeField] private bool _spawnMonster;
+    private bool _isBedTime = false;
+    
    
 
     private void Start()
     {
         _bedManager = GameManager.instance.GetComponent<DialogueManager>();
         _player = PlayerController.instance.transform;
-        _bedDialogue = base._dialogue;
+        _bedDialogue1 = base._dialogue;
     }
 
     private void Update()
     {
-        if (base._canWalkAway && base._startedTalking)
+        if (base._canWalkAway && base._startedTalking && _player)
         {
             float _distance = Vector3.Distance(_player.position, transform.position);
             if (_distance > base._dialogueDistance)
@@ -26,34 +38,55 @@ public class Bed : Interactable
             }
 
         }
+
+        if (_isBedTime)
+        {
+            _camHolder.position = Vector3.Lerp(_camHolder.position, _anchorPoint.position, 1 * Time.deltaTime);
+            _camHolder.rotation = Quaternion.Lerp(_camHolder.rotation, _lookPoint.rotation, 1 * Time.deltaTime);
+            
+        }
     }
 
     //writing "virtual" in front of a function means that children scripts can add to/edit the function
     public override void Interact()
     {
-        if (base._canTalk)
+
+        if (_evidence._hasEvidence)
         {
-            TriggerDialogue();
+            if (_evidence._hasFoundPhone)
+            {
+                TriggerDialogue(_bedDialogue2);
 
+            }
+            else
+            {
+                TriggerDialogue(_bedDialogue2);
+            }
         }
-
-        //Adds an outline to object when interacting, if we set the bool 
-
+        else
+        {
+            TriggerDialogue(_bedDialogue2);
+        }
 
     }
 
-    public override void TriggerDialogue()
+    private void TriggerDialogue(Dialogue _dialogue)
     {
 
         if (!base._startedTalking)
         {
             Interactable _interactable = transform.GetComponent<Interactable>();
-            _bedManager.StartDialogue(_bedDialogue, _interactable);
+            _bedManager.StartDialogue(_dialogue, _interactable);
             base._startedTalking = true;
         }
         else
         {
             _bedManager.DisplayNextSentence();
+        }
+
+        if(_dialogue == _bedDialogue2)
+        {
+            StartCoroutine(CompleteLevel());
         }
     }
 
@@ -62,6 +95,22 @@ public class Bed : Interactable
         _bedManager.EndDialogue();
     }
 
+    private IEnumerator CompleteLevel()
+    {
+        _camHolder.parent = null;
+        _camController.enabled = false;
+        PlayerController.instance.enabled = false;
+       Destroy( PlayerController.instance.transform.gameObject);
+        _isBedTime = true;
+        yield return new WaitForSeconds(2);
+        _blackAnim.SetTrigger("black");
+        if (_spawnMonster)
+        {
+        _monster.SetActive(true);
+        }
+        yield return new WaitForSeconds(4);
+        GameManager.instance.LoadNextLevel();
 
+    }
 
 }

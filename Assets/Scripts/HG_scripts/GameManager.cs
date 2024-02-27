@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
+using UnityEngine.SceneManagement;
 
 public class GameManager : MonoBehaviour
 {
@@ -29,6 +30,7 @@ public class GameManager : MonoBehaviour
     [SerializeField] private TMP_Text _pausedText;
     [SerializeField] private Animator _pausedAnimator;
     [SerializeField] private AudioSource _pausedAudio;
+   
 
     private void Update()
     {
@@ -60,6 +62,12 @@ public class GameManager : MonoBehaviour
                 _pausedAudio.Play();
             }
         }
+
+    }
+
+    public void LoadNextLevel()
+    {
+        SceneManager.LoadScene(SceneManager.GetActiveScene().name);
 
     }
 

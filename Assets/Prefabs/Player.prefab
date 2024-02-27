@@ -606,7 +606,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
-  - {fileID: 2456986183782148576}
+  - {fileID: 3765301341462298740}
   m_Father: {fileID: 8803811581592282209}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &4243095077105731694
@@ -640,7 +640,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 2331260353666050199}
-  m_Father: {fileID: 6742885096831985367}
+  m_Father: {fileID: 3765301341462298740}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!95 &3472050158023448234
 Animator:
@@ -664,6 +664,38 @@ Animator:
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
   m_WriteDefaultValuesOnDisable: 0
+--- !u!1 &6770182399953874568
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 3765301341462298740}
+  m_Layer: 6
+  m_Name: CamHolderPoint
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &3765301341462298740
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6770182399953874568}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children:
+  - {fileID: 2456986183782148576}
+  m_Father: {fileID: 6742885096831985367}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &8219513580255775750
 GameObject:
   m_ObjectHideFlags: 0
@@ -831,6 +863,9 @@ MonoBehaviour:
   _keys: []
   _handler: {fileID: 7766035218042975168}
   _interactAudio: {fileID: 0}
+  _whiteAnimator: {fileID: 0}
+  _camAudio: {fileID: 0}
+  _shotWait: 0
   _playerBody: {fileID: 8803811581592282209}
   _interactable:
     serializedVersion: 2
