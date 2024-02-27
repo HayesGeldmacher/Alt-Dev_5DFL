@@ -257,7 +257,11 @@ public class CameraController : MonoBehaviour
        //Ensures that player has to wait between each shot, cant spam
         if (Input.GetKeyDown(KeyCode.Space) && _currentShotWait >= _shotWait)
         {
+            if (_hasCamera)
+            {
             ScreenShot();
+
+            }
         }
 
         _currentShotWait += Time.deltaTime;
