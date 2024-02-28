@@ -15,7 +15,7 @@ public class CameraController : MonoBehaviour
     private float _xMove;
     private float _yMove;
 
-    [SerializeField] private bool _hasCamera;
+   
     [SerializeField] private Animator _camAnimator;
 
     [Header("Lerp Variables")]
@@ -42,9 +42,12 @@ public class CameraController : MonoBehaviour
     [SerializeField] private float _shotWait;
     private float _currentShotWait;
 
-    
-  
-   
+    [Header("Camera Obtained Variables")]
+    public bool _hasCamera;
+    [SerializeField] private GameObject _camHud;
+    [SerializeField] private GameObject _glitchScreen;
+
+
 
 
     [Header("")]
@@ -69,11 +72,15 @@ public class CameraController : MonoBehaviour
         if (_hasCamera)
         {
             _camAnimator.SetBool("still", false);
+            _camHud.SetActive(true);
+            _glitchScreen.SetActive(true);
 
         }
         else
         {
             _camAnimator.SetBool("still", true);
+            _camHud.SetActive(false);
+            _glitchScreen.SetActive(false);
         }
     }
 
@@ -257,7 +264,11 @@ public class CameraController : MonoBehaviour
        //Ensures that player has to wait between each shot, cant spam
         if (Input.GetKeyDown(KeyCode.Space) && _currentShotWait >= _shotWait)
         {
+            if (_hasCamera)
+            {
             ScreenShot();
+
+            }
         }
 
         _currentShotWait += Time.deltaTime;
@@ -273,6 +284,14 @@ public class CameraController : MonoBehaviour
         _camAudio.Play();
 
         _currentShotWait = 0;
+    }
+
+    public void GotCamera()
+    {
+//Set post-processing as welL!
+        _hasCamera = true;
+        _camHud.SetActive(true);
+        _glitchScreen.SetActive(true);
     }
    
 }
