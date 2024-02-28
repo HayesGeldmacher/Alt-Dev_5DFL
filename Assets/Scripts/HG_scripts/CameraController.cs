@@ -45,6 +45,7 @@ public class CameraController : MonoBehaviour
     [Header("Camera Obtained Variables")]
     public bool _hasCamera;
     [SerializeField] private GameObject _camHud;
+    [SerializeField] private GameObject _glitchScreen;
 
 
 
@@ -72,12 +73,14 @@ public class CameraController : MonoBehaviour
         {
             _camAnimator.SetBool("still", false);
             _camHud.SetActive(true);
+            _glitchScreen.SetActive(true);
 
         }
         else
         {
             _camAnimator.SetBool("still", true);
             _camHud.SetActive(false);
+            _glitchScreen.SetActive(false);
         }
     }
 
@@ -288,7 +291,7 @@ public class CameraController : MonoBehaviour
 //Set post-processing as welL!
         _hasCamera = true;
         _camHud.SetActive(true);
-
+        _glitchScreen.SetActive(true);
     }
    
 }
