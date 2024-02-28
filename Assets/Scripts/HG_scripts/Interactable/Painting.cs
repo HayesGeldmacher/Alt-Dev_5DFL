@@ -10,4 +10,14 @@ public class Painting : Interactable
         transform.GetComponent<Animator>().SetTrigger("fall");
 
     }
+
+    public void Shatter()
+    {
+        transform.GetComponent<AudioSource>().Play();
+    }
+
+    private void Update()
+    {
+        base.Update();
+    }
 }
