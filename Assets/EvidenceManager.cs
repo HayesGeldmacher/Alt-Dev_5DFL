@@ -7,12 +7,13 @@ public class EvidenceManager : MonoBehaviour
 {
     [SerializeField] private int _picturesNeeded;
     public List<GameObject> _evidenceBits = new List<GameObject>();
-    [HideInInspector] public bool _hasEvidence = false;
-    [HideInInspector] public bool _hasFoundPhone = false;
+    public bool _hasEvidence = false;
+    public bool _hasFoundPhone = false;
     [SerializeField] private TMP_Text _text;
     [SerializeField] private string _textOption1;
     [SerializeField] private string _textOption2;
     [SerializeField] private Animator _textAnim;
+
 
     public void PictureTaken(GameObject evidence)
     {
@@ -27,6 +28,8 @@ public class EvidenceManager : MonoBehaviour
                 Destroy(evidence);
                 _picturesNeeded -= 1;
                 
+            }
+            i++;
                 if(_picturesNeeded <= 0)
                 {
                     CompletePictures();
@@ -40,8 +43,6 @@ public class EvidenceManager : MonoBehaviour
                     _text.text = _textOption2;
                     transform.GetComponent<DialogueManager>().CallTimerEnd(2);
                 }
-            }
-            i++;
         }
     }
 
