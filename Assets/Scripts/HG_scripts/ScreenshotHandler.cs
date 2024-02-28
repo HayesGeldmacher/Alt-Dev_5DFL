@@ -15,6 +15,7 @@ public class ScreenshotHandler : MonoBehaviour
     [SerializeField] private EvidenceManager _evidenceManager;
 
 
+
     private void Awake()
     {
         //instance = this;

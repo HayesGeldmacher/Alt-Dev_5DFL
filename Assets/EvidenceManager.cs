@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using TMPro;
 
 public class EvidenceManager : MonoBehaviour
 {
@@ -8,22 +9,36 @@ public class EvidenceManager : MonoBehaviour
     public List<GameObject> _evidenceBits = new List<GameObject>();
     [HideInInspector] public bool _hasEvidence = false;
     [HideInInspector] public bool _hasFoundPhone = false;
+    [SerializeField] private TMP_Text _text;
+    [SerializeField] private string _textOption1;
+    [SerializeField] private string _textOption2;
+    [SerializeField] private Animator _textAnim;
 
     public void PictureTaken(GameObject evidence)
     {
         int i = 0;
         foreach(GameObject bit in _evidenceBits)
         {
-            
+                    
+            Debug.Log("HEre!");
             if (bit.name == evidence.name)
             {
                 _evidenceBits.RemoveAt(i);
                 Destroy(evidence);
                 _picturesNeeded -= 1;
-                Debug.Log("Got a pic!");
+                
                 if(_picturesNeeded <= 0)
                 {
                     CompletePictures();
+                    _textAnim.SetBool("active", true);
+                    _text.text = _textOption1;
+                    transform.GetComponent<DialogueManager>().CallTimerEnd(2);
+                }
+                else
+                {
+                    _textAnim.SetBool("active", true);
+                    _text.text = _textOption2;
+                    transform.GetComponent<DialogueManager>().CallTimerEnd(2);
                 }
             }
             i++;
