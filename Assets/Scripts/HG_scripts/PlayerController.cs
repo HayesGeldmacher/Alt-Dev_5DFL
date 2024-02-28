@@ -107,6 +107,7 @@ public class PlayerController : MonoBehaviour
             if(_move.magnitude > 0.1f) 
             {
                 _camAnim.SetBool("walking", true);
+                //play footsteps here
             }
             else
             {
