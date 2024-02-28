@@ -301,6 +301,7 @@ public class CameraController : MonoBehaviour
         _hasCamera = true;
         _camHud.SetActive(true);
         _glitchScreen.SetActive(true);
+        _camAnimator.SetBool("still", false);
     }
    
 }
