@@ -18,6 +18,10 @@ public class PlayerController : MonoBehaviour
     [SerializeField] private Vector3 _velocity;
     [SerializeField] private float _walkSpeed;
     [SerializeField] private Animator _camAnim;
+    [SerializeField] private AudioSource _footSteps;
+    [SerializeField] private float _neededFootTime;
+    private float _currentFootTime;
+    public List<AudioClip> _audioClips = new List<AudioClip>();
 
     [Header("Crouch Variables")]
     [SerializeField] private Transform _cameraParent;
@@ -65,6 +69,8 @@ public class PlayerController : MonoBehaviour
         //Disables the player capsule mesh so we dont see it during playtime!
         MeshRenderer _mesh = GetComponent<MeshRenderer>();
         _mesh.enabled = false;
+
+        _currentFootTime = _neededFootTime;
     }
 
     private void Update()
@@ -108,10 +114,12 @@ public class PlayerController : MonoBehaviour
             {
                 _camAnim.SetBool("walking", true);
                 //play footsteps here
+                FootStepUpdate();
             }
             else
             {
                 _camAnim.SetBool("walking", false);
+                _currentFootTime = 0;
             }
 
             //This lines allows the player to turn their flashlight on or off!
@@ -182,6 +190,23 @@ public class PlayerController : MonoBehaviour
         _isMovingBack = true;
         yield return new WaitForSeconds(1);
         _isMovingBack = false;
+    }
+
+    private void FootStepUpdate()
+    {
+
+        _currentFootTime += Time.deltaTime;
+        if(_currentFootTime >= _neededFootTime)
+        {
+        if (!_footSteps.isPlaying)
+        {
+            int _randomAudio = Random.Range(0, _audioClips.Count);
+            _footSteps.clip = _audioClips[_randomAudio];
+            _footSteps.Play();
+                _currentFootTime = 0;
+        }
+
+        }
     }
 
 }
