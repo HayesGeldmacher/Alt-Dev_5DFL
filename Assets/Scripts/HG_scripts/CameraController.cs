@@ -15,7 +15,7 @@ public class CameraController : MonoBehaviour
     private float _xMove;
     private float _yMove;
 
-    [SerializeField] private bool _hasCamera;
+   
     [SerializeField] private Animator _camAnimator;
 
     [Header("Lerp Variables")]
@@ -42,9 +42,11 @@ public class CameraController : MonoBehaviour
     [SerializeField] private float _shotWait;
     private float _currentShotWait;
 
-    
-  
-   
+    [Header("Camera Obtained Variables")]
+    public bool _hasCamera;
+    [SerializeField] private GameObject _camHud;
+
+
 
 
     [Header("")]
@@ -69,11 +71,13 @@ public class CameraController : MonoBehaviour
         if (_hasCamera)
         {
             _camAnimator.SetBool("still", false);
+            _camHud.SetActive(true);
 
         }
         else
         {
             _camAnimator.SetBool("still", true);
+            _camHud.SetActive(false);
         }
     }
 
@@ -279,10 +283,12 @@ public class CameraController : MonoBehaviour
         _currentShotWait = 0;
     }
 
-    private void GotCamera()
+    public void GotCamera()
     {
-       // Camera.main.GetUniversalAdditionalData().renderPostProcessing = true;
+//Set post-processing as welL!
         _hasCamera = true;
+        _camHud.SetActive(true);
+
     }
    
 }
