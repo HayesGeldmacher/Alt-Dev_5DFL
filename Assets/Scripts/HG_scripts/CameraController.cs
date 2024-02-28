@@ -283,7 +283,7 @@ public class CameraController : MonoBehaviour
         _currentShotWait = 0;
     }
 
-    private void GotCamera()
+    public void GotCamera()
     {
 //Set post-processing as welL!
         _hasCamera = true;

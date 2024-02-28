@@ -2,17 +2,14 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class CameraPickup : MonoBehaviour
+public class CameraPickup : Interactable
 {
-    // Start is called before the first frame update
-    void Start()
+    [SerializeField] private CameraController _camController;
+    
+    public override void Interact()
     {
-        
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
+        base.Interact();
+        _camController.GotCamera();
+        base.PickUpItem();
     }
 }

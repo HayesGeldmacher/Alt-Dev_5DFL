@@ -14,6 +14,7 @@ public class CameraZoom : MonoBehaviour
     private float _currentZoom;
     private bool _isZooming;
     private bool _hasPlayedSound;
+    private CameraController _camController;
 
     private void Start()
     {
@@ -21,11 +22,13 @@ public class CameraZoom : MonoBehaviour
         _currentZoom = _cam.fieldOfView;
         _ghostCam.fieldOfView = _currentZoom;
         _hasPlayedSound = false;
+        _camController = transform.GetComponent<CameraController>();
     }
 
     // Update is called once per frame
     void Update()
     {
+        if (!_camController._hasCamera) { return; }
         if (Input.GetMouseButton(1))
         {
             _isZooming = true;
