@@ -30,9 +30,19 @@ public class Door : Interactable
     // Update is called once per frame
     void Update()
     {
+        base.Update();
         if (_isHeld)
         {
             HoldUpdate();   
+        }
+    }
+    
+    public override void Interact()
+    {
+       if( _isLocked )
+        {
+            base.Interact();
+            CallEndDialogue();
         }
     }
 
@@ -61,6 +71,11 @@ public class Door : Interactable
 
             }
         }
+    }
+
+    public override void CallEndDialogue()
+    {
+        base.CallEndDialogue();
     }
 
     public void Unlock()

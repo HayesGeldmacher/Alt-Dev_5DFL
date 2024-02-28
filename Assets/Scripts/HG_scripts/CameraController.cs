@@ -32,6 +32,7 @@ public class CameraController : MonoBehaviour
     private Door _door;
     public List<string> _keys = new List<string>();
     private Interactable _currentInteractable;
+    private bool _doorTalked = false;
 
 
     [Header("Screenshot Variables")]
@@ -197,6 +198,13 @@ public class CameraController : MonoBehaviour
                             }
                             else
                             {
+
+                                if (!_doorTalked)
+                                {
+                                _door.Interact();
+                                    _doorTalked = true;
+
+                                }
                             _door = null;
 
                             }
@@ -222,6 +230,7 @@ public class CameraController : MonoBehaviour
                         _door._isHeld = false;
                         _door = null;
                     }
+                    _doorTalked = false;
                 }
             
             }

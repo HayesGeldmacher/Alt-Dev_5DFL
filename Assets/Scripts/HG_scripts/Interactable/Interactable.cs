@@ -32,7 +32,7 @@ public class Interactable : MonoBehaviour
         _player = PlayerController.instance.transform;
     }
 
-    private void Update()
+    protected void Update()
     {
        if(_canWalkAway && _startedTalking)
         {
@@ -98,6 +98,11 @@ public class Interactable : MonoBehaviour
     public virtual void EndDialogue()
     {
         _manager.EndDialogue();
+    }
+
+    public virtual void CallEndDialogue()
+    {
+        _manager.CallTimerEnd(_dialogueTimer);
     }
 
     public virtual void PickUpItem()
