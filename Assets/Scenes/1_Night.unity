@@ -5415,6 +5415,23 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 3051373648062728661, guid: 8a0e3bd4812cd2a4c83cf505db2c7753,
+        type: 3}
+      propertyPath: m_fontAsset
+      value: 
+      objectReference: {fileID: 11400000, guid: b2a26b7f1b8735245af835497a4ab2e5,
+        type: 2}
+    - target: {fileID: 3051373648062728661, guid: 8a0e3bd4812cd2a4c83cf505db2c7753,
+        type: 3}
+      propertyPath: m_sharedMaterial
+      value: 
+      objectReference: {fileID: 5522870637584921542, guid: b2a26b7f1b8735245af835497a4ab2e5,
+        type: 2}
+    - target: {fileID: 3051373648062728661, guid: 8a0e3bd4812cd2a4c83cf505db2c7753,
+        type: 3}
+      propertyPath: m_hasFontAssetChanged
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 3462810418433959330, guid: 8a0e3bd4812cd2a4c83cf505db2c7753,
         type: 3}
       propertyPath: m_fontSize
@@ -5422,8 +5439,25 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3462810418433959330, guid: 8a0e3bd4812cd2a4c83cf505db2c7753,
         type: 3}
+      propertyPath: m_fontAsset
+      value: 
+      objectReference: {fileID: 11400000, guid: b2a26b7f1b8735245af835497a4ab2e5,
+        type: 2}
+    - target: {fileID: 3462810418433959330, guid: 8a0e3bd4812cd2a4c83cf505db2c7753,
+        type: 3}
       propertyPath: m_fontSizeBase
       value: 24
+      objectReference: {fileID: 0}
+    - target: {fileID: 3462810418433959330, guid: 8a0e3bd4812cd2a4c83cf505db2c7753,
+        type: 3}
+      propertyPath: m_sharedMaterial
+      value: 
+      objectReference: {fileID: 5522870637584921542, guid: b2a26b7f1b8735245af835497a4ab2e5,
+        type: 2}
+    - target: {fileID: 3462810418433959330, guid: 8a0e3bd4812cd2a4c83cf505db2c7753,
+        type: 3}
+      propertyPath: m_hasFontAssetChanged
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4502766985462080274, guid: 8a0e3bd4812cd2a4c83cf505db2c7753,
         type: 3}
@@ -5528,6 +5562,23 @@ PrefabInstance:
     - target: {fileID: 5608798698582264588, guid: 8a0e3bd4812cd2a4c83cf505db2c7753,
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6714593275538748215, guid: 8a0e3bd4812cd2a4c83cf505db2c7753,
+        type: 3}
+      propertyPath: m_fontAsset
+      value: 
+      objectReference: {fileID: 11400000, guid: b2a26b7f1b8735245af835497a4ab2e5,
+        type: 2}
+    - target: {fileID: 6714593275538748215, guid: 8a0e3bd4812cd2a4c83cf505db2c7753,
+        type: 3}
+      propertyPath: m_sharedMaterial
+      value: 
+      objectReference: {fileID: 5522870637584921542, guid: b2a26b7f1b8735245af835497a4ab2e5,
+        type: 2}
+    - target: {fileID: 6714593275538748215, guid: 8a0e3bd4812cd2a4c83cf505db2c7753,
+        type: 3}
+      propertyPath: m_hasFontAssetChanged
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7818623245650036397, guid: 8a0e3bd4812cd2a4c83cf505db2c7753,
@@ -52618,8 +52669,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9d97ad80222a4de408e314a7cbb17336, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _mouseSensitivityX: 1000
-  _mouseSensitivityY: 1000
+  _mouseSensitivityX: 300
+  _mouseSensitivityY: 300
   _camAnimator: {fileID: 6532821420204698344}
   _lerpZMax: 1
   _lerpZSpeed: 3
