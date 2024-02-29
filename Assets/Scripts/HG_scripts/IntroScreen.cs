@@ -9,6 +9,7 @@ public class IntroScreen : MonoBehaviour
 
     [SerializeField] private float _neededPauseTime;
     private float currentPauseTime = 0;
+    [SerializeField] private Animator _introAnimator;
 
     // Update is called once per frame
     void Update()
@@ -20,10 +21,18 @@ public class IntroScreen : MonoBehaviour
         {
            if(currentPauseTime > _neededPauseTime)
             {
-                SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
 
+                StartCoroutine(LoadScene());
             }
         }
+    }
+
+    private IEnumerator LoadScene()
+    {
+        transform.GetComponent<AudioSource>().Play();
+        _introAnimator.SetTrigger("fade");
+        yield return new WaitForSeconds(2f);
+        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
     }
 
 }
