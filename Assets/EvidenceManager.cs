@@ -13,6 +13,8 @@ public class EvidenceManager : MonoBehaviour
     [SerializeField] private string _textOption1;
     [SerializeField] private string _textOption2;
     [SerializeField] private Animator _textAnim;
+    int _evidenceToRemove;
+    private bool _shouldRemove = false;
 
 
     public void PictureTaken(GameObject evidence)
@@ -24,8 +26,9 @@ public class EvidenceManager : MonoBehaviour
             Debug.Log("HEre!");
             if (bit.name == evidence.name)
             {
-                _evidenceBits.RemoveAt(i);
-                Destroy(evidence);
+               
+                _evidenceToRemove = i;
+                _shouldRemove = true;
                 _picturesNeeded -= 1;
                 
             }
@@ -44,6 +47,14 @@ public class EvidenceManager : MonoBehaviour
                     transform.GetComponent<DialogueManager>().CallTimerEnd(2);
                 }
         }
+            if (_shouldRemove)
+            {
+            GameObject _removable = _evidenceBits[_evidenceToRemove];
+             _evidenceBits.RemoveAt(_evidenceToRemove);
+            Destroy(_removable);
+                _shouldRemove = false;
+
+            }
     }
 
     private void CompletePictures()
