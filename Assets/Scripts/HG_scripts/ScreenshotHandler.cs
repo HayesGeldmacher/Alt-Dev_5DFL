@@ -40,7 +40,7 @@ public class ScreenshotHandler : MonoBehaviour
         System.IO.File.WriteAllBytes(_folderPath, _byteArray);
 
         Debug.Log("Screenshot Taken!");
-        CheckForEvidence();
+        //CheckForEvidence();
 
     }
 
@@ -57,8 +57,9 @@ public class ScreenshotHandler : MonoBehaviour
     //This is called by the below function, and initiates the screenshot
     private IEnumerator TakeScreenshot(int _width, int _height)
     {
-        yield return _frameEnd;
-        OtherScreenShotMethod();
+         yield return _frameEnd;
+        //OtherScreenShotMethod();
+        CheckForEvidence();
     }
 
     //This is the function that we call from other scripts!

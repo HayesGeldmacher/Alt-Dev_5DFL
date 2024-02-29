@@ -19,20 +19,8 @@ public class EvidenceManager : MonoBehaviour
 
     public void PictureTaken(GameObject evidence)
     {
-        int i = 0;
-        foreach(GameObject bit in _evidenceBits)
-        {
-                    
-            Debug.Log("HEre!");
-            if (bit.name == evidence.name)
-            {
-               
-                _evidenceToRemove = i;
-                _shouldRemove = true;
-                _picturesNeeded -= 1;
-                
-            }
-            i++;
+        _picturesNeeded -= 1;
+        Destroy(evidence);
                 if(_picturesNeeded <= 0)
                 {
                     CompletePictures();
@@ -46,15 +34,6 @@ public class EvidenceManager : MonoBehaviour
                     _text.text = _textOption2;
                     transform.GetComponent<DialogueManager>().CallTimerEnd(2);
                 }
-        }
-            if (_shouldRemove)
-            {
-            GameObject _removable = _evidenceBits[_evidenceToRemove];
-             _evidenceBits.RemoveAt(_evidenceToRemove);
-            Destroy(_removable);
-                _shouldRemove = false;
-
-            }
     }
 
     private void CompletePictures()
