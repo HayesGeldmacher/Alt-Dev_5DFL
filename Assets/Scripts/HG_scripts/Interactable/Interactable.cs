@@ -53,6 +53,7 @@ public class Interactable : MonoBehaviour
             TriggerDialogue();
             
         }
+        
 
         //Adds an outline to object when interacting, if we set the bool 
       
