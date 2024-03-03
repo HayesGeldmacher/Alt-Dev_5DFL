@@ -16,7 +16,10 @@ public class Bed : Interactable
     [SerializeField] private Animator _blackAnim;
     [SerializeField] private GameObject _monster;
     [SerializeField] private bool _spawnMonster;
+    [SerializeField] private GameObject _hud;
+    [SerializeField] private GameObject _cursor;
     private bool _isBedTime = false;
+   
     
    
 
@@ -104,12 +107,23 @@ public class Bed : Interactable
         _isBedTime = true;
         yield return new WaitForSeconds(2);
         _blackAnim.SetTrigger("black");
+        EndDialogue();
+        yield return new WaitForSeconds(4);
         if (_spawnMonster)
         {
-        _monster.SetActive(true);
+            _hud.SetActive(false);
+            _cursor.SetActive(false);
+            _monster.SetActive(true);
+            _blackAnim.SetTrigger("blinking");
+            yield return new WaitForSeconds(4);
+            GameManager.instance.LoadNextLevel();
+
         }
-        yield return new WaitForSeconds(4);
+        else
+        {
         GameManager.instance.LoadNextLevel();
+
+        }
 
     }
 
