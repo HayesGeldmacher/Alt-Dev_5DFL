@@ -14,6 +14,11 @@ public class Door : Interactable
     [SerializeField] private float _minYRot = -0.9f;
     [SerializeField] private float _maxYRot = 0.9f;
 
+    [Header("Audio")]
+    [SerializeField] private AudioSource _lockedAudio;
+    [SerializeField] private AudioSource _unlockedAudio;
+    [SerializeField] private AudioSource _openedAudio;
+
     
     
     // Start is called before the first frame update
@@ -42,6 +47,7 @@ public class Door : Interactable
        if( _isLocked )
         {
             base.Interact();
+            _lockedAudio.Play();
             CallEndDialogue();
         }
     }
@@ -81,6 +87,7 @@ public class Door : Interactable
     public void Unlock()
     {
         _isLocked = false;
-        //play a sound!
+        _unlockedAudio.Play();
+        
     }
 }

@@ -170,6 +170,25 @@ public class CameraController : MonoBehaviour
             //here we make the cursor appear on screen!
             if (_hitInfo.transform.GetComponent<Interactable>()) 
             { 
+                if(_hitInfo.transform.tag == "door")
+                {
+                    _door = _hitInfo.transform.GetComponent<Door>();
+                    if (_door._isLocked)
+                    {
+                        
+                    _cursorAnim.SetBool("locked", true);
+
+                    }
+                    else
+                    {
+                     _cursorAnim.SetBool("locked", false);
+                    }
+                    
+                }
+                else
+                {
+                    _cursorAnim.SetBool("locked", false);
+                }
                 _cursorAnim.SetBool("isCasting", true);
                 _currentInteractable = _hitInfo.transform.GetComponent<Interactable>();
                 if (!_currentInteractable._isOutlined)
@@ -194,11 +213,13 @@ public class CameraController : MonoBehaviour
                             if (_keys.Contains(code))
                             {
                                 _door.Unlock();
+                                _cursorAnim.SetTrigger("unlock");
+                                _cursorAnim.SetBool("locked", false);
                            
                             }
                             else
                             {
-
+                             
                                 if (!_doorTalked)
                                 {
                                 _door.Interact();

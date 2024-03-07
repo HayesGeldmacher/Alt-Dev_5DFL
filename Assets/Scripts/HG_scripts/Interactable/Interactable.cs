@@ -30,7 +30,9 @@ public class Interactable : MonoBehaviour
     {
         _manager = GameManager.instance.GetComponent<DialogueManager>();
         _player = PlayerController.instance.transform;
+
     }
+
 
     protected void Update()
     {
@@ -43,6 +45,8 @@ public class Interactable : MonoBehaviour
             }
 
         }
+
+     
     }
 
     //writing "virtual" in front of a function means that children scripts can add to/edit the function
