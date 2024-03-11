@@ -196,19 +196,22 @@ public class CameraController : MonoBehaviour
                     _currentInteractable.OnOutline();
                 }
 
-                if (Input.GetMouseButton(0))
+                if (Input.GetMouseButtonDown(0))
                 {
                     if (_hitInfo.transform.tag == "door")
                     {
                         _door = _hitInfo.transform.GetComponent<Door>();
                         if (!_door._isLocked)
                         {
-                          
-                           
 
+                            if (!_isHolding)
+                            {
                              _door.SetDirection();
                             _door._isHeld = true;
-                        _isHolding = true;
+                             _isHolding = true;
+
+                            }
+
 
                         }
                         else
