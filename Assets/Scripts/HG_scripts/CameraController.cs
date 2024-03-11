@@ -203,7 +203,11 @@ public class CameraController : MonoBehaviour
                         _door = _hitInfo.transform.GetComponent<Door>();
                         if (!_door._isLocked)
                         {
-                        _door._isHeld = true;
+                          
+                           
+
+                             _door.SetDirection();
+                            _door._isHeld = true;
                         _isHolding = true;
 
                         }
