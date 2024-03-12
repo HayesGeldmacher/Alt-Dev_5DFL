@@ -31,6 +31,7 @@ public class GameManager : MonoBehaviour
     [SerializeField] private Animator _pausedAnimator;
     [SerializeField] private AudioSource _pausedAudio;
 
+    
    
   
 
@@ -76,5 +77,6 @@ public class GameManager : MonoBehaviour
         SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
 
     }
+
 
 }

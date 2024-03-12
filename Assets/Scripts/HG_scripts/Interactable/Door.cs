@@ -107,7 +107,6 @@ public class Door : Interactable
         {
             var zeroRotation = _doorPivot.localRotation;
             zeroRotation.x = 0;
-            zeroRotation.y = 0;
             zeroRotation.z = 0;
             _doorPivot.localRotation = zeroRotation;
             _isSwinging = false;
@@ -165,6 +164,8 @@ public class Door : Interactable
             }
         }
 
+        if (_hasInteracted)
+        {
         var newRotation = _doorPivot.localRotation;
         newRotation.x = 0;
         newRotation.z = 0;
@@ -172,6 +173,8 @@ public class Door : Interactable
 
         newRotation.y = Mathf.Clamp(newRotation.y, _minYRot, _maxYRot);
         _doorPivot.localRotation = newRotation;
+
+        }
 
     }
 
