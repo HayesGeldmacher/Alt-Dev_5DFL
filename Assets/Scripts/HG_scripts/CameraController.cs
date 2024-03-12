@@ -49,7 +49,7 @@ public class CameraController : MonoBehaviour
     [SerializeField] private GameObject _camHud;
     [SerializeField] private GameObject _glitchScreen;
     [SerializeField] private GameObject _postProcess;
-
+    [HideInInspector] public bool _frozen = false;
 
 
 
@@ -97,9 +97,10 @@ public class CameraController : MonoBehaviour
 
     private void Update()
     {
+        if (_frozen) return;
         InteractUpdate();
-        if (_isHolding)
-            return;
+        if (_isHolding) return;
+
 
         //Here, we are getting the actualy mouse movement from the player and converting it to variables
         //All inputs should be multiplied Time.deltaTime in order for physics to work correctly
@@ -335,12 +336,19 @@ public class CameraController : MonoBehaviour
 
     public void GotCamera()
     {
-//Set post-processing as welL!
         _hasCamera = true;
         _camHud.SetActive(true);
         _glitchScreen.SetActive(true);
         _camAnimator.SetBool("still", false);
         _postProcess.SetActive(true);
+    }
+
+    public void SetCameraLook(Transform lookPoint)
+    {
+        _frozen = true;
+        Vector3 relativePos = lookPoint.position - transform.position;
+        Quaternion rotation = Quaternion.LookRotation(relativePos, Vector3.up);
+        transform.rotation = rotation;
     }
    
 }

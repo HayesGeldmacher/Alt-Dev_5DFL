@@ -39,6 +39,8 @@ public class PlayerController : MonoBehaviour
     private Vector3 _moveBackTarget;
     [SerializeField] private GameObject _light;
     [SerializeField] private SoundManager _soundManager;
+
+    [HideInInspector] public bool _frozen = false;
    
     
 
@@ -75,6 +77,8 @@ public class PlayerController : MonoBehaviour
 
     private void Update()
     {
+        if(_frozen) return;
+        
         if (_isMovingBack)
         {
             MoveBackUpdate();
