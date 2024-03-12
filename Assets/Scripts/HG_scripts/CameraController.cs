@@ -45,8 +45,10 @@ public class CameraController : MonoBehaviour
 
     [Header("Camera Obtained Variables")]
     public bool _hasCamera;
+    [SerializeField] private bool _dayTime;
     [SerializeField] private GameObject _camHud;
     [SerializeField] private GameObject _glitchScreen;
+    [SerializeField] private GameObject _postProcess;
 
 
 
@@ -82,6 +84,14 @@ public class CameraController : MonoBehaviour
             _camAnimator.SetBool("still", true);
             _camHud.SetActive(false);
             _glitchScreen.SetActive(false);
+        }
+        if (_dayTime)
+        {
+            _postProcess.SetActive(false);
+        }
+        else
+        {
+            _postProcess.SetActive(true);
         }
     }
 
@@ -330,6 +340,7 @@ public class CameraController : MonoBehaviour
         _camHud.SetActive(true);
         _glitchScreen.SetActive(true);
         _camAnimator.SetBool("still", false);
+        _postProcess.SetActive(true);
     }
    
 }
