@@ -12,7 +12,7 @@ public class CameraZoom : MonoBehaviour
     [SerializeField] private float _backZoomSpeed;
     [SerializeField] private AudioSource _zoomAudio;
     private float _currentZoom;
-    private bool _isZooming;
+    [HideInInspector] public bool _isZooming;
     private bool _hasPlayedSound;
     private CameraController _camController;
 

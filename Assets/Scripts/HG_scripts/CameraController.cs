@@ -50,6 +50,7 @@ public class CameraController : MonoBehaviour
     [SerializeField] private GameObject _glitchScreen;
     [SerializeField] private GameObject _postProcess;
     [HideInInspector] public bool _frozen = false;
+    private CameraZoom _zoom;
 
     [Header("Noise Variables")]
     [SerializeField] private List<MonsterRoaming> _monsters = new List<MonsterRoaming>();
@@ -103,6 +104,8 @@ public class CameraController : MonoBehaviour
         {
             _monsters.Add(monster.GetComponent<MonsterRoaming>());
         }
+
+        _zoom = transform.GetComponent<CameraZoom>();
     }
 
     private void Update()
@@ -181,7 +184,14 @@ public class CameraController : MonoBehaviour
 
     private void InteractUpdate()
     {
-       //Every frame we are shooting a raycast out into the environment. 
+        ScreenShotUpdate();
+        if (_zoom._isZooming)
+        {
+            _cursorAnim.SetBool("isCasting", false);
+        }
+        if (_zoom._isZooming) return;
+        
+        //Every frame we are shooting a raycast out into the environment. 
        //This checks if an interactable object is in front of us
 
         RaycastHit _hitInfo = new RaycastHit();
@@ -315,13 +325,13 @@ public class CameraController : MonoBehaviour
             }
         }
 
-        ScreenShotUpdate();
+        
     }
 
     private void ScreenShotUpdate()
     {
        //Ensures that player has to wait between each shot, cant spam
-        if (Input.GetKeyDown(KeyCode.Space) && _currentShotWait >= _shotWait)
+        if (Input.GetMouseButtonDown(0) && _currentShotWait >= _shotWait && _zoom._isZooming)
         {
             if (_hasCamera)
             {
