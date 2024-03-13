@@ -625,8 +625,8 @@ Light:
   m_Type: 2
   m_Shape: 0
   m_Color: {r: 1, g: 0.94461906, b: 0.87169814, a: 1}
-  m_Intensity: 1
-  m_Range: 10
+  m_Intensity: 3.1
+  m_Range: 16.87
   m_SpotAngle: 30
   m_InnerSpotAngle: 21.80208
   m_CookieSize: 10
@@ -700,6 +700,8 @@ MonoBehaviour:
   _player: {fileID: 4273500330500997587}
   _listening: 0
   _inSight: 0
+  _noiseLimit: 10
+  _currentNoise: 0
 --- !u!82 &88040694
 AudioSource:
   m_ObjectHideFlags: 0
@@ -47025,7 +47027,7 @@ PrefabInstance:
     - target: {fileID: -8679921383154817045, guid: b9deabe43f286104495f18d00107e32e,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: -29.336
+      value: -36.55
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: b9deabe43f286104495f18d00107e32e,
         type: 3}
@@ -47035,7 +47037,7 @@ PrefabInstance:
     - target: {fileID: -8679921383154817045, guid: b9deabe43f286104495f18d00107e32e,
         type: 3}
       propertyPath: m_LocalPosition.z
-      value: 18.787
+      value: 21.08
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: b9deabe43f286104495f18d00107e32e,
         type: 3}
@@ -48639,6 +48641,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_IsActive
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5587235810811110257, guid: 7e5f4547f5c1e464baaf2a9310bdb375,
+        type: 3}
+      propertyPath: m_TagString
+      value: Roaming
       objectReference: {fileID: 0}
     - target: {fileID: 5616169254786304509, guid: 7e5f4547f5c1e464baaf2a9310bdb375,
         type: 3}
@@ -55036,6 +55043,9 @@ MonoBehaviour:
   _moveBackSpeed: 3
   _light: {fileID: 3004419016621508961}
   _soundManager: {fileID: 8690994448522396030}
+  _monsters: []
+  _walkingNoise: 2
+  _crouchingNoise: 0.5
   _frozen: 0
 --- !u!224 &4688716626149323603
 RectTransform:

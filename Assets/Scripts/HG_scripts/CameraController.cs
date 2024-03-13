@@ -51,6 +51,11 @@ public class CameraController : MonoBehaviour
     [SerializeField] private GameObject _postProcess;
     [HideInInspector] public bool _frozen = false;
 
+    [Header("Noise Variables")]
+    [SerializeField] private List<MonsterRoaming> _monsters = new List<MonsterRoaming>();
+    [SerializeField] private float _doorOpenNoise;
+    [SerializeField] private float _snapShotNoise;
+
 
 
     [Header("")]
@@ -92,6 +97,11 @@ public class CameraController : MonoBehaviour
         else
         {
             _postProcess.SetActive(true);
+        }
+
+        foreach (GameObject monster in GameObject.FindGameObjectsWithTag("Roaming"))
+        {
+            _monsters.Add(monster.GetComponent<MonsterRoaming>());
         }
     }
 
@@ -217,6 +227,7 @@ public class CameraController : MonoBehaviour
 
                             if (!_isHolding)
                             {
+                                AddNoise(_doorOpenNoise);
                              _door.SetDirection();
                             _door._isHeld = true;
                              _isHolding = true;
@@ -325,6 +336,7 @@ public class CameraController : MonoBehaviour
     private void ScreenShot()
     {
       //This lines calls to the actual screenshot object
+        AddNoise(_snapShotNoise);
         _handler.GetComponent<ScreenshotHandler>().TakeScreenshot_Static(Screen.width, Screen.height);
         _whiteAnimator.SetTrigger("snap");
 
@@ -349,6 +361,14 @@ public class CameraController : MonoBehaviour
         Vector3 relativePos = lookPoint.position - transform.position;
         Quaternion rotation = Quaternion.LookRotation(relativePos, Vector3.up);
         transform.rotation = rotation;
+    }
+
+    private void AddNoise(float noise)
+    {
+        foreach(MonsterRoaming monster in _monsters)
+        {
+            monster.AddNoise(noise);
+        }
     }
    
 }

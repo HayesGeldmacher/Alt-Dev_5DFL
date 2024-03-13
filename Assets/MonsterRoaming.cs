@@ -12,18 +12,22 @@ public class MonsterRoaming : MonoBehaviour
     [SerializeField] private Transform _player;
     public bool _listening = false;
     public bool _inSight = false;
+    [SerializeField] private float _noiseLimit;
+    [SerializeField] public float _currentNoise;
+    private float range;
     
     // Start is called before the first frame update
     void Start()
     {
         _currentKillCountDown = _killCountDown;
+        _currentNoise = 0;
     }
 
     // Update is called once per frame
     void Update()
     {
         //checks if player is in range, if so it starts listening
-        float range = Vector3.Distance(transform.position, _player.position);
+         range = Vector3.Distance(transform.position, _player.position);
         Vector3 direction = _player.position - transform.position;
         if(range <= _listenRange)
         {
@@ -71,6 +75,49 @@ public class MonsterRoaming : MonoBehaviour
         {
             _listening = false;
             _currentKillCountDown = _killCountDown;
+        }
+
+        if(_listening)
+        {
+            NoiseUpdate();
+        }
+        else
+        {
+            _currentNoise -= (Time.deltaTime * 2);
+            if (_currentNoise <= 0)
+            {
+                _currentNoise = 0;
+            }
+        }
+            
+    }
+
+    private void NoiseUpdate()
+    {
+        if(_currentNoise > _noiseLimit)
+        {
+            GameManager.instance.SpawnKillMonster();
+            Destroy(gameObject);
+
+        }
+
+        if (!_inSight && range > _killRange)
+        {
+
+        _currentNoise -= Time.deltaTime;
+        if(_currentNoise <= 0)
+            {
+                _currentNoise = 0;
+            }
+        }
+        
+    }
+
+    public void AddNoise(float noise)
+    {
+        if (_listening)
+        {
+        _currentNoise += noise;
         }
     }
 

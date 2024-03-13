@@ -40,6 +40,12 @@ public class PlayerController : MonoBehaviour
     [SerializeField] private GameObject _light;
     [SerializeField] private SoundManager _soundManager;
 
+    [Header("Noise Values")]
+    [SerializeField] private List<MonsterRoaming> _monsters = new List<MonsterRoaming>();
+    [SerializeField] private float _walkingNoise;
+    [SerializeField] private float _crouchingNoise;
+
+
     [HideInInspector] public bool _frozen = false;
    
     
@@ -73,6 +79,11 @@ public class PlayerController : MonoBehaviour
         _mesh.enabled = false;
 
         _currentFootTime = _neededFootTime;
+
+        foreach (GameObject monster in GameObject.FindGameObjectsWithTag("Roaming"))
+        {
+            _monsters.Add(monster.GetComponent<MonsterRoaming>());
+        }
     }
 
     private void Update()
@@ -119,6 +130,20 @@ public class PlayerController : MonoBehaviour
                 _camAnim.SetBool("walking", true);
                 //play footsteps here
                 FootStepUpdate();
+
+                if(_monsters.Count > 0)
+                {
+                    if (_isCrouching)
+                    {
+                        AddNoise(_crouchingNoise);
+                    }
+                    else
+                    {
+                        AddNoise(_walkingNoise);
+                    }
+
+                }
+
             }
             else
             {
@@ -210,6 +235,14 @@ public class PlayerController : MonoBehaviour
                 _currentFootTime = 0;
         }
 
+        }
+    }
+
+    private void AddNoise(float noise)
+    {
+        foreach(MonsterRoaming monster in _monsters)
+        {
+            monster.AddNoise(noise * Time.deltaTime);
         }
     }
 
