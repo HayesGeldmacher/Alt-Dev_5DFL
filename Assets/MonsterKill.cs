@@ -31,6 +31,7 @@ public class MonsterKill : MonoBehaviour
         transform.rotation = rotation;
 
         PlayerController.instance._frozen = true;
+        PlayerController.instance.StopCrouchInstant();
         _cam.SetCameraLook(_camLookPoint);
 
         yield return new WaitForSeconds(2);

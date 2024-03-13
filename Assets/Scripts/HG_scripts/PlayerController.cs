@@ -246,4 +246,10 @@ public class PlayerController : MonoBehaviour
         }
     }
 
+    public void StopCrouchInstant()
+    {
+        _isCrouching = false;
+        _cameraParent.localPosition = new Vector3(_cameraParent.localPosition.x, _standingYCamPoint, _cameraParent.localPosition.z);
+    }
+
 }
