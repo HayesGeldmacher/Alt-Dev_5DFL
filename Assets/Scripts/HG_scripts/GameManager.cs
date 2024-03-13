@@ -31,10 +31,14 @@ public class GameManager : MonoBehaviour
     [SerializeField] private Animator _pausedAnimator;
     [SerializeField] private AudioSource _pausedAudio;
 
+    [Header("KillMonster variables")]
+    [SerializeField] private GameObject _killMonster;
+    [SerializeField] private Transform _spawnPoint;
+    [SerializeField] private CameraController _cam;
+    [SerializeField] private Animator _blackAnim;
+    [SerializeField] private Transform _faceDirectionPoint;
     
    
-  
-
     private void Update()
     {
         if (Input.GetKeyDown(KeyCode.Escape))
@@ -50,8 +54,6 @@ public class GameManager : MonoBehaviour
                 _isPaused = false;
                 _controller.enabled = true;
                 Time.timeScale = 1f;
-                
-
 
             }
             else
@@ -77,6 +79,21 @@ public class GameManager : MonoBehaviour
         SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
 
     }
+    
+    public void ReloadLevel()
+    {
+        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
+    }
 
-
+    public void SpawnKillMonster()
+    {
+        _blackAnim.SetTrigger("blink");
+        GameObject _monsterSpawn = Instantiate(_killMonster, _spawnPoint.position, Quaternion.identity);
+        MonsterKill _monster = _monsterSpawn.GetComponent<MonsterKill>(); 
+        _monster._spawnPoint = _spawnPoint;
+        _monster._cam = _cam;
+        _monster._blackAnim = _blackAnim;
+        _monster._faceDirectionPoint = _faceDirectionPoint;
+        StartCoroutine(_monster.KillPlayer());
+    }
 }

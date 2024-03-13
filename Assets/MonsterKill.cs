@@ -4,18 +4,17 @@ using UnityEngine;
 
 public class MonsterKill : MonoBehaviour
 {
-    [SerializeField] private Animator _anim;
-    [SerializeField] private Transform _spawnPoint;
-    [SerializeField] private Transform _player;
+    [HideInInspector] public Animator _anim;
+    [HideInInspector] public Transform _spawnPoint;
     [SerializeField] private Transform _camLookPoint;
-    [SerializeField] private CameraController _cam;
-    [SerializeField] private Animator _blackAnim;
-    [SerializeField] private Transform _faceDirectionPoint;
+    [HideInInspector] public CameraController _cam;
+    [HideInInspector] public Animator _blackAnim;
+    [HideInInspector] public Transform _faceDirectionPoint;
     
     // Start is called before the first frame update
     void Start()
     {
-        KillPlayer();
+        
     }
 
     // Update is called once per frame
@@ -24,7 +23,7 @@ public class MonsterKill : MonoBehaviour
         
     }
 
-    public void KillPlayer()
+    public IEnumerator KillPlayer()
     {
         transform.position = _spawnPoint.position;
         Vector3 relativePos = _faceDirectionPoint.position - transform.position;
@@ -34,7 +33,8 @@ public class MonsterKill : MonoBehaviour
         PlayerController.instance._frozen = true;
         _cam.SetCameraLook(_camLookPoint);
 
-        _blackAnim.SetTrigger("black");
+        yield return new WaitForSeconds(2);
+        GameManager.instance.ReloadLevel();
     }
 
     public void Blackout()
