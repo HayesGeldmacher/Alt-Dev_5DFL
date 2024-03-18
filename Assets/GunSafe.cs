@@ -19,6 +19,7 @@ public class GunSafe : MonoBehaviour
 
     [SerializeField] private AudioSource _successSound;
     [SerializeField] private AudioSource _failureSound;
+    [SerializeField] private AudioSource _doorOpenSound;
 
     [SerializeField] private Animator _textAnim;
 
@@ -28,20 +29,14 @@ public class GunSafe : MonoBehaviour
         _displayText.text = _currentCode.ToString();
     }
 
-    // Update is called once per frame
-    void Update()
-    {
-          
-
-    }
-
     private IEnumerator Unlock()
     {
-        yield return new WaitForSeconds(1f);
+        yield return new WaitForSeconds(0.3f);
         Debug.Log("OPENED!");
         _anim.SetTrigger("open");
         _boxCollider.enabled = false;
         _open = true;
+        _doorOpenSound.Play();
     }
 
     public void ButtonPressed( int _buttonPressed)
