@@ -28,6 +28,7 @@ public class GameManager : MonoBehaviour
     private bool _isPaused = false;
     [SerializeField] private CameraController _controller;
     [SerializeField] private TMP_Text _pausedText;
+    [SerializeField] private GameObject _pauseButtons;
     [SerializeField] private Animator _pausedAnimator;
     [SerializeField] private AudioSource _pausedAudio;
 
@@ -53,6 +54,7 @@ public class GameManager : MonoBehaviour
                 }
                 _isPaused = false;
                 _controller.enabled = true;
+                _pauseButtons.SetActive(false);
                 Time.timeScale = 1f;
 
             }
@@ -62,6 +64,7 @@ public class GameManager : MonoBehaviour
                 _isPaused = true;
                 _pausedText.text = "PAUSED";
                 _controller.enabled = false;
+                _pauseButtons.SetActive(true);
                 Time.timeScale = 0f;
 
             }
