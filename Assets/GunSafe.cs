@@ -17,6 +17,11 @@ public class GunSafe : MonoBehaviour
     [SerializeField] private List<AudioClip> _buttonClicks = new List<AudioClip>();
     private int _count = 0;
 
+    [SerializeField] private AudioSource _successSound;
+    [SerializeField] private AudioSource _failureSound;
+
+    [SerializeField] private Animator _textAnim;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -41,31 +46,64 @@ public class GunSafe : MonoBehaviour
 
     public void ButtonPressed( int _buttonPressed)
     {
-        Debug.Log(_buttonPressed);
-        if(_currentNumbers.Count >= 4)
-        {
-            _currentNumbers.RemoveAt(0);
-        }
         _currentNumbers.Add(_buttonPressed);
-
         _currentCode = "";
-
-        foreach(int i in _currentNumbers)
+        foreach (int i in _currentNumbers)
         {
             _currentCode += i.ToString();
         }
-
         _displayText.text = _currentCode.ToString();
 
-        if (_currentCode == _neededCode)
+        PlaySound();
+
+        if (_currentNumbers.Count >= 4)
         {
-            if (!_open)
+            //check here if correct or false!
+
+            if (_currentCode == _neededCode)
             {
-                StartCoroutine(Unlock());
+                if (!_open)
+                {
+                    StartCoroutine(CheckCombination(true));
+                }
             }
+            else
+            {
+                StartCoroutine(CheckCombination(false));
+            }
+           
+        }
+    }
+
+    private IEnumerator CheckCombination(bool _correct)
+    {
+        yield return new WaitForSeconds(0.1f);
+
+        if (_correct)
+        {
+            _successSound.Play();
+            _textAnim.SetTrigger("success");
+            yield return new WaitForSeconds(0.3f);
+            StartCoroutine(Unlock());
+        }
+        else
+        {
+
+            //play a negative sound here!
+            _failureSound.Play();
+            _textAnim.SetTrigger("fail");
+            yield return new WaitForSeconds(0.4f);
+            Debug.Log("Failed");
         }
 
-        //playing sequenced sounds fromt list
+        _currentNumbers.Clear();
+        _currentCode = "";
+        _displayText.text = _currentCode;
+    }
+
+    private void PlaySound()
+    {
+        //playing sequenced sounds from list
         if (_count >= _buttonClicks.Count)
         {
             _count = 0;
