@@ -7,6 +7,7 @@ public class GunSafe : MonoBehaviour
 {
     [SerializeField] private string _neededCode;
     public string _currentCode;
+    [SerializeField] private List<int> _currentNumbers = new List<int>();
     [SerializeField] private Animator _anim;
     [SerializeField] private BoxCollider _boxCollider;
     [SerializeField] private TMP_Text _displayText;
@@ -25,31 +26,47 @@ public class GunSafe : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-       if(_currentCode == _neededCode)
-        {
-            if (!_open)
-            {
-                Unlock();
-            }
-        }
+          
+
     }
 
-    private void Unlock()
+    private IEnumerator Unlock()
     {
+        yield return new WaitForSeconds(1f);
         Debug.Log("OPENED!");
         _anim.SetTrigger("open");
         _boxCollider.enabled = false;
-        _open = false;
+        _open = true;
     }
 
     public void ButtonPressed( int _buttonPressed)
     {
         Debug.Log(_buttonPressed);
-        
-        
-        
+        if(_currentNumbers.Count >= 4)
+        {
+            _currentNumbers.RemoveAt(0);
+        }
+        _currentNumbers.Add(_buttonPressed);
+
+        _currentCode = "";
+
+        foreach(int i in _currentNumbers)
+        {
+            _currentCode += i.ToString();
+        }
+
+        _displayText.text = _currentCode.ToString();
+
+        if (_currentCode == _neededCode)
+        {
+            if (!_open)
+            {
+                StartCoroutine(Unlock());
+            }
+        }
+
         //playing sequenced sounds fromt list
-        if (_count > _buttonClicks.Count)
+        if (_count >= _buttonClicks.Count)
         {
             _count = 0;
         }
