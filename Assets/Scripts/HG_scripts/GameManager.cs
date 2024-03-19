@@ -31,7 +31,8 @@ public class GameManager : MonoBehaviour
     [SerializeField] private GameObject _pauseButtons;
     [SerializeField] private Animator _pausedAnimator;
     [SerializeField] private AudioSource _pausedAudio;
-
+    [SerializeField] private GameObject _hudBorder;
+     
     [Header("KillMonster variables")]
     [SerializeField] private GameObject _killMonster;
     [SerializeField] private Transform _spawnPoint;
@@ -56,6 +57,10 @@ public class GameManager : MonoBehaviour
                 _controller.enabled = true;
                 _pauseButtons.SetActive(false);
                 Time.timeScale = 1f;
+                _hudBorder.SetActive(true);
+
+                Cursor.lockState = CursorLockMode.Locked;
+                Cursor.visible = false;
 
             }
             else
@@ -66,6 +71,10 @@ public class GameManager : MonoBehaviour
                 _controller.enabled = false;
                 _pauseButtons.SetActive(true);
                 Time.timeScale = 0f;
+                _hudBorder.SetActive(false);
+
+                Cursor.lockState = CursorLockMode.None;
+                Cursor.visible = true;
 
             }
 
