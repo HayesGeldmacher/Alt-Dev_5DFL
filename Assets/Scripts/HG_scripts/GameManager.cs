@@ -3,10 +3,11 @@ using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
 using UnityEngine.SceneManagement;
+using UnityEngine.UI;
 
 public class GameManager : MonoBehaviour
 {
-    
+
     //This singleton creates a locatable script instance that can be located easily from any other script!
     #region Singleton
 
@@ -32,6 +33,7 @@ public class GameManager : MonoBehaviour
     [SerializeField] private Animator _pausedAnimator;
     [SerializeField] private AudioSource _pausedAudio;
     [SerializeField] private GameObject _hudBorder;
+    [SerializeField] private RawImage _cursorSprite;
      
     [Header("KillMonster variables")]
     [SerializeField] private GameObject _killMonster;
@@ -39,6 +41,7 @@ public class GameManager : MonoBehaviour
     [SerializeField] private CameraController _cam;
     [SerializeField] private Animator _blackAnim;
     [SerializeField] private Transform _faceDirectionPoint;
+
     
    
     private void Update()
@@ -58,6 +61,7 @@ public class GameManager : MonoBehaviour
                 _pauseButtons.SetActive(false);
                 Time.timeScale = 1f;
                 _hudBorder.SetActive(true);
+                _cursorSprite.enabled = true;
 
                 Cursor.lockState = CursorLockMode.Locked;
                 Cursor.visible = false;
@@ -72,6 +76,7 @@ public class GameManager : MonoBehaviour
                 _pauseButtons.SetActive(true);
                 Time.timeScale = 0f;
                 _hudBorder.SetActive(false);
+                _cursorSprite.enabled = false;
 
                 Cursor.lockState = CursorLockMode.None;
                 Cursor.visible = true;
