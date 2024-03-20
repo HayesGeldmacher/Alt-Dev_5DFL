@@ -29,7 +29,6 @@ public class EventSystem : MonoBehaviour
 
     public void ExitGame()
     {
-        Debug.Log("exit button pressed");
         Application.Quit();
     }
 }
