@@ -11,13 +11,21 @@ public class IntroManager : Interactable
     private float _currentInteractWait;
     [SerializeField] private Animator _textAnim;
     [SerializeField] private AudioSource _interactSound;
-    public float _dialogueLength;
+    public int _dialogueLength;
+    public int _audioTriggerChange1;
     [SerializeField] private Animator _blackOutAnim;
+
+    [SerializeField] private AudioSource _ambientAudioLight;
+    [SerializeField] private AudioSource _ambientAudioDark;
+
+    [SerializeField] private Animator _houseAnim;
+
+
 
     // Start is called before the first frame update
     void Start()
     {
-        _currentInteractWait = 0
+        _currentInteractWait = 0;
         _textAnim.SetBool("active", true);
     }
 
@@ -38,14 +46,18 @@ public class IntroManager : Interactable
         {
             if (_canInteract)
             {
-                StartCoroutine(Interact());
+                Interact();
             }
         }
     }
 
-    private IEnumerator Interact()
+    private void Interact()
     {
         _dialogueLength -= 1;
+        if(_dialogueLength == _audioTriggerChange1)
+        {
+           AudioTriggerChange();
+        }
         if(_dialogueLength <= 0)
         {
             StartCoroutine(EndScene());
@@ -56,14 +68,21 @@ public class IntroManager : Interactable
         base.Interact();
         _interactSound.Play();
         _currentInteractWait = _interactWait;
-        yield return new WaitForSeconds(1);
         }
 
+    }
+
+    private void AudioTriggerChange()
+    {
+        _ambientAudioLight.Stop();
+        _ambientAudioDark.Play();
+        _houseAnim.SetTrigger("dark");
     }
 
     private IEnumerator EndScene()
     {
         _blackOutAnim.SetTrigger("blackIntro");
+        _textAnim.SetBool("active", false);
         yield return new WaitForSeconds(3);
         //play a sound here
         SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
