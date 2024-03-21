@@ -19,6 +19,7 @@ public class IntroManager : Interactable
     [SerializeField] private AudioSource _ambientAudioDark;
 
     [SerializeField] private Animator _houseAnim;
+    [SerializeField] private Animator _audioAnim;
 
 
 
@@ -82,6 +83,7 @@ public class IntroManager : Interactable
     private IEnumerator EndScene()
     {
         _blackOutAnim.SetTrigger("blackIntro");
+        _audioAnim.SetTrigger("fade");
         _textAnim.SetBool("active", false);
         yield return new WaitForSeconds(3);
         //play a sound here
