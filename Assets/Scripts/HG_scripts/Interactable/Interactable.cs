@@ -13,6 +13,7 @@ public class Interactable : MonoBehaviour
     [SerializeField] protected bool _canWalkAway;
     [SerializeField] private float _dialogueTimer = 1;
     [SerializeField] protected float _dialogueDistance = 5;
+    public bool _isIntro = false;
      public DialogueManager _manager;
     public Dialogue _dialogue;
 
@@ -31,6 +32,10 @@ public class Interactable : MonoBehaviour
         //_manager = GameManager.instance.GetComponent<DialogueManager>();
         _player = PlayerController.instance.transform;
 
+        if (!_isIntro)
+        {
+            _manager = GameManager.instance.GetComponent<DialogueManager>();
+        }
     }
 
 

@@ -487,6 +487,7 @@ GameObject:
   - component: {fileID: 1466551212}
   - component: {fileID: 1466551213}
   - component: {fileID: 1466551214}
+  - component: {fileID: 1466551215}
   m_Layer: 0
   m_Name: IntroManager
   m_TagString: Untagged
@@ -525,6 +526,7 @@ MonoBehaviour:
   _canWalkAway: 0
   _dialogueTimer: 1
   _dialogueDistance: 5
+  _isIntro: 1
   _manager: {fileID: 1466551209}
   _dialogue:
     _sentences:
@@ -551,6 +553,7 @@ MonoBehaviour:
   _ambientAudioLight: {fileID: 1466551213}
   _ambientAudioDark: {fileID: 1466551214}
   _houseAnim: {fileID: 1397785676}
+  _audioAnim: {fileID: 1466551215}
 --- !u!4 &1466551211
 Transform:
   m_ObjectHideFlags: 0
@@ -854,6 +857,28 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+--- !u!95 &1466551215
+Animator:
+  serializedVersion: 7
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1466551208}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 12c69a0c95fc35549b0184e2e35c9356, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_AnimatePhysics: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorStateOnDisable: 0
+  m_WriteDefaultValuesOnDisable: 0
 --- !u!1 &1728095261
 GameObject:
   m_ObjectHideFlags: 0
