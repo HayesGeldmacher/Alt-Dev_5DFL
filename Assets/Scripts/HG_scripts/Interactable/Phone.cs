@@ -9,7 +9,12 @@ public class Phone : Interactable
     private Dialogue _defaultDialogue;
     public Dialogue _phoneDialogue;
     [SerializeField] private EvidenceManager _evidence;
-    private void Start()
+    [SerializeField] private AudioSource _garble1;
+    [SerializeField] private AudioSource _garble2;
+
+    private bool _hasPlayed = false;
+
+     private void Start()
     {
         _dialogueManager = GameManager.instance.GetComponent<DialogueManager>();
         _player = PlayerController.instance.transform;
@@ -46,9 +51,20 @@ public class Phone : Interactable
 
     private void TriggerDialogue(Dialogue _dialogue)
     {
+        if (_dialogue ==  _phoneDialogue)
+        {
+            _evidence._hasFoundPhone = true;
+            
+        }
 
         if (!base._startedTalking)
         {
+            _hasPlayed = false;
+            if(_dialogue == _phoneDialogue)
+            {
+                _garble1.Play();
+            }
+
             Interactable _interactable = transform.GetComponent<Interactable>();
             _dialogueManager.StartDialogue(_dialogue, _interactable);
             base._startedTalking = true;
@@ -56,13 +72,15 @@ public class Phone : Interactable
         else
         {
            _dialogueManager.DisplayNextSentence();
+
+            if (_dialogue == _phoneDialogue && !_hasPlayed)
+            {
+                _garble2.Play();
+                _hasPlayed = true;
+            }
+
         }
 
-        if (_dialogue ==  _phoneDialogue)
-        {
-            _evidence._hasFoundPhone = true;
-            
-        }
     }
 
     public override void EndDialogue()
