@@ -19,7 +19,7 @@ public class EventSystem : MonoBehaviour
 
     public void ReturnToMenu()
     {
-        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
+        SceneManager.LoadScene("menu");
     }
 
     public void RestartLevel()
