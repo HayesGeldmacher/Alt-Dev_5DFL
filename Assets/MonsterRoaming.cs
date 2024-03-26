@@ -15,6 +15,9 @@ public class MonsterRoaming : MonoBehaviour
     [SerializeField] private float _noiseLimit;
     [SerializeField] public float _currentNoise;
     private float range;
+    private bool _playedSound = false;
+    [SerializeField] private AudioSource _chimes;
+    private bool _hasStartedRecharge;
     
     // Start is called before the first frame update
     void Start()
@@ -31,6 +34,11 @@ public class MonsterRoaming : MonoBehaviour
         Vector3 direction = _player.position - transform.position;
         if(range <= _listenRange)
         {
+            if (!_playedSound)
+            {
+                _chimes.Play();
+                _playedSound = true;
+            }
             _listening = true;
             RaycastHit hit;
             if (Physics.Raycast(transform.position, direction, out hit, _listenRange)){
@@ -88,8 +96,25 @@ public class MonsterRoaming : MonoBehaviour
             {
                 _currentNoise = 0;
             }
+
+            if (_playedSound)
+            {
+                if (!_hasStartedRecharge)
+                {
+                    StartCoroutine(ResetChimes());
+
+                }
+            }
         }
             
+    }
+
+    private IEnumerator ResetChimes()
+    {
+        _hasStartedRecharge = true;
+        yield return new WaitForSeconds(10);
+        _playedSound = false;
+        _hasStartedRecharge = false;
     }
 
     private void NoiseUpdate()
