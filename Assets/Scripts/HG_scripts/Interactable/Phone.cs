@@ -12,6 +12,14 @@ public class Phone : Interactable
     [SerializeField] private AudioSource _garble1;
     [SerializeField] private AudioSource _garble2;
 
+    [SerializeField] private GameObject _monster;
+    [SerializeField] private GameObject _light;
+    [SerializeField] private Transform _monsterLocation;
+    [SerializeField] private Key _key;
+    [SerializeField] private Door _door;
+ 
+    private bool _hasSpawned = false;
+
     private bool _hasPlayed = false;
 
      private void Start()
@@ -54,7 +62,10 @@ public class Phone : Interactable
         if (_dialogue ==  _phoneDialogue)
         {
             _evidence._hasFoundPhone = true;
-            
+            if (!_hasSpawned)
+            {
+                StartCoroutine(SpawnMonster());
+            }
         }
 
         if (!base._startedTalking)
@@ -81,11 +92,40 @@ public class Phone : Interactable
 
         }
 
+       
+
     }
 
     public override void EndDialogue()
     {
         _dialogueManager.EndDialogue();
+        
     }
 
+    private IEnumerator SpawnMonster()
+    {
+        _hasSpawned = true;
+        Debug.Log("spawned Enemy");
+        yield return new WaitForSeconds(1);
+        _monster.transform.position = _monsterLocation.position;
+
+        Vector3 relativePos = _player.transform.position - _monster.transform.position;
+
+        Quaternion rotation = Quaternion.LookRotation(relativePos, Vector3.up);
+        _monster.transform.rotation = rotation;
+
+        _light.SetActive(true);
+
+        //Sets the door locked 
+        if (_door._isOpen)
+        {
+            _door.SetDirection();
+        }
+        _door._isLocked = true;
+        _key.gameObject.SetActive(true);
+        _door._key = _key;
+        _door._keyName = _key.gameObject.name.ToString();
+        
+
+    }
 }

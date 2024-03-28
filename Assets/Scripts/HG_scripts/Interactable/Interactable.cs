@@ -14,7 +14,7 @@ public class Interactable : MonoBehaviour
     [SerializeField] private float _dialogueTimer = 1;
     [SerializeField] protected float _dialogueDistance = 5;
     public bool _isIntro = false;
-     public DialogueManager _manager;
+    public DialogueManager _manager;
     public Dialogue _dialogue;
 
     [Header("Item Variables")]
