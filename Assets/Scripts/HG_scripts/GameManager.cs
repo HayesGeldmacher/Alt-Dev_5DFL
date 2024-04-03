@@ -102,6 +102,11 @@ public class GameManager : MonoBehaviour
         SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
     }
 
+    public void LoadMenu()
+    {
+        SceneManager.LoadScene("menu");
+    }
+
     public void SpawnKillMonster()
     {
         _blackAnim.SetTrigger("blink");

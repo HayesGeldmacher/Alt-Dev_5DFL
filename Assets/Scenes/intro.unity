@@ -525,6 +525,8 @@ MonoBehaviour:
   _startedTalking: 0
   _canWalkAway: 0
   _dialogueTimer: 1
+  currentDialogueTime: 0
+  _isTimed: 0
   _dialogueDistance: 5
   _isIntro: 1
   _manager: {fileID: 1466551209}
@@ -1867,7 +1869,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!222 &3640645528490642568
 CanvasRenderer:
   m_ObjectHideFlags: 0

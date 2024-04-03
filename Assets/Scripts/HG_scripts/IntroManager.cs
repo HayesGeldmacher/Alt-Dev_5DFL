@@ -26,6 +26,7 @@ public class IntroManager : Interactable
     // Start is called before the first frame update
     void Start()
     {
+        Time.timeScale = 1;
         _currentInteractWait = 0;
         _textAnim.SetBool("active", true);
     }

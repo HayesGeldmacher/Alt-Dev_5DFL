@@ -115,13 +115,16 @@ public class Bed : Interactable
             _cursor.SetActive(false);
             _monster.SetActive(true);
             _blackAnim.SetTrigger("blinking");
-            yield return new WaitForSeconds(4);
-            GameManager.instance.LoadNextLevel();
+            yield return new WaitForSeconds(6);
+            //GameManager.instance.LoadNextLevel();
+            //For now the game is over, so we load the main menu!
+            GameManager.instance.LoadMenu();
 
         }
         else
         {
-        GameManager.instance.LoadNextLevel();
+        
+            GameManager.instance.LoadNextLevel();
 
         }
 
