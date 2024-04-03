@@ -17,6 +17,7 @@ public class Phone : Interactable
     [SerializeField] private Transform _monsterLocation;
     [SerializeField] private Key _key;
     [SerializeField] private Door _door;
+    [SerializeField] private AudioSource _doorAudio;
  
     private bool _hasSpawned = false;
 
@@ -62,10 +63,7 @@ public class Phone : Interactable
         if (_dialogue ==  _phoneDialogue)
         {
             _evidence._hasFoundPhone = true;
-            if (!_hasSpawned)
-            {
-                StartCoroutine(SpawnMonster());
-            }
+           
         }
 
         if (!base._startedTalking)
@@ -88,11 +86,13 @@ public class Phone : Interactable
             {
                 _garble2.Play();
                 _hasPlayed = true;
+                if (!_hasSpawned)
+                {
+                    StartCoroutine(SpawnMonster());
+                }
             }
 
-        }
-
-       
+        }  
 
     }
 
@@ -106,13 +106,14 @@ public class Phone : Interactable
     {
         _hasSpawned = true;
         Debug.Log("spawned Enemy");
-        yield return new WaitForSeconds(1);
+        yield return new WaitForSeconds(1.5f);
         _monster.transform.position = _monsterLocation.position;
 
         Vector3 relativePos = _player.transform.position - _monster.transform.position;
 
         Quaternion rotation = Quaternion.LookRotation(relativePos, Vector3.up);
         _monster.transform.rotation = rotation;
+        _monster.SetActive(false);
 
         _light.SetActive(true);
 
@@ -125,6 +126,8 @@ public class Phone : Interactable
         _key.gameObject.SetActive(true);
         _door._key = _key;
         _door._keyName = _key.gameObject.name.ToString();
+        yield return new WaitForSeconds(2f);
+        _doorAudio.Play();
         
 
     }
