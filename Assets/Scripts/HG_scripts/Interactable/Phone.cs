@@ -20,6 +20,8 @@ public class Phone : Interactable
     [SerializeField] private AudioSource _doorAudio;
     [SerializeField] private Door _doorDad;
     [SerializeField] private GameObject _lightObject;
+    [SerializeField] private Door _doorBathroom;
+    [SerializeField] private GameObject _bathroomLight;
     private bool _hasSpawned = false;
 
     private bool _hasPlayed = false;
@@ -124,7 +126,7 @@ public class Phone : Interactable
 
         Quaternion rotation = Quaternion.LookRotation(relativePos, Vector3.up);
         _monster.transform.rotation = rotation;
-        _monster.SetActive(false);
+        //_monster.SetActive(false);
 
         _light.SetActive(true);
 
@@ -146,5 +148,11 @@ public class Phone : Interactable
         yield return new WaitForSeconds(2f);
         _doorAudio.Play();
         _lightObject.SetActive(false );
+        _bathroomLight.SetActive(true);
+        if(!_doorBathroom._isOpen)
+        {
+            _doorBathroom.SetDirection();
+        }
+        
     }
 }
