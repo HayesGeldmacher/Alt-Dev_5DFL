@@ -19,7 +19,7 @@ public class Phone : Interactable
     [SerializeField] private Door _door;
     [SerializeField] private AudioSource _doorAudio;
     [SerializeField] private Door _doorDad;
- 
+    [SerializeField] private GameObject _lightObject;
     private bool _hasSpawned = false;
 
     private bool _hasPlayed = false;
@@ -137,6 +137,7 @@ public class Phone : Interactable
         _doorDad.SetDirection();
            
         }
+        _doorDad.SetDirection();
         
         _door._isLocked = true;
         _key.gameObject.SetActive(true);
@@ -144,5 +145,6 @@ public class Phone : Interactable
         _door._keyName = _key.gameObject.name.ToString();
         yield return new WaitForSeconds(2f);
         _doorAudio.Play();
+        _lightObject.SetActive(false );
     }
 }

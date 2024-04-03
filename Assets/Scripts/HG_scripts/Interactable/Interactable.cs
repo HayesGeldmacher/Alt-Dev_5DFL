@@ -11,7 +11,7 @@ public class Interactable : MonoBehaviour
     [SerializeField] protected bool _canTalk = false;
     [HideInInspector] public bool _startedTalking = false;
     [SerializeField] protected bool _canWalkAway;
-    [SerializeField] protected float _dialogueTimer = 1;
+    [SerializeField] protected float _dialogueTimer = 5;
     [SerializeField] protected float currentDialogueTime = 0;
     [SerializeField] protected bool _isTimed = false;
     [SerializeField] protected float _dialogueDistance = 5;

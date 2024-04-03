@@ -8,6 +8,7 @@ public class Door : Interactable
     public bool _isOpen = false;
     public bool _isHeld = false;
     public bool _isLocked = false;
+
     [SerializeField] private bool _inFront = false;
     [SerializeField] private bool _hasInteracted = false;
     public Key _key;
@@ -103,13 +104,16 @@ public class Door : Interactable
 
     private void SwingUpdate()
     {
+       
+        //THis is the  big
         if (!_hasInteracted)
         {
-            var zeroRotation = _doorPivot.localRotation;
-            zeroRotation.x = 0;
-            zeroRotation.z = 0;
-            _doorPivot.localRotation = zeroRotation;
-            _isSwinging = false;
+                var zeroRotation = _doorPivot.localRotation;
+                zeroRotation.x = 0;
+                zeroRotation.z = 0;
+                _doorPivot.localRotation = zeroRotation;
+                _isSwinging = false;
+            
         }
        
         else if (_isOpen)
