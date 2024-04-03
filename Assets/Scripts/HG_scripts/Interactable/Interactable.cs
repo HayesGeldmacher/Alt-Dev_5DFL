@@ -11,7 +11,9 @@ public class Interactable : MonoBehaviour
     [SerializeField] protected bool _canTalk = false;
     [HideInInspector] public bool _startedTalking = false;
     [SerializeField] protected bool _canWalkAway;
-    [SerializeField] private float _dialogueTimer = 1;
+    [SerializeField] protected float _dialogueTimer = 1;
+    public float currentDialogueTime = 0;
+    public bool _isTimed = false;
     [SerializeField] protected float _dialogueDistance = 5;
     public bool _isIntro = false;
     public DialogueManager _manager;
@@ -36,6 +38,12 @@ public class Interactable : MonoBehaviour
         {
             _manager = GameManager.instance.GetComponent<DialogueManager>();
         }
+
+        if(_dialogueTimer > 0)
+        {
+            _isTimed = true;
+            currentDialogueTime = _dialogueTimer;
+        }
     }
 
 
@@ -51,7 +59,15 @@ public class Interactable : MonoBehaviour
 
         }
 
-     
+        if (_isTimed && _startedTalking)
+        {
+            currentDialogueTime -= Time.deltaTime;
+            if(currentDialogueTime < 0)
+            {
+                EndDialogue();
+            }
+        }
+                
     }
 
     //writing "virtual" in front of a function means that children scripts can add to/edit the function
@@ -59,8 +75,11 @@ public class Interactable : MonoBehaviour
     {
         if (_canTalk)
         {
+            if (_isTimed)
+            {
+                currentDialogueTime = _dialogueTimer;
+            }
             TriggerDialogue();
-            
         }
         
 

@@ -25,6 +25,8 @@ public class Phone : Interactable
 
      private void Start()
     {
+        //base.Start();
+        base.Start();
         _dialogueManager = GameManager.instance.GetComponent<DialogueManager>();
         _player = PlayerController.instance.transform;
         _defaultDialogue = base._dialogue;
@@ -32,6 +34,13 @@ public class Phone : Interactable
 
     private void Update()
     {
+     
+        base.Update();
+        if(base._startedTalking && base._isTimed)
+        {
+            
+        }
+        
         if (base._canWalkAway && base._startedTalking && _player)
         {
             float _distance = Vector3.Distance(_player.position, transform.position);
@@ -46,6 +55,7 @@ public class Phone : Interactable
     //writing "virtual" in front of a function means that children scripts can add to/edit the function
     public override void Interact()
     {
+        base.currentDialogueTime = base._dialogueTimer;
 
         if (_evidence._hasEvidence)
         {       
