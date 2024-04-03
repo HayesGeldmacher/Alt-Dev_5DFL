@@ -18,6 +18,7 @@ public class Phone : Interactable
     [SerializeField] private Key _key;
     [SerializeField] private Door _door;
     [SerializeField] private AudioSource _doorAudio;
+    [SerializeField] private Door _doorDad;
  
     private bool _hasSpawned = false;
 
@@ -55,7 +56,7 @@ public class Phone : Interactable
     //writing "virtual" in front of a function means that children scripts can add to/edit the function
     public override void Interact()
     {
-        base.currentDialogueTime = base._dialogueTimer;
+        base.currentDialogueTime = base._dialogueTimer;  
 
         if (_evidence._hasEvidence)
         {       
@@ -128,17 +129,20 @@ public class Phone : Interactable
         _light.SetActive(true);
 
         //Sets the door locked 
-        if (_door._isOpen)
-        {
             _door.SetDirection();
+        
+        //Opens the dads door
+        if(_doorDad._isOpen)
+        {
+        _doorDad.SetDirection();
+           
         }
+        
         _door._isLocked = true;
         _key.gameObject.SetActive(true);
         _door._key = _key;
         _door._keyName = _key.gameObject.name.ToString();
         yield return new WaitForSeconds(2f);
         _doorAudio.Play();
-        
-
     }
 }
