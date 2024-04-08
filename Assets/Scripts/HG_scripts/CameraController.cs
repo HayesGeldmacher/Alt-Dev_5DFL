@@ -41,7 +41,9 @@ public class CameraController : MonoBehaviour
     [SerializeField] private Animator _whiteAnimator;
     [SerializeField] private AudioSource _camAudio;
     [SerializeField] private float _shotWait;
+    [SerializeField] private Animator _VHS;
     private float _currentShotWait;
+
 
     [Header("Camera Obtained Variables")]
     public bool _hasCamera;
@@ -349,6 +351,7 @@ public class CameraController : MonoBehaviour
         AddNoise(_snapShotNoise);
         _handler.GetComponent<ScreenshotHandler>().TakeScreenshot_Static(Screen.width, Screen.height);
         _whiteAnimator.SetTrigger("snap");
+        _VHS.SetTrigger("flash");
 
         _camAudio.pitch = Random.Range(0.8f, 1.2f);
         _camAudio.Play();
