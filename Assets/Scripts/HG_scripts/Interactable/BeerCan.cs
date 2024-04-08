@@ -57,7 +57,7 @@ public class BeerCan : Interactable
     {
         _canSound = false;
         _currentWait = _soundWait;
-        _canHit.pitch = Random.Range(0.7f, 1.3f);
+        _canHit.pitch = Random.Range(0.7f, 0.8f);
         _canHit.Play();
 
     }
