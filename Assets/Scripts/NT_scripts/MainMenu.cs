@@ -9,6 +9,8 @@ public class MainMenu : MonoBehaviour
     void Start()
     {
         Time.timeScale  = 1.0f;
+        Cursor.visible = true;
+        Cursor.lockState = CursorLockMode.Confined;
     }
 
     // Update is called once per frame
