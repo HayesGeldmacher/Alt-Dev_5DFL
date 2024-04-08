@@ -120,7 +120,7 @@ NavMeshSettings:
     debug:
       m_Flags: 0
   m_NavMeshData: {fileID: 0}
---- !u!1001 &453597664
+--- !u!1001 &841634660
 PrefabInstance:
   m_ObjectHideFlags: 0
   serializedVersion: 2
@@ -221,12 +221,12 @@ PrefabInstance:
     - target: {fileID: 1120894113996309887, guid: db1107fe7bd2a4740877862b65ed9277,
         type: 3}
       propertyPath: m_AnchoredPosition.x
-      value: 0.000030518
+      value: -16.091
       objectReference: {fileID: 0}
     - target: {fileID: 1120894113996309887, guid: db1107fe7bd2a4740877862b65ed9277,
         type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: 0.00012207
+      value: -2.9027
       objectReference: {fileID: 0}
     - target: {fileID: 1120894113996309887, guid: db1107fe7bd2a4740877862b65ed9277,
         type: 3}
@@ -321,6 +321,12 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!224 &1006732050 stripped
+RectTransform:
+  m_CorrespondingSourceObject: {fileID: 1120894113996309887, guid: db1107fe7bd2a4740877862b65ed9277,
+    type: 3}
+  m_PrefabInstance: {fileID: 841634660}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1336121713
 GameObject:
   m_ObjectHideFlags: 0
@@ -689,7 +695,6 @@ MonoBehaviour:
   _ambientAudioDark: {fileID: 1466551214}
   _houseAnim: {fileID: 1397785676}
   _audioAnim: {fileID: 1466551215}
-  _bloodRed: {fileID: 1490748232}
 --- !u!4 &1466551211
 Transform:
   m_ObjectHideFlags: 0
@@ -1015,18 +1020,6 @@ Animator:
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
   m_WriteDefaultValuesOnDisable: 0
---- !u!224 &1490748231 stripped
-RectTransform:
-  m_CorrespondingSourceObject: {fileID: 1120894113996309887, guid: db1107fe7bd2a4740877862b65ed9277,
-    type: 3}
-  m_PrefabInstance: {fileID: 453597664}
-  m_PrefabAsset: {fileID: 0}
---- !u!95 &1490748232 stripped
-Animator:
-  m_CorrespondingSourceObject: {fileID: 5215053216599858719, guid: db1107fe7bd2a4740877862b65ed9277,
-    type: 3}
-  m_PrefabInstance: {fileID: 453597664}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1728095261
 GameObject:
   m_ObjectHideFlags: 0
@@ -2541,7 +2534,7 @@ RectTransform:
   - {fileID: 1397785672}
   - {fileID: 3977021000113662258}
   - {fileID: 4405834481703331560}
-  - {fileID: 1490748231}
+  - {fileID: 1006732050}
   - {fileID: 3621649541413752225}
   - {fileID: 731170472550765090}
   - {fileID: 4934714892652422492}

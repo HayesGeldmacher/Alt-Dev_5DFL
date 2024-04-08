@@ -20,7 +20,7 @@ public class IntroManager : Interactable
 
     [SerializeField] private Animator _houseAnim;
     [SerializeField] private Animator _audioAnim;
-
+    [SerializeField] private Animator _bloodRed;
 
 
     // Start is called before the first frame update
@@ -78,15 +78,19 @@ public class IntroManager : Interactable
     {
         _ambientAudioLight.Stop();
         _ambientAudioDark.Play();
+        _bloodRed.SetTrigger("breathe");
         _houseAnim.SetTrigger("dark");
     }
 
     private IEnumerator EndScene()
     {
+        
         _blackOutAnim.SetTrigger("blackIntro");
         _audioAnim.SetTrigger("fade");
         _textAnim.SetBool("active", false);
-        yield return new WaitForSeconds(3);
+        yield return new WaitForSeconds(2);
+        _bloodRed.SetTrigger("stop");
+        yield return new WaitForSeconds(1);
         //play a sound here
         SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
     }
