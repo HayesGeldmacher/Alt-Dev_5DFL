@@ -23,7 +23,6 @@ public class KeyMonsterTrigger : Interactable
         if(other.gameObject.tag == "Player")
         {
             _phone.CallSpawnBathroom();
-        Debug.Log("FUUUCKCKCCK~!");
             Destroy(gameObject);
         }
     }

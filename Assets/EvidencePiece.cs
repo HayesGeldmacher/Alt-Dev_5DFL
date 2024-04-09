@@ -8,7 +8,7 @@ public class EvidencePiece : MonoBehaviour
 {
     [Header("Sound")]
     [SerializeField] private bool _canSound = true;
-    [SerializeField] private float _minRange = 5;
+    [SerializeField] private float _minRange = 20;
     private Transform _player;
     private bool _inRange;
     private bool _canPlay;
@@ -18,13 +18,15 @@ public class EvidencePiece : MonoBehaviour
 
     [Header("Breathing")]
     [SerializeField] private bool _canBreathe;
-    [SerializeField] private float _sizeMult = 1.05f;
+    [SerializeField] private float _sizeMult = 1.1f;
     [SerializeField] private float _breatheSpeed = 2;
     [SerializeField] private Transform _scaleModel;
+    private bool _inSight = false;
     private bool _isGrowing = true;
     private Vector3 _startSize;
     private Vector3 _bigSize;
     private float _growTime;
+    private bool _hasPlayed = false;
 
     
 
@@ -52,9 +54,10 @@ public class EvidencePiece : MonoBehaviour
             _manager = GameManager.instance;
             _currentTime = 0;
             _audio = GetComponent<AudioSource>();
-            var audioClip = Resources.Load<AudioClip>("EvidenceJingle");
+            var audioClip = Resources.Load<AudioClip>("evidence");
             _audio.clip = audioClip;
             _audio.spatialBlend = 1;
+            _sizeMult = 1.1f;
         }
 
     }
@@ -95,9 +98,43 @@ public class EvidencePiece : MonoBehaviour
             }
         }
 
-        if (_inRange && _canPlay)
+      
+
+       if(_inRange)
         {
+
+            RaycastHit hit;
+            // Does the ray intersect any objects excluding the player layer
+            Vector3 _direction = (_player.position - transform.position);
+            if (Physics.Raycast(transform.position, _direction, out hit, Mathf.Infinity))
+            {
+               if(hit.transform.tag == "Player")
+                {
+                    _inSight = true;
+                }
+                else
+                {
+                    _inSight = false;
+                    _hasPlayed = false;
+                }
+            }
+            else
+            {
+                _inSight = false;
+                _hasPlayed = false;
+            }
+        }
+        else
+        {
+            _hasPlayed = false;
+        }
+
+        if (_inRange && _canPlay && _inSight)
+        {
+            if (!_hasPlayed)
+            {
             PlaySound();
+            }
         }
 
     }
@@ -138,6 +175,7 @@ public class EvidencePiece : MonoBehaviour
 
     private void PlaySound()
     {
+        _hasPlayed = true;
         _canPlay = false;
         _currentTime = 3;
         _audio.Play();
