@@ -118,4 +118,6 @@ public class GameManager : MonoBehaviour
         _monster._faceDirectionPoint = _faceDirectionPoint;
         StartCoroutine(_monster.KillPlayer());
     }
+
+   
 }

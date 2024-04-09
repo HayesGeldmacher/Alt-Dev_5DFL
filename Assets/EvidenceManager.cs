@@ -52,4 +52,9 @@ public class EvidenceManager : MonoBehaviour
     {
         _hasFoundPhone = true;
     }
+
+    private void PlaySound()
+    {
+        
+    }
 }
