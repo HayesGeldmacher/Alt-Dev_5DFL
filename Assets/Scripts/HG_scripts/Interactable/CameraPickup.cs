@@ -6,31 +6,60 @@ public class CameraPickup : Interactable
 {
     [SerializeField] private CameraController _camController;
     [SerializeField] private GameObject _balloon;
+    private bool _started = false;
+
+    [SerializeField] private MeshRenderer _render;
+    [SerializeField] private BoxCollider _bc;
+    [SerializeField] private AudioSource _audio;
+    [SerializeField] private AudioSource _interactAudio;
+    [SerializeField] private int _lines;
 
     private void Start()
     {
         base.Start();
-    }
+        _render = GetComponent<MeshRenderer>();
+        _bc = GetComponent<BoxCollider>();
 
+    }
     private void Update()
     {
-        base.Update();
+       // base.Update();
+
+        if (Input.GetMouseButtonDown(0) && _started)
+        {
+            if(_lines <= 0)
+            {
+                base.EndDialogue();
+                Debug.Log("Camover!");
+                Destroy(gameObject);
+            }
+            else
+            {
+            _lines -= 1;
+            base.Interact();
+            _interactAudio.Play();
+
+            }
+        }
     }
 
     public override void Interact()
     {
-        base.Interact();
-        _camController.GotCamera();
-        base.PickUpItem();
-        StartCoroutine(NextInteract());
+        if (!_started)
+        {
+            _lines -= 1;
+            _started = true;
+            base.Interact();
+             _camController.GotCamera();
+            _bc.enabled = false;
+            _render.enabled = false;
+            StartCoroutine(NextInteract());
+        }
     }
 
     private IEnumerator NextInteract()
     {
-        yield return new WaitForSeconds(4);
-        base.Interact();
-        yield return new WaitForSeconds(3);
-        _balloon.SetActive(true);
-        base.Interact();
+        yield return new WaitForSeconds(2);
+        _audio.Play();
     }
 }
