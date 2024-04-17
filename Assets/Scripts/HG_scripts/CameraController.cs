@@ -51,6 +51,7 @@ public class CameraController : MonoBehaviour
     [SerializeField] private GameObject _camHud;
     [SerializeField] private GameObject _glitchScreen;
     [SerializeField] private GameObject _postProcess;
+    [SerializeField] private AudioSource _ambience;
     [HideInInspector] public bool _frozen = false;
     private CameraZoom _zoom;
 
@@ -366,6 +367,10 @@ public class CameraController : MonoBehaviour
         _glitchScreen.SetActive(true);
         _camAnimator.SetBool("still", false);
         _postProcess.SetActive(true);
+        if (_dayTime)
+        {
+            _ambience.Play();
+        }
     }
 
     public void SetCameraLook(Transform lookPoint)
