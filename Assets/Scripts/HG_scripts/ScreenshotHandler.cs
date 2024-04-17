@@ -49,8 +49,12 @@ public class ScreenshotHandler : MonoBehaviour
         RaycastHit hit;
         if (Physics.SphereCast(_checkPoint.position, _checkRadius, transform.forward, out hit, _checkLength,  _checkMask))
         {
-            Debug.Log("Got a object!");
+            if(hit.transform.tag == "evidence")
+            {
             _evidenceManager.PictureTaken(hit.transform.gameObject);
+            Debug.Log("Got a object!");
+
+            }
         }
     }
 
