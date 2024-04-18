@@ -29,6 +29,8 @@ public class PlayerController : MonoBehaviour
     [SerializeField] private float _crouchTransSpeed;
     [SerializeField] private float _crouchingYCamPoint = 0;
     [SerializeField] private BoxCollider _bc;
+    [SerializeField] private LayerMask _standMask;
+    [SerializeField] private float _crouchRange;    
     private bool _isCrouching;
     private float _yCamPoint = 0;
     private float _standingYCamPoint = 0;
@@ -193,10 +195,10 @@ public class PlayerController : MonoBehaviour
             }
             else
             {
-                if (_isCrouching)
+                if (_isCrouching && _canStand)
                 {
-                    _controller.height = 2f;
-                    _controller.center = new Vector3(0, 0, 0);
+                    _controller.height = 2.3f;
+                    _controller.center = new Vector3(0, 0.1f, 0);
                     _isCrouching = false;
                     
 
@@ -217,7 +219,7 @@ public class PlayerController : MonoBehaviour
         {            
           _yCamPoint = Mathf.Lerp(_yCamPoint, _crouchingYCamPoint, _crouchTransSpeed * Time.deltaTime);
           
-          //Check for raycast to stand
+
           
         }
         else
@@ -227,6 +229,17 @@ public class PlayerController : MonoBehaviour
 
         _cameraParent.localPosition = new Vector3(_cameraParent.localPosition.x, _yCamPoint, _cameraParent.localPosition.z);
 
+        //Check for raycast to stand
+        RaycastHit hit;
+        if (Physics.Raycast(_cameraParent.position, Vector3.up, out hit, _crouchRange, _standMask))
+        {
+            _canStand = false;
+            Debug.Log("CANTSTAND!!");
+        }
+        else
+        {
+            _canStand = true;
+        }
     }
 
     private void MoveBackUpdate()
