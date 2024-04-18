@@ -22,11 +22,13 @@ public class GunSafe : MonoBehaviour
     [SerializeField] private AudioSource _doorOpenSound;
 
     [SerializeField] private Animator _textAnim;
+    [SerializeField] private BoxCollider _evidenceBC;
 
     // Start is called before the first frame update
     void Start()
     {
         _displayText.text = _currentCode.ToString();
+        _evidenceBC.enabled = false;
     }
 
     private IEnumerator Unlock()
@@ -37,6 +39,7 @@ public class GunSafe : MonoBehaviour
         _boxCollider.enabled = false;
         _open = true;
         _doorOpenSound.Play();
+        _evidenceBC.enabled = true;
     }
 
     public void ButtonPressed( int _buttonPressed)

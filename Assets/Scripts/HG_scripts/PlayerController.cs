@@ -28,9 +28,11 @@ public class PlayerController : MonoBehaviour
     [SerializeField] private float _crouchSpeed = 6;
     [SerializeField] private float _crouchTransSpeed;
     [SerializeField] private float _crouchingYCamPoint = 0;
+    [SerializeField] private BoxCollider _bc;
     private bool _isCrouching;
     private float _yCamPoint = 0;
     private float _standingYCamPoint = 0;
+    private bool _canStand;
 
     [Header("Interaction Variables")]
     [SerializeField] private Transform _backPoint;
@@ -180,23 +182,43 @@ public class PlayerController : MonoBehaviour
         {
             if (Input.GetKey(KeyCode.LeftControl))
             {
+                if (!_isCrouching)
+                {
+                    _controller.height = 1.4f;
+                    _controller.center = new Vector3(0, -0.4f, 0);
                 _isCrouching = true;
                 Debug.Log("isCrouching@");
+
+                }
             }
             else
             {
-                _isCrouching = false;
+                if (_isCrouching)
+                {
+                    _controller.height = 2f;
+                    _controller.center = new Vector3(0, 0, 0);
+                    _isCrouching = false;
+                    
+
+                }
             }
         }
         else
         {
-            _isCrouching = false;
+
+            if (_isCrouching)
+            {
+                _isCrouching = false;
+            }
         }
 
         //This lerps the camera slowly between standing and crouching, based on the above bool
         if(_isCrouching)
         {            
           _yCamPoint = Mathf.Lerp(_yCamPoint, _crouchingYCamPoint, _crouchTransSpeed * Time.deltaTime);
+          
+          //Check for raycast to stand
+          
         }
         else
         {
