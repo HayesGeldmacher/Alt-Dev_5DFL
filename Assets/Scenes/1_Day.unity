@@ -5932,7 +5932,7 @@ MonoBehaviour:
   colorEnd: {r: 0, g: 0, b: 0, a: 1}
   _phoneDialogue:
     _sentences:
-    - Hey, how's the house? I can't believe it's been ten years...
+    - 'Hey, how''s the house? Weird to be back, huh? '
     - Anyway, it sounds like you've had your hands full getting ready for the auction-
       maybe you should go to bed?
     - The sun sets quick over there - don't want you stumbling around in the dark...
@@ -7651,14 +7651,13 @@ MonoBehaviour:
   _manager: {fileID: 0}
   _dialogue:
     _sentences:
-    - You've made it to the house. Thanks for doing this, I know it's been a long
-      time.
+    - Thanks for doing this, I know it's been a long time.
     - He never had a will, so everything defaulted to us, and whatever doesn't get
       sold will just be dropped off at the nearest pawn shop anyways.
     - The auction wants pictures of anything you plan to sell. I think he had a digital
-      camera you could use.
-    - I'd join you at the house, but you know things were with him. Give me a call
-      once you've settled in a bit.
+      camera if you want to find it.
+    - I'd join you at the house, but... you know things were with him. You should
+      give me a call once you've settled in a bit.
   _canBeGrabbed: 0
   _outlined: 0
   _isOutlined: 0
@@ -60497,8 +60496,8 @@ BoxCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Size: {x: 0.028881231, y: 0.017268343, z: 0.029543487}
-  m_Center: {x: 0.00000024668074, y: -0.0004720574, z: -0.006553742}
+  m_Size: {x: 0.03876836, y: 0.038997486, z: 0.029543487}
+  m_Center: {x: -0.00354718, y: 0.0014492724, z: -0.006553734}
 --- !u!114 &1610332410
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -60785,7 +60784,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!65 &1678280969
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -60865,13 +60864,13 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1678280968}
   serializedVersion: 2
-  m_LocalRotation: {x: -0.0688122, y: 0.0369834, z: -0.002552723, w: 0.9969406}
-  m_LocalPosition: {x: 51.49, y: 0.07, z: -72.13}
-  m_LocalScale: {x: 0.7668664, y: 35.47845, z: 64.7514}
+  m_LocalRotation: {x: -0.0001923791, y: 0.037428077, z: -0.005136298, w: 0.9992861}
+  m_LocalPosition: {x: 48.93, y: 5.67, z: -55.7}
+  m_LocalScale: {x: 0.7668664, y: 14.399619, z: 24.547647}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_LocalEulerAnglesHint: {x: -7.875, y: 4.29, z: -0.589}
+  m_LocalEulerAnglesHint: {x: 0, y: 4.29, z: -0.589}
 --- !u!1001 &1694926102
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -61304,7 +61303,8 @@ PrefabInstance:
       value: 4.7187233
       objectReference: {fileID: 0}
     m_RemovedComponents: []
-    m_RemovedGameObjects: []
+    m_RemovedGameObjects:
+    - {fileID: 2904712783640527084, guid: 478c4d87c14ffd149bb1c83a49beee48, type: 3}
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 478c4d87c14ffd149bb1c83a49beee48, type: 3}
@@ -71417,17 +71417,17 @@ PrefabInstance:
     - target: {fileID: 4156529202916660780, guid: 79395b83797865047ac1dfbf6bd3b8b6,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: 39.2
+      value: 40.19
       objectReference: {fileID: 0}
     - target: {fileID: 4156529202916660780, guid: 79395b83797865047ac1dfbf6bd3b8b6,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: 1.03
+      value: 1.26
       objectReference: {fileID: 0}
     - target: {fileID: 4156529202916660780, guid: 79395b83797865047ac1dfbf6bd3b8b6,
         type: 3}
       propertyPath: m_LocalPosition.z
-      value: -58.06
+      value: -58.33
       objectReference: {fileID: 0}
     - target: {fileID: 4156529202916660780, guid: 79395b83797865047ac1dfbf6bd3b8b6,
         type: 3}
@@ -75478,7 +75478,7 @@ PrefabInstance:
     - target: {fileID: 8136363002448580635, guid: efb5b49a059de3a41b0ce4d1ac82f7ce,
         type: 3}
       propertyPath: _hasEvidence
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8136363002448580635, guid: efb5b49a059de3a41b0ce4d1ac82f7ce,
         type: 3}

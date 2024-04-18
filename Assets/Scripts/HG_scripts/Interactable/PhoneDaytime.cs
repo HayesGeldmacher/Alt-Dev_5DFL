@@ -19,7 +19,8 @@ public class PhoneDaytime : Interactable
     [SerializeField] private GameObject _lightShaft1;
     [SerializeField] private GameObject _lightShaft2;
     [SerializeField] private Material _skyBoxMat;
-
+    private float t;
+    float duration = 4;
     private bool _hasSpawned = false;
 
     private bool _hasPlayed = false;
@@ -34,6 +35,7 @@ public class PhoneDaytime : Interactable
         //colorStart = _skyBoxMat.TintColor;
         _isDarkening = false;
         RenderSettings.skybox.SetColor("_Tint", colorStart);
+        t = 0;
     }
 
     private void Update()
@@ -57,10 +59,12 @@ public class PhoneDaytime : Interactable
 
         if (_isDarkening)
         {
-           Color lerpedColor = Color.Lerp(colorStart, colorEnd, speed);
-           // renderer.material.color = lerpedColor;
-
+           Color lerpedColor = Color.Lerp(colorStart, colorEnd, t);
+            // renderer.material.color = lerpedColor
             RenderSettings.skybox.SetColor("_Tint", lerpedColor);
+            t += Time.deltaTime / duration;
+
+           // RenderSettings.skybox.SetColor("_Tint", lerpedColor);
             //RenderSettings.skybox.SetColor("_Tint", Color.black);
         }
     }
@@ -130,10 +134,11 @@ public class PhoneDaytime : Interactable
        
         yield return new WaitForSeconds(3);
         _isDarkening = true;
+        yield return new WaitForSeconds(1);
         Destroy(_lightShaft1);
         Destroy(_lightShaft2);
-        RenderSettings.skybox.SetColor("_Tint", Color.black);
     }
+
 
     public override void EndDialogue()
     {
