@@ -55,7 +55,12 @@ public class ScreenshotHandler : MonoBehaviour
             Debug.Log("Got a object!");
 
             }
+            else
+            {
+                Debug.Log("RAYHIT" + hit.transform.name);
+            }
         }
+
     }
 
     //This is called by the below function, and initiates the screenshot
