@@ -5,8 +5,7 @@ using UnityEngine;
 public class MonsterApparaition : Interactable
 {
     [SerializeField] private GameObject _monster;
-    
-    
+    private bool _hasActivated = false;
     
     // Start is called before the first frame update
     void Start()
@@ -19,7 +18,19 @@ public class MonsterApparaition : Interactable
 
         if (other.gameObject.tag == "Player")
         {
-            _monster.SetActive(true);
+            if (!_hasActivated)
+            {
+                _hasActivated = true;
+                StartCoroutine(Activate());
+            }
         }
+    }
+
+
+    private IEnumerator Activate()
+    {
+        _monster.SetActive(true);
+        yield return new WaitForSeconds(1);
+       // Destroy(_monster);
     }
 }
