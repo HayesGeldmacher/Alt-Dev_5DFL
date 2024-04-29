@@ -13,6 +13,7 @@ public class CameraPickup : Interactable
     [SerializeField] private AudioSource _audio;
     [SerializeField] private AudioSource _interactAudio;
     [SerializeField] private int _lines;
+    [SerializeField] private PlayerController _controller;
 
     private void Start()
     {
@@ -31,6 +32,7 @@ public class CameraPickup : Interactable
             {
                 base.EndDialogue();
                 Debug.Log("Camover!");
+                _controller._frozen = false;
                 Destroy(gameObject);
             }
             else
@@ -47,6 +49,7 @@ public class CameraPickup : Interactable
     {
         if (!_started)
         {
+            _controller._frozen = true;
             _lines -= 1;
             _started = true;
             base.Interact();
