@@ -13,10 +13,6 @@ public class TunnelMonster : MonoBehaviour
     [SerializeField] private AudioSource _chimes;
      public float _range;
     // Start is called before the first frame update
-    void Start()
-    {
-        gameObject.SetActive(false);
-    }
 
     // Update is called once per frame
     void Update()

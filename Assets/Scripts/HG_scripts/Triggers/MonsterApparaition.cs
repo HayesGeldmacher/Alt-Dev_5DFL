@@ -18,11 +18,11 @@ public class MonsterApparaition : Interactable
     {
         if (other.gameObject.tag == "Player")
         {
-        Debug.Log("collided!!! with Trigger!!");
             if (!_hasActivated)
             {
                 _hasActivated = true;
                 _monster.SetActive(true);
+        Debug.Log("collided!!! with Trigger!!");
             }
         }
     }
