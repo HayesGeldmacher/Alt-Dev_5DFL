@@ -11,26 +11,20 @@ public class MonsterApparaition : Interactable
     void Start()
     {
         _monster.SetActive(false);
+        gameObject.SetActive(false);
     }
 
     private void OnTriggerEnter(Collider other)
     {
-
         if (other.gameObject.tag == "Player")
         {
+        Debug.Log("collided!!! with Trigger!!");
             if (!_hasActivated)
             {
                 _hasActivated = true;
-                StartCoroutine(Activate());
+                _monster.SetActive(true);
             }
         }
     }
 
-
-    private IEnumerator Activate()
-    {
-        _monster.SetActive(true);
-        yield return new WaitForSeconds(1);
-       // Destroy(_monster);
-    }
 }

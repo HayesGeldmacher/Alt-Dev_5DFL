@@ -15,6 +15,7 @@ public class PhoneDaytime : Interactable
     [SerializeField] private EvidenceManager _evidence;
     [SerializeField] private AudioSource _garble1;
     [SerializeField] private AudioSource _garble2;
+    [SerializeField] private AudioSource _garble3;
     [SerializeField] private Animator _anim;
     [SerializeField] private GameObject _lightShaft1;
     [SerializeField] private GameObject _lightShaft2;
@@ -22,7 +23,8 @@ public class PhoneDaytime : Interactable
     private float t;
     float duration = 4;
     private bool _hasSpawned = false;
-
+    private int diaNum = 0;
+    [SerializeField] private bool _canAudio = true;
     private bool _hasPlayed = false;
 
     private void Start()
@@ -77,6 +79,35 @@ public class PhoneDaytime : Interactable
         if (_evidence._hasEvidence)
         {
             TriggerDialogue(_phoneDialogue);
+            diaNum += 1;
+
+            if(diaNum == 1)
+            {
+                if (_garble1)
+                {
+                    _garble1.Play();
+                    _garble2.Stop();
+                    _garble3.Stop();
+                }
+            }
+            else if(diaNum == 2)
+            {
+                if (_garble2)
+                {
+                    _garble1.Stop();
+                    _garble3.Stop();
+                    _garble2.Play();
+                }
+            }
+            else if(diaNum == 3)
+            {
+                if (_garble3)
+                {
+                    _garble1.Stop();
+                    _garble2.Stop();
+                    _garble3.Play();
+                }
+            }
         }
         else
         {
@@ -100,7 +131,7 @@ public class PhoneDaytime : Interactable
             {
                 if (_garble1)
                 {
-                _garble1.Play();
+               // _garble1.Play();
                 }
             }
 

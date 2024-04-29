@@ -49,7 +49,6 @@ public class CameraController : MonoBehaviour
     public bool _hasCamera;
     [SerializeField] private bool _dayTime;
     [SerializeField] private GameObject _camHud;
-    [SerializeField] private GameObject _glitchScreen;
     [SerializeField] private GameObject _postProcess;
     [SerializeField] private AudioSource _ambience;
     [HideInInspector] public bool _frozen = false;
@@ -85,14 +84,14 @@ public class CameraController : MonoBehaviour
         {
             _camAnimator.SetBool("still", false);
             _camHud.SetActive(true);
-            _glitchScreen.SetActive(true);
+
 
         }
         else
         {
             _camAnimator.SetBool("still", true);
             _camHud.SetActive(false);
-            _glitchScreen.SetActive(false);
+ 
         }
         if (_dayTime)
         {
@@ -364,7 +363,6 @@ public class CameraController : MonoBehaviour
     {
         _hasCamera = true;
         _camHud.SetActive(true);
-        _glitchScreen.SetActive(true);
         _camAnimator.SetBool("still", false);
         _postProcess.SetActive(true);
         if (_dayTime)

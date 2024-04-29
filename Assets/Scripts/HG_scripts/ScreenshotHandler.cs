@@ -47,7 +47,7 @@ public class ScreenshotHandler : MonoBehaviour
     private void CheckForEvidence()
     {
         RaycastHit hit;
-        if (Physics.SphereCast(_checkPoint.position, _checkRadius, transform.forward, out hit, _checkLength,  _checkMask))
+        if (Physics.Raycast(_checkPoint.position, transform.forward, out hit, _checkLength,  _checkMask))
         {
             if(hit.transform.tag == "evidence")
             {
