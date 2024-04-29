@@ -55,6 +55,10 @@ public class ScreenshotHandler : MonoBehaviour
             Debug.Log("Got a object!");
 
             }
+            else if(hit.transform.tag == "ShootTrigger")
+            {
+                hit.transform.GetComponent<ShootTrigger>().Interact();
+            }
             else
             {
                 Debug.Log("RAYHIT" + hit.transform.name);

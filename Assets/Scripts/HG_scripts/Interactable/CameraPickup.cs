@@ -15,6 +15,7 @@ public class CameraPickup : Interactable
     [SerializeField] private PlayerController _controller;
     [SerializeField] private GameObject _balloon;
     [SerializeField] private Animator _balloonParent;
+    [SerializeField] private bool _intro = false;
 
     private void Start()
     {
@@ -26,7 +27,7 @@ public class CameraPickup : Interactable
     }
     private void Update()
     {
-       // base.Update();
+        if (!_intro) return;
 
         if (Input.GetMouseButtonDown(0) && _started)
         {
@@ -53,16 +54,29 @@ public class CameraPickup : Interactable
 
     public override void Interact()
     {
-        if (!_started)
+        if (_intro)
         {
-            _controller._frozen = true;
-            _lines -= 1;
+            if (!_started)
+            {
+                _controller._frozen = true;
+                _lines -= 1;
+                _started = true;
+                base.Interact();
+                 _camController.GotCamera();
+                _bc.enabled = false;
+                _render.enabled = false;
+                StartCoroutine(NextInteract());
+            }
+
+        }
+        else
+        {
             _started = true;
             base.Interact();
-             _camController.GotCamera();
+            _camController.GotCamera();
             _bc.enabled = false;
             _render.enabled = false;
-            StartCoroutine(NextInteract());
+           // StartCoroutine(NextInteract());
         }
     }
 
