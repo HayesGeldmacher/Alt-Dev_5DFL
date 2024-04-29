@@ -11,7 +11,6 @@ public class TunnelMonster : MonoBehaviour
     private bool _startedDisappear = false;
     [SerializeField] private Animator _anim;
     [SerializeField] private AudioSource _chimes;
-    [SerializeField] private AudioSource _patter;
      public float _range;
     // Start is called before the first frame update
     void Start()
@@ -44,8 +43,8 @@ public class TunnelMonster : MonoBehaviour
     private IEnumerator StartDisappear()
     {
         Debug.Log("Started Disappearing!");
-        _anim.SetTrigger("crawl");
-        _patter.Play();
+        _anim.SetTrigger("fade");
+        _chimes.Play();
         yield return new WaitForSeconds(2);
         Destroy(gameObject);
     }
