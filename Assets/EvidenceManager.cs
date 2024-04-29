@@ -15,13 +15,22 @@ public class EvidenceManager : MonoBehaviour
     [SerializeField] private Animator _textAnim;
     int _evidenceToRemove;
     private bool _shouldRemove = false;
+    private bool _takenPic = false;
 
 
     public void PictureTaken(GameObject evidence)
     {
         _picturesNeeded -= 1;
         Destroy(evidence);
-                if(_picturesNeeded <= 0)
+
+        if (!_takenPic)
+        {
+            _textAnim.SetBool("active", true);
+            _text.text = "Damn, this old thing still works... I still need " + _picturesNeeded.ToString() + " more pictures...";
+            transform.GetComponent<DialogueManager>().CallTimerEnd(2);
+        }
+        
+        else if(_picturesNeeded <= 0)
                 {
                     CompletePictures();
                     _textAnim.SetBool("active", true);
@@ -42,6 +51,8 @@ public class EvidenceManager : MonoBehaviour
 
                 }
 
+       
+        _takenPic = true;
     }
 
     private void CompletePictures()

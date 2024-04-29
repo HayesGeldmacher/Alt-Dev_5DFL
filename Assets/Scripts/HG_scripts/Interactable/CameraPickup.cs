@@ -5,7 +5,6 @@ using UnityEngine;
 public class CameraPickup : Interactable
 {
     [SerializeField] private CameraController _camController;
-    [SerializeField] private GameObject _balloon;
     private bool _started = false;
 
     [SerializeField] private MeshRenderer _render;
@@ -14,10 +13,13 @@ public class CameraPickup : Interactable
     [SerializeField] private AudioSource _interactAudio;
     [SerializeField] private int _lines;
     [SerializeField] private PlayerController _controller;
+    [SerializeField] private GameObject _balloon;
+    [SerializeField] private Animator _balloonParent;
 
     private void Start()
     {
         base.Start();
+        _balloon.SetActive(false);
         _render = GetComponent<MeshRenderer>();
         _bc = GetComponent<BoxCollider>();
 
@@ -30,16 +32,20 @@ public class CameraPickup : Interactable
         {
             if(_lines <= 0)
             {
-                base.EndDialogue();
-                Debug.Log("Camover!");
-                _controller._frozen = false;
-                Destroy(gameObject);
+                EndCamera();
             }
             else
             {
-            _lines -= 1;
-            base.Interact();
-            _interactAudio.Play();
+           
+                if(_lines == 2)
+                {
+                    _balloon.SetActive(true);
+                    _balloonParent.SetTrigger("float");
+                }
+            
+                _lines -= 1;
+                base.Interact();
+                _interactAudio.Play();
 
             }
         }
@@ -64,5 +70,13 @@ public class CameraPickup : Interactable
     {
         yield return new WaitForSeconds(2);
         _audio.Play();
+    }
+
+    private void EndCamera()
+    {
+        base.EndDialogue();
+        Debug.Log("Camover!");
+        _controller._frozen = false;
+        Destroy(gameObject);
     }
 }
