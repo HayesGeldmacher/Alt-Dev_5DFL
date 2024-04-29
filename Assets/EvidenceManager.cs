@@ -16,14 +16,14 @@ public class EvidenceManager : MonoBehaviour
     int _evidenceToRemove;
     private bool _shouldRemove = false;
     private bool _takenPic = false;
-
+    [SerializeField] private bool _intro = false;
 
     public void PictureTaken(GameObject evidence)
     {
         _picturesNeeded -= 1;
         Destroy(evidence);
 
-        if (!_takenPic)
+        if (!_takenPic && _intro)
         {
             _textAnim.SetBool("active", true);
             _text.text = "Damn, this old thing still works... I still need " + _picturesNeeded.ToString() + " more pictures...";
