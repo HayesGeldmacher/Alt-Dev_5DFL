@@ -12,6 +12,7 @@ public class Phone : Interactable
     [SerializeField] private AudioSource _garble1;
     [SerializeField] private AudioSource _garble2;
 
+    [SerializeField] private FridgeDoor _fridge;
     [SerializeField] private GameObject _monster;
     [SerializeField] private GameObject _light;
     [SerializeField] private Transform _monsterLocation;
@@ -130,9 +131,10 @@ public class Phone : Interactable
         _monster.SetActive(false);
 
         _light.SetActive(true);
+        _fridge._canSwing = true;
 
         //Sets the door locked 
-            _door.SetDirection();
+        _door.SetDirection();
         
         //Opens the dads door
         if(_doorDad._isOpen)

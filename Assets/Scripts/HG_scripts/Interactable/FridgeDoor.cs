@@ -6,10 +6,12 @@ public class FridgeDoor : Interactable
 {
     [SerializeField] private Animator _anim;
     [SerializeField] private AudioSource _swing;
+    [HideInInspector] public bool _canSwing = false;
     private bool _isOpen = false;
     public override void Interact()
     {
-        base.Interact();
+      if(_canSwing)
+        {
         if (_isOpen)
         {
             _isOpen = false;
@@ -22,7 +24,23 @@ public class FridgeDoor : Interactable
             _anim.SetTrigger("open");
           ///  _swing.Play();
         }
+
+        }
+        else
+        {
+        base.Interact();
+
+        }
     }
 
+    private void Update()
+    {
+        base.Update();
+    }
+
+    private void Start()
+    {
+        base.Start();
+    }
     
 }

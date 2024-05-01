@@ -6,7 +6,6 @@ public class BalloonNight : ShootTrigger
 {
     [SerializeField] private AudioSource _scream;
     [SerializeField] private GameObject _bloodStains;
-    [SerializeField] private MeshRenderer _render;
     
     public override void Interact()
     {
