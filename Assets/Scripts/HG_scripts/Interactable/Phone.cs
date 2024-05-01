@@ -103,7 +103,8 @@ public class Phone : Interactable
                 _hasPlayed = true;
                 if (!_hasSpawned)
                 {
-                    StartCoroutine(SpawnMonster());
+                    CallKitchen();
+                   
                 }
             }
 
@@ -115,6 +116,11 @@ public class Phone : Interactable
     {
         _dialogueManager.EndDialogue();
         
+    }
+
+    public void CallSpawnMonster()
+    {
+        StartCoroutine(SpawnMonster());
     }
 
     private IEnumerator SpawnMonster()
@@ -130,8 +136,6 @@ public class Phone : Interactable
         _monster.transform.rotation = rotation;
         _monster.SetActive(false);
 
-        _light.SetActive(true);
-        _fridge._canSwing = true;
 
         //Sets the door locked 
         _door.SetDirection();
@@ -170,5 +174,12 @@ public class Phone : Interactable
         _monster.SetActive(true);
         _light.SetActive(false);
         yield return new WaitForSeconds(1);
+    }
+
+    public void CallKitchen()
+    {
+        _fridge._canSwing = true;
+        _light.SetActive(true);
+        
     }
 }
