@@ -10,10 +10,10 @@ public class BalloonNight : ShootTrigger
     
     public override void Interact()
     {
-        _scream.Play();
         _bloodStains.SetActive(true);
         Destroy(gameObject);
         _phone.CallSpawnMonster();
+        _scream.Play();
     }
 
 }

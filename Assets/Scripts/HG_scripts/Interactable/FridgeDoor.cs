@@ -6,7 +6,7 @@ public class FridgeDoor : Interactable
 {
     [SerializeField] private Animator _anim;
     [SerializeField] private AudioSource _swing;
-    [HideInInspector] public bool _canSwing = false;
+    public bool _canSwing = false;
     private bool _isOpen = false;
     public override void Interact()
     {
