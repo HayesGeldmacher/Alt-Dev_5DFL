@@ -24,7 +24,9 @@ public class Phone : Interactable
     [SerializeField] private Door _doorBathroom;
     [SerializeField] private GameObject _bathroomLight;
     [SerializeField] private Transform _monsterFaceDirection;
-    private bool _hasSpawned = false;
+    [SerializeField] private GameObject _bathroomLight2;
+    [SerializeField] private GameObject _baseFloorLamp;
+     private bool _hasSpawned = false;
 
     private bool _hasPlayed = false;
 
@@ -35,6 +37,7 @@ public class Phone : Interactable
         _dialogueManager = GameManager.instance.GetComponent<DialogueManager>();
         _player = PlayerController.instance.transform;
         _defaultDialogue = base._dialogue;
+        _bathroomLight2.SetActive(false);
     }
 
     private void Update()
@@ -166,6 +169,8 @@ public class Phone : Interactable
     private IEnumerator SpawnBathroom()
     {
         _bathroomLight.SetActive(true);
+        _bathroomLight2.SetActive(true);
+        _baseFloorLamp.SetActive(false);
         if (!_doorBathroom._isOpen)
         {
             _doorBathroom.SetDirection();
