@@ -32,4 +32,9 @@ public class MainMenu : MonoBehaviour
             Application.Quit();
         #endif
     }
+
+    public void Credits()
+    {
+        SceneManager.LoadScene("Credits");
+    }
 }
