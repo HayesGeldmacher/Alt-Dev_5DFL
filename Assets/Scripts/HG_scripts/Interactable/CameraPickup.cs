@@ -16,6 +16,7 @@ public class CameraPickup : Interactable
     [SerializeField] private GameObject _balloon;
     [SerializeField] private Animator _balloonParent;
     [SerializeField] private bool _intro = false;
+    [SerializeField] private CameraController _cam;
 
     private void Start()
     {
@@ -58,6 +59,7 @@ public class CameraPickup : Interactable
         {
             if (!_started)
             {
+                _cam._canInteract = false;
                 _controller._frozen = true;
                 _lines -= 1;
                 _started = true;
@@ -91,6 +93,7 @@ public class CameraPickup : Interactable
         base.EndDialogue();
         Debug.Log("Camover!");
         _controller._frozen = false;
+        _cam._canInteract = true;
         Destroy(gameObject);
     }
 }

@@ -52,6 +52,7 @@ public class CameraController : MonoBehaviour
     [SerializeField] private GameObject _postProcess;
     [SerializeField] private AudioSource _ambience;
     [HideInInspector] public bool _frozen = false;
+    [HideInInspector] public bool _canInteract = true;
     private CameraZoom _zoom;
 
     [Header("Noise Variables")]
@@ -59,7 +60,7 @@ public class CameraController : MonoBehaviour
     [SerializeField] private float _doorOpenNoise;
     [SerializeField] private float _snapShotNoise;
 
-
+    
 
     [Header("")]
      
@@ -186,12 +187,19 @@ public class CameraController : MonoBehaviour
 
     private void InteractUpdate()
     {
+        if (!_canInteract)
+        {
+            _cursorAnim.SetBool("isCasting", false);
+        }
+        if (!_canInteract) return;
+        
         ScreenShotUpdate();
         if (_zoom._isZooming)
         {
             _cursorAnim.SetBool("isCasting", false);
         }
         if (_zoom._isZooming) return;
+
         
         //Every frame we are shooting a raycast out into the environment. 
        //This checks if an interactable object is in front of us
