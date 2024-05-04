@@ -53,7 +53,6 @@ public class CreditsScroller : MonoBehaviour
         }
     }
 
-
     private IEnumerator StartCredits()
     {
         yield return new WaitForSeconds(4f);
