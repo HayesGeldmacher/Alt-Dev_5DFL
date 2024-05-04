@@ -20,6 +20,7 @@ public class PhoneDaytime : Interactable
     [SerializeField] private GameObject _lightShaft1;
     [SerializeField] private GameObject _lightShaft2;
     [SerializeField] private Material _skyBoxMat;
+    [SerializeField] private GameObject _pointWindowLight;
     private float t;
     float duration = 4;
     private bool _hasSpawned = false;
@@ -165,6 +166,7 @@ public class PhoneDaytime : Interactable
        
         yield return new WaitForSeconds(3);
         _isDarkening = true;
+        Destroy(_pointWindowLight);
         yield return new WaitForSeconds(1);
         Destroy(_lightShaft1);
         Destroy(_lightShaft2);

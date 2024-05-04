@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class CreditsScroller : MonoBehaviour
 { 
@@ -44,6 +45,11 @@ public class CreditsScroller : MonoBehaviour
                 _scrolling = false;
             }
 
+        }
+
+        if (Input.GetKeyDown(KeyCode.Escape))
+        {
+            SceneManager.LoadScene("menu");
         }
     }
 

@@ -341,7 +341,7 @@ public class CameraController : MonoBehaviour
     private void ScreenShotUpdate()
     {
        //Ensures that player has to wait between each shot, cant spam
-        if (Input.GetMouseButtonDown(0) && _currentShotWait >= _shotWait && _zoom._isZooming)
+        if (Input.GetMouseButtonDown(0) && _currentShotWait >= _shotWait )
         {
             if (_hasCamera)
             {

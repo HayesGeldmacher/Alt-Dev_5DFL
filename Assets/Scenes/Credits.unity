@@ -179,7 +179,7 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls: []
   m_text: "Written By\n\nEngineered By\n \nLevel Designers\n\n\n\nGameplay Designers\n\n\n\nProp
-    Artist\n\nEnvironment Artists\n\n\nAudio Designers\n\n"
+    Artists\n\n\nEnvironment Artists\n\n\nAudio Designers\n\n"
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: b2a26b7f1b8735245af835497a4ab2e5, type: 2}
   m_sharedMaterial: {fileID: 5522870637584921542, guid: b2a26b7f1b8735245af835497a4ab2e5,
@@ -332,10 +332,11 @@ MonoBehaviour:
 
     Hayes Geldmacher
 
-    Xueyuan Shi
 
 
     Max Li
+
+    Xueyuan Shi
 
 
     Max
@@ -1644,6 +1645,10 @@ MonoBehaviour:
   m_text: 'This House Is Not Home
 
 
+    (Left Cilck To Speed Up, Right Click To Stop,
+    Esc To Leave)
+
+
 '
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: b2a26b7f1b8735245af835497a4ab2e5, type: 2}
@@ -1839,6 +1844,7 @@ GameObject:
   - component: {fileID: 7074023318513884618}
   - component: {fileID: 827889507575254225}
   - component: {fileID: 7074023318513884619}
+  - component: {fileID: 7074023318513884620}
   m_Layer: 5
   m_Name: Canvas
   m_TagString: Untagged
@@ -2334,9 +2340,107 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ea18bc1dad9afc64b9130a5c17ef2466, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _speed: 5
-  _topPoint: {fileID: 2054093710}
+  _cam: {fileID: 197608932}
+  _speed: 30
+  _stopPoint: 2690
+  _doubleSpeed: 150
   _credits: {fileID: 8720268951342379550}
+--- !u!82 &7074023318513884620
+AudioSource:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5623731560595680614}
+  m_Enabled: 1
+  serializedVersion: 4
+  OutputAudioMixerGroup: {fileID: 0}
+  m_audioClip: {fileID: 8300000, guid: 2419465c833053c419944522f51dacb1, type: 3}
+  m_PlayOnAwake: 1
+  m_Volume: 1
+  m_Pitch: 1
+  Loop: 1
+  Mute: 0
+  Spatialize: 0
+  SpatializePostEffects: 0
+  Priority: 128
+  DopplerLevel: 1
+  MinDistance: 1
+  MaxDistance: 500
+  Pan2D: 0
+  rolloffMode: 0
+  BypassEffects: 0
+  BypassListenerEffects: 0
+  BypassReverbZones: 0
+  rolloffCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    - serializedVersion: 3
+      time: 1
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  panLevelCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  spreadCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  reverbZoneMixCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
 --- !u!224 &7087349301692613862
 RectTransform:
   m_ObjectHideFlags: 0
