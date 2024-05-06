@@ -1,4 +1,4 @@
-using System.Collections;
+ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -20,6 +20,7 @@ public class PlayerController : MonoBehaviour
     [SerializeField] private Animator _camAnim;
     [SerializeField] private AudioSource _footSteps;
     [SerializeField] private float _neededFootTime;
+    [SerializeField] private Animator _spriteAnim;
     private float _currentFootTime;
     public List<AudioClip> _audioClips = new List<AudioClip>();
 
@@ -132,6 +133,8 @@ public class PlayerController : MonoBehaviour
             if(_move.magnitude > 0.1f) 
             {
                 _camAnim.SetBool("walking", true);
+                _spriteAnim.SetBool("walking", true);
+                
                 //play footsteps here
                 FootStepUpdate();
 
@@ -152,6 +155,7 @@ public class PlayerController : MonoBehaviour
             else
             {
                 _camAnim.SetBool("walking", false);
+                _spriteAnim.SetBool("walking", false);
                 _currentFootTime = 0;
             }
 
@@ -218,13 +222,14 @@ public class PlayerController : MonoBehaviour
         if(_isCrouching)
         {            
           _yCamPoint = Mathf.Lerp(_yCamPoint, _crouchingYCamPoint, _crouchTransSpeed * Time.deltaTime);
-          
+            _spriteAnim.SetBool("crouching", true);
 
           
         }
         else
         {
             _yCamPoint = Mathf.Lerp(_yCamPoint, _standingYCamPoint, _crouchTransSpeed * Time.deltaTime);
+            _spriteAnim.SetBool("crouching", false);
         }
 
         _cameraParent.localPosition = new Vector3(_cameraParent.localPosition.x, _yCamPoint, _cameraParent.localPosition.z);
