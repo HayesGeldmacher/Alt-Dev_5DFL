@@ -26,7 +26,7 @@ public class GameManager : MonoBehaviour
 
     #endregion
 
-    private bool _isPaused = false;
+    [HideInInspector] public bool _isPaused = false;
     [SerializeField] private CameraController _controller;
     [SerializeField] private TMP_Text _pausedText;
     [SerializeField] private GameObject _pauseButtons;

@@ -16,7 +16,13 @@ public class ScreenshotHandler : MonoBehaviour
     [SerializeField] private EvidenceManager _evidenceManager;
 
     [SerializeField] private RawImage _photo;
-    [SerializeField] private Texture2D _texture;
+    [SerializeField] private Animator _photoAnim;
+    [SerializeField] private Animator _iconAnim;
+    [SerializeField] private AudioSource _ding;
+    [SerializeField] private GameManager _manager;
+    private bool _hasPhoto = false;
+    private bool _photoOpen = false;
+
 
     private void Awake()
     {
@@ -27,8 +33,39 @@ public class ScreenshotHandler : MonoBehaviour
 
     WaitForEndOfFrame _frameEnd = new WaitForEndOfFrame();
 
+    private void Update()
+    {
 
-    private void ScreenShot()
+        if (Input.GetKeyDown(KeyCode.Tab) && _hasPhoto)
+        {
+            if (!_manager._isPaused)
+            {
+
+                if (_photoOpen)
+                {
+                    _photoOpen = false;
+                    _photoAnim.SetTrigger("fade");
+                }
+                else
+                {
+                    _photoOpen = true;
+                    _photoAnim.SetTrigger("appear");
+                }
+
+                StartCoroutine(IconBump());
+            }
+        }
+    }
+
+    private IEnumerator IconBump()
+    {
+        PlayDing();
+        yield return new WaitForSeconds(0.1f);
+        _iconAnim.SetTrigger("appear");
+
+    }
+
+    private IEnumerator ScreenShot()
     {
 
         RenderTexture screenTexture = new RenderTexture(Screen.width, Screen.height, 16);
@@ -48,6 +85,14 @@ public class ScreenshotHandler : MonoBehaviour
         Destroy(screenshot);
 
         _photo.texture = newScreenshot;
+            
+        _hasPhoto = true;
+
+        yield return new WaitForSeconds(0.4f);
+        _photoAnim.SetTrigger("fade");
+        yield return new WaitForSeconds(0.1f);
+        _iconAnim.SetTrigger("appear");
+        
     }
 
     private void CheckForEvidence()
@@ -77,7 +122,7 @@ public class ScreenshotHandler : MonoBehaviour
     private IEnumerator TakeScreenshot(int _width, int _height)
     {
          yield return _frameEnd;
-        ScreenShot();
+        StartCoroutine(ScreenShot());
         CheckForEvidence();
     }
 
@@ -87,4 +132,11 @@ public class ScreenshotHandler : MonoBehaviour
        StartCoroutine(TakeScreenshot( _width, _height));       
     }
 
+
+    private void PlayDing()
+    {
+        
+        _ding.pitch = Random.Range(0.8f, 1.1f);
+        _ding.Play();
+    }
 }
