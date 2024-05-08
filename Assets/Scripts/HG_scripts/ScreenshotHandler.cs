@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class ScreenshotHandler : MonoBehaviour
 {
@@ -14,6 +15,8 @@ public class ScreenshotHandler : MonoBehaviour
     [SerializeField] private Transform _checkPoint;
     [SerializeField] private EvidenceManager _evidenceManager;
 
+    [SerializeField] private RawImage _photo;
+    [SerializeField] private Texture2D _texture;
 
     private void Awake()
     {
@@ -24,7 +27,8 @@ public class ScreenshotHandler : MonoBehaviour
 
     WaitForEndOfFrame _frameEnd = new WaitForEndOfFrame();
 
-    private void OtherScreenShotMethod()
+
+    private void ScreenShot()
     {
 
         RenderTexture screenTexture = new RenderTexture(Screen.width, Screen.height, 16);
@@ -34,13 +38,16 @@ public class ScreenshotHandler : MonoBehaviour
         Texture2D renderedTexture = new Texture2D(Screen.width, Screen.height);
         renderedTexture.ReadPixels(new Rect(0, 0, Screen.width, Screen.height), 0, 0);
         RenderTexture.active = null;
-        byte[] _byteArray = renderedTexture.EncodeToPNG();
-        string _folderPath = Application.dataPath + "/Screenshots" + "/CameraScreenshot.png";
-        System.IO.File.WriteAllBytes(_folderPath, _byteArray);
 
-        Debug.Log("Screenshot Taken!");
-        //CheckForEvidence();
+        Texture2D screenshot = ScreenCapture.CaptureScreenshotAsTexture();
 
+        Texture2D newScreenshot = new Texture2D(renderedTexture.width, renderedTexture.height, TextureFormat.RGB24, false);
+        newScreenshot.SetPixels(renderedTexture.GetPixels());
+        newScreenshot.Apply();
+
+        Destroy(screenshot);
+
+        _photo.texture = newScreenshot;
     }
 
     private void CheckForEvidence()
@@ -70,7 +77,7 @@ public class ScreenshotHandler : MonoBehaviour
     private IEnumerator TakeScreenshot(int _width, int _height)
     {
          yield return _frameEnd;
-        //OtherScreenShotMethod();
+        ScreenShot();
         CheckForEvidence();
     }
 
