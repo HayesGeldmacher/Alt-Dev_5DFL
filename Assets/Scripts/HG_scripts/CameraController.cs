@@ -28,6 +28,7 @@ public class CameraController : MonoBehaviour
     [SerializeField] private Animator _cursorAnim;
     [SerializeField] private float _interactRange;
     [SerializeField] private float _doorRange;
+    [HideInInspector] public bool _interacting = false;
     private bool _isHolding = false;
     private Door _door;
     public List<string> _keys = new List<string>();
@@ -113,6 +114,7 @@ public class CameraController : MonoBehaviour
 
     private void Update()
     {
+        
         if (_frozen) return;
         InteractUpdate();
         if (_isHolding) return;
@@ -187,12 +189,20 @@ public class CameraController : MonoBehaviour
 
     private void InteractUpdate()
     {
-        if (!_canInteract)
+
+
+            if (!_canInteract)
         {
             _cursorAnim.SetBool("isCasting", false);
         }
         if (!_canInteract) return;
         
+        if (_handler._hasPhoto && _handler._photoOpen)
+        {
+            _cursorAnim.SetBool("isCasting", false);
+        }
+        if (_handler._hasPhoto && _handler._photoOpen) return;
+
         ScreenShotUpdate();
         if (_zoom._isZooming)
         {
@@ -210,7 +220,9 @@ public class CameraController : MonoBehaviour
 
             //here we make the cursor appear on screen!
             if (_hitInfo.transform.GetComponent<Interactable>()) 
-            { 
+            {
+               
+
                 if(_hitInfo.transform.tag == "door")
                 {
                     _door = _hitInfo.transform.GetComponent<Door>();
@@ -231,6 +243,7 @@ public class CameraController : MonoBehaviour
                     _cursorAnim.SetBool("locked", false);
                 }
                 _cursorAnim.SetBool("isCasting", true);
+                _interacting = true;
                 _currentInteractable = _hitInfo.transform.GetComponent<Interactable>();
                 if (!_currentInteractable._isOutlined)
                 {
@@ -294,6 +307,7 @@ public class CameraController : MonoBehaviour
                 {
                     _isHolding = false;
                     _cursorAnim.SetBool("isCasting", false);
+                    _interacting = false;
 
                     if (_door != null)
                     {
@@ -304,6 +318,7 @@ public class CameraController : MonoBehaviour
                 }
             
             }
+            
         }
         else
         {
@@ -315,8 +330,9 @@ public class CameraController : MonoBehaviour
                 {
                 _isHolding = false;
                 _cursorAnim.SetBool("isCasting", false);
-                    
-                    if(_door != null)
+                    _interacting = false;
+
+                    if (_door != null)
                     {
                         _door._isHeld = false;
                         _door = null;
@@ -326,6 +342,7 @@ public class CameraController : MonoBehaviour
             else
             {
                 _cursorAnim.SetBool("isCasting", false);
+                _interacting = false;
             }
 
             if (_currentInteractable)

@@ -5,10 +5,11 @@ using UnityEngine.UI;
 
 public class ScreenshotHandler : MonoBehaviour
 {
-   //private static ScreenshotHandler instance;
+    //private static ScreenshotHandler instance;
 
-   private Camera _cam;
-   private bool _shouldScreenShot;
+    private Camera _cam;
+    private bool _shouldScreenShot;
+
     [SerializeField] private float _checkRadius;
     [SerializeField] private float _checkLength;
     [SerializeField] private LayerMask _checkMask;
@@ -20,8 +21,12 @@ public class ScreenshotHandler : MonoBehaviour
     [SerializeField] private Animator _iconAnim;
     [SerializeField] private AudioSource _ding;
     [SerializeField] private GameManager _manager;
-    private bool _hasPhoto = false;
-    private bool _photoOpen = false;
+    [SerializeField] private CameraZoom _zoom;
+    [SerializeField] private CameraController _camControl;
+
+    [SerializeField] private bool _canOpenPhoto = true;
+    [HideInInspector] public bool _hasPhoto = false;
+    [HideInInspector] public bool _photoOpen = false;
 
 
     private void Awake()
@@ -35,12 +40,14 @@ public class ScreenshotHandler : MonoBehaviour
 
     private void Update()
     {
+       
+        if (_manager._isPaused) return;
+        if (_zoom._isZooming) return;
+        if (_camControl._interacting) return;
 
         if (Input.GetKeyDown(KeyCode.Tab) && _hasPhoto)
         {
-            if (!_manager._isPaused)
-            {
-
+           
                 if (_photoOpen)
                 {
                     _photoOpen = false;
@@ -53,16 +60,36 @@ public class ScreenshotHandler : MonoBehaviour
                 }
 
                 StartCoroutine(IconBump());
-            }
+            
         }
     }
 
     private IEnumerator IconBump()
     {
+        _canOpenPhoto = true;
         PlayDing();
         yield return new WaitForSeconds(0.1f);
-        _iconAnim.SetTrigger("appear");
+        if (_photoOpen)
+        {
+        _iconAnim.SetTrigger("disappear");
 
+        }
+        else
+        {
+            _iconAnim.SetTrigger("appear");
+        }
+
+    }
+
+    private void IconDisappear()
+    {
+        _canOpenPhoto = false;
+        _iconAnim.SetTrigger("disappear");
+        if (_hasPhoto)
+        {
+        _photoAnim.SetTrigger("disappear");
+
+        }
     }
 
     private IEnumerator ScreenShot()
@@ -103,6 +130,7 @@ public class ScreenshotHandler : MonoBehaviour
             if(hit.transform.tag == "evidence")
             {
             _evidenceManager.PictureTaken(hit.transform.gameObject);
+                _evidenceManager.StrikeOffItem(hit.transform.gameObject);
             Debug.Log("Got a object!");
 
             }
@@ -113,8 +141,11 @@ public class ScreenshotHandler : MonoBehaviour
             else
             {
                 Debug.Log("RAYHIT" + hit.transform.name);
+               
             }
         }
+       
+        StartCoroutine(ScreenShot());
 
     }
 
@@ -122,7 +153,6 @@ public class ScreenshotHandler : MonoBehaviour
     private IEnumerator TakeScreenshot(int _width, int _height)
     {
          yield return _frameEnd;
-        StartCoroutine(ScreenShot());
         CheckForEvidence();
     }
 

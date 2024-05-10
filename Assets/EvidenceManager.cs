@@ -6,6 +6,7 @@ using TMPro;
 public class EvidenceManager : MonoBehaviour
 {
     [SerializeField] private int _picturesNeeded;
+    [SerializeField] private Clapper _clapper;
     public List<GameObject> _evidenceBits = new List<GameObject>();
     public bool _hasEvidence = false;
     public bool _hasFoundPhone = false;
@@ -17,7 +18,21 @@ public class EvidenceManager : MonoBehaviour
     private bool _shouldRemove = false;
     private bool _takenPic = false;
     [SerializeField] private bool _intro = false;
+    [SerializeField] private List<GameObject> _items = new List<GameObject>();
+    [SerializeField] private List<GameObject> _itemLabels = new List<GameObject>();
+    private Dictionary<GameObject, GameObject> _itemsDict = new Dictionary<GameObject, GameObject>();
+  
 
+
+    private void Start()
+    {
+        for(int i = 0; i < _items.Count; i++)
+        {
+            _itemsDict.Add(_items[i], _itemLabels[i]);
+        }
+        Debug.Log(_itemsDict);
+    }
+    
     public void PictureTaken(GameObject evidence)
     {
         _picturesNeeded -= 1;
@@ -31,7 +46,7 @@ public class EvidenceManager : MonoBehaviour
         }
         
         else if(_picturesNeeded <= 0)
-                {
+        {
                     CompletePictures();
                     _textAnim.SetBool("active", true);
                     _text.text = _textOption1;
@@ -50,6 +65,7 @@ public class EvidenceManager : MonoBehaviour
                     transform.GetComponent<DialogueManager>().CallTimerEnd(2);
 
                 }
+        
 
        
         _takenPic = true;
@@ -66,6 +82,14 @@ public class EvidenceManager : MonoBehaviour
 
     private void PlaySound()
     {
+        
+    }
+
+    public void StrikeOffItem(GameObject item)
+    {
+        GameObject currentLabel = _itemsDict[item];
+        currentLabel.transform.GetChild(0).GetComponent<Animator>().SetTrigger("strike");
+        Debug.Log(currentLabel + " Struck off");
         
     }
 }
