@@ -24,6 +24,13 @@ public class Clapper : Interactable
     {
         base.Interact();
         _anim.SetTrigger("clap");
+        StartCoroutine(ClapSound());
+    }
+
+    private IEnumerator ClapSound()
+    {
+        yield return new WaitForSeconds(0.6f);
+        _clapSound.Play();
     }
 
 }
