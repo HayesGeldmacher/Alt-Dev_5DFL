@@ -17,6 +17,7 @@ public class CameraPickup : Interactable
     [SerializeField] private Animator _balloonParent;
     [SerializeField] private bool _intro = false;
     [SerializeField] private CameraController _cam;
+    [SerializeField] private GameObject _glimmer;
 
     private void Start()
     {
@@ -61,6 +62,7 @@ public class CameraPickup : Interactable
             {
                 _cam._canInteract = false;
                 _controller._frozen = true;
+                Destroy(_glimmer);
                 _lines -= 1;
                 _started = true;
                 base.Interact();
