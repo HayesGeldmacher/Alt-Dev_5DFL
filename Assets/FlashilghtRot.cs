@@ -7,7 +7,9 @@ public class FlashilghtRot : MonoBehaviour
 
 
     [SerializeField] private Transform _body;
-    [SerializeField] private Transform _cam; 
+    [SerializeField] private Transform _cam;
+    [SerializeField] private Transform _targetPoint;
+    [SerializeField] private float _speed;
 
     private void Update()
     {
@@ -16,17 +18,34 @@ public class FlashilghtRot : MonoBehaviour
 
     private void FlashUpdate()
     {
+
+        //WE KNOW THE BUG - LERPING IS GOING FROM 360 TO 1, CROSSING THE BORDER THE LONG WAY
+
         transform.position = _body.position;
-        transform.rotation = _body.rotation;
+        _targetPoint.position = _body.position;
+       
+        //now that rotation is figured out, we need to get this lerped!
+       _targetPoint.rotation = _body.rotation;
         Vector3 _camRot = _cam.localEulerAngles;
-        Vector3 bodyRot = _body.localEulerAngles;
-        transform.rotation = Quaternion.Euler(_camRot.x, transform.localEulerAngles.y, transform.localEulerAngles.z);
+        _targetPoint.rotation = Quaternion.Euler(_camRot.x, _targetPoint.localEulerAngles.y, _targetPoint.localEulerAngles.z);
+
+        float _goalX = _targetPoint.localEulerAngles.x;
+        float _goalY = _targetPoint.localEulerAngles.y;
+        float _goalZ = _targetPoint.localEulerAngles.z;
 
 
+        float _currentX = Mathf.LerpAngle(transform.localEulerAngles.x, _goalX, _speed * Time.deltaTime);
+        float _currentY = Mathf.LerpAngle(transform.localEulerAngles.y, _goalY, _speed * Time.deltaTime);
+        float _currentZ = Mathf.LerpAngle(transform.localEulerAngles.z, _goalZ, _speed * Time.deltaTime);
 
-        
-        //transform.rotation = Quaternion.Euler(_cam.rotation.x, _body.rotation.y, _body.rotation.z);
 
-        Debug.Log("FUCK!");
+        // transform.rotation = _targetPoint.rotation;
+        //transform.rotation = new Vector3(_currentX, _currentY, _currentZ);
+
+        //float _currentX = Mathf.LerpAngle(transform.localEulerAngles.x, _goalX, _speed * Time.deltaTime);
+
+        transform.rotation = Quaternion.Euler(_currentX, _currentY, _currentZ);
+
+
     }
 }
