@@ -1,5 +1,31 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
+--- !u!114 &-8782465228880229303
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7a17da147615463497e4bd9e04f0dce1, type: 3}
+  m_Name: DitheringRenderFeature
+  m_EditorClassIdentifier: 
+  m_Active: 1
+--- !u!114 &-5547689794730055217
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: df6534dd185a4f18b50629b58de296b6, type: 3}
+  m_Name: PixelationRenderFeature
+  m_EditorClassIdentifier: 
+  m_Active: 1
 --- !u!114 &-5119229156527659972
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -94,7 +120,9 @@ MonoBehaviour:
   - {fileID: 1610172721912667756}
   - {fileID: 8230045565797805535}
   - {fileID: -5119229156527659972}
-  m_RendererFeatureMap: adc0de57c6d2eee56cdea03c8f7b5816df2da862d6fe36723ca4587934d8f4b8
+  - {fileID: -8782465228880229303}
+  - {fileID: -5547689794730055217}
+  m_RendererFeatureMap: adc0de57c6d2eee56cdea03c8f7b5816df2da862d6fe36723ca4587934d8f4b849cc5fe4676a1e86cf290e4d86a502b3
   m_UseNativeRenderPass: 0
   postProcessData: {fileID: 11400000, guid: 41439944d30ece34e96484bdb6645b55, type: 2}
   xrSystemData: {fileID: 11400000, guid: 60e1133243b97e347b653163a8c01b64, type: 2}
