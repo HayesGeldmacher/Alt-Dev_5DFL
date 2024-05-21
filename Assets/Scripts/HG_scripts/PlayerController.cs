@@ -52,7 +52,12 @@ public class PlayerController : MonoBehaviour
 
 
     [HideInInspector] public bool _frozen = false;
-   
+
+    [Header("Hand Values")]
+    [SerializeField] private float _handRange;
+    [SerializeField] private LayerMask _handMask;
+    [SerializeField] private bool _isHand = false;
+    [SerializeField] private Animator _handAnim;
     
 
 
@@ -176,6 +181,7 @@ public class PlayerController : MonoBehaviour
        
         }
             CrouchUpdate();
+            HandUpdate();
 
     }
 
@@ -275,6 +281,50 @@ public class PlayerController : MonoBehaviour
                 _currentFootTime = 0;
         }
 
+        }
+    }
+
+    private void HandUpdate()
+    {
+        RaycastHit hit;
+        // Does the ray intersect any objects excluding the player layer
+        if (Physics.Raycast(transform.position, transform.forward, out hit, _handRange, _handMask))
+        {
+            if (!_isCrouching)
+            {
+                if (!_isHand)
+                {
+                    ChangeHandState(true);
+                }
+            }
+            else
+            {
+                if (_isHand)
+                {
+                    ChangeHandState(false);
+                }
+            }
+        }
+        else
+        {
+            if (_isHand)
+            {
+                ChangeHandState(false);
+            }
+        }
+    }
+
+    private void ChangeHandState(bool _state)
+    {
+        if (_state)
+        {
+            _isHand = true;
+            _handAnim.SetTrigger("ToWall");
+        }
+        else
+        {
+            _isHand = false;
+            _handAnim.SetTrigger("ToBody");
         }
     }
 
