@@ -58,6 +58,13 @@ public class PlayerController : MonoBehaviour
     [SerializeField] private LayerMask _handMask;
     [SerializeField] private bool _isHand = false;
     [SerializeField] private Animator _handAnim;
+    [SerializeField] private Transform _hand;
+    [SerializeField] private Transform _holdPoint;
+    [SerializeField] private float _startDistance;
+    [SerializeField] private float _tolerateDistance;
+    [SerializeField] private Vector3 _startPos;
+    [SerializeField] private CameraController _camControl;
+    private bool _hasHand = false;
     
 
 
@@ -155,7 +162,6 @@ public class PlayerController : MonoBehaviour
                     }
 
                 }
-
             }
             else
             {
@@ -286,6 +292,23 @@ public class PlayerController : MonoBehaviour
 
     private void HandUpdate()
     {
+        if (_isHand)
+        {
+            float _currentDifference = Vector3.Distance(_startPos, _hand.position);
+            if(Mathf.Abs(_currentDifference - _startDistance) > _tolerateDistance)
+            {
+                ChangeHandState(false);
+            }
+        }
+
+        if(Mathf.Abs(_camControl._camXMove) > 2f)
+        {
+            if(_isHand)
+            {
+                ChangeHandState(false);
+            }
+        }       
+
         RaycastHit hit;
         // Does the ray intersect any objects excluding the player layer
         if (Physics.Raycast(transform.position, transform.forward, out hit, _handRange, _handMask))
@@ -294,7 +317,11 @@ public class PlayerController : MonoBehaviour
             {
                 if (!_isHand)
                 {
+                    if (!_hasHand)
+                    {
                     ChangeHandState(true);
+
+                    }
                 }
             }
             else
@@ -311,6 +338,8 @@ public class PlayerController : MonoBehaviour
             {
                 ChangeHandState(false);
             }
+
+            _hasHand = false;
         }
     }
 
@@ -318,8 +347,11 @@ public class PlayerController : MonoBehaviour
     {
         if (_state)
         {
+            _hasHand = true;
             _isHand = true;
             _handAnim.SetTrigger("ToWall");
+            _startPos = _hand.position;
+            _startDistance = Vector3.Distance(_startPos, _hand.position);
         }
         else
         {

@@ -61,6 +61,8 @@ public class CameraController : MonoBehaviour
     [SerializeField] private float _doorOpenNoise;
     [SerializeField] private float _snapShotNoise;
 
+    [HideInInspector] public float _camXMove;
+
     
 
     [Header("")]
@@ -124,6 +126,8 @@ public class CameraController : MonoBehaviour
         //All inputs should be multiplied Time.deltaTime in order for physics to work correctly
         float mouseX = Input.GetAxis("Mouse X") * _mouseSensitivityX * Time.deltaTime;
         float mouseY = Input.GetAxis("Mouse Y") * _mouseSensitivityY * Time.deltaTime;
+
+        _camXMove = mouseX;
 
         _xRotation -= mouseY;
         _xRotation = Mathf.Clamp(_xRotation, -90f, 90f);
