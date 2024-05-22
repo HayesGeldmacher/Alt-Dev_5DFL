@@ -65,7 +65,9 @@ public class PlayerController : MonoBehaviour
     [SerializeField] private Vector3 _startPos;
     [SerializeField] private CameraController _camControl;
     private bool _hasHand = false;
-    
+    [SerializeField] private bool _hasMoved = true;
+    private float _walkTime;
+    private bool _handMovingBack = false;
 
 
     //The below region just creates a reference of this specific controller that we can call from other scripts quickly
@@ -144,6 +146,9 @@ public class PlayerController : MonoBehaviour
             //Controls whether the camera is animating to walk or not
             if(_move.magnitude > 0.1f) 
             {
+
+                _walkTime += Time.deltaTime;
+
                 _camAnim.SetBool("walking", true);
                 _spriteAnim.SetBool("walking", true);
                 
@@ -168,8 +173,14 @@ public class PlayerController : MonoBehaviour
                 _camAnim.SetBool("walking", false);
                 _spriteAnim.SetBool("walking", false);
                 _currentFootTime = 0;
+                _walkTime = 0;
             }
 
+            if ( _walkTime >= 0.4f && !_isHand)
+            {
+                _hasMoved = true;
+            }
+            
             //This lines allows the player to turn their flashlight on or off!
             if (Input.GetKeyDown(KeyCode.F))
             {
@@ -299,15 +310,7 @@ public class PlayerController : MonoBehaviour
             {
                 ChangeHandState(false);
             }
-        }
-
-        if(Mathf.Abs(_camControl._camXMove) > 2f)
-        {
-            if(_isHand)
-            {
-                ChangeHandState(false);
-            }
-        }       
+        }    
 
         RaycastHit hit;
         // Does the ray intersect any objects excluding the player layer
@@ -319,7 +322,14 @@ public class PlayerController : MonoBehaviour
                 {
                     if (!_hasHand)
                     {
-                    ChangeHandState(true);
+                        if(hit.transform.tag == "Environment")
+                        {
+                            if (_hasMoved)
+                            {
+                                ChangeHandState(true);
+
+                            }
+                        }
 
                     }
                 }
@@ -347,6 +357,7 @@ public class PlayerController : MonoBehaviour
     {
         if (_state)
         {
+            _hasMoved = false;
             _hasHand = true;
             _isHand = true;
             _handAnim.SetTrigger("ToWall");
@@ -355,8 +366,11 @@ public class PlayerController : MonoBehaviour
         }
         else
         {
-            _isHand = false;
-            _handAnim.SetTrigger("ToBody");
+            if (!_handMovingBack && _isHand)
+            {
+            StartCoroutine(RemoveHand());
+
+            }
         }
     }
 
@@ -372,6 +386,16 @@ public class PlayerController : MonoBehaviour
     {
         _isCrouching = false;
         _cameraParent.localPosition = new Vector3(_cameraParent.localPosition.x, _standingYCamPoint, _cameraParent.localPosition.z);
+    }
+
+    private IEnumerator RemoveHand()
+    {
+        _handMovingBack = true;
+        Debug.Log("body");
+        _handAnim.SetTrigger("ToBody");
+        yield return new WaitForSeconds(1);
+        _isHand = false;
+        _handMovingBack = false;
     }
 
 }
