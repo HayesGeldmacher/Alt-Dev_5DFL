@@ -19,12 +19,16 @@ public class CameraPickup : Interactable
     [SerializeField] private CameraController _cam;
     [SerializeField] private GameObject _glimmer;
 
+    [SerializeField] private GameObject _ghostCam;
+
+
     private void Start()
     {
         base.Start();
         _balloon.SetActive(false);
         _render = GetComponent<MeshRenderer>();
         _bc = GetComponent<BoxCollider>();
+        _ghostCam.SetActive(false);
 
     }
     private void Update()
@@ -69,6 +73,7 @@ public class CameraPickup : Interactable
                  _camController.GotCamera();
                 _bc.enabled = false;
                 _render.enabled = false;
+                _ghostCam.SetActive(true);
                 StartCoroutine(NextInteract());
             }
 
