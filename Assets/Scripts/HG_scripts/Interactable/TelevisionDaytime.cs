@@ -15,7 +15,7 @@ public class TelevisionDaytime : Interactable
     [SerializeField] Interactable _tv;
     [SerializeField] private AudioSource _staticIntro;
     [SerializeField] private AudioSource _staticContinue;
-
+    [SerializeField] private AudioSource _turnOff;
 
     public override void Interact()
     {
@@ -85,6 +85,7 @@ public class TelevisionDaytime : Interactable
     {
         yield return new WaitForSeconds(0.1f);
         _anim.SetTrigger("disappear");
+        _turnOff.Play();
         yield return new WaitForSeconds(1);
         _controller._frozen = false;
         _camController._frozen = false;
