@@ -53,7 +53,7 @@ public class GameManager : MonoBehaviour
                 if (_controller._hasCamera)
                 {
                 _pausedAnimator.SetBool("paused", false);
-                _pausedText.text = "RECORDING";
+                _pausedText.text = "REC";
 
                 }
                 _isPaused = false;
