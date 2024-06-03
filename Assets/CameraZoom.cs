@@ -12,6 +12,7 @@ public class CameraZoom : MonoBehaviour
     [SerializeField] private float _backZoomSpeed;
     [SerializeField] private AudioSource _zoomAudio;
     [SerializeField] private ScreenshotHandler _handler;
+    [SerializeField] private Animator _lightAnim;
     private float _currentZoom;
     [HideInInspector] public bool _isZooming;
     private bool _hasPlayedSound;
@@ -29,9 +30,14 @@ public class CameraZoom : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
+       
         
         if (!_camController._hasCamera) { return; }
+
+        if (Input.GetMouseButton(2) && !_handler._photoOpen)
+        {
+            
+        }
         if (Input.GetMouseButton(1) && !_handler._photoOpen)
         {
             

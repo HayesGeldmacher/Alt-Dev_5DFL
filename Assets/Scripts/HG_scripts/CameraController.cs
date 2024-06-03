@@ -104,6 +104,7 @@ public class CameraController : MonoBehaviour
         else
         {
             _postProcess.SetActive(true);
+            Debug.Log("This is active? ");
         }
 
         foreach (GameObject monster in GameObject.FindGameObjectsWithTag("Roaming"))
