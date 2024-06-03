@@ -17,6 +17,7 @@ public class CameraZoom : MonoBehaviour
     [HideInInspector] public bool _isZooming;
     private bool _hasPlayedSound;
     private CameraController _camController;
+    private float _currentFlashCharge = 0;
 
     private void Start()
     {
@@ -34,10 +35,20 @@ public class CameraZoom : MonoBehaviour
         
         if (!_camController._hasCamera) { return; }
 
-        if (Input.GetMouseButton(2) && !_handler._photoOpen)
+        if(_currentFlashCharge > 3)
         {
-            
+            if (Input.GetMouseButton(2) && !_handler._photoOpen)
+            {
+                _currentFlashCharge = 0;
+                _lightAnim.SetTrigger("flash");
+            }
+
         }
+        else
+        {
+            _currentFlashCharge += Time.deltaTime;
+        }
+
         if (Input.GetMouseButton(1) && !_handler._photoOpen)
         {
             
