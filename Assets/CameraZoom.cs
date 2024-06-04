@@ -13,6 +13,7 @@ public class CameraZoom : MonoBehaviour
     [SerializeField] private AudioSource _zoomAudio;
     [SerializeField] private ScreenshotHandler _handler;
     [SerializeField] private Animator _lightAnim;
+    [SerializeField] private AudioSource _flashSound;
     private float _currentZoom;
     [HideInInspector] public bool _isZooming;
     private bool _hasPlayedSound;
@@ -35,12 +36,13 @@ public class CameraZoom : MonoBehaviour
         
         if (!_camController._hasCamera) { return; }
 
-        if(_currentFlashCharge > 3)
+        if(_currentFlashCharge > 4)
         {
             if (Input.GetMouseButton(2) && !_handler._photoOpen)
             {
                 _currentFlashCharge = 0;
                 _lightAnim.SetTrigger("flash");
+                _flashSound.Play();
             }
 
         }
