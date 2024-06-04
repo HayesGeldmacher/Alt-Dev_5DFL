@@ -36,7 +36,7 @@ public class CameraZoom : MonoBehaviour
         
         if (!_camController._hasCamera) { return; }
 
-        if(_currentFlashCharge > 4)
+        if(_currentFlashCharge > 7)
         {
             if (Input.GetMouseButton(2) && !_handler._photoOpen)
             {
