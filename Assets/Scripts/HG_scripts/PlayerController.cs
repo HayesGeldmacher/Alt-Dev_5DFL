@@ -117,7 +117,29 @@ public class PlayerController : MonoBehaviour
         {
 
             //This line checks if the player is touching the ground, or in the air
-            _grounded = Physics.CheckSphere(_groundCheck.position, _groundDistance, _groundMask);
+           //_grounded = Physics.CheckSphere(_groundCheck.position, _groundDistance, _groundMask);
+
+            // Does the ray intersect any objects excluding the player layer
+            RaycastHit groundhit;
+            if (Physics.Raycast(_groundCheck.position, -transform.up, out groundhit, _groundDistance, _groundMask))
+            {
+                Debug.Log("TOUCHIGN! " + groundhit.transform.name);
+                _grounded = true;
+                if(groundhit.transform.tag == "Stair")
+                {
+                    _camAnim.SetBool("stairs", true);
+                }
+                else
+                {
+                    _camAnim.SetBool("stairs", false);
+                }
+            }
+            else
+            {
+                _grounded = false;
+                _camAnim.SetBool("stairs", false);
+            }
+
 
             //takes the raw player input to move character 
             float x = Input.GetAxis("Horizontal");
