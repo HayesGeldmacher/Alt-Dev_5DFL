@@ -15,13 +15,11 @@ public class BillboardSprites : MonoBehaviour
         {
             _sprite = transform;
         }
-
-        _player = PlayerController.instance.transform;
     }
 
     // Update is called once per frame
     void Update()
     {
-        transform.LookAt(Camera.main.transform.position, Vector3.up);
+        _sprite.LookAt(Camera.main.transform.position, Vector3.up);
     }
 }

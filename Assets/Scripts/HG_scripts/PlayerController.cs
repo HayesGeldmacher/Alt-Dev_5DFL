@@ -123,7 +123,6 @@ public class PlayerController : MonoBehaviour
             RaycastHit groundhit;
             if (Physics.Raycast(_groundCheck.position, -transform.up, out groundhit, _groundDistance, _groundMask))
             {
-                Debug.Log("TOUCHIGN! " + groundhit.transform.name);
                 _grounded = true;
                 if(groundhit.transform.tag == "Stair")
                 {

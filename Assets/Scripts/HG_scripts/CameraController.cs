@@ -74,6 +74,9 @@ public class CameraController : MonoBehaviour
     //This decides what elements we can interact with in the game world
     [SerializeField] private LayerMask _interactable;
 
+    void Awake()
+    {
+    }
 
     void Start()
     {
@@ -113,6 +116,7 @@ public class CameraController : MonoBehaviour
         }
 
         _zoom = transform.GetComponent<CameraZoom>();
+        GotCamera();
     }
 
     private void Update()
