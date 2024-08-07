@@ -47,7 +47,6 @@ public class SlidingDoors : Interactable
 
         if( _isMoving )
         {
-
             float currentDist = Mathf.Abs(_goalPos - _posX);
             if (currentDist <= 0.1f)
             {
@@ -55,14 +54,8 @@ public class SlidingDoors : Interactable
                Debug.Log("stopped!");
                 Debug.Log(_open);
             }
-       
-
-            
-
-}
-
+        }   
             _posX = Mathf.Lerp(_posX, _goalPos, _doorSensitivity * Time.deltaTime);      
             transform.localPosition = new Vector3(_posX, transform.localPosition.y, transform.localPosition.z);
-
     }
 }
