@@ -13,8 +13,6 @@ public class CameraPickup : Interactable
     [SerializeField] private AudioSource _interactAudio;
     [SerializeField] private int _lines;
     [SerializeField] private PlayerController _controller;
-    [SerializeField] private GameObject _balloon;
-    [SerializeField] private Animator _balloonParent;
     [SerializeField] private bool _intro = false;
     [SerializeField] private CameraController _cam;
     [SerializeField] private GameObject _glimmer;
@@ -25,7 +23,6 @@ public class CameraPickup : Interactable
     private void Start()
     {
         base.Start();
-        _balloon.SetActive(false);
         _render = GetComponent<MeshRenderer>();
         _bc = GetComponent<BoxCollider>();
         _ghostCam.SetActive(false);
@@ -46,8 +43,7 @@ public class CameraPickup : Interactable
            
                 if(_lines == 2)
                 {
-                    _balloon.SetActive(true);
-                    _balloonParent.SetTrigger("float");
+
                 }
             
                 _lines -= 1;
