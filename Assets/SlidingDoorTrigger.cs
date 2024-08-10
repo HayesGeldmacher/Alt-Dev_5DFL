@@ -43,19 +43,8 @@ public class SlidingDoorTrigger : MonoBehaviour
 
                 if(obj.childCount > 0)
                 {
+                    RecursiveCheck(obj, false);
 
-                    foreach (Transform child in obj)
-                    {
-                        if (child.GetComponent<MeshRenderer>() != null)
-                        {
-                            child.GetComponent<MeshRenderer>().enabled = false;
-                        }
-
-                        if (child.GetComponent<SpriteRenderer>() != null)
-                        {
-                            child.GetComponent<SpriteRenderer>().enabled = false;
-                        }
-                    }
                 }
 
             }
@@ -77,19 +66,7 @@ public class SlidingDoorTrigger : MonoBehaviour
 
                 if (obj.childCount > 0)
                 {
-
-                    foreach (Transform child in obj)
-                    {
-                        if (child.GetComponent<MeshRenderer>() != null)
-                        {
-                            child.GetComponent<MeshRenderer>().enabled = true;
-                        }
-
-                        if (child.GetComponent<SpriteRenderer>() != null)
-                        {
-                            child.GetComponent<SpriteRenderer>().enabled = true;
-                        }
-                    }
+                    RecursiveCheck(obj, true);
                 }
 
             }
@@ -106,6 +83,55 @@ public class SlidingDoorTrigger : MonoBehaviour
             _playerDistance = transform.position.z - other.transform.position.z;
             Debug.Log(_playerDistance);
         }
+
+    }
+
+    private void RecursiveCheck(Transform parent, bool appear)
+    {
+
+        if(appear)
+        {
+
+        foreach (Transform child in parent)
+            {
+                if (child.GetComponent<MeshRenderer>() != null)
+                {
+                    child.GetComponent<MeshRenderer>().enabled = true;
+                }
+
+                if (child.GetComponent<SpriteRenderer>() != null)
+                {
+                    child.GetComponent<SpriteRenderer>().enabled = true;
+                }
+
+                if(child.childCount > 0)
+                {
+                    RecursiveCheck(child, true);
+                }
+            }
+        }
+        else
+        {
+            foreach (Transform child in parent)
+            {
+                if (child.GetComponent<MeshRenderer>() != null)
+                {
+                    child.GetComponent<MeshRenderer>().enabled = false;
+                }
+
+                if (child.GetComponent<SpriteRenderer>() != null)
+                {
+                    child.GetComponent<SpriteRenderer>().enabled = false;
+                }
+
+                if (child.childCount > 0)
+                {
+                    RecursiveCheck(child, false);
+                }
+            }
+        }
+        
+
 
     }
 }
