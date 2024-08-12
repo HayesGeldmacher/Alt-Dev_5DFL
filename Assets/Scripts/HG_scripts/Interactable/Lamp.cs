@@ -6,14 +6,14 @@ public class Lamp : Interactable
 {
     public override void Interact()
     {
-        Light _light = transform.GetChild(0).GetComponent<Light>();
-        if(_light.enabled == true)
+        GameObject _light = transform.GetChild(0).gameObject;
+        if(_light.activeInHierarchy)
         {
-            _light.enabled = false;
+            _light.SetActive(false);
         }
         else
         {
-            _light.enabled = true;
+            _light.SetActive(true);
         }
     }
 }
