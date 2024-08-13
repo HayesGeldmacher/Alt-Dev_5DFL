@@ -5,6 +5,8 @@ using UnityEngine;
 public class PhoneDaytime : Interactable
 {
 
+
+    [SerializeField] private GameObject _cameraPickup;
     public float speed;
     [SerializeField]public bool _isDarkening = false;
     [SerializeField]public Color colorStart = Color.blue;
@@ -34,10 +36,16 @@ public class PhoneDaytime : Interactable
     public float _currentMorningDialogue = 0;
     public float _totalMorningDialogue;
 
+    [SerializeField] private PlayerController _controller;
+    [SerializeField] private CameraController _cam;
+
+    private bool _canInteract = true;
+
     private void Start()
     {
         //base.Start();
         base.Start();
+        _cameraPickup.SetActive(false);
         _dialogueManager = GameManager.instance.GetComponent<DialogueManager>();
         _player = PlayerController.instance.transform;
         _defaultDialogue = base._dialogue;
@@ -51,6 +59,25 @@ public class PhoneDaytime : Interactable
     {
 
         base.Update();
+
+        if(_startMorning && !_doneMorning)
+        {
+            if (Input.GetMouseButtonDown(0))
+            {
+                _currentMorningDialogue += 1;
+                if (_currentMorningDialogue >= _totalMorningDialogue)
+                {
+                    EndDialogue();
+                }
+                else
+                {
+                    _dialogueManager.DisplayNextSentence();
+
+                }
+            }
+        }
+
+
         if (base._startedTalking && base._isTimed)
         {
 
@@ -81,6 +108,8 @@ public class PhoneDaytime : Interactable
     //writing "virtual" in front of a function means that children scripts can add to/edit the function
     public override void Interact()
     {
+        if (!_canInteract) return;
+        
         base.currentDialogueTime = base._dialogueTimer;
 
 
@@ -88,9 +117,11 @@ public class PhoneDaytime : Interactable
         {
             if (!_startMorning)
             {
-            TriggerDialogue(_phoneDialogueMorning);
+                TriggerDialogue(_phoneDialogueMorning);
                 _startMorning = true;
                 _currentMorningDialogue += 1;
+                _cam._canInteract = false;
+                _controller._frozen = true;
 
             }
             else
@@ -221,7 +252,12 @@ public class PhoneDaytime : Interactable
 
         if (!_doneMorning)
         {
+            _canInteract = false;
+            StartCoroutine(WaitTime());
+            _cam._canInteract = true;
+            _controller._frozen = false;
             _doneMorning = true;
+            _cameraPickup.SetActive(true);
         }
 
     }
@@ -229,6 +265,12 @@ public class PhoneDaytime : Interactable
     private void SunDown()
     {
 
+    }
+
+    private IEnumerator WaitTime()
+    {
+        yield return new WaitForSeconds(1);
+        _canInteract = true;
     }
 
 }
