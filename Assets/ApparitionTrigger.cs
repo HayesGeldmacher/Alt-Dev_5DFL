@@ -6,9 +6,11 @@ public class ApparitionTrigger : MonoBehaviour
 {
     [SerializeField] private bool _appears = true;
     [SerializeField] private bool _disappears = true;
+    [SerializeField] private bool _destroys = true;
 
     [SerializeField] private List<GameObject> _appearObjects = new List<GameObject>();
     [SerializeField] private List<GameObject> _disappearObjects = new List<GameObject>();
+    [SerializeField] private List<GameObject> _destroyObjects = new List<GameObject>();
 
     private BoxCollider _collider;
 
@@ -48,6 +50,14 @@ public class ApparitionTrigger : MonoBehaviour
             foreach(GameObject _object in _disappearObjects)
             {
                 _object.SetActive(false);
+            }
+        }
+
+        if(_destroys)
+        {
+            foreach (GameObject _object in _destroyObjects)
+            {
+                Destroy(_object);
             }
         }
     }
