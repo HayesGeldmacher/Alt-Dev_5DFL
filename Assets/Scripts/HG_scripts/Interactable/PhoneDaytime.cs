@@ -12,6 +12,7 @@ public class PhoneDaytime : Interactable
     private DialogueManager _dialogueManager;
     private Dialogue _defaultDialogue;
     public Dialogue _phoneDialogue;
+    public Dialogue _phoneDialogueMorning;
     [SerializeField] private EvidenceManager _evidence;
     [SerializeField] private AudioSource _garble1;
     [SerializeField] private AudioSource _garble2;
@@ -28,6 +29,10 @@ public class PhoneDaytime : Interactable
     private int diaNum = 0;
     [SerializeField] private bool _canAudio = true;
     private bool _hasPlayed = false;
+    public bool _doneMorning = false;
+    public bool _startMorning = false;
+    public float _currentMorningDialogue = 0;
+    public float _totalMorningDialogue;
 
     private void Start()
     {
@@ -78,7 +83,33 @@ public class PhoneDaytime : Interactable
     {
         base.currentDialogueTime = base._dialogueTimer;
 
-        if (_evidence._hasEvidence)
+
+        if (!_doneMorning)
+        {
+            if (!_startMorning)
+            {
+            TriggerDialogue(_phoneDialogueMorning);
+                _startMorning = true;
+                _currentMorningDialogue += 1;
+
+            }
+            else
+            {
+                _currentMorningDialogue += 1;
+                if(_currentMorningDialogue >= _totalMorningDialogue)
+                {
+                    EndDialogue();
+                }
+                else
+                {
+                _dialogueManager.DisplayNextSentence();
+
+                }
+
+            }
+        }
+
+        else if (_evidence._hasEvidence)
         {
             TriggerDialogue(_phoneDialogue);
             diaNum += 1;
@@ -120,6 +151,15 @@ public class PhoneDaytime : Interactable
 
     private void TriggerDialogue(Dialogue _dialogue)
     {
+
+
+        if (!_doneMorning) {
+            Interactable _interactable = transform.GetComponent<Interactable>();
+            _dialogueManager.StartDialogue(_dialogue, _interactable);
+        }
+        if (!_doneMorning) return;
+        
+        
         if (_dialogue == _phoneDialogue)
         {
             _evidence._hasFoundPhone = true;
@@ -178,6 +218,11 @@ public class PhoneDaytime : Interactable
     public override void EndDialogue()
     {
         _dialogueManager.EndDialogue();
+
+        if (!_doneMorning)
+        {
+            _doneMorning = true;
+        }
 
     }
 
