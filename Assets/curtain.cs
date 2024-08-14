@@ -7,7 +7,8 @@ public class curtain : Interactable
 
     private Animator _curtain;
     private BoxCollider _collider;
-    
+    [SerializeField] private GameObject _mannequin;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -24,7 +25,8 @@ public class curtain : Interactable
     public override void Interact()
     {
         base.Interact();
+        _mannequin.SetActive(false);
         _curtain.SetTrigger("fold");
-        _collider.enabled = false; 
+        _collider.enabled = false;
     }
 }

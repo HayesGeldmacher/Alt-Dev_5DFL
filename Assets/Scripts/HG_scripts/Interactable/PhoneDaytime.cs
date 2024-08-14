@@ -12,6 +12,8 @@ public class PhoneDaytime : Interactable
     [SerializeField]public Color colorStart = Color.blue;
     [SerializeField]public Color colorEnd = Color.green;
     private DialogueManager _dialogueManager;
+    [SerializeField] private SoundManager _interactAudio;
+
     private Dialogue _defaultDialogue;
     public Dialogue _phoneDialogue;
     public Dialogue _phoneDialogueMorning;
@@ -38,6 +40,8 @@ public class PhoneDaytime : Interactable
 
     [SerializeField] private PlayerController _controller;
     [SerializeField] private CameraController _cam;
+
+    [SerializeField] private AudioSource _ringSound;
 
     private bool _canInteract = true;
 
@@ -71,7 +75,9 @@ public class PhoneDaytime : Interactable
                 }
                 else
                 {
+                    
                     _dialogueManager.DisplayNextSentence();
+                    _interactAudio.PlayInteract();
 
                 }
             }
@@ -108,6 +114,11 @@ public class PhoneDaytime : Interactable
     //writing "virtual" in front of a function means that children scripts can add to/edit the function
     public override void Interact()
     {
+        if (_ringSound.isPlaying)
+        {
+            _ringSound.Stop();
+        }
+        
         if (!_canInteract) return;
         
         base.currentDialogueTime = base._dialogueTimer;
