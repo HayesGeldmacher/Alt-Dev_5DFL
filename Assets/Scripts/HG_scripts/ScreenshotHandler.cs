@@ -20,6 +20,7 @@ public class ScreenshotHandler : MonoBehaviour
     [SerializeField] private Animator _photoAnim;
     [SerializeField] private Animator _iconAnim;
     [SerializeField] private AudioSource _ding;
+    [SerializeField] private AudioSource _chime;
     [SerializeField] private GameManager _manager;
     [SerializeField] private CameraZoom _zoom;
     [SerializeField] private CameraController _camControl;
@@ -132,6 +133,7 @@ public class ScreenshotHandler : MonoBehaviour
             _evidenceManager.PictureTaken(hit.transform.gameObject);
                 _evidenceManager.StrikeOffItem(hit.transform.gameObject);
             Debug.Log("Got a object!");
+                StartCoroutine(EvidenceDing());
 
             }
             else
@@ -174,5 +176,12 @@ public class ScreenshotHandler : MonoBehaviour
         
         _ding.pitch = Random.Range(0.8f, 1.1f);
         _ding.Play();
+    }
+
+    private IEnumerator EvidenceDing()
+    {
+        yield return new WaitForSeconds(0.5f);
+        _chime.pitch = Random.Range(0.8f, 1.1f);
+        _chime.Play();
     }
 }

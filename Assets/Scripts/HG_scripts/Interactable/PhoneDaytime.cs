@@ -43,6 +43,9 @@ public class PhoneDaytime : Interactable
 
     [SerializeField] private AudioSource _ringSound;
 
+    [SerializeField] private GameObject _tvBroken;
+    [SerializeField] private GameObject _tvWorking;
+
     private bool _canInteract = true;
 
     private void Start()
@@ -232,7 +235,8 @@ public class PhoneDaytime : Interactable
 
     private IEnumerator Darkness()
     {
-       
+        _tvBroken.SetActive(false);
+        _tvWorking.SetActive(true);
         yield return new WaitForSeconds(3);
         _isDarkening = true;
         Destroy(_pointWindowLight);

@@ -20,13 +20,17 @@ public class PlayerController : MonoBehaviour
     [SerializeField] private Animator _camAnim;
     [SerializeField] private AudioSource _footSteps;
     [SerializeField] private float _neededFootTime;
+    [SerializeField] private float _neededFootRunTime;
     [SerializeField] private Animator _spriteAnim;
     private float _currentFootTime;
     public List<AudioClip> _audioClips = new List<AudioClip>();
+    private float _walkVolume;
+    [SerializeField] private float _runVolume;
 
     [Header("Running")]
     [SerializeField] private float _runSpeed;
     [SerializeField] private bool _running;
+    [SerializeField] private AudioSource _breathing;
 
     [Header("Crouch Variables")]
     [SerializeField] private Transform _cameraParent;
@@ -107,6 +111,7 @@ public class PlayerController : MonoBehaviour
             _monsters.Add(monster.GetComponent<MonsterRoaming>());
         }
 
+        _walkVolume = _footSteps.volume;
         _running = false;
     }
 
@@ -174,6 +179,7 @@ public class PlayerController : MonoBehaviour
             {
                 _running = false;
                 _camAnim.SetBool("running", false);
+                _breathing.loop = false;
             }
 
             float _speed;
@@ -330,7 +336,18 @@ public class PlayerController : MonoBehaviour
     {
 
         _currentFootTime += Time.deltaTime;
-        if(_currentFootTime >= _neededFootTime)
+
+        if (_running)
+        {
+            _breathing.loop = true;
+
+            if (!_breathing.isPlaying)
+            {
+            _breathing.Play();
+
+            }
+            _footSteps.volume = _runVolume;
+        if(_currentFootTime >= _neededFootRunTime)
         {
         if (!_footSteps.isPlaying)
         {
@@ -340,6 +357,24 @@ public class PlayerController : MonoBehaviour
                 _currentFootTime = 0;
         }
 
+        }
+
+        }
+        else
+        {
+            _footSteps.volume = _walkVolume;
+
+            if (_currentFootTime >= _neededFootTime)
+            {
+                if (!_footSteps.isPlaying)
+                {
+                    int _randomAudio = Random.Range(0, _audioClips.Count);
+                    _footSteps.clip = _audioClips[_randomAudio];
+                    _footSteps.Play();
+                    _currentFootTime = 0;
+                }
+
+            }
         }
     }
 

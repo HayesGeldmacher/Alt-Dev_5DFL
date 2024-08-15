@@ -16,10 +16,14 @@ public class TelevisionDaytime : Interactable
     [SerializeField] private AudioSource _staticIntro;
     [SerializeField] private AudioSource _staticContinue;
     [SerializeField] private AudioSource _turnOff;
+    [SerializeField] private AudioSource _staticIdle;
+
+    [SerializeField] private GameObject _screen;
 
     public override void Interact()
     {
-      
+
+        _staticIdle.Stop();
         
         if (!_hasInteracted)
         {
@@ -31,6 +35,11 @@ public class TelevisionDaytime : Interactable
             StartCoroutine(StartSequence());
         }
         
+    }
+
+    public void Appear()
+    {
+        _staticIdle.Play();
     }
 
    private void Update()
@@ -83,6 +92,7 @@ public class TelevisionDaytime : Interactable
 
     private IEnumerator Disappear()
     {
+        _screen.SetActive(false);
         yield return new WaitForSeconds(0.1f);
         _anim.SetTrigger("disappear");
         _turnOff.Play();
