@@ -64,24 +64,8 @@ public class PhoneDaytime : Interactable
 
         base.Update();
 
-        if(_startMorning && !_doneMorning)
-        {
-            if (Input.GetMouseButtonDown(0))
-            {
-                _currentMorningDialogue += 1;
-                if (_currentMorningDialogue >= _totalMorningDialogue)
-                {
-                    EndDialogue();
-                }
-                else
-                {
-                    
-                    _dialogueManager.DisplayNextSentence();
-                    _interactAudio.PlayInteract();
-
-                }
-            }
-        }
+        
+       
 
 
         if (base._startedTalking && base._isTimed)
@@ -131,7 +115,7 @@ public class PhoneDaytime : Interactable
                 TriggerDialogue(_phoneDialogueMorning);
                 _startMorning = true;
                 _currentMorningDialogue += 1;
-                _cam._canInteract = false;
+
                 _controller._frozen = true;
 
             }
@@ -153,6 +137,8 @@ public class PhoneDaytime : Interactable
 
         else if (_evidence._hasEvidence)
         {
+
+            _controller._frozen = true;
             TriggerDialogue(_phoneDialogue);
             diaNum += 1;
 
@@ -260,13 +246,13 @@ public class PhoneDaytime : Interactable
     public override void EndDialogue()
     {
         _dialogueManager.EndDialogue();
+            _cam._canInteract = true;
+            _controller._frozen = false;
 
         if (!_doneMorning)
         {
             _canInteract = false;
             StartCoroutine(WaitTime());
-            _cam._canInteract = true;
-            _controller._frozen = false;
             _doneMorning = true;
             _cameraPickup.SetActive(true);
         }

@@ -21,6 +21,7 @@ public class EvidenceManager : MonoBehaviour
     [SerializeField] private List<GameObject> _items = new List<GameObject>();
     [SerializeField] private List<GameObject> _itemLabels = new List<GameObject>();
     private Dictionary<GameObject, GameObject> _itemsDict = new Dictionary<GameObject, GameObject>();
+    [SerializeField] private AudioSource _phoneRing;
   
 
 
@@ -74,6 +75,7 @@ public class EvidenceManager : MonoBehaviour
     private void CompletePictures()
     {
         _hasEvidence = true;
+        _phoneRing.Play();
     }
     private void Phoned()
     {
