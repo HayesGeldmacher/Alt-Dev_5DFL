@@ -156,10 +156,19 @@ public class PlayerController : MonoBehaviour
             _velocity.y += _gravity * Time.deltaTime;
 
             //Checking to see if the player is running!
-            if(_grounded && Input.GetKey(KeyCode.LeftShift))
+            if(_grounded && Input.GetKey(KeyCode.LeftShift) && !_isCrouching)
             {
+                if (_move.magnitude > 0.1f)
+                {
                 _running = true;
                 _camAnim.SetBool("running", true);
+
+                }
+                else
+                {
+                    _running = false;
+                    _camAnim.SetBool("running", false);
+                }
             }
             else
             {
@@ -237,65 +246,70 @@ public class PlayerController : MonoBehaviour
         
         if (_grounded)
         {
-            if (Input.GetKey(KeyCode.LeftControl))
+            if (!_running)
             {
-                if (!_isCrouching)
+                if (Input.GetKey(KeyCode.LeftControl))
                 {
-                    _controller.height = 1.4f;
-                    _controller.center = new Vector3(0, -0.4f, 0);
-                _isCrouching = true;
-                Debug.Log("isCrouching@");
+                    if (!_isCrouching)
+                    {
+                        _controller.height = 1.4f;
+                        _controller.center = new Vector3(0, -0.4f, 0);
+                    _isCrouching = true;
+                    Debug.Log("isCrouching@");
 
+                    }
+                }
+                else
+                {
+                    if (_isCrouching && _canStand)
+                    {
+                        _controller.height = 2.3f;
+                        _controller.center = new Vector3(0, 0.1f, 0);
+                        _isCrouching = false;
+                    
+
+                    }
                 }
             }
             else
             {
-                if (_isCrouching && _canStand)
-                {
-                    _controller.height = 2.3f;
-                    _controller.center = new Vector3(0, 0.1f, 0);
-                    _isCrouching = false;
-                    
 
+                if (_isCrouching)
+                {
+                    _isCrouching = false;
                 }
             }
-        }
-        else
-        {
 
-            if (_isCrouching)
-            {
-                _isCrouching = false;
-            }
-        }
-
-        //This lerps the camera slowly between standing and crouching, based on the above bool
-        if(_isCrouching)
-        {            
-          _yCamPoint = Mathf.Lerp(_yCamPoint, _crouchingYCamPoint, _crouchTransSpeed * Time.deltaTime);
-            _spriteAnim.SetBool("crouching", true);
+            //This lerps the camera slowly between standing and crouching, based on the above bool
+            if(_isCrouching)
+            {            
+              _yCamPoint = Mathf.Lerp(_yCamPoint, _crouchingYCamPoint, _crouchTransSpeed * Time.deltaTime);
+                _spriteAnim.SetBool("crouching", true);
 
           
-        }
-        else
-        {
-            _yCamPoint = Mathf.Lerp(_yCamPoint, _standingYCamPoint, _crouchTransSpeed * Time.deltaTime);
-            _spriteAnim.SetBool("crouching", false);
-        }
+            }
+            else
+            {
+                _yCamPoint = Mathf.Lerp(_yCamPoint, _standingYCamPoint, _crouchTransSpeed * Time.deltaTime);
+                _spriteAnim.SetBool("crouching", false);
+            }
 
-        _cameraParent.localPosition = new Vector3(_cameraParent.localPosition.x, _yCamPoint, _cameraParent.localPosition.z);
+            _cameraParent.localPosition = new Vector3(_cameraParent.localPosition.x, _yCamPoint, _cameraParent.localPosition.z);
 
-        //Check for raycast to stand
-        RaycastHit hit;
-        if (Physics.Raycast(_cameraParent.position, Vector3.up, out hit, _crouchRange, _standMask))
-        {
-            _canStand = false;
-            Debug.Log("CANTSTAND!!");
-        }
-        else
-        {
-            _canStand = true;
-        }
+            //Check for raycast to stand
+            RaycastHit hit;
+            if (Physics.Raycast(_cameraParent.position, Vector3.up, out hit, _crouchRange, _standMask))
+            {
+                _canStand = false;
+                Debug.Log("CANTSTAND!!");
+            }
+            else
+            {
+                _canStand = true;
+            }
+
+            }
+            
     }
 
     private void MoveBackUpdate()
