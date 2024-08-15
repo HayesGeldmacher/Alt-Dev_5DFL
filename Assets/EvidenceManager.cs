@@ -41,28 +41,28 @@ public class EvidenceManager : MonoBehaviour
 
         if (!_takenPic && _intro)
         {
-            _textAnim.SetBool("active", true);
-            _text.text = "Damn, this old thing still works... I still need " + _picturesNeeded.ToString() + " more pictures...";
+           // _textAnim.SetBool("active", true);
+          //  _text.text = "Damn, this old thing still works... I still need " + _picturesNeeded.ToString() + " more pictures...";
             transform.GetComponent<DialogueManager>().CallTimerEnd(2);
         }
         
         else if(_picturesNeeded <= 0)
         {
                     CompletePictures();
-                    _textAnim.SetBool("active", true);
-                    _text.text = _textOption1;
+                 //   _textAnim.SetBool("active", true);
+               //     _text.text = _textOption1;
                     transform.GetComponent<DialogueManager>().CallTimerEnd(2);
                 }
                 else if(_picturesNeeded == 1)
                 {
-                    _textAnim.SetBool("active", true);
-                    _text.text = "I just need 1 more picture...";
+               //     _textAnim.SetBool("active", true);
+               //     _text.text = "I just need 1 more picture...";
                     transform.GetComponent<DialogueManager>().CallTimerEnd(2);
                 }
                 else
                 {
-                    _textAnim.SetBool("active", true);
-                    _text.text = "I still need " + _picturesNeeded.ToString() + " more pictures...";
+               //     _textAnim.SetBool("active", true);
+               //     _text.text = "I still need " + _picturesNeeded.ToString() + " more pictures...";
                     transform.GetComponent<DialogueManager>().CallTimerEnd(2);
 
                 }

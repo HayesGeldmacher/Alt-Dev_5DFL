@@ -24,9 +24,9 @@ public class curtain : Interactable
 
     public override void Interact()
     {
-        base.Interact();
         _mannequin.SetActive(false);
         _curtain.SetTrigger("fold");
         _collider.enabled = false;
     }
+
 }
