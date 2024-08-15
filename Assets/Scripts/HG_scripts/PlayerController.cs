@@ -24,6 +24,10 @@ public class PlayerController : MonoBehaviour
     private float _currentFootTime;
     public List<AudioClip> _audioClips = new List<AudioClip>();
 
+    [Header("Running")]
+    [SerializeField] private float _runSpeed;
+    [SerializeField] private bool _running;
+
     [Header("Crouch Variables")]
     [SerializeField] private Transform _cameraParent;
     [SerializeField] private float _crouchSpeed = 6;
@@ -102,6 +106,8 @@ public class PlayerController : MonoBehaviour
         {
             _monsters.Add(monster.GetComponent<MonsterRoaming>());
         }
+
+        _running = false;
     }
 
     private void Update()
@@ -149,8 +155,24 @@ public class PlayerController : MonoBehaviour
            //Constantly adding a downward force to the player so they fall when not standing on something
             _velocity.y += _gravity * Time.deltaTime;
 
+            //Checking to see if the player is running!
+            if(_grounded && Input.GetKey(KeyCode.LeftShift))
+            {
+                _running = true;
+                _camAnim.SetBool("running", true);
+            }
+            else
+            {
+                _running = false;
+                _camAnim.SetBool("running", false);
+            }
+
             float _speed;
-            if (_isCrouching)
+            if (_running)
+            {
+                _speed = _runSpeed;
+            }
+            else if (_isCrouching)
             {
                 _speed = _crouchSpeed;
             }
@@ -404,4 +426,10 @@ public class PlayerController : MonoBehaviour
         _handMovingBack = false;
     }
 
+
+    private IEnumerator StartRunning()
+    {
+        yield return new WaitForSeconds(0.2f);
+        _running = false;
+    }
 }
