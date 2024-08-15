@@ -75,7 +75,7 @@ public class EvidenceManager : MonoBehaviour
     private void CompletePictures()
     {
         _hasEvidence = true;
-        _phoneRing.Play();
+        StartCoroutine(PhoneRing());
     }
     private void Phoned()
     {
@@ -93,5 +93,11 @@ public class EvidenceManager : MonoBehaviour
         currentLabel.transform.GetChild(0).GetComponent<Animator>().SetTrigger("strike");
         Debug.Log(currentLabel + " Struck off");
         
+    }
+
+    private IEnumerator PhoneRing()
+    {
+        yield return new WaitForSeconds(2f);
+        _phoneRing.Play();
     }
 }
