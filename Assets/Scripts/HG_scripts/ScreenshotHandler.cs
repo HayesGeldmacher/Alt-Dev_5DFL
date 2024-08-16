@@ -178,6 +178,11 @@ public class ScreenshotHandler : MonoBehaviour
         _ding.Play();
     }
 
+    public void CallEvidenceDing()
+    {
+        StartCoroutine(EvidenceDing());
+    }
+
     private IEnumerator EvidenceDing()
     {
         yield return new WaitForSeconds(1.2f);
