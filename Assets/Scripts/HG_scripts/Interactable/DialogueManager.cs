@@ -9,6 +9,7 @@ public class DialogueManager : MonoBehaviour
     public TMP_Text _dialogueText;
     private Interactable _currentTrigger;
     [SerializeField ]private Animator _textAnim;
+    [SerializeField] private PlayerController _controller;
 
     private void Start()
     {
@@ -52,6 +53,7 @@ public class DialogueManager : MonoBehaviour
         Debug.Log("End of Conversation");
         _textAnim.SetBool("active", false);
         _dialogueText.text = "";
+        _controller._frozen = false;
         if (_currentTrigger)
         {
             //This line will cause errors until we actually make the trigger!

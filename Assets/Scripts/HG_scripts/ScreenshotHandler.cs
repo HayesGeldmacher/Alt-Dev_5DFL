@@ -180,7 +180,7 @@ public class ScreenshotHandler : MonoBehaviour
 
     private IEnumerator EvidenceDing()
     {
-        yield return new WaitForSeconds(0.5f);
+        yield return new WaitForSeconds(1.2f);
         _chime.pitch = Random.Range(0.8f, 1.1f);
         _chime.Play();
     }

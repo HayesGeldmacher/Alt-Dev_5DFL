@@ -16,6 +16,7 @@ public class CameraPickup : Interactable
     [SerializeField] private bool _intro = false;
     [SerializeField] private CameraController _cam;
     [SerializeField] private GameObject _glimmer;
+    private bool _canClickContinue = false;
 
     [SerializeField] private GameObject _ghostCam;
 
@@ -26,11 +27,13 @@ public class CameraPickup : Interactable
         _render = GetComponent<MeshRenderer>();
         _bc = GetComponent<BoxCollider>();
         _ghostCam.SetActive(false);
+        _canClickContinue = false;
 
     }
     private void Update()
     {
         if (!_intro) return;
+        if (!_canClickContinue) return;
 
         if (Input.GetMouseButtonDown(0) && _started)
         {
@@ -47,7 +50,8 @@ public class CameraPickup : Interactable
                 }
             
                 _lines -= 1;
-                base.Interact();
+                Debug.Log("Happened Once");
+               base.Interact();
                 _interactAudio.Play();
 
             }
@@ -56,6 +60,9 @@ public class CameraPickup : Interactable
 
     public override void Interact()
     {
+
+        Debug.Log("interacting!");
+        
         if (_intro)
         {
             if (!_started)
@@ -83,6 +90,11 @@ public class CameraPickup : Interactable
             _render.enabled = false;
            // StartCoroutine(NextInteract());
         }
+
+        if (!_canClickContinue)
+        {
+            StartCoroutine(ClickWait());
+        }
     }
 
     private IEnumerator NextInteract()
@@ -98,5 +110,12 @@ public class CameraPickup : Interactable
         _controller._frozen = false;
         _cam._canInteract = true;
         Destroy(gameObject);
+    }
+
+    private IEnumerator ClickWait()
+    {
+        yield return new WaitForSeconds(0.4f);
+        _canClickContinue = true;
+
     }
 }

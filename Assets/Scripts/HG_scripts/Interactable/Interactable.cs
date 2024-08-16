@@ -19,6 +19,9 @@ public class Interactable : MonoBehaviour
     public DialogueManager _manager;
     public Dialogue _dialogue;
 
+    //marking as important will freeze player movement and disable timer!
+    public bool _important = false;
+
     [Header("Item Variables")]
     [SerializeField] private bool _canBeGrabbed;
 
@@ -39,7 +42,7 @@ public class Interactable : MonoBehaviour
             _manager = GameManager.instance.GetComponent<DialogueManager>();
         }
 
-        if(_dialogueTimer > 0)
+        if(_dialogueTimer > 0 && !_important)
         {
             _isTimed = true;
             currentDialogueTime = _dialogueTimer;
@@ -49,23 +52,28 @@ public class Interactable : MonoBehaviour
 
     protected void Update()
     {
-       if(_canWalkAway && _startedTalking)
+
+        if (!_important)
         {
-            float _distance = Vector3.Distance(_player.position, transform.position);
-            if(_distance > _dialogueDistance)
+            if(_canWalkAway && _startedTalking)
             {
-                EndDialogue();
+                float _distance = Vector3.Distance(_player.position, transform.position);
+                if(_distance > _dialogueDistance)
+                {
+                    EndDialogue();
+                }
+
             }
 
-        }
-
-        if (_isTimed && _startedTalking)
-        {
-            currentDialogueTime -= Time.deltaTime;
-            if(currentDialogueTime < 0)
+            if (_isTimed && _startedTalking)
             {
-                EndDialogue();
+                currentDialogueTime -= Time.deltaTime;
+                if(currentDialogueTime < 0)
+                {
+                    EndDialogue();
+                }
             }
+
         }
                 
     }
@@ -75,6 +83,11 @@ public class Interactable : MonoBehaviour
     {
         if (_canTalk)
         {
+            if (_important)
+            {
+                _player.GetComponent<PlayerController>()._frozen = true;
+            }
+            
             if (_isTimed)
             {
                 currentDialogueTime = _dialogueTimer;
@@ -127,6 +140,7 @@ public class Interactable : MonoBehaviour
     public virtual void EndDialogue()
     {
         _manager.EndDialogue();
+        _player.GetComponent<PlayerController>()._frozen = false;
     }
 
     public virtual void CallEndDialogue()

@@ -249,6 +249,8 @@ public class PhoneDaytime : Interactable
 
     public override void EndDialogue()
     {
+
+        Debug.Log("ENDED!");
         _dialogueManager.EndDialogue();
             _cam._canInteract = true;
             _controller._frozen = false;
