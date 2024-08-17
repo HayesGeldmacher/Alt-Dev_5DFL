@@ -24,6 +24,7 @@ public class ScreenshotHandler : MonoBehaviour
     [SerializeField] private GameManager _manager;
     [SerializeField] private CameraZoom _zoom;
     [SerializeField] private CameraController _camControl;
+    [SerializeField] private Datamosh _data;
 
     [SerializeField] private bool _canOpenPhoto = true;
     [HideInInspector] public bool _hasPhoto = false;
@@ -185,6 +186,10 @@ public class ScreenshotHandler : MonoBehaviour
 
     private IEnumerator EvidenceDing()
     {
+
+        _data.Glitch();
+        _data.Glitch();
+       
         yield return new WaitForSeconds(1.2f);
         _chime.pitch = Random.Range(0.8f, 1.1f);
         _chime.Play();

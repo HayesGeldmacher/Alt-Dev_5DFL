@@ -17,6 +17,9 @@ public class TelevisionDaytime : Interactable
     [SerializeField] private AudioSource _staticContinue;
     [SerializeField] private AudioSource _turnOff;
     [SerializeField] private AudioSource _staticIdle;
+    [SerializeField] private GameObject _computerBroken;
+    [SerializeField] private GameObject _computerWorking;
+
 
     [SerializeField] private GameObject _screen;
 
@@ -105,6 +108,8 @@ public class TelevisionDaytime : Interactable
         _staticIntro.Stop();
         TelevisionDaytime _this = this;
         base.EndDialogue();
+        _computerBroken.SetActive(false);
+        _computerWorking.SetActive(true);
         Destroy(_this);
     }
 }

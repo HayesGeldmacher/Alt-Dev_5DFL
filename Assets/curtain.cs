@@ -8,6 +8,7 @@ public class curtain : Interactable
     private Animator _curtain;
     private BoxCollider _collider;
     [SerializeField] private GameObject _mannequin;
+    [SerializeField] private AudioSource _curtainAudio;
 
     // Start is called before the first frame update
     void Start()
@@ -27,6 +28,7 @@ public class curtain : Interactable
         _mannequin.SetActive(false);
         _curtain.SetTrigger("fold");
         _collider.enabled = false;
+        _curtainAudio.Play();
     }
 
 }

@@ -44,9 +44,9 @@ public class CameraPickup : Interactable
             else
             {
            
-                if(_lines == 2)
+                if(_lines == 3)
                 {
-
+                    StartCoroutine(NextInteract());
                 }
             
                 _lines -= 1;
@@ -61,13 +61,14 @@ public class CameraPickup : Interactable
     public override void Interact()
     {
 
+        
+
         Debug.Log("interacting!");
         
         if (_intro)
         {
             if (!_started)
             {
-                _cam._canInteract = false;
                 _controller._frozen = true;
                 Destroy(_glimmer);
                 _lines -= 1;
@@ -77,7 +78,7 @@ public class CameraPickup : Interactable
                 _bc.enabled = false;
                 _render.enabled = false;
                 _ghostCam.SetActive(true);
-                StartCoroutine(NextInteract());
+                
             }
 
         }
