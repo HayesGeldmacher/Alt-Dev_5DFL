@@ -53,7 +53,7 @@ public class DialogueManager : MonoBehaviour
         Debug.Log("End of Conversation");
         _textAnim.SetBool("active", false);
         _dialogueText.text = "";
-        _controller._frozen = false;
+       
         if (_currentTrigger)
         {
             //This line will cause errors until we actually make the trigger!
