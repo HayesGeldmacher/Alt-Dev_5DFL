@@ -9,6 +9,7 @@ public class ScreenshotHandler : MonoBehaviour
 
     private Camera _cam;
     private bool _shouldScreenShot;
+    [SerializeField] private Camera _monsterCam;
 
     [SerializeField] private float _checkRadius;
     [SerializeField] private float _checkLength;
@@ -30,11 +31,15 @@ public class ScreenshotHandler : MonoBehaviour
     [HideInInspector] public bool _hasPhoto = false;
     [HideInInspector] public bool _photoOpen = false;
 
+    [HideInInspector] public bool _showPhoto = true;
+    [SerializeField] private MonsterFace _monsterFace;
+
 
     private void Awake()
     {
         //instance = this;
         _cam = transform.GetComponent<Camera>();
+        _showPhoto = true;
         
     }
 
@@ -52,8 +57,16 @@ public class ScreenshotHandler : MonoBehaviour
            
                 if (_photoOpen)
                 {
-                    _photoOpen = false;
-                    _photoAnim.SetTrigger("fade");
+                    if (_showPhoto)
+                    {
+                         _photoOpen = false;
+                        _photoAnim.SetTrigger("fade");
+                        StartCoroutine(IconBump());
+                    }
+                else
+                {
+
+                }
                 }
                 else
                 {
@@ -61,10 +74,11 @@ public class ScreenshotHandler : MonoBehaviour
                     _photoAnim.SetTrigger("appear");
                 }
 
-                StartCoroutine(IconBump());
+              
             
         }
     }
+
 
     private IEnumerator IconBump()
     {
@@ -92,6 +106,45 @@ public class ScreenshotHandler : MonoBehaviour
         _photoAnim.SetTrigger("disappear");
 
         }
+    }
+
+    public void CallSetMonster()
+    {
+       //_showPhoto = false;
+       StartCoroutine(SetMonsterScreen());
+    }
+
+    private IEnumerator SetMonsterScreen()
+    {
+        yield return new WaitForSeconds(1f);
+        _showPhoto = false;
+        Debug.Log("STARTEDMONSTER1!");
+        RenderTexture screenTexture = new RenderTexture(Screen.width, Screen.height, 16);
+        _monsterCam.targetTexture = screenTexture;
+        RenderTexture.active = screenTexture;
+        _cam.Render();
+        Texture2D renderedTexture = new Texture2D(Screen.width, Screen.height);
+        renderedTexture.ReadPixels(new Rect(0, 0, Screen.width, Screen.height), 0, 0);
+        RenderTexture.active = null;
+
+        Texture2D screenshot = ScreenCapture.CaptureScreenshotAsTexture();
+
+        Texture2D newScreenshot = new Texture2D(renderedTexture.width, renderedTexture.height, TextureFormat.RGB24, false);
+        newScreenshot.SetPixels(renderedTexture.GetPixels());
+        newScreenshot.Apply();
+
+        Destroy(screenshot);
+
+        _photo.texture =_monsterCam.targetTexture;
+
+        _hasPhoto = true;
+
+        yield return new WaitForSeconds(0.4f);
+        //_photoAnim.SetTrigger("fade");
+        yield return new WaitForSeconds(0.1f);
+        //_iconAnim.SetTrigger("appear");
+
+        _monsterFace.CallStartTalking();
     }
 
     private IEnumerator ScreenShot()
@@ -153,9 +206,9 @@ public class ScreenshotHandler : MonoBehaviour
                
             }
         }
-       
-        StartCoroutine(ScreenShot());
 
+         StartCoroutine(ScreenShot());
+    
     }
 
     //This is called by the below function, and initiates the screenshot
