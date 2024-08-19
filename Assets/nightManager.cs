@@ -50,6 +50,7 @@ public class nightManager : Interactable
             base.Interact();
             _interactAudio.Play();
             _seenDialogue = false;
+            StartCoroutine(SpawnFlags());
         }
     }
 
@@ -92,9 +93,8 @@ public class nightManager : Interactable
     
     private IEnumerator SpawnFlags()
     {
-        _flag1.SetActive(false);
-        _flag2.SetActive(false);
-        yield return new WaitForSeconds(1f);
+
+        yield return new WaitForSeconds(0.2f);
         _flag1.SetActive(true);
         _flag2.SetActive(true);
     }
@@ -102,6 +102,8 @@ public class nightManager : Interactable
 
     private IEnumerator StartDialogue()
     {
+        _flag1.SetActive(false);
+        _flag2.SetActive(false);
         yield return new WaitForSeconds(1f);
         base.Interact();
         _seenDialogue = true;

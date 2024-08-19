@@ -34,6 +34,8 @@ public class ScreenshotHandler : MonoBehaviour
 
     [HideInInspector] public bool _showPhoto = true;
     [SerializeField] private MonsterFace _monsterFace;
+    [SerializeField] private AudioSource _evilCamDing;
+    public bool _dinging = false;
 
 
     private void Awake()
@@ -74,8 +76,12 @@ public class ScreenshotHandler : MonoBehaviour
                 else
                 {
                     _photoOpen = true;
+                    _evilCamDing.loop = false;
                     PlayDing();
+                    _monsterFace.CallStartTalking();
                     _photoAnim.SetTrigger("appear");
+                    _iconAnim.SetTrigger("evildisappear");
+                    
                 }
             
             }
@@ -84,9 +90,9 @@ public class ScreenshotHandler : MonoBehaviour
                 PlayNegativeSound();
             }
 
-
-
         }
+
+
     }
 
 
@@ -149,12 +155,14 @@ public class ScreenshotHandler : MonoBehaviour
 
         _hasPhoto = true;
 
-        yield return new WaitForSeconds(0.4f);
+        yield return new WaitForSeconds(2f);
         //_photoAnim.SetTrigger("fade");
         yield return new WaitForSeconds(0.1f);
         //_iconAnim.SetTrigger("appear");
+        _iconAnim.SetTrigger("evilappear");
+        _evilCamDing.Play();
 
-        _monsterFace.CallStartTalking();
+       
     }
 
     private IEnumerator ScreenShot()
@@ -217,7 +225,10 @@ public class ScreenshotHandler : MonoBehaviour
             }
         }
 
-         StartCoroutine(ScreenShot());
+        if (_showPhoto)
+        {
+        StartCoroutine(ScreenShot());
+        } 
     
     }
 
@@ -237,7 +248,8 @@ public class ScreenshotHandler : MonoBehaviour
 
     private void PlayDing()
     {
-        
+
+        Debug.Log("played");
         _ding.pitch = Random.Range(0.8f, 1.1f);
         _ding.Play();
     }

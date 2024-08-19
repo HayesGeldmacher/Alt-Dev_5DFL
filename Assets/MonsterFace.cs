@@ -12,6 +12,9 @@ public class MonsterFace : Interactable
     [SerializeField] private AudioSource _coughSound;
     private bool _playFirstGargle = true;
     [SerializeField] private int _lines;
+    [SerializeField] private ScreenshotHandler _handler;
+    [SerializeField] private Animator _cursorAnim;
+
 
     // Start is called before the first frame update
     void Start()
@@ -33,6 +36,13 @@ public class MonsterFace : Interactable
                  StartCoroutine(AnimateFace());
                 PlayGargle();
                 base.Interact();
+                
+                if(_lines <= 1)
+                    {
+                        _cursorAnim.SetTrigger("clicked");
+                       StartCoroutine(SetCursorVisibility());
+                       
+                    }
 
                 }
                 else
@@ -61,19 +71,26 @@ public class MonsterFace : Interactable
 
     private IEnumerator StartTalking()
     {
-        yield return new WaitForSeconds(1f);
+        yield return new WaitForSeconds(0.5f);
+        _anim.SetTrigger("Start");
+        _coughSound.Play();
+        yield return new WaitForSeconds(2f);
         _canContinue = true;
+        _cursorAnim.SetBool("isCasting", true);
+       
     }
 
         private void PlayGargle()
         {
             if (_playFirstGargle)
             {
+            _playFirstGargle = false; 
                 _gargle.pitch = Random.Range(0.8f, 1.2f);
                 _gargle.Play();
             }
             else
             {
+            _playFirstGargle = true;
                 _gargle2.pitch = Random.Range(0.8f, 1.2f);
                 _gargle2.Play();
             }
@@ -84,6 +101,13 @@ public class MonsterFace : Interactable
     {
         _anim.SetTrigger("End");
         _coughSound.Play();
+        _handler._showPhoto = true;
     }
 
+    private IEnumerator SetCursorVisibility()
+    {
+        yield return new WaitForSeconds(0.2f);
+        _cursorAnim.SetBool("isCasting", false);
     }
+
+ }
