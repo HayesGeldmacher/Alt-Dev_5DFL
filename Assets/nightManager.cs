@@ -17,6 +17,11 @@ public class nightManager : MonoBehaviour
     [SerializeField] private AudioSource _turnOffSound;
     [SerializeField] private ScreenshotHandler _handler;
 
+    [SerializeField] private GameObject _flag1;
+    [SerializeField] private GameObject _flag2;
+
+    [SerializeField] private AudioSource _spotLight;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -27,12 +32,8 @@ public class nightManager : MonoBehaviour
         float _countNum = 0;
         foreach(var item in _Items)
         {
-            if(_countNum != 0)
-            {
                 item.SetActive(false);
-            }
-
-            _countNum ++;
+                _countNum ++;
         }
     }
 
@@ -45,6 +46,7 @@ public class nightManager : MonoBehaviour
     public void NextItem()
     {
 
+       
         _handler.CallEvidenceDing();
         _audio.clip = _soundClips[_itemNum];
         
@@ -52,8 +54,9 @@ public class nightManager : MonoBehaviour
 
         if (_itemNum < _Items.Count)
         {
-            _Items[_itemNum].SetActive(true);
-            _audio.Play();
+             _audio.Play();
+            StartCoroutine(NextItemGo());
+           
 
         }
         else
@@ -64,8 +67,26 @@ public class nightManager : MonoBehaviour
         }
     }
 
+    private IEnumerator NextItemGo()
+    {
+        yield return new WaitForSeconds(5f);
+        _Items[_itemNum].SetActive(true);
+        _spotLight.Play();
+    }
 
+    public void SpawnFirst()
+    {
+        _spotLight.Play();
+        _Items[0].SetActive(true);
+    }
     
-
+    private IEnumerator SpawnFlags()
+    {
+        _flag1.SetActive(false);
+        _flag2.SetActive(false);
+        yield return new WaitForSeconds(1f);
+        _flag1.SetActive(true);
+        _flag2.SetActive(true);
+    }
 
 }
