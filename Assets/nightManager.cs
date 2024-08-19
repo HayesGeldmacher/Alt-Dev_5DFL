@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class nightManager : MonoBehaviour
+public class nightManager : Interactable
 {
 
     
@@ -21,6 +21,8 @@ public class nightManager : MonoBehaviour
     [SerializeField] private GameObject _flag2;
 
     [SerializeField] private AudioSource _spotLight;
+    [SerializeField] private AudioSource _interactAudio;
+    private bool _seenDialogue = false;
 
     // Start is called before the first frame update
     void Start()
@@ -35,12 +37,20 @@ public class nightManager : MonoBehaviour
                 item.SetActive(false);
                 _countNum ++;
         }
+
+        StartCoroutine(StartDialogue());
+        base.Start();
     }
 
     // Update is called once per frame
     void Update()
     {
-        
+        if(Input.GetMouseButtonDown(0) && _seenDialogue)
+        {
+            base.Interact();
+            _interactAudio.Play();
+            _seenDialogue = false;
+        }
     }
 
     public void NextItem()
@@ -87,6 +97,14 @@ public class nightManager : MonoBehaviour
         yield return new WaitForSeconds(1f);
         _flag1.SetActive(true);
         _flag2.SetActive(true);
+    }
+
+
+    private IEnumerator StartDialogue()
+    {
+        yield return new WaitForSeconds(1f);
+        base.Interact();
+        _seenDialogue = true;
     }
 
 }

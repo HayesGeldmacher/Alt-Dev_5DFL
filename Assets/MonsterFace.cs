@@ -27,7 +27,7 @@ public class MonsterFace : Interactable
         {
             if (_canContinue)
             {
-               if(_lines <= 8)
+               if(_lines <= 7)
                 {
                 _lines++;
                  StartCoroutine(AnimateFace());

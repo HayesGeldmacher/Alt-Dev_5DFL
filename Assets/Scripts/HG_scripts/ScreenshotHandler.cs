@@ -30,6 +30,7 @@ public class ScreenshotHandler : MonoBehaviour
     [SerializeField] private bool _canOpenPhoto = true;
     [HideInInspector] public bool _hasPhoto = false;
     [HideInInspector] public bool _photoOpen = false;
+    [SerializeField] private AudioSource _negativeSound;
 
     [HideInInspector] public bool _showPhoto = true;
     [SerializeField] private MonsterFace _monsterFace;
@@ -52,9 +53,11 @@ public class ScreenshotHandler : MonoBehaviour
         if (_zoom._isZooming) return;
         if (_camControl._interacting) return;
 
-        if (Input.GetKeyDown(KeyCode.Tab) && _hasPhoto)
+        if (Input.GetKeyDown(KeyCode.Tab))
         {
-           
+            if (_hasPhoto)
+            {
+
                 if (_photoOpen)
                 {
                     if (_showPhoto)
@@ -63,19 +66,26 @@ public class ScreenshotHandler : MonoBehaviour
                         _photoAnim.SetTrigger("fade");
                         StartCoroutine(IconBump());
                     }
-                else
-                {
-
-                }
+                    else
+                    {
+                        PlayNegativeSound();
+                    }
                 }
                 else
                 {
                     _photoOpen = true;
+                    PlayDing();
                     _photoAnim.SetTrigger("appear");
                 }
-
-              
             
+            }
+            else
+            {
+                PlayNegativeSound();
+            }
+
+
+
         }
     }
 
@@ -246,5 +256,11 @@ public class ScreenshotHandler : MonoBehaviour
         yield return new WaitForSeconds(1.2f);
         _chime.pitch = Random.Range(0.8f, 1.1f);
         _chime.Play();
+    }
+
+    private void PlayNegativeSound()
+    {
+        _negativeSound.pitch = Random.Range(0.8f, 1.1f);
+        _negativeSound.Play();
     }
 }
