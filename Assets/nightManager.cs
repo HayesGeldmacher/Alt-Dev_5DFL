@@ -22,6 +22,7 @@ public class nightManager : Interactable
 
     [SerializeField] private AudioSource _spotLight;
     [SerializeField] private AudioSource _interactAudio;
+
     private bool _seenDialogue = false;
 
     // Start is called before the first frame update
@@ -109,4 +110,8 @@ public class nightManager : Interactable
         _seenDialogue = true;
     }
 
+    public void FreePlayer()
+    {
+        _controller._frozen = false;
+    }
 }

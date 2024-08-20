@@ -75,12 +75,18 @@ public class ScreenshotHandler : MonoBehaviour
                 }
                 else
                 {
-                    _photoOpen = true;
-                    _evilCamDing.loop = false;
-                    PlayDing();
-                    _monsterFace.CallStartTalking();
-                    _photoAnim.SetTrigger("appear");
-                    _iconAnim.SetTrigger("evildisappear");
+                    
+                        _photoOpen = true;
+                        _evilCamDing.loop = false;
+                        PlayDing();
+                        _photoAnim.SetTrigger("appear");
+
+                    if (!_showPhoto)
+                    {
+                        _monsterFace.CallStartTalking();
+                        _iconAnim.SetTrigger("evildisappear");
+
+                    }
                     
                 }
             
@@ -274,5 +280,16 @@ public class ScreenshotHandler : MonoBehaviour
     {
         _negativeSound.pitch = Random.Range(0.8f, 1.1f);
         _negativeSound.Play();
+
     }
+
+    public void ResetPicture()
+    {
+        _photoOpen = false;
+        _showPhoto = true;
+        _photoAnim.SetTrigger("fade");
+        StartCoroutine(IconBump());
+        _hasPhoto = false;
+    }
+
 }

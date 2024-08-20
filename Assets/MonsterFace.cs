@@ -14,7 +14,8 @@ public class MonsterFace : Interactable
     [SerializeField] private int _lines;
     [SerializeField] private ScreenshotHandler _handler;
     [SerializeField] private Animator _cursorAnim;
-
+    [SerializeField] private nightManager _nightManage;
+    private bool _dead = false;
 
     // Start is called before the first frame update
     void Start()
@@ -26,31 +27,35 @@ public class MonsterFace : Interactable
     // Update is called once per frame
     void Update()
     {
-        if (Input.GetMouseButtonDown(0))
+        if (!_dead)
         {
-            if (_canContinue)
+            if (Input.GetMouseButtonDown(0))
             {
-               if(_lines <= 7)
+                if (_canContinue)
                 {
-                _lines++;
-                 StartCoroutine(AnimateFace());
-                PlayGargle();
-                base.Interact();
-                
-                if(_lines <= 1)
+                   if(_lines <= 7)
                     {
-                        _cursorAnim.SetTrigger("clicked");
-                       StartCoroutine(SetCursorVisibility());
+                    _lines++;
+                     StartCoroutine(AnimateFace());
+                    PlayGargle();
+                    base.Interact();
+                
+                    if(_lines <= 1)
+                        {
+                            _cursorAnim.SetTrigger("clicked");
+                           StartCoroutine(SetCursorVisibility());
                        
+                        }
+
+                    }
+                    else
+                    {
+                        EndTalk();
                     }
 
                 }
-                else
-                {
-                    EndTalk();
-                }
-
             }
+
         }
     }
 
@@ -99,9 +104,19 @@ public class MonsterFace : Interactable
         
     private void EndTalk()
     {
+        _dead = true;
         _anim.SetTrigger("End");
         _coughSound.Play();
-        _handler._showPhoto = true;
+        _handler.ResetPicture();
+        _nightManage.FreePlayer();
+        base.EndDialogue();
+        StartCoroutine(StartDeath());
+    }
+
+    private IEnumerator StartDeath()
+    {
+        yield return new WaitForSeconds(2f);
+        Destroy(gameObject);
     }
 
     private IEnumerator SetCursorVisibility()
