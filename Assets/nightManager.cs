@@ -5,7 +5,14 @@ using UnityEngine;
 public class nightManager : Interactable
 {
 
-    
+
+    public float _neededRooms = 10;
+    public float _currentRooms = 0;
+    public bool _enteredRightRoom = false;
+    private bool _hasSpawnedExit = false;
+
+    [SerializeField] private NightmareTriggerKitchen _triggerKitchen;
+
     [SerializeField] private PlayerController _controller;
     [SerializeField] private List<GameObject> _Items = new List<GameObject>();
     [SerializeField] private List<AudioClip> _soundClips = new List<AudioClip>();
@@ -60,6 +67,8 @@ public class nightManager : Interactable
             _seenDialogue = false;
             StartCoroutine(SpawnFlags());
         }
+
+
     }
 
     public void NextItem()
@@ -120,5 +129,35 @@ public class nightManager : Interactable
     public void FreePlayer()
     {
         _controller._frozen = false;
+    }
+
+    public void AddRoom(NightmareTriggerKitchen _tempKitchen)
+    {
+       
+        if(_tempKitchen == _triggerKitchen)
+        {
+
+        }
+        else
+        {
+
+            if(_currentRooms >= _neededRooms)
+            {
+                SpawnExit();
+            }       
+            _currentRooms++;
+            Debug.Log("Added A Room!");
+        }
+
+        _triggerKitchen = _tempKitchen;
+    }
+
+    private void SpawnExit()
+    {
+        if (!_hasSpawnedExit)
+        {
+            Debug.Log("SpawnedExit");
+            _hasSpawnedExit= true;
+        }
     }
 }

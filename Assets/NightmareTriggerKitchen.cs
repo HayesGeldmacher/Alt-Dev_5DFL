@@ -5,22 +5,24 @@ using UnityEngine;
 public class NightmareTriggerKitchen : MonoBehaviour
 {
 
+    //set it so you cannot do the same room twice!
+
+
+    [SerializeField] private nightManager _nightManage;
     [SerializeField] private GameObject _currentRoomLight;
-    [SerializeField] private int _neededRooms;
-    [SerializeField] private int _currentRooms;
+ 
 
 
     [SerializeField] private bool _partnerTriggered = false;
-
-    //keeping track of the room before and after us
+    public bool _enterTrigger = false;
 
     [SerializeField] private NightmareTriggerKitchen _roomPartner;
-    private bool _canTrigger = true;
+    [SerializeField]private bool _canTrigger = true;
 
     // Start is called before the first frame update
     void Start()
     {
-
+        _nightManage = GameObject.Find("GameManager").transform.GetComponent<nightManager>();
     }
 
     // Update is called once per frame
@@ -29,7 +31,35 @@ public class NightmareTriggerKitchen : MonoBehaviour
 
     }
 
+
     private void OnTriggerExit(Collider other)
+    {
+        if (_canTrigger)
+        {
+            _canTrigger = false;
+            if (other.tag == "Player")
+            {
+                if (_enterTrigger)
+                {
+                    EnterRoom();
+                }
+                else
+                {
+                    ExitRoom();
+                }
+            }
+        }
+    }
+
+    private void OnTriggerEnter(Collider other)
+    {
+        if(other.tag == "Player")
+        {
+            _canTrigger = true;
+        }
+    }
+
+    private void OldOnTriggerExit(Collider other)
     {
 
         if (_canTrigger)
@@ -42,12 +72,7 @@ public class NightmareTriggerKitchen : MonoBehaviour
 
             if (other.tag == "Player")
             {
-                if(_currentRooms > _neededRooms)
-                {
-                    SpawnExit();
-                }
-                else
-                {
+               
                     if (_partnerTriggered)
                     {
                         _partnerTriggered = false;
@@ -58,7 +83,7 @@ public class NightmareTriggerKitchen : MonoBehaviour
                         _roomPartner.ExitedOtherRoom();
                         ExitRoom();
                     }
-                }
+               
             }
 
         }
@@ -73,9 +98,8 @@ public class NightmareTriggerKitchen : MonoBehaviour
     private void EnterRoom()
     {
         _currentRoomLight.SetActive(true);
-        _currentRooms++;
         _partnerTriggered = false;
-
+        _nightManage.AddRoom(this);
         Debug.Log("ENTERED!");
 
     }
@@ -95,4 +119,5 @@ public class NightmareTriggerKitchen : MonoBehaviour
         yield return new WaitForSeconds(0.3f);
         _canTrigger = true;
     }
+
 }
