@@ -23,12 +23,19 @@ public class nightManager : Interactable
     [SerializeField] private AudioSource _spotLight;
     [SerializeField] private AudioSource _interactAudio;
 
+    [SerializeField] private bool _testDontFreeze = false;
+
     private bool _seenDialogue = false;
 
     // Start is called before the first frame update
     void Start()
     {
+
+        if (!_testDontFreeze)
+        {
         _controller._frozen = true;
+
+        }
         _itemNum = 0;
        // _audio.clip = _soundClips[0];
 

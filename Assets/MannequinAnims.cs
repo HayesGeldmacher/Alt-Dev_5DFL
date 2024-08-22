@@ -13,7 +13,6 @@ public class MannequinAnims : MonoBehaviour
     {
         _anim = transform.GetComponent<Animator>();
         _anim.SetInteger("animChoice", _animChoice);
-        Debug.Log("Animating!");
     }
 
 
