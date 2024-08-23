@@ -10,9 +10,11 @@ public class KitchenEntranceTrigger : MonoBehaviour
 
     [SerializeField] private Animator _light1;
 
+    [SerializeField] private AudioSource _spotLightSound;
+
     private void Start()
     {
-        _light1.SetTrigger("on");
+        _light1.SetTrigger("appear");
     }
     
     // Update is called once per frame
@@ -28,6 +30,7 @@ public class KitchenEntranceTrigger : MonoBehaviour
             if (_canTrigger)
             {
                 _canTrigger = false;
+                StartCoroutine(TransitionLevel());
             
             }
         }
@@ -36,6 +39,7 @@ public class KitchenEntranceTrigger : MonoBehaviour
     private IEnumerator TransitionLevel()
     {
         _light1.SetTrigger("fade");
+        _spotLightSound.Play();
         yield return new WaitForSeconds(1f);
         foreach (GameObject _obj in _disappearItems)
         {
@@ -45,6 +49,12 @@ public class KitchenEntranceTrigger : MonoBehaviour
         {
             _obj.SetActive(true);
         }
+
+
+        _spotLightSound.Play();
+        transform.GetComponent<BoxCollider>().enabled = false;
+        yield return new WaitForSeconds(1f);
+        Destroy(gameObject);
 
     }
 }

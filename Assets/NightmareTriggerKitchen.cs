@@ -16,7 +16,7 @@ public class NightmareTriggerKitchen : MonoBehaviour
     {
         if (_lightStartsOn)
         {
-            _light.SetTrigger("on");
+            _light.SetTrigger("appear");
         }
     }
 
