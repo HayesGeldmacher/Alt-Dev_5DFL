@@ -75,7 +75,7 @@ public class ScreenshotHandler : MonoBehaviour
                 }
                 else
                 {
-                    
+      
                         _photoOpen = true;
                         _evilCamDing.loop = false;
                         PlayDing();
