@@ -15,6 +15,7 @@ public class MonsterFace : Interactable
     [SerializeField] private ScreenshotHandler _handler;
     [SerializeField] private Animator _cursorAnim;
     [SerializeField] private nightManager _nightManage;
+    [SerializeField] private GameObject _kitchenLight;
     private bool _dead = false;
 
     // Start is called before the first frame update
@@ -116,6 +117,9 @@ public class MonsterFace : Interactable
     private IEnumerator StartDeath()
     {
         yield return new WaitForSeconds(2f);
+        _kitchenLight.SetActive(true);
+        _kitchenLight.GetComponent<Animator>().SetTrigger("appear");
+        yield return new WaitForSeconds(1f);
         Destroy(gameObject);
     }
 

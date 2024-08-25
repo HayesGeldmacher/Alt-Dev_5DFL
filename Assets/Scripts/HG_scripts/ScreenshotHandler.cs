@@ -173,7 +173,7 @@ public class ScreenshotHandler : MonoBehaviour
 
     private IEnumerator ScreenShot()
     {
-
+        //Here we are creating a new render texture as a blank canvas to project the screenshot on to
         RenderTexture screenTexture = new RenderTexture(Screen.width, Screen.height, 16);
         _cam.targetTexture = screenTexture;
         RenderTexture.active = screenTexture;
@@ -188,12 +188,15 @@ public class ScreenshotHandler : MonoBehaviour
         newScreenshot.SetPixels(renderedTexture.GetPixels());
         newScreenshot.Apply();
 
+        //Once the screenshot has been applied to the render texture, we no longer need it;
         Destroy(screenshot);
 
         _photo.texture = newScreenshot;
-            
+          
+        //Setting this bool ensures that the render texture is ready to go, allowing us to check elsewhere in the script
         _hasPhoto = true;
 
+        //This triggers the photo animation once the texture has been set;
         yield return new WaitForSeconds(0.4f);
         _photoAnim.SetTrigger("fade");
         yield return new WaitForSeconds(0.1f);

@@ -211,19 +211,6 @@ public class PlayerController : MonoBehaviour
                 
                 //play footsteps here
                 FootStepUpdate();
-
-                if(_monsters.Count > 0)
-                {
-                    if (_isCrouching)
-                    {
-                        AddNoise(_crouchingNoise);
-                    }
-                    else
-                    {
-                        AddNoise(_walkingNoise);
-                    }
-
-                }
             }
             else
             {
@@ -289,10 +276,8 @@ public class PlayerController : MonoBehaviour
             //This lerps the camera slowly between standing and crouching, based on the above bool
             if(_isCrouching)
             {            
-              _yCamPoint = Mathf.Lerp(_yCamPoint, _crouchingYCamPoint, _crouchTransSpeed * Time.deltaTime);
+                _yCamPoint = Mathf.Lerp(_yCamPoint, _crouchingYCamPoint, _crouchTransSpeed * Time.deltaTime);
                 _spriteAnim.SetBool("crouching", true);
-
-          
             }
             else
             {

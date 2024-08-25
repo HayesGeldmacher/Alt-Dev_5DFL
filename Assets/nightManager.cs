@@ -11,7 +11,7 @@ public class nightManager : Interactable
     public bool _enteredRightRoom = false;
     private bool _hasSpawnedExit = false;
 
-    [SerializeField] private NightmareTriggerKitchen _triggerKitchen;
+    [SerializeField] private newKitchenCollider _triggerKitchen;
 
     [SerializeField] private PlayerController _controller;
     [SerializeField] private List<GameObject> _Items = new List<GameObject>();
@@ -31,6 +31,7 @@ public class nightManager : Interactable
     [SerializeField] private AudioSource _interactAudio;
 
     [SerializeField] private bool _testDontFreeze = false;
+    [SerializeField] private GameObject _remoteEvidence;
 
     private bool _seenDialogue = false;
 
@@ -131,7 +132,7 @@ public class nightManager : Interactable
         _controller._frozen = false;
     }
 
-    public void AddRoom(NightmareTriggerKitchen _tempKitchen)
+    public void AddRoom(newKitchenCollider _tempKitchen)
     {
        
         if(_tempKitchen == _triggerKitchen)
@@ -158,6 +159,8 @@ public class nightManager : Interactable
         {
             Debug.Log("SpawnedExit");
             _hasSpawnedExit= true;
+            _remoteEvidence.SetActive(true);
+
         }
     }
 }

@@ -56,7 +56,6 @@ public class DialogueManager : MonoBehaviour
        
         if (_currentTrigger)
         {
-            //This line will cause errors until we actually make the trigger!
             _currentTrigger._startedTalking = false;
         }
     }
