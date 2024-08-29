@@ -6,10 +6,6 @@ using UnityEngine.SceneManagement;
 public class BedNight : Interactable
 {
 
-    private DialogueManager _bedManager;
-    private Dialogue _bedDialogue1;
-    public Dialogue _bedDialogue2;
-    [SerializeField] private EvidenceManager _evidence;
     [SerializeField] private Transform _anchorPoint;
     [SerializeField] private Transform _lookPoint;
     [SerializeField] private Transform _camHolder;
@@ -20,16 +16,16 @@ public class BedNight : Interactable
     [SerializeField] private bool _spawnMonster;
     [SerializeField] private GameObject _hud;
     [SerializeField] private GameObject _cursor;
+    [SerializeField] private GameObject _television;
+    private bool _startedEnd = false;
     private bool _isBedTime = false;
-
+    
 
 
 
     private void Start()
     {
-        _bedManager = GameManager.instance.GetComponent<DialogueManager>();
         _player = PlayerController.instance.transform;
-        _bedDialogue1 = base._dialogue;
     }
 
     private void Update()
@@ -52,52 +48,17 @@ public class BedNight : Interactable
         }
     }
 
-    //writing "virtual" in front of a function means that children scripts can add to/edit the function
+  
     public override void Interact()
     {
 
-        if (_evidence._hasEvidence)
+        if (!_startedEnd)
         {
-            if (_evidence._hasFoundPhone)
-            {
-                TriggerDialogue(_bedDialogue2);
-
-            }
-            else
-            {
-                TriggerDialogue(_bedDialogue1);
-            }
-        }
-        else
-        {
-            TriggerDialogue(_bedDialogue1);
+        StartCoroutine(CompleteLevel());
+        _startedEnd = true;
         }
 
-    }
 
-    private void TriggerDialogue(Dialogue _dialogue)
-    {
-
-        if (!base._startedTalking)
-        {
-            Interactable _interactable = transform.GetComponent<Interactable>();
-            _bedManager.StartDialogue(_dialogue, _interactable);
-            base._startedTalking = true;
-        }
-        else
-        {
-            _bedManager.DisplayNextSentence();
-        }
-
-        if (_dialogue == _bedDialogue2)
-        {
-            StartCoroutine(CompleteLevel());
-        }
-    }
-
-    public override void EndDialogue()
-    {
-        _bedManager.EndDialogue();
     }
 
     private IEnumerator CompleteLevel()
@@ -109,26 +70,14 @@ public class BedNight : Interactable
         _isBedTime = true;
         yield return new WaitForSeconds(2);
         _blackAnim.SetTrigger("black");
-        EndDialogue();
-        yield return new WaitForSeconds(4);
-        if (_spawnMonster)
-        {
-            _hud.SetActive(false);
-            _cursor.SetActive(false);
-            _monster.SetActive(true);
-            _blackAnim.SetTrigger("blinking");
-            yield return new WaitForSeconds(6);
-            //GameManager.instance.LoadNextLevel();
-            //For now the game is over, so we load the main menu!
-            GameManager.instance.LoadMenu();
-
-        }
-        else
-        {
-
-            GameManager.instance.LoadNextLevel();
-
-        }
+        yield return new WaitForSeconds(2);
+        _television.SetActive(false);
+       // _hud.SetActive(false);
+        _cursor.SetActive(false);
+        _monster.SetActive(true);
+        _blackAnim.SetTrigger("blinking");
+        yield return new WaitForSeconds(6);
+        GameManager.instance.LoadNextLevel();
 
     }
 

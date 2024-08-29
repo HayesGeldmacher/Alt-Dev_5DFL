@@ -32,20 +32,38 @@ public class nightManager : Interactable
 
     [SerializeField] private bool _testDontFreeze = false;
     [SerializeField] private GameObject _remoteEvidence;
+    [SerializeField] private GameObject _playerParent;
+    [SerializeField] private Transform _newSpawnPos;
 
     private bool _seenDialogue = false;
 
+    [SerializeField] private GameObject _endlessKitchen;
+    [SerializeField] private GameObject _normalHouse;
+    [SerializeField] private Animator _kitchenLight;
+    [SerializeField] private Animator _stairWellLight;
+    [SerializeField] private Datamosh _data;
+    [SerializeField] private CharacterController _char;
+   // private float _disableController = false;
     // Start is called before the first frame update
     void Start()
     {
 
+        //TeleportPlayer();
+        
         if (!_testDontFreeze)
         {
         _controller._frozen = true;
 
         }
         _itemNum = 0;
-       // _audio.clip = _soundClips[0];
+
+
+        
+
+
+
+
+        // _audio.clip = _soundClips[0];
 
         float _countNum = 0;
         foreach(var item in _Items)
@@ -162,5 +180,40 @@ public class nightManager : Interactable
             _remoteEvidence.SetActive(true);
 
         }
+    }
+
+    public void CallExitKitchen()
+    {
+        StartCoroutine(ExitKitchen());       
+    }
+
+    private IEnumerator ExitKitchen()
+    {
+        _kitchenLight.SetTrigger("fade");
+        yield return new WaitForSeconds(3f);
+        TeleportPlayer();
+        _normalHouse.SetActive(true);
+        _endlessKitchen.SetActive(false);
+        _stairWellLight.SetTrigger("appear");
+    }
+
+    public void CallDataMosh()
+    {
+        _data.Glitch();
+        _data.Glitch();
+        _data.Glitch();
+    }
+
+
+    private void TeleportPlayer()
+    {
+        _controller._frozen = true;
+        _char.enabled = false;
+        //Debug.Break();
+        _playerParent.transform.localPosition = _newSpawnPos.localPosition;
+        Debug.Log("PLAYER POS: " + _playerParent.transform.localPosition);
+        Debug.Log("SPAWN POS: " + _newSpawnPos.localPosition);
+        _char.enabled = true;
+        _controller._frozen = false;
     }
 }
