@@ -43,6 +43,7 @@ public class nightManager : Interactable
     [SerializeField] private Animator _stairWellLight;
     [SerializeField] private Datamosh _data;
     [SerializeField] private CharacterController _char;
+    [SerializeField] private Animator _garageLight;
    // private float _disableController = false;
     // Start is called before the first frame update
     void Start()
@@ -190,11 +191,15 @@ public class nightManager : Interactable
     private IEnumerator ExitKitchen()
     {
         _kitchenLight.SetTrigger("fade");
-        yield return new WaitForSeconds(3f);
+        yield return new WaitForSeconds(2f);
         TeleportPlayer();
+        yield return new WaitForSeconds(0.1f);
         _normalHouse.SetActive(true);
+        yield return new WaitForSeconds(0.1f);
         _endlessKitchen.SetActive(false);
         _stairWellLight.SetTrigger("appear");
+        yield return new WaitForSeconds(1.5f);
+        _garageLight.SetTrigger("appear");
     }
 
     public void CallDataMosh()
@@ -207,13 +212,14 @@ public class nightManager : Interactable
 
     private void TeleportPlayer()
     {
-        _controller._frozen = true;
-        _char.enabled = false;
+        _playerParent.SetActive(false);
+        //_controller._frozen = true;
+        //_char.enabled = false;
+        _playerParent.transform.position = _newSpawnPos.position;
         //Debug.Break();
-        _playerParent.transform.localPosition = _newSpawnPos.localPosition;
-        Debug.Log("PLAYER POS: " + _playerParent.transform.localPosition);
-        Debug.Log("SPAWN POS: " + _newSpawnPos.localPosition);
+        _playerParent.SetActive(true);
         _char.enabled = true;
         _controller._frozen = false;
+
     }
 }

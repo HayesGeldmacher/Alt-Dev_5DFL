@@ -10,6 +10,7 @@ public class BeerCan : Interactable
     [SerializeField] private bool _canSound;
     [SerializeField] private float _soundWait;
     [SerializeField] private float _currentWait;
+    private bool _hasCollided = false;
 
     
     // Start is called before the first frame update
@@ -18,6 +19,7 @@ public class BeerCan : Interactable
         _rb = GetComponent<Rigidbody>();
         _canHit = GetComponent<AudioSource>();
         _canSound = true;
+        StartCoroutine(StartSoundWait());
     }
 
     // Update is called once per frame
@@ -46,10 +48,13 @@ public class BeerCan : Interactable
 
      void OnCollisionEnter(Collision other)
     {
-
-        if (_canHit)
+        if (_hasCollided)
         {
-            PlaySound();
+
+            if (_canHit)
+            {
+                PlaySound();
+            }
         }
     }
 
@@ -60,5 +65,11 @@ public class BeerCan : Interactable
         _canHit.pitch = Random.Range(0.7f, 0.8f);
         _canHit.Play();
 
+    }
+
+    private IEnumerator StartSoundWait()
+    {
+        yield return new WaitForSeconds(2f);
+        _hasCollided = true;
     }
 }

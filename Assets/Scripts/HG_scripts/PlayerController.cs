@@ -157,8 +157,20 @@ public class PlayerController : MonoBehaviour
             //Stores that input in a variable to be used later in function
             Vector3 _move = transform.right * x + transform.forward * z;
 
-           //Constantly adding a downward force to the player so they fall when not standing on something
-            _velocity.y += _gravity * Time.deltaTime;
+            //Constantly adding a downward force to the player so they fall when not standing on something
+
+            if (_grounded)
+            {
+                _velocity.y = -10;
+            }
+            else
+            {
+                if (Mathf.Abs(_velocity.y) < 10)
+                {
+                    _velocity.y += _gravity * Time.deltaTime;
+                }
+            }
+            
 
             //Checking to see if the player is running!
             if(_grounded && Input.GetKey(KeyCode.LeftShift) && !_isCrouching)
