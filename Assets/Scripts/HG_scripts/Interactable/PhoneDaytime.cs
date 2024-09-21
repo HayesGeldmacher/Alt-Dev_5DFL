@@ -218,8 +218,8 @@ public class PhoneDaytime : Interactable
 
     private IEnumerator Darkness()
     {
-        _tvBroken.SetActive(false);
-        _tvWorking.SetActive(true);
+        //_tvBroken.SetActive(false);
+        //_tvWorking.SetActive(true);
         yield return new WaitForSeconds(3);
         _isDarkening = true;
         Destroy(_pointWindowLight);

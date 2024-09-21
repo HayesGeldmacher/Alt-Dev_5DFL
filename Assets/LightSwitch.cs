@@ -14,6 +14,7 @@ public class LightSwitch : Interactable
     [SerializeField] private bool _isGarage = false;
     [SerializeField] private GameObject _GarageBulb;
 
+
     // Start is called before the first frame update
     void Start()
     {
