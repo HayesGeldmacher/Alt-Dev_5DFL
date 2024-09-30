@@ -1,6 +1,9 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Rendering;
+using UnityEngine.Rendering.Universal;
+using UnityEngine.Rendering.PostProcessing;
 
 public class CameraController : MonoBehaviour
 {
@@ -8,6 +11,11 @@ public class CameraController : MonoBehaviour
     [Header ("Look Variables")]
     [SerializeField] private float _mouseSensitivityX;
     [SerializeField] private float _mouseSensitivityY;
+    [SerializeField] private JPGPU _jpg;
+    [SerializeField] private Datamosh _mosh;
+    [SerializeField] private StartDataMosh _startMosh;
+    [SerializeField] private PostProcessVolume _volume;
+    [SerializeField] private PostProcessProfile _camProfile;
     private float _xRotation = 0f;
     private float _yRotation = 0f;
     private float _zRotation = 0f;
@@ -50,7 +58,6 @@ public class CameraController : MonoBehaviour
     public bool _hasCamera;
     [SerializeField] private bool _dayTime;
     [SerializeField] private GameObject _camHud;
-    [SerializeField] private GameObject _postProcess;
     [SerializeField] private AudioSource _ambience;
     [HideInInspector] public bool _frozen = false;
     [HideInInspector] public bool _canInteract = true;
@@ -80,6 +87,8 @@ public class CameraController : MonoBehaviour
 
     void Start()
     {
+       
+
         //This makes the cursor invisible and locked to screen when playing the game
         Cursor.lockState = CursorLockMode.Locked;
 
@@ -103,14 +112,7 @@ public class CameraController : MonoBehaviour
  
         }
         if (_dayTime)
-        {
-            _postProcess.SetActive(false);
-        }
-        else
-        {
-            _postProcess.SetActive(true);
-            Debug.Log("This is active? ");
-        }
+
 
         foreach (GameObject monster in GameObject.FindGameObjectsWithTag("Roaming"))
         {
@@ -118,7 +120,6 @@ public class CameraController : MonoBehaviour
         }
 
         _zoom = transform.GetComponent<CameraZoom>();
-        GotCamera();
     }
 
     private void Update()
@@ -400,7 +401,22 @@ public class CameraController : MonoBehaviour
         _hasCamera = true;
         _camHud.SetActive(true);
         _camAnimator.SetBool("still", false);
-        _postProcess.SetActive(true);
+        if (_jpg != null)
+        {
+        _jpg.enabled = true;
+
+        }
+        if(_mosh!= null)
+        {
+            _mosh.enabled = true;
+            if(_startMosh != null)
+            {
+                _startMosh.CallGlitch();
+            }
+        }
+
+        _volume.profile = _camProfile;
+
         if (_dayTime && _ambience != null)
         {
             _ambience.Play();

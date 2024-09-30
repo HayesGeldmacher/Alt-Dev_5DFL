@@ -18,4 +18,9 @@ public class StartDataMosh : MonoBehaviour
     {
         
     }
+
+    public void CallGlitch()
+    {
+        _data.Glitch();
+    }
 }
