@@ -15,13 +15,16 @@ public class BedDayTime : Interactable
     [SerializeField] private GameObject _hud;
     [SerializeField] private GameObject _cursor;
     [SerializeField] private GameObject _television;
-    private bool _startedEnd = false;
+    [SerializeField] private bool _startedEnd = false;
+    [SerializeField] private Door _door; 
     private bool _isBedTime = false;
-
+    public bool _canStartNextDay = false;
+    public Dialogue _lockedDialogue;
 
 
     private void Start()
     {
+        base.Start();
         _player = PlayerController.instance.transform;
     }
 
@@ -49,11 +52,27 @@ public class BedDayTime : Interactable
     public override void Interact()
     {
 
-        if (!_startedEnd)
+
+        if (_canStartNextDay)
         {
-            StartCoroutine(CompleteLevel());
-            _startedEnd = true;
+            if (_door._isOpen)
+            {
+                base.Interact();
+            }
+            else
+            {
+                if (!_startedEnd)
+                {
+                    Debug.Log("Interacted!");
+                    StartCoroutine(CompleteLevel());
+                    _startedEnd = true;
+                }
+
+            }
+
         }
+        
+
 
 
     }
@@ -61,10 +80,15 @@ public class BedDayTime : Interactable
 
     private IEnumerator CompleteLevel()
     {
+        Vector3 _pos = _camHolder.position;
+        
         _camHolder.parent = null;
         _camController.enabled = false;
         PlayerController.instance.enabled = false;
         Destroy(PlayerController.instance.transform.gameObject);
+
+        _camHolder.position = _pos;
+
         _isBedTime = true;
         yield return new WaitForSeconds(2);
         _blackAnim.SetTrigger("black");
