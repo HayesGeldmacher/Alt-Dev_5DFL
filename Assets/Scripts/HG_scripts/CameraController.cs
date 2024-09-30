@@ -401,7 +401,7 @@ public class CameraController : MonoBehaviour
         _camHud.SetActive(true);
         _camAnimator.SetBool("still", false);
         _postProcess.SetActive(true);
-        if (_dayTime)
+        if (_dayTime && _ambience != null)
         {
             _ambience.Play();
         }

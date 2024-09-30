@@ -37,6 +37,7 @@ public class PhoneDaytime : Interactable
     public bool _startMorning = false;
     public float _currentMorningDialogue = 0;
     public float _totalMorningDialogue;
+    [SerializeField] BedDayTime _bed;
 
     [SerializeField] private PlayerController _controller;
     [SerializeField] private CameraController _cam;
@@ -218,8 +219,8 @@ public class PhoneDaytime : Interactable
 
     private IEnumerator Darkness()
     {
-        //_tvBroken.SetActive(false);
-        //_tvWorking.SetActive(true);
+
+        _bed.EnableBedTime();
         yield return new WaitForSeconds(3);
         _isDarkening = true;
         Destroy(_pointWindowLight);
@@ -257,6 +258,7 @@ public class PhoneDaytime : Interactable
     {
         yield return new WaitForSeconds(1);
         _canInteract = true;
+
     }
 
 }

@@ -16,10 +16,10 @@ public class BedDayTime : Interactable
     [SerializeField] private GameObject _cursor;
     [SerializeField] private GameObject _television;
     [SerializeField] private bool _startedEnd = false;
-    [SerializeField] private Door _door; 
+    [SerializeField] private Door _door;
+    [SerializeField] private Interactable _altDialogue;
     private bool _isBedTime = false;
     public bool _canStartNextDay = false;
-    public Dialogue _lockedDialogue;
 
 
     private void Start()
@@ -71,6 +71,10 @@ public class BedDayTime : Interactable
             }
 
         }
+        else
+        {
+            _altDialogue.Interact();
+        }
         
 
 
@@ -104,5 +108,10 @@ public class BedDayTime : Interactable
         yield return new WaitForSeconds(6);
         GameManager.instance.LoadNextLevel();
 
+    }
+
+    public void EnableBedTime()
+    {
+        _canStartNextDay = true;
     }
 }

@@ -26,7 +26,6 @@ public class CameraPickup : Interactable
         base.Start();
         _render = GetComponent<MeshRenderer>();
         _bc = GetComponent<BoxCollider>();
-        _ghostCam.SetActive(false);
         _canClickContinue = false;
 
     }
@@ -69,12 +68,12 @@ public class CameraPickup : Interactable
         {
             if (!_started)
             {
+                 _camController.GotCamera();
                 _controller._frozen = true;
                 Destroy(_glimmer);
                 _lines -= 1;
                 _started = true;
                 base.Interact();
-                 _camController.GotCamera();
                 _bc.enabled = false;
                 _render.enabled = false;
                 _ghostCam.SetActive(true);

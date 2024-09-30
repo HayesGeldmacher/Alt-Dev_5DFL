@@ -34,6 +34,7 @@ public class GameManager : MonoBehaviour
     [SerializeField] private AudioSource _pausedAudio;
     [SerializeField] private GameObject _hudBorder;
     [SerializeField] private RawImage _cursorSprite;
+    [SerializeField] private GameObject _ghostCam;
      
     [Header("KillMonster variables")]
     [SerializeField] private GameObject _killMonster;
@@ -42,7 +43,10 @@ public class GameManager : MonoBehaviour
     [SerializeField] private Animator _blackAnim;
     [SerializeField] private Transform _faceDirectionPoint;
 
-    
+    private void Start()
+    {
+        _ghostCam.SetActive(false);
+    }
    
     private void Update()
     {
