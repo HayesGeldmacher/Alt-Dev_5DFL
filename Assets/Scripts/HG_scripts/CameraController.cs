@@ -120,6 +120,8 @@ public class CameraController : MonoBehaviour
         }
 
         _zoom = transform.GetComponent<CameraZoom>();
+
+        //GotCamera();
     }
 
     private void Update()

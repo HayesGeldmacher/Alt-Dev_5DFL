@@ -31,6 +31,7 @@ public class PlayerController : MonoBehaviour
     [SerializeField] private float _runSpeed;
     [SerializeField] private bool _running;
     [SerializeField] private AudioSource _breathing;
+    [SerializeField] private Animator _runAnim;
 
     [Header("Crouch Variables")]
     [SerializeField] private Transform _cameraParent;
@@ -179,18 +180,21 @@ public class PlayerController : MonoBehaviour
                 {
                 _running = true;
                 _camAnim.SetBool("running", true);
+                    _runAnim.SetBool("running", true);
 
                 }
                 else
                 {
                     _running = false;
                     _camAnim.SetBool("running", false);
+                    _runAnim.SetBool("running", false);
                 }
             }
             else
             {
                 _running = false;
                 _camAnim.SetBool("running", false);
+                _runAnim.SetBool("running", false);
                 _breathing.loop = false;
             }
 

@@ -26,6 +26,10 @@ public class ScreenshotHandler : MonoBehaviour
     [SerializeField] private CameraZoom _zoom;
     [SerializeField] private CameraController _camControl;
     [SerializeField] private Datamosh _data;
+    [SerializeField] private float _minLuminance;
+    [SerializeField] private bool _illuminated = true;
+    [SerializeField] private AudioSource _noLightSound;
+
 
     [SerializeField] private bool _canOpenPhoto = true;
     [HideInInspector] public bool _hasPhoto = false;
@@ -188,21 +192,58 @@ public class ScreenshotHandler : MonoBehaviour
         newScreenshot.SetPixels(renderedTexture.GetPixels());
         newScreenshot.Apply();
 
-        //Once the screenshot has been applied to the render texture, we no longer need it;
-        Destroy(screenshot);
+        //Checking for the amount of luminance in the scene
+        float _luminance = CheckForLight(newScreenshot);
+        Debug.Log("AVERAGE LUMINANCE : "+  _luminance);
+        if(_luminance < _minLuminance)
+        {
+            _illuminated = false;
+            _noLightSound.Play();
+        }
+        else
+        {
+            _illuminated = true;
+            //Once the screenshot has been applied to the render texture, we no longer need it;
+            Destroy(screenshot);
 
-        _photo.texture = newScreenshot;
+            _photo.texture = newScreenshot;
           
-        //Setting this bool ensures that the render texture is ready to go, allowing us to check elsewhere in the script
-        _hasPhoto = true;
+            //Setting this bool ensures that the render texture is ready to go, allowing us to check elsewhere in the script
+            _hasPhoto = true;
 
-        //This triggers the photo animation once the texture has been set;
-        yield return new WaitForSeconds(0.4f);
-        _photoAnim.SetTrigger("fade");
-        yield return new WaitForSeconds(0.1f);
-        _iconAnim.SetTrigger("appear");
+            //This triggers the photo animation once the texture has been set;
+            yield return new WaitForSeconds(0.4f);
+            _photoAnim.SetTrigger("fade");
+            yield return new WaitForSeconds(0.1f);
+            _iconAnim.SetTrigger("appear");
+        }
+
         
     }
+
+    private float CheckForLight(Texture2D renderTexture)
+    {
+            var texture2D = new Texture2D(renderTexture.width, renderTexture.height, TextureFormat.RGBAFloat, false);
+            texture2D.ReadPixels(new Rect(0, 0, texture2D.width, texture2D.height), 0, 0, false);
+            texture2D.Apply();
+
+            var allColors = texture2D.GetPixels();
+
+            var totalLuminance = 0f;
+
+            foreach (var color in allColors)
+            {
+                totalLuminance += (color.r * 0.2126f) + (color.g * 0.7152f) + (color.b * 0.0722f);
+            }
+
+            var averageLuminance = totalLuminance / allColors.Length;
+
+            Object.Destroy(texture2D);
+
+            return averageLuminance;
+        
+    }
+
 
     private void CheckForEvidence()
     {
