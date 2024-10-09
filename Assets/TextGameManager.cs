@@ -17,6 +17,7 @@ public class TextGameManager : MonoBehaviour
 
     [SerializeField] private TextEncounter _currentEncounter;
     public TextEncounter[] _encounterList;
+    [SerializeField] private AudioSource _interactSound;
 
 
 
@@ -77,7 +78,8 @@ public class TextGameManager : MonoBehaviour
         {
             SetEncounter(_currentEncounter._finalPath);
         }
-        
+
+        PlaySound();
 
     }
 
@@ -133,5 +135,11 @@ public class TextGameManager : MonoBehaviour
         
        
 
+    }
+
+    private void PlaySound()
+    {
+        _interactSound.pitch = Random.Range(0.8f, 1.1f);
+        _interactSound.Play();
     }
 }
