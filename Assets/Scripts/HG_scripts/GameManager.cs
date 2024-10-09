@@ -123,5 +123,12 @@ public class GameManager : MonoBehaviour
         StartCoroutine(_monster.KillPlayer());
     }
 
+
+    public void FreezePlayer(bool _freeze)
+    {
+        PlayerController.instance._frozen = _freeze;
+        _controller._frozen = _freeze;
+    }
+
    
 }
