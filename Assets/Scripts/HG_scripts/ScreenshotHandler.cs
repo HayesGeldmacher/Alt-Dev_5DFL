@@ -198,11 +198,12 @@ public class ScreenshotHandler : MonoBehaviour
         if(_luminance < _minLuminance)
         {
             _illuminated = false;
-            _noLightSound.Play();
         }
         else
         {
             _illuminated = true;
+        }
+
             //Once the screenshot has been applied to the render texture, we no longer need it;
             Destroy(screenshot);
 
@@ -216,8 +217,6 @@ public class ScreenshotHandler : MonoBehaviour
             _photoAnim.SetTrigger("fade");
             yield return new WaitForSeconds(0.1f);
             _iconAnim.SetTrigger("appear");
-        }
-
         
     }
 
@@ -247,16 +246,30 @@ public class ScreenshotHandler : MonoBehaviour
 
     private void CheckForEvidence()
     {
+        if (_showPhoto)
+        {
+        StartCoroutine(ScreenShot());
+        } 
+
+
         RaycastHit hit;
         if (Physics.Raycast(_checkPoint.position, transform.forward, out hit, _checkLength,  _checkMask))
         {
             if(hit.transform.tag == "evidence")
             {
-            _evidenceManager.PictureTaken(hit.transform.gameObject);
-                _evidenceManager.StrikeOffItem(hit.transform.gameObject);
-            Debug.Log("Got a object!");
-                StartCoroutine(EvidenceDing());
+                if (_illuminated)
+                {
+                    _evidenceManager.PictureTaken(hit.transform.gameObject);
+                    _evidenceManager.StrikeOffItem(hit.transform.gameObject);
+                    Debug.Log("Got a object!");
+                    StartCoroutine(EvidenceDing());
 
+                }
+                else
+                {
+                    Debug.Log("EVIDENCE IS TOO DARK!");
+                    _noLightSound.Play();
+                }
             }
             else
             {
@@ -275,10 +288,6 @@ public class ScreenshotHandler : MonoBehaviour
             }
         }
 
-        if (_showPhoto)
-        {
-        StartCoroutine(ScreenShot());
-        } 
     
     }
 

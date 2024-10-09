@@ -59,7 +59,7 @@ public class PlayerController : MonoBehaviour
     [SerializeField] private float _crouchingNoise;
 
 
-    [HideInInspector] public bool _frozen = false;
+    public bool _frozen = false;
 
     [Header("Hand Values")]
     [SerializeField] private float _handRange;
@@ -180,22 +180,34 @@ public class PlayerController : MonoBehaviour
                 {
                 _running = true;
                 _camAnim.SetBool("running", true);
+                   
+                    if (_runAnim != null)
+                    {
                     _runAnim.SetBool("running", true);
+                    }
 
                 }
                 else
                 {
                     _running = false;
                     _camAnim.SetBool("running", false);
+
+                    if(_runAnim != null)
+                    {
                     _runAnim.SetBool("running", false);
+                    }
                 }
             }
             else
             {
                 _running = false;
                 _camAnim.SetBool("running", false);
-                _runAnim.SetBool("running", false);
                 _breathing.loop = false;
+                
+                if(_runAnim != null)
+                {
+                _runAnim.SetBool("running", false);
+                }
             }
 
             float _speed;

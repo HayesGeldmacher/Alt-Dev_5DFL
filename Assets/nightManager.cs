@@ -44,6 +44,8 @@ public class nightManager : Interactable
     [SerializeField] private Datamosh _data;
     [SerializeField] private CharacterController _char;
     [SerializeField] private Animator _garageLight;
+
+    [SerializeField] private CameraController _camController;
    // private float _disableController = false;
     // Start is called before the first frame update
     void Start()
@@ -59,7 +61,7 @@ public class nightManager : Interactable
         _itemNum = 0;
 
 
-        
+        _camController.GotCamera();
 
 
 
