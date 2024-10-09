@@ -67,10 +67,10 @@ public class TextGameManager : MonoBehaviour
 
         if( _currentOptions > 0 )
         {
-            TextEncounter _oldEncounter = _currentEncounter;
+         TextEncounter _oldEncounter = _currentEncounter;
         SetEncounter(_currentEncounter._answerPaths[_option]);
         _oldEncounter._options.RemoveAt(_option);
-        _currentEncounter._answerPaths.RemoveAt(_option);
+        _oldEncounter._answerPaths.RemoveAt(_option);
 
         }
         else
@@ -84,8 +84,14 @@ public class TextGameManager : MonoBehaviour
     private void SetEncounter(int _nextEncounterNum)
     {
 
+       
             
          TextEncounter _newEncounter = _encounterList[_nextEncounterNum];
+
+        if(_newEncounter._interactive && _newEncounter._options.Count <= 0)
+        {
+            _newEncounter = _encounterList[_newEncounter._finalPath];
+        }
         _currentEncounter = _newEncounter;
 
         Debug.Log("CURRENTOPTIONS: " + _currentEncounter._options.Count);
@@ -96,15 +102,15 @@ public class TextGameManager : MonoBehaviour
 
         if(_currentOptions > 0)
         {
-            _optionText1.text = _currentEncounter._options[0];
+            _optionText1.text = "1: " + _currentEncounter._options[0];
 
             if(_currentOptions > 1)
             {
-                _optionText2.text = _currentEncounter._options[1];
+                _optionText2.text = "2: " + _currentEncounter._options[1];
 
                 if (_currentOptions > 2)
                 {
-                    _optionText3.text = _currentEncounter._options[2];
+                    _optionText3.text = "3: " + _currentEncounter._options[2];
                 }
                 else
                 {
