@@ -1,9 +1,11 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Cinemachine;
 
 public class CameraZoom : MonoBehaviour
 {
+    [SerializeField] private CinemachineVirtualCamera _virtualCam;
     [SerializeField] private Camera _cam;
     [SerializeField] private Camera _ghostCam;
     [SerializeField] private float _minZoom;
@@ -99,5 +101,6 @@ public class CameraZoom : MonoBehaviour
 
         _cam.fieldOfView = _currentZoom;
         _ghostCam.fieldOfView = _currentZoom;
+        _virtualCam.m_Lens.FieldOfView = _currentZoom;
     }
 }

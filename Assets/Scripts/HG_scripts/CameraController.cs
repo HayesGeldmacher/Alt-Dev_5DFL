@@ -16,6 +16,7 @@ public class CameraController : MonoBehaviour
     [SerializeField] private StartDataMosh _startMosh;
     [SerializeField] private PostProcessVolume _volume;
     [SerializeField] private PostProcessProfile _camProfile;
+    [SerializeField] private Transform _virtualCam;
     private float _xRotation = 0f;
     private float _yRotation = 0f;
     private float _zRotation = 0f;
@@ -24,6 +25,9 @@ public class CameraController : MonoBehaviour
     private float _yMove;
 
    
+
+
+
     [SerializeField] private Animator _camAnimator;
 
     [Header("Lerp Variables")]
@@ -193,10 +197,10 @@ public class CameraController : MonoBehaviour
         _playerBody.Rotate(Vector3.up * mouseX);
 
         //This rotates the camera up and down, forward/backward, and side to side
-        transform.localRotation = Quaternion.Euler(_xRotation, 0, _zRotation);
+        _virtualCam.transform.localRotation = Quaternion.Euler(_xRotation, 0, _zRotation);
 
         //This rotates the camera holder up and down when the player walks forward or backward
-        transform.parent.transform.localRotation = Quaternion.Euler(_yRotation, 0f, 0f);
+        _virtualCam.parent.transform.localRotation = Quaternion.Euler(_yRotation, 0f, 0f);
 
         
     }

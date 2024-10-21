@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Cinemachine;
 
 public class PlayerController : MonoBehaviour
 {
@@ -78,6 +79,21 @@ public class PlayerController : MonoBehaviour
     private bool _handMovingBack = false;
 
 
+    [Header("CameraShakeVariables")]
+    private CinemachineBasicMultiChannelPerlin _virtualPerlin;
+    [SerializeField] private CinemachineVirtualCamera _virtualCam;
+    [SerializeField] private float _shakeTransitionSpeed = 1;
+    [SerializeField] private float _idleShakeIntensity;
+    [SerializeField] private float _walkShakeIntensity;
+    [SerializeField] private float _runShakeIntensity;
+    [SerializeField] private float _crouchShakeIntensity;
+    [SerializeField] private float _runShakeFrequency;
+    private bool _walking = false;
+    private float _currentIntensity = 0;
+    private float _currentFrequency = 0;
+    
+
+
     //The below region just creates a reference of this specific controller that we can call from other scripts quickly
     #region Singleton
 
@@ -114,10 +130,14 @@ public class PlayerController : MonoBehaviour
 
         _walkVolume = _footSteps.volume;
         _running = false;
+
+      _virtualPerlin =  _virtualCam.GetCinemachineComponent<CinemachineBasicMultiChannelPerlin>();
     }
 
     private void Update()
     {
+        CamShakeUpdate();
+        
         if(_frozen) return;
         
         if (_isMovingBack)
@@ -233,7 +253,7 @@ public class PlayerController : MonoBehaviour
             {
 
                 _walkTime += Time.deltaTime;
-
+                _walking = true;
                 _camAnim.SetBool("walking", true);
                 _spriteAnim.SetBool("walking", true);
                 
@@ -242,6 +262,7 @@ public class PlayerController : MonoBehaviour
             }
             else
             {
+                _walking = false;
                 _camAnim.SetBool("walking", false);
                 _spriteAnim.SetBool("walking", false);
                 _currentFootTime = 0;
@@ -493,5 +514,54 @@ public class PlayerController : MonoBehaviour
     {
         yield return new WaitForSeconds(0.2f);
         _running = false;
+    }
+
+
+
+
+    private void CamShakeUpdate()
+    {
+
+        //Descending = check if running, if not walking, if not crouching, and then idle
+
+        if(_camControl._hasCamera)
+        {
+            if (_running)
+            {
+                //running intensity here!
+                _currentIntensity = Mathf.Lerp(_currentIntensity, _runShakeIntensity, _shakeTransitionSpeed * Time.deltaTime);
+                _currentFrequency = Mathf.Lerp(_currentFrequency, _runShakeFrequency, _shakeTransitionSpeed * Time.deltaTime);
+            }
+            else if (_walking)
+            {
+                if (_isCrouching)
+                {
+                    //crouching intensity here
+                    _currentIntensity = Mathf.Lerp(_currentIntensity, _crouchShakeIntensity, _shakeTransitionSpeed * Time.deltaTime);
+                }
+                else
+                {
+                    //walking intensity here
+                    _currentIntensity = Mathf.Lerp(_currentIntensity, _walkShakeIntensity, _shakeTransitionSpeed * Time.deltaTime);
+                }
+                _currentFrequency = Mathf.Lerp(_currentFrequency, 1, _shakeTransitionSpeed * Time.deltaTime);
+            }
+            else
+            {
+                //idle here!
+                _currentIntensity = Mathf.Lerp(_currentIntensity, _idleShakeIntensity, _shakeTransitionSpeed * Time.deltaTime);
+                _currentFrequency = Mathf.Lerp(_currentFrequency, 1, _shakeTransitionSpeed * Time.deltaTime);
+            }
+           
+        }
+        else
+        {
+            //set all shaking to zero!
+            _currentIntensity = 0;
+            _currentFrequency = 0;
+        }
+
+        _virtualPerlin.m_AmplitudeGain = _currentIntensity;
+        _virtualPerlin.m_FrequencyGain = _currentFrequency;
     }
 }

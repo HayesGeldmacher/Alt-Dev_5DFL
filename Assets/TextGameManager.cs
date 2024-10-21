@@ -19,7 +19,10 @@ public class TextGameManager : MonoBehaviour
     public TextEncounter[] _encounterList;
     [SerializeField] private AudioSource _interactSound;
 
-
+    [Header("Black Boxes")]
+    [SerializeField] private GameObject _blackBox1;
+    [SerializeField] private GameObject _blackBox2;
+    [SerializeField] private GameObject _blackBox3;
 
     //if you must select all options, set _allOptionsList to 3
 
@@ -70,9 +73,24 @@ public class TextGameManager : MonoBehaviour
         {
          TextEncounter _oldEncounter = _currentEncounter;
         SetEncounter(_currentEncounter._answerPaths[_option]);
-        _oldEncounter._options.RemoveAt(_option);
-        _oldEncounter._answerPaths.RemoveAt(_option);
 
+            if (_oldEncounter._keepOption)
+            {
+                bool _shouldKeepOption = _oldEncounter._shouldKeepOption[_option];
+
+                if (!_shouldKeepOption)
+                {
+                _oldEncounter._options.RemoveAt(_option);
+                _oldEncounter._answerPaths.RemoveAt(_option);
+
+                }
+
+            }
+            else
+            {
+                _oldEncounter._options.RemoveAt(_option);
+                _oldEncounter._answerPaths.RemoveAt(_option);
+            }
         }
         else
         {
@@ -86,7 +104,9 @@ public class TextGameManager : MonoBehaviour
     private void SetEncounter(int _nextEncounterNum)
     {
 
-       
+       //Set option to -1 in order to fully quit the game!
+       if(_nextEncounterNum == -1){QuitGame();  return; }
+
             
          TextEncounter _newEncounter = _encounterList[_nextEncounterNum];
 
@@ -105,24 +125,31 @@ public class TextGameManager : MonoBehaviour
         if(_currentOptions > 0)
         {
             _optionText1.text = "1: " + _currentEncounter._options[0];
+            _blackBox1.SetActive(true);
 
             if(_currentOptions > 1)
             {
                 _optionText2.text = "2: " + _currentEncounter._options[1];
+                _blackBox2.SetActive(true);
 
                 if (_currentOptions > 2)
                 {
+                    _blackBox3.SetActive(true);
                     _optionText3.text = "3: " + _currentEncounter._options[2];
                 }
                 else
                 {
                     _optionText3.text = "";
+                    _blackBox3.SetActive(false);
                 }
             }
             else
             {
                 _optionText2.text = "";
                  _optionText3.text = "";
+
+                _blackBox2.SetActive(false);
+                _blackBox3.SetActive(false);
             }
         }
         else
@@ -130,6 +157,10 @@ public class TextGameManager : MonoBehaviour
             _optionText1.text = "Any Key To Continue";
             _optionText2.text = "";
             _optionText3.text = "";
+
+            _blackBox1.SetActive(true);
+            _blackBox2.SetActive(false);
+            _blackBox3.SetActive(false);
         }
 
         
@@ -141,5 +172,10 @@ public class TextGameManager : MonoBehaviour
     {
         _interactSound.pitch = Random.Range(0.8f, 1.1f);
         _interactSound.Play();
+    }
+
+    private void QuitGame()
+    {
+        Debug.Log("I FUCKIGN QUIT!");
     }
 }

@@ -167,14 +167,14 @@ public class BeepingManager : MonoBehaviour
             Debug.Log("DISTANCE: " + _distancePercentage);
 
             _currentPitch = (_distancePercentage);
+            float _volume = Mathf.Clamp(_currentPitch, 0.1f, 0.4f);
             _currentPitch = Mathf.Clamp(_currentPitch, 0.3f, 0.7f);
 
-
            // _beepAudio1.pitch = _currentPitch;
-            _beepAudio1.volume = _currentPitch;
+            _beepAudio1.volume = _volume;
 
            // _beepAudio2.pitch = _currentPitch;
-            _beepAudio2.volume = _currentPitch;
+            _beepAudio2.volume = _volume;
 
 
             _heartAnim.SetBool("scanned", true);
