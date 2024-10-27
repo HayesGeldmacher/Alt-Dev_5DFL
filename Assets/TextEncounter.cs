@@ -13,8 +13,12 @@ public class TextEncounter
 
     //if imageAnimSet is 0, it does NOT change the current image!
     public int _imageAnimSet = -1;
-    public bool _interactive = true; 
-   
+    public bool _interactive = true;
+
+    public bool _hasSound = false;
+    public AudioClip _soundClip;
+
+
     public List<int> _answerPaths;
 
     public bool _keepOption = false;

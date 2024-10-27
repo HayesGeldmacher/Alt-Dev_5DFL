@@ -34,6 +34,7 @@ public class TextGameManager : MonoBehaviour
     [SerializeField] private AudioSource _interactSound;
     [SerializeField] private AudioSource _staticAudio;
     [SerializeField] private AudioSource _quitAudio;
+    [SerializeField] private AudioSource _encounterSound;
 
     [Header("Black Boxes")]
     [SerializeField] private GameObject _blackBox1;
@@ -190,12 +191,23 @@ public class TextGameManager : MonoBehaviour
             _backGroundAnim.SetInteger("textProgress", _animSet);
         }
 
+        if (_currentEncounter._hasSound)
+        {
+            PlayEncounterSound(_currentEncounter._soundClip);
+        }
+
     }
 
     private void PlaySound()
     {
         _interactSound.pitch = Random.Range(0.8f, 1.1f);
         _interactSound.Play();
+    }
+
+    private void PlayEncounterSound(AudioClip _clip)
+    {
+        _encounterSound.clip = _clip;
+        _encounterSound.Play();
     }
 
     private void QuitGame()
