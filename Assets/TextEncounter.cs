@@ -18,6 +18,9 @@ public class TextEncounter
     public bool _hasSound = false;
     public AudioClip _soundClip;
 
+    //this option hides "any key to continue" for animation slides
+    public bool _hideOptions = false;
+
 
     public List<int> _answerPaths;
 

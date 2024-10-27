@@ -40,6 +40,7 @@ public class TextGameManager : MonoBehaviour
     [SerializeField] private GameObject _blackBox1;
     [SerializeField] private GameObject _blackBox2;
     [SerializeField] private GameObject _blackBox3;
+    [SerializeField] private GameObject _promptBox;
 
     //if you must select all options, set _allOptionsList to 3
 
@@ -50,7 +51,7 @@ public class TextGameManager : MonoBehaviour
     void Start()
     {
         _currentPassage = 0;
-        _staticAudio.Play();
+        
         StartGame();
     }
 
@@ -122,6 +123,11 @@ public class TextGameManager : MonoBehaviour
     private void SetEncounter(int _nextEncounterNum)
     {
 
+        if (!_staticAudio.isPlaying)
+        {
+            _staticAudio.Play();
+        }
+
         //Set option to -1 in order to fully quit the game!
         if (_nextEncounterNum == -1) { QuitGame(); return; }
 
@@ -172,11 +178,23 @@ public class TextGameManager : MonoBehaviour
         }
         else
         {
-            _optionText1.text = "Any Key To Continue";
+
+            if (_currentEncounter._hideOptions)
+            {
+                _optionText1.text = "";
+                _blackBox1.SetActive(false);
+                _promptBox.SetActive(false);
+            }
+            else
+            {
+                _optionText1.text = "Any Key To Continue";
+                _blackBox1.SetActive(true);
+                _promptBox.SetActive(true);
+
+            }
             _optionText2.text = "";
             _optionText3.text = "";
 
-            _blackBox1.SetActive(true);
             _blackBox2.SetActive(false);
             _blackBox3.SetActive(false);
         }
@@ -231,5 +249,10 @@ public class TextGameManager : MonoBehaviour
         PlayerController.instance._frozen = false;
         _camControl._frozen = false;
         _staticAudio.Stop();
+    }
+
+    public void EndScare()
+    {
+        QuitGame();
     }
 }
