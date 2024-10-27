@@ -7,6 +7,7 @@ public class ComputerGame : Interactable
 
     [SerializeField] private GameObject _textGame;
     [SerializeField] private Animator _textGameAnim;
+    [SerializeField] private TextGameManager _textGameManager;
 
     private bool _canInteract = true;
 
@@ -35,6 +36,7 @@ public class ComputerGame : Interactable
 
     private IEnumerator EnterGame()
     {
+        _textGameManager.StartGame();
         GameManager.instance.FreezePlayer(true);
         _textGame.SetActive(true);
 

@@ -51,8 +51,7 @@ public class TextGameManager : MonoBehaviour
     void Start()
     {
         _currentPassage = 0;
-        
-        StartGame();
+
     }
 
     // Update is called once per frame
