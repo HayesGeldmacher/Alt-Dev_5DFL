@@ -8,12 +8,14 @@ public class ComputerGame : Interactable
     [SerializeField] private GameObject _textGame;
     [SerializeField] private Animator _textGameAnim;
     [SerializeField] private TextGameManager _textGameManager;
+    private bool _hasExited = false;
 
     private bool _canInteract = true;
 
     
     private void Start()
     {
+        _textGameManager.enabled = false;
         base.Start();
     }
 
@@ -36,6 +38,7 @@ public class ComputerGame : Interactable
 
     private IEnumerator EnterGame()
     {
+        _textGameManager.enabled = true;
         _textGameManager.StartGame();
         GameManager.instance.FreezePlayer(true);
         _textGame.SetActive(true);
@@ -47,11 +50,19 @@ public class ComputerGame : Interactable
 
     private IEnumerator ExitGame()
     {
+        if (!_hasExited)
+        {
+            _hasExited = true;
+
         _textGameAnim.SetBool("visible", false);
 
         yield return new WaitForSeconds(1);
 
         GameManager.instance.FreezePlayer(false);
         _textGame.SetActive(false);
+
+
+        }
+        
     }
 }

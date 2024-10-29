@@ -57,6 +57,9 @@ public class TextGameManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+       
+        if(_ended) return;
+        
         if (Input.GetKeyDown(KeyCode.Alpha1) && _currentOptions > 0)
         {
             ChooseOption(0);
@@ -86,7 +89,8 @@ public class TextGameManager : MonoBehaviour
 
     public void ChooseOption(int _option)
     {
-
+        if (_ended) return;
+       
         if (_currentOptions > 0)
         {
             TextEncounter _oldEncounter = _currentEncounter;
@@ -248,6 +252,7 @@ public class TextGameManager : MonoBehaviour
         PlayerController.instance._frozen = false;
         _camControl._frozen = false;
         _staticAudio.Stop();
+        this.enabled = false;
     }
 
     public void EndScare()
