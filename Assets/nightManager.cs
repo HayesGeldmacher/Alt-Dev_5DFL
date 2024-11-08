@@ -71,8 +71,8 @@ public class nightManager : Interactable
         float _countNum = 0;
         foreach(var item in _Items)
         {
-                item.SetActive(false);
-                _countNum ++;
+              //  item.SetActive(false);
+             //   _countNum ++;
         }
 
         StartCoroutine(StartDialogue());
