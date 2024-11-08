@@ -10,7 +10,6 @@ public class RemoteNightKitchen : ShootTrigger
     
     public override void Interact()
     {
-
         _nightManage.CallExitKitchen();
         _nightManage.CallDataMosh();
         Destroy(_parentObject);
