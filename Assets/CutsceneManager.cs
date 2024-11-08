@@ -10,12 +10,25 @@ public class CutsceneManager : MonoBehaviour
     [SerializeField] private Animator _clickAnim;
     private bool _canStart = false;
     private bool _hasStarted = false;
-    
-    
+    [SerializeField] private AudioSource _interactSound;
+    [SerializeField] private AudioSource _doorSound;
+    [SerializeField] private Animator _vhsAnim;
+
+    [Header("Static Audio Fade")]
+    [SerializeField] private AudioSource _staticAudio;
+    private float _startingVol;
+    [SerializeField] private float _fadeSpeed;
+    private bool _fading = false;
+    private float _currentVol;
+     
     // Start is called before the first frame update
     void Start()
     {
+        Cursor.visible = false;
+        Cursor.lockState = CursorLockMode.Locked;
         StartCoroutine(WaitForStart());
+        _startingVol = _staticAudio.volume;
+        _currentVol = _startingVol;
     }
 
     // Update is called once per frame
@@ -28,6 +41,13 @@ public class CutsceneManager : MonoBehaviour
                 _hasStarted = true;
                 StartSequence();
             }
+        }
+
+        if (_fading)
+        {
+             _currentVol = Mathf.Lerp(_currentVol, 0, _fadeSpeed * Time.deltaTime);
+            _staticAudio.volume = _currentVol;
+            
         }
     }
 
@@ -44,10 +64,21 @@ public class CutsceneManager : MonoBehaviour
     {
         _doorAnim.SetTrigger("start");
         _clickAnim.SetTrigger("click");
+        _doorSound.Play();
+        _interactSound.Play();
     }
 
     public void LoadNextScene()
     {
         SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
     }
+
+    public void KillVisualNoise()
+    {
+        _vhsAnim.SetTrigger("disappear");
+        _fading = true;
+    }
+
+
+
 }
