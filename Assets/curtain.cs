@@ -10,6 +10,7 @@ public class curtain : Interactable
     [SerializeField] private GameObject _mannequin;
     [SerializeField] private AudioSource _curtainAudio;
 
+
     // Start is called before the first frame update
     void Start()
     {
