@@ -33,8 +33,8 @@ public class ValveMoaningMachine : Interactable
     public override void Start()
     {
         base.Start();
-        _originalRot = transform.rotation;
-        _distance = transform.rotation * Quaternion.Inverse(_targetRot);
+        _originalRot = transform.localRotation;
+        _distance = transform.localRotation * Quaternion.Inverse(_targetRot);
         _targetRot = new Quaternion(_originalRot.x, _originalRot.y, _targetZRot, _originalRot.w);
         
     }
@@ -94,13 +94,13 @@ public class ValveMoaningMachine : Interactable
 
             float speed = 0.005f;
 
-            transform.rotation = Quaternion.Lerp(_originalRot, _targetRot, _timeCount * speed);
+            transform.localRotation = Quaternion.Lerp(_originalRot, _targetRot, _timeCount * speed);
             _timeCount += Time.deltaTime;
 
           
         }
 
-        _distance = transform.rotation * Quaternion.Inverse(_targetRot);
+        _distance = transform.localRotation * Quaternion.Inverse(_targetRot);
        if(Mathf.Abs(_distance.z) <= 100)
         {
             Debug.Log("WORKED!");
