@@ -36,7 +36,7 @@ public class PhoneNight1 : Interactable
     public float _currentMorningDialogue = 0;
     public float _totalMorningDialogue;
     [SerializeField] BedDayTime _bed;
-
+ 
     [SerializeField] private PlayerController _controller;
     [SerializeField] private CameraController _cam;
 
@@ -44,14 +44,25 @@ public class PhoneNight1 : Interactable
 
     [SerializeField] private GameObject _tvBroken;
     [SerializeField] private GameObject _tvWorking;
+    private bool _interactedLast = false;
 
 
     [Header("NewNightStuff")]
     private bool _interactedFirst = false;
-    private bool _interactedLast = false;
     private bool _canInteract = true;
     [SerializeField] private GameObject _wallApparition;
     [SerializeField] private GameObject _doorWall;
+    [SerializeField] private int _dialogueCount;
+    [SerializeField] private int _currentDialogueLine = 0;
+    [SerializeField] private List<AudioClip> _gargleSounds = new List<AudioClip>();
+    [SerializeField] private bool _gargles = false;
+    [SerializeField] private AudioSource _gargleSource;
+    [SerializeField] private float _totalDialogue = 5;
+
+    [Header("DisappearShit")]
+    [SerializeField] private GameObject _showerBlocker;
+    [SerializeField] private GameObject _stairWellBlocker;
+    [SerializeField] private GameObject _showerDoorAppear;
 
 
 
@@ -59,7 +70,8 @@ public class PhoneNight1 : Interactable
     private void Start()
     {
         //base.Start();
-        base.Start();
+        base.Start();_currentDialogueLine = 0;
+        _totalDialogue = base._dialogue._sentences.Length;
         _dialogueManager = GameManager.instance.GetComponent<DialogueManager>();
         _player = PlayerController.instance.transform;
         _defaultDialogue = base._dialogue;
@@ -91,130 +103,79 @@ public class PhoneNight1 : Interactable
 
     }
 
-    //writing "virtual" in front of a function means that children scripts can add to/edit the function
     public override void Interact()
     {
+        
         if (_ringSound.isPlaying)
         {
             _ringSound.Stop();
         }
 
-        if (!_canInteract) return;
+        //if (!_canInteract) return;
 
+
+
+        if(_currentDialogueLine >= _totalDialogue)
+        {
+             EndDialogue();
+            Debug.Log("ended Dialogue!");
+            _currentDialogueLine = 0;
+        }
+        else
+        {
+        base.Interact();
         base.currentDialogueTime = base._dialogueTimer;
+       // TriggerDialogue(_defaultDialogue);
+        _controller._frozen = true;
 
-
-        if (!_interactedLast)
-        {
-            if (_interactedFirst)
+            if (!_interactedFirst)
             {
-                TriggerDialogue(_phoneDialogueMorning);
-                _startMorning = true;
-                _currentMorningDialogue += 1;
-
-                _controller._frozen = true;
-
+                _interactedFirst = true;
+                DisappearHouse();
             }
-            else
+
+
+            if (_gargles)
             {
-               
-                
-                
-                
-                _currentMorningDialogue += 1;
-                if (_currentMorningDialogue >= _totalMorningDialogue)
-                {
-                    EndDialogue();
-                }
-                else
-                {
-                    _dialogueManager.DisplayNextSentence();
-
-                }
-
+                PlaySound();
+                Debug.Log("PLAYED SOUND!");
             }
+            _currentDialogueLine += 1;
+
         }
 
-        else if (_evidence._hasEvidence)
-        {
-
-            diaNum += 1;
-            if (diaNum >= 5)
-            {
-                EndDialogue();
-                diaNum = 0;
-            }
-            else
-            {
-                _controller._frozen = true;
-                TriggerDialogue(_phoneDialogue);
-
-            }
+        //check if dialogue
 
 
-        }
-        else
-        {
-
-            TriggerDialogue(_defaultDialogue);
-        }
     }
 
-    private void TriggerDialogue(Dialogue _dialogue)
+    private void DisappearHouse()
     {
-
-
-        if (!_doneMorning)
-        {
-            Interactable _interactable = transform.GetComponent<Interactable>();
-            _dialogueManager.StartDialogue(_dialogue, _interactable);
-        }
-        if (!_doneMorning) return;
-
-
-        if (_dialogue == _phoneDialogue)
-        {
-            _evidence._hasFoundPhone = true;
-
-        }
-
-        if (!base._startedTalking)
-        {
-            _hasPlayed = false;
-            if (_dialogue == _phoneDialogue)
-            {
-                if (_garble1)
-                {
-                    // _garble1.Play();
-                }
-            }
-
-            Interactable _interactable = transform.GetComponent<Interactable>();
-            _dialogueManager.StartDialogue(_dialogue, _interactable);
-            base._startedTalking = true;
-        }
-        else
-        {
-            _dialogueManager.DisplayNextSentence();
-
-            if (_dialogue == _phoneDialogue && !_hasPlayed)
-            {
-
-                _anim.SetTrigger("fade");
-                if (_garble2)
-                {
-                    _garble2.Play();
-                }
-                _hasPlayed = true;
-
-            }
-
-        }
-
+        _showerDoorAppear.SetActive(true);
+        _stairWellBlocker.SetActive(false);
+        _showerBlocker.SetActive(false);
     }
+
 
    
 
+
+    private void TriggerDialogue(Dialogue _dialogue)
+    {
+        Interactable _interactable = transform.GetComponent<Interactable>();
+
+        if (!base._startedTalking)
+        {
+        base._startedTalking = true;
+        _dialogueManager.StartDialogue(_dialogue, _interactable);
+
+        }
+        else
+        {
+         _dialogueManager.DisplayNextSentence();
+        }
+
+    }
 
     public override void EndDialogue()
     {
@@ -224,19 +185,6 @@ public class PhoneNight1 : Interactable
         _cam._canInteract = true;
         _controller._frozen = false;
 
-        if (!_doneMorning)
-        {
-            _canInteract = false;
-            StartCoroutine(WaitTime());
-            _doneMorning = true;
-            _cameraPickup.SetActive(true);
-        }
-
-    }
-
-    private void SunDown()
-    {
-
     }
 
     private IEnumerator WaitTime()
@@ -244,6 +192,22 @@ public class PhoneNight1 : Interactable
         yield return new WaitForSeconds(1);
         _canInteract = true;
 
+    }
+
+    private void PlaySound()
+    {
+        
+        int _length = _gargleSounds.Count;
+        Debug.Log("SOUND NUMBA: " +  _length + " DIALOGUE NUMBA: " + _currentDialogueLine);
+
+        if((_currentDialogueLine + 1) <= _length)
+        {
+        AudioClip _clip = _gargleSounds[_currentDialogueLine];
+        _gargleSource.clip = _clip;
+        _gargleSource.Play();
+
+        }
+        
     }
 
 }
