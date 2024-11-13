@@ -45,7 +45,7 @@ public class CameraZoom : MonoBehaviour
 
             if (!_canFlash)
             {
-                _flashIconAnim.SetBool("present", true);
+               // _flashIconAnim.SetBool("present", true);
                 _canFlash = true;
             }
             
@@ -53,7 +53,7 @@ public class CameraZoom : MonoBehaviour
             {
                 _currentFlashCharge = 0;
                 _lightAnim.SetTrigger("flash");
-                _flashIconAnim.SetBool("present", false);
+               // _flashIconAnim.SetBool("present", false);
                 _flashSound.Play();
                 _canFlash = false;
             }

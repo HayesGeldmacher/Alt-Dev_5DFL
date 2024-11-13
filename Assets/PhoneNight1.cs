@@ -63,6 +63,7 @@ public class PhoneNight1 : Interactable
     [SerializeField] private GameObject _showerBlocker;
     [SerializeField] private GameObject _stairWellBlocker;
     [SerializeField] private GameObject _showerDoorAppear;
+    [SerializeField] private GameObject _HallwayBedroomBlocker;
 
 
 
@@ -154,6 +155,8 @@ public class PhoneNight1 : Interactable
         _showerDoorAppear.SetActive(true);
         _stairWellBlocker.SetActive(false);
         _showerBlocker.SetActive(false);
+        _HallwayBedroomBlocker.SetActive(false);
+
     }
 
 
@@ -202,6 +205,7 @@ public class PhoneNight1 : Interactable
 
         if((_currentDialogueLine + 1) <= _length)
         {
+
         AudioClip _clip = _gargleSounds[_currentDialogueLine];
         _gargleSource.clip = _clip;
         _gargleSource.Play();
