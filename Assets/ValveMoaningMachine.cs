@@ -28,6 +28,7 @@ public class ValveMoaningMachine : Interactable
     [SerializeField] private GameObject _disappearObject;
 
 
+
     // Start is called before the first frame update
     public override void Start()
     {

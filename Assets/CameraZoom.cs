@@ -17,6 +17,8 @@ public class CameraZoom : MonoBehaviour
     [SerializeField] private Animator _flashIconAnim;
     [SerializeField] private Animator _lightAnim;
     [SerializeField] private AudioSource _flashSound;
+    [SerializeField] private Light _flashLight;
+    private bool _flashOn = false;
     private bool _canFlash = false;
     private float _currentZoom;
     [HideInInspector] public bool _isZooming;
@@ -40,8 +42,7 @@ public class CameraZoom : MonoBehaviour
         
         if (!_camController._hasCamera) { return; }
 
-        if(_currentFlashCharge > 7)
-        {
+
 
             if (!_canFlash)
             {
@@ -49,20 +50,27 @@ public class CameraZoom : MonoBehaviour
                 _canFlash = true;
             }
             
-            if (Input.GetMouseButton(2) && !_handler._photoOpen)
+            if (Input.GetMouseButtonDown(2) && !_handler._photoOpen)
             {
-                _currentFlashCharge = 0;
-                _lightAnim.SetTrigger("flash");
-               // _flashIconAnim.SetBool("present", false);
-                _flashSound.Play();
-                _canFlash = false;
-            }
 
-        }
-        else
-        {
-            _currentFlashCharge += Time.deltaTime;
-        }
+                _flashSound.Play();
+                if (!_flashOn)
+                {
+                    _flashLight.enabled = false;
+                    _flashOn = true;
+                }
+                else
+                {
+                    _flashLight.enabled = true;
+                    _flashOn = false;
+                }
+                
+                //   _currentFlashCharge = 0;
+              //  _lightAnim.SetTrigger("flash");
+               // _flashIconAnim.SetBool("present", false);
+              //  _flashSound.Play();
+             //   _canFlash = false;
+            }
 
         if (Input.GetMouseButton(1) && !_handler._photoOpen)
         {
