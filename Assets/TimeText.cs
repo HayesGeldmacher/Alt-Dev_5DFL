@@ -6,10 +6,11 @@ using TMPro;
 public class TimeText : MonoBehaviour
 {
     [SerializeField] private TMP_Text _timeText;
-    private float _currentTime;
-    private float _seconds;
-    private float _minutes;
-    private float _hours;
+    [SerializeField] private float _speed = 1;
+    public float _currentTime;
+    public float _seconds;
+    public float _minutes;
+    public float _hours;
 
     // Start is called before the first frame update
     void Start()
@@ -22,8 +23,8 @@ public class TimeText : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        _seconds += Time.deltaTime * 0.01f;
-        if(_seconds > 59)
+        _seconds += Time.deltaTime * 0.01f * _speed;
+        if(_seconds > 0.59f)
         {
             _minutes += 1;
             _seconds = 0;
@@ -35,8 +36,10 @@ public class TimeText : MonoBehaviour
             _seconds = 0;
         }
 
-        string _totalTime = _hours.ToString("#0") + ":" + _minutes.ToString("00") + ":" + _seconds.ToString("00.00");
-       _timeText.text = _totalTime;
+
+        string _totalTime = _hours.ToString("#0") + ":" + _minutes.ToString("00") + ":" +  _seconds.ToString(".00");
+        // string _totalTime = _hours.ToString("#0") + ":" + _minutes.ToString("00") + ":" + _seconds.ToString("00.00");
+        _timeText.text = _totalTime;
         
     }
 }
