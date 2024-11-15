@@ -81,6 +81,8 @@ public class Interactable : MonoBehaviour
     //writing "virtual" in front of a function means that children scripts can add to/edit the function
     public virtual void Interact()
     {
+        Debug.Log(gameObject.name);
+        
         if (_canTalk)
         {
             if (_important)
