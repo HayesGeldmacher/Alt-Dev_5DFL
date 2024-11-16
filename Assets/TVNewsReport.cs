@@ -6,14 +6,15 @@ public class TVNewsReport : Interactable
 {
 
     [SerializeField] private Animator _tvAnimation;
-    [SerializeField] private int _dialogueLines = 0;
     [SerializeField] private CameraController _camController;
     private bool _canInteract = true;
     private bool _startedInteraction = false;
 
 
     [SerializeField] private List<AudioClip> _soundClips = new List<AudioClip>();
+    [SerializeField] private AudioSource _backgroundAudio;
     [SerializeField] private AudioSource _audio;
+    public int _dialogueLines = 0;
 
     // Start is called before the first frame update
     void Start()
@@ -30,12 +31,18 @@ public class TVNewsReport : Interactable
         {
             if (_startedInteraction)
             {
-                base.Interact();
-                PlaySound();
+
+                if (_dialogueLines <= 3)
+                {
+                    base.Interact();
+                    PlaySound();
+                }
 
                 if(_dialogueLines == 3)
                 {
                     _tvAnimation.SetTrigger("stare");
+                    _backgroundAudio.loop = false;
+                    _backgroundAudio.Stop();
                 }
                 else if(_dialogueLines > 3)
                 {
@@ -47,7 +54,7 @@ public class TVNewsReport : Interactable
                 {
                     _dialogueLines = 0;
 
-                    _startedInteraction = false;
+                    StartCoroutine(InteractDelay());
                     _camController._frozen = false;
                     PlayerController.instance._frozen = false;
                 }
@@ -69,13 +76,20 @@ public class TVNewsReport : Interactable
 
     public override void Interact()
     {
+        if (!_startedInteraction)
+        {
+        
+        PlaySound();
+        _backgroundAudio.Play();
+        _backgroundAudio.loop = true;
              base.Interact();
              _startedInteraction = true;
         _tvAnimation.SetTrigger("play");
         _camController._frozen = true;
         PlayerController.instance._frozen = true;
                 _dialogueLines++;
-        PlaySound();
+
+        }
 
 
     }
@@ -87,9 +101,21 @@ public class TVNewsReport : Interactable
 
     private void PlaySound()
     {
-        
+        if (_dialogueLines < _soundClips.Count)
+        {
         AudioClip _chosenClip = _soundClips[_dialogueLines];
+        _audio.clip = _chosenClip;
         _audio.Play();
+
+        }
+
+    }
+
+    private IEnumerator InteractDelay()
+    {
+        yield return new WaitForSeconds(1);
+        _startedInteraction = false;
+        base.EndDialogue();
     }
 
 
