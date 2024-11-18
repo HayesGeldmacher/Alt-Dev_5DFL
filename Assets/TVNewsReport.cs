@@ -14,6 +14,8 @@ public class TVNewsReport : Interactable
     [SerializeField] private List<AudioClip> _soundClips = new List<AudioClip>();
     [SerializeField] private AudioSource _backgroundAudio;
     [SerializeField] private AudioSource _audio;
+    [SerializeField] private AudioSource _turnOffTV;
+    [SerializeField] private AudioSource _interactSound;
     public int _dialogueLines = 0;
 
     // Start is called before the first frame update
@@ -29,8 +31,10 @@ public class TVNewsReport : Interactable
 
         if (Input.GetMouseButtonDown(0) && Time.timeScale > 0)
         {
+            
             if (_startedInteraction)
             {
+                _interactSound.Play();
 
                 if (_dialogueLines <= 3)
                 {
@@ -57,6 +61,7 @@ public class TVNewsReport : Interactable
                     StartCoroutine(InteractDelay());
                     _camController._frozen = false;
                     PlayerController.instance._frozen = false;
+                    _turnOffTV.Play();
                 }
                 else
                 {
