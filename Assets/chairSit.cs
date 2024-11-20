@@ -4,7 +4,8 @@ using UnityEngine;
 
 public class chairSit : Interactable
 {
-
+    [SerializeField] private GameObject _playerParent;
+    [SerializeField] private Transform _newSpawnPos;
     [SerializeField] private Transform _camHolder;
     [SerializeField] private BoxCollider _playerBC;
     [SerializeField] private BoxCollider _chairBC;
@@ -19,6 +20,8 @@ public class chairSit : Interactable
     [SerializeField] private bool _sittingAnim = false;
     [SerializeField] private bool _standingAnim = false;
     [SerializeField] private float _distance;
+    [SerializeField] private AudioSource _chairAudio;
+    [SerializeField] private AudioSource _chimesAudio;
 
     [Header("PreRequisite Variables")]
     [SerializeField] private bool _bulbOff = false;
@@ -27,6 +30,10 @@ public class chairSit : Interactable
     [SerializeField] private Door _door;
     [SerializeField] private bool _flashOff = false;
     [SerializeField] CameraZoom _camZoom;
+
+    [SerializeField] private List<GameObject> _disappearObjects = new List<GameObject>();
+    [SerializeField] private List<GameObject> _appearObjects = new List<GameObject>();
+
 
     [SerializeField] private float _totalSitTime;
     [SerializeField] private float _currentSitTime;
@@ -38,6 +45,7 @@ public class chairSit : Interactable
     {
         base.Start();
         gameObject.SetActive(false);
+        _totalSitTime = _chairAudio.clip.length + 6;
     }
 
     public override void Interact()
@@ -62,12 +70,23 @@ public class chairSit : Interactable
     private void EnterSit()
     {
         _camHolder.parent = null;
-        _sat = true;
         _sittingAnim = true;
         PlayerController.instance._frozen = true;
         _charController.enabled = false;
         _playerBC.enabled = false;
         _chairBC.enabled = false;
+
+
+        if (_flashOff)
+        {
+        StartCoroutine(StartAudioTrack());
+        _sat = true;
+        }
+        else
+        {
+            base._dialogue._sentences[0] = "Flashlight off too, pal";
+            base.Interact();
+        }
         //_camControl._frozen = true;
     }
 
@@ -89,7 +108,12 @@ public class chairSit : Interactable
 
             if(_distance <= 0.1f)
             {
-                _sittingAnim = false;
+                if (!_sat)
+                {
+                  StartCoroutine(StartAudioTrack());
+                  _sat = true;
+                  _sittingAnim = false;
+                }
             }
 
         }
@@ -113,18 +137,20 @@ public class chairSit : Interactable
             _currentSitTime += Time.deltaTime;
             if(_currentSitTime > _totalSitTime)
             {
-                FinishApparition();
+               StartCoroutine(FinishApparition());
             }
         }
     }
 
 
-    private void FinishApparition()
+    private IEnumerator FinishApparition()
     {
-        _teddyBear.SetActive(true);
-        _camHolder.parent = _camHolderParent;
         _sat = false;
+        _teddyBear.SetActive(true);
+        _chimesAudio.Play();
+        yield return new WaitForSeconds(2f);
         _sittingAnim = false;
+        _camHolder.parent = _camHolderParent;
         _standingAnim = true;
 
 
@@ -139,6 +165,47 @@ public class chairSit : Interactable
         _charController.enabled = true;
         _playerBC.enabled = true;
         _chairBC.enabled = true;
+        TeleportPlayer();
 
     }
+
+    private IEnumerator StartAudioTrack()
+    {
+        yield return new WaitForSeconds(3);
+        _chairAudio.Play();
+    }
+
+    private void TeleportPlayer()
+    {
+        AppearObjects();
+        _playerParent.SetActive(false);
+        //_controller._frozen = true;
+        //_char.enabled = false;
+        _playerParent.transform.position = _newSpawnPos.position;
+        //Debug.Break();
+        _playerParent.SetActive(true);
+        PlayerController.instance._frozen = false;
+        DisappearObjects();
+
+    }
+
+
+    private void AppearObjects()
+    {
+
+        foreach(GameObject _object in _appearObjects)
+        {
+            _object.SetActive(true);
+        }
+    }
+
+    private void DisappearObjects()
+    {
+        foreach(GameObject _object in _disappearObjects)
+        {
+            _object.SetActive(false);
+        }
+
+    }
+
 }
