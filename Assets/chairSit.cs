@@ -5,12 +5,140 @@ using UnityEngine;
 public class chairSit : Interactable
 {
 
-    [SerializeField] private transform _camera;
+    [SerializeField] private Transform _camHolder;
+    [SerializeField] private BoxCollider _playerBC;
+    [SerializeField] private BoxCollider _chairBC;
+    [SerializeField] private CharacterController _charController;
+    [SerializeField] private CameraController _camControl;
+    [SerializeField] private Transform _anchorPoint;
+    [SerializeField] private Transform _lookPoint;
+    [SerializeField] private Transform _camHolderParent;
+
+
+    [SerializeField] private bool _sat = false;
+    [SerializeField] private bool _sittingAnim = false;
+    [SerializeField] private bool _standingAnim = false;
+    [SerializeField] private float _distance;
+
+    [Header("PreRequisite Variables")]
+    [SerializeField] private bool _bulbOff = false;
+    [SerializeField] private LightSwitch _lightSwitch;
+    [SerializeField] private bool _doorClosed = false;
+    [SerializeField] private Door _door;
+    [SerializeField] private bool _flashOff = false;
+    [SerializeField] CameraZoom _camZoom;
+
+    [SerializeField] private float _totalSitTime;
+    [SerializeField] private float _currentSitTime;
+
+    [SerializeField] private GameObject _teddyBear;
+
+
+    private void Start()
+    {
+        base.Start();
+        gameObject.SetActive(false);
+    }
 
     public override void Interact()
     {
-        base.Interact();
+        if (!_sat)
+        {
+          if(_bulbOff && _doorClosed)
+            {
+                EnterSit();
+            }
+            else
+            {
+                 base.Interact();
+               
+            }
+            
+        }
+        
+
+    }
+
+    private void EnterSit()
+    {
+        _camHolder.parent = null;
+        _sat = true;
+        _sittingAnim = true;
         PlayerController.instance._frozen = true;
+        _charController.enabled = false;
+        _playerBC.enabled = false;
+        _chairBC.enabled = false;
+        //_camControl._frozen = true;
+    }
+
+    private void Update()
+    {
+        base.Update();
+        _bulbOff = !_lightSwitch._on;
+        _doorClosed = !_door._isOpen;
+        _flashOff = _camZoom._flashOn;
+        
+        
+        
+        if (_sittingAnim)
+        {
+            _camHolder.position = Vector3.Lerp(_camHolder.position, _anchorPoint.position, 1 * Time.deltaTime);
+            _camHolder.rotation = Quaternion.Lerp(_camHolder.rotation, _lookPoint.rotation, 1 * Time.deltaTime);
+
+            _distance = Vector3.Distance(_camHolder.position, _anchorPoint.position);
+
+            if(_distance <= 0.1f)
+            {
+                _sittingAnim = false;
+            }
+
+        }
+        else if(_standingAnim)
+        {
+            _camHolder.localPosition = Vector3.Lerp(_camHolder.localPosition, Vector3.zero, 1 * Time.deltaTime);
+            _camHolder.localRotation = Quaternion.Lerp(_camHolder.localRotation, new Quaternion(0,0,0,0), 1 * Time.deltaTime);
+
+            _distance = Vector3.Distance(_camHolder.localPosition, Vector3.zero);
+
+            if (_distance <= 0.2f)
+            {
+               _standingAnim = false;
+                Reattach2Body();
+
+            }
+        }
+
+        if (_sat)
+        {
+            _currentSitTime += Time.deltaTime;
+            if(_currentSitTime > _totalSitTime)
+            {
+                FinishApparition();
+            }
+        }
+    }
+
+
+    private void FinishApparition()
+    {
+        _teddyBear.SetActive(true);
+        _camHolder.parent = _camHolderParent;
+        _sat = false;
+        _sittingAnim = false;
+        _standingAnim = true;
+
+
+
+    }
+
+    private void Reattach2Body()
+    {
+        _camHolder.localRotation = new Quaternion(0, 0, 0, 0);
+        _camHolder.localPosition = new Vector3(0, 0, 0);
+        PlayerController.instance._frozen = false;
+        _charController.enabled = true;
+        _playerBC.enabled = true;
+        _chairBC.enabled = true;
 
     }
 }

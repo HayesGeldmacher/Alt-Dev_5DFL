@@ -16,7 +16,7 @@ public class ScreenshotHandler : MonoBehaviour
     [SerializeField] private LayerMask _checkMask;
     [SerializeField] private Transform _checkPoint;
     [SerializeField] private EvidenceManager _evidenceManager;
-
+    [SerializeField] private Animator _blackAnim;
     [SerializeField] private RawImage _photo;
     [SerializeField] private Animator _photoAnim;
     [SerializeField] private Animator _iconAnim;
@@ -142,6 +142,7 @@ public class ScreenshotHandler : MonoBehaviour
 
     private IEnumerator SetMonsterScreen()
     {
+        
         yield return new WaitForSeconds(1f);
         _showPhoto = false;
         Debug.Log("STARTEDMONSTER1!");
@@ -165,13 +166,13 @@ public class ScreenshotHandler : MonoBehaviour
 
         _hasPhoto = true;
 
+        _iconAnim.SetTrigger("evilappear");
+        _evilCamDing.Play();
         yield return new WaitForSeconds(2f);
         //_photoAnim.SetTrigger("fade");
         yield return new WaitForSeconds(0.1f);
         //_iconAnim.SetTrigger("appear");
-        _iconAnim.SetTrigger("evilappear");
-        _evilCamDing.Play();
-
+       
        
     }
 
@@ -341,6 +342,7 @@ public class ScreenshotHandler : MonoBehaviour
         _photoOpen = false;
         _showPhoto = true;
         _photoAnim.SetTrigger("fade");
+        _blackAnim.SetBool("blinkBlack", false);
         StartCoroutine(IconBump());
         _hasPhoto = false;
     }

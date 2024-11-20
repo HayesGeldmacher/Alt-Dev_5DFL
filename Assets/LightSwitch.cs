@@ -7,7 +7,7 @@ public class LightSwitch : Interactable
 {
     [SerializeField] private Animator _switchAnim;
     [SerializeField] private CeilingLight _ceilingLight;
-    [SerializeField] private bool _on = false;
+    public bool _on = false;
     private AudioSource _click;
 
     [Header("GARAGE SHIT")]

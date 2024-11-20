@@ -15,7 +15,8 @@ public class MonsterFace : Interactable
     [SerializeField] private ScreenshotHandler _handler;
     [SerializeField] private Animator _cursorAnim;
     [SerializeField] private nightManager _nightManage;
-    [SerializeField] private GameObject _kitchenLight;
+    [SerializeField] private Animator _blackAnim;
+    [SerializeField] private GameObject _chair;
     private bool _dead = false;
 
     // Start is called before the first frame update
@@ -77,6 +78,8 @@ public class MonsterFace : Interactable
 
     private IEnumerator StartTalking()
     {
+        PlayerController.instance._frozen = true;
+        _blackAnim.SetBool("blinkBlack", true);
         yield return new WaitForSeconds(0.5f);
         _anim.SetTrigger("Start");
         _coughSound.Play();
@@ -105,21 +108,20 @@ public class MonsterFace : Interactable
         
     private void EndTalk()
     {
+        _chair.SetActive(true);
         _dead = true;
         _anim.SetTrigger("End");
         _coughSound.Play();
         _handler.ResetPicture();
         _nightManage.FreePlayer();
         base.EndDialogue();
+        PlayerController.instance._frozen = false;
         StartCoroutine(StartDeath());
     }
 
     private IEnumerator StartDeath()
     {
-        yield return new WaitForSeconds(2f);
-        _kitchenLight.SetActive(true);
-        _kitchenLight.GetComponent<Animator>().SetTrigger("appear");
-        yield return new WaitForSeconds(1f);
+        yield return new WaitForSeconds(3f);
         Destroy(gameObject);
     }
 
