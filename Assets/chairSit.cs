@@ -14,8 +14,6 @@ public class chairSit : Interactable
     [SerializeField] private Transform _anchorPoint;
     [SerializeField] private Transform _lookPoint;
     [SerializeField] private Transform _camHolderParent;
-
-
     [SerializeField] private bool _sat = false;
     [SerializeField] private bool _sittingAnim = false;
     [SerializeField] private bool _standingAnim = false;
@@ -30,6 +28,8 @@ public class chairSit : Interactable
     [SerializeField] private Door _door;
     [SerializeField] private bool _flashOff = false;
     [SerializeField] CameraZoom _camZoom;
+    public bool _firstInteracted = false;
+    private bool _flashOffLastFrame = false;
 
 
 
@@ -42,6 +42,8 @@ public class chairSit : Interactable
 
     [SerializeField] private GameObject _teddyBear;
 
+    private bool _startedAudio = false;
+
 
     private void Start()
     {
@@ -52,20 +54,24 @@ public class chairSit : Interactable
 
     public override void Interact()
     {
-        if (!_sat)
+        if (!_firstInteracted)
         {
-          if(_bulbOff && _doorClosed)
-            {
-                EnterSit();
-            }
-            else
-            {
-                 base.Interact();
-               
-            }
+            _firstInteracted = true;
             
+            if (!_sat)
+            {
+              if(_bulbOff && _doorClosed)
+                {
+                    EnterSit();
+                }
+                else
+                {
+                     base.Interact();
+               
+                }
+            
+            }
         }
-        
 
     }
 
@@ -77,12 +83,12 @@ public class chairSit : Interactable
         _charController.enabled = false;
         _playerBC.enabled = false;
         _chairBC.enabled = false;
+        _sat = true;
 
 
         if (_flashOff)
         {
-        StartCoroutine(StartAudioTrack());
-        _sat = true;
+            StartCoroutine(StartAudioTrack());
         }
         else
         {
@@ -94,7 +100,6 @@ public class chairSit : Interactable
 
     private void Update()
     {
-        base.Update();
         _bulbOff = !_lightSwitch._on;
         _doorClosed = !_door._isOpen;
         _flashOff = _camZoom._flashOn;
@@ -110,18 +115,14 @@ public class chairSit : Interactable
 
             if(_distance <= 0.1f)
             {
-                if (!_sat)
-                {
-                  StartCoroutine(StartAudioTrack());
-                  _sat = true;
-                  _sittingAnim = false;
-                }
+                _sittingAnim = false;
+                Debug.Log("ENDED SIT ANIMATION");
             }
 
         }
         else if(_standingAnim)
         {
-            _camHolder.localPosition = Vector3.Lerp(_camHolder.localPosition, Vector3.zero, 1 * Time.deltaTime);
+             _camHolder.localPosition = Vector3.Lerp(_camHolder.localPosition, Vector3.zero, 1 * Time.deltaTime);
             _camHolder.localRotation = Quaternion.Lerp(_camHolder.localRotation, new Quaternion(0,0,0,0), 1 * Time.deltaTime);
 
             _distance = Vector3.Distance(_camHolder.localPosition, Vector3.zero);
@@ -136,19 +137,58 @@ public class chairSit : Interactable
 
         if (_sat)
         {
-            _currentSitTime += Time.deltaTime;
-            if(_currentSitTime > _totalSitTime)
+
+            if (_flashOff)
             {
-               StartCoroutine(FinishApparition());
+                _currentSitTime += Time.deltaTime;
+                if(_currentSitTime > _totalSitTime)
+                {
+                    _sat = false;
+                    StartCoroutine(FinishApparition());
+                }
+                else
+                {
+                    if (!_startedAudio)
+                    {
+                       StartCoroutine(StartAudioTrack());
+                    }
+                    else
+                    {
+                        if ((!_chairAudio.isPlaying) && (_chairAudio.time != 0))
+                        {
+                            _chairAudio.Play();
+                        }
+                    }
+
+                    //checking to turn off dialogue!
+                    if (_flashOffLastFrame == false)
+                    {
+                        EndDialogue();
+                    }
+
+                }
+               
+
             }
+            else
+            {
+                if (_startedAudio && _chairAudio.isPlaying)
+                {
+                    _chairAudio.Pause();
+                }
+            }
+            
         }
+
+        _flashOffLastFrame = _camZoom._flashOn;
     }
 
 
     private IEnumerator FinishApparition()
     {
-        _sat = false;
+        
         _teddyBear.SetActive(true);
+        _chairAudio.Stop();
         _chimesAudio.Play();
         yield return new WaitForSeconds(2f);
         _sittingAnim = false;
@@ -170,9 +210,14 @@ public class chairSit : Interactable
         TeleportPlayer();
 
     }
+    public override void EndDialogue()
+    {
+        base._manager.EndDialogue();
+    }
 
     private IEnumerator StartAudioTrack()
     {
+        _startedAudio = true;
         yield return new WaitForSeconds(3);
         _chairAudio.Play();
     }

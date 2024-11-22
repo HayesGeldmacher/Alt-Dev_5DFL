@@ -18,6 +18,10 @@ public class TVNewsReport : Interactable
     [SerializeField] private AudioSource _interactSound;
     public int _dialogueLines = 0;
 
+
+    [SerializeField] private GameObject _currentTelevision;
+    [SerializeField] private GameObject _frozenTelevision;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -62,6 +66,8 @@ public class TVNewsReport : Interactable
                     _camController._frozen = false;
                     PlayerController.instance._frozen = false;
                     _turnOffTV.Play();
+                    _currentTelevision.SetActive(false);
+                    _frozenTelevision.SetActive(true);
                 }
                 else
                 {
