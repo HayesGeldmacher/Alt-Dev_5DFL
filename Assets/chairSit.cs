@@ -31,6 +31,8 @@ public class chairSit : Interactable
     [SerializeField] private bool _flashOff = false;
     [SerializeField] CameraZoom _camZoom;
 
+
+
     [SerializeField] private List<GameObject> _disappearObjects = new List<GameObject>();
     [SerializeField] private List<GameObject> _appearObjects = new List<GameObject>();
 
