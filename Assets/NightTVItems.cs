@@ -25,6 +25,7 @@ public class NightTVItems : ShootTrigger
     public override void Interact()
     {
         _manager.NextItem();
+        _manager.CollectEvidence();
 
         if (_appearItem)
         {

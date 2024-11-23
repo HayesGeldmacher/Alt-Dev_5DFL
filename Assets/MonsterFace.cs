@@ -17,6 +17,7 @@ public class MonsterFace : Interactable
     [SerializeField] private nightManager _nightManage;
     [SerializeField] private Animator _blackAnim;
     [SerializeField] private GameObject _chair;
+    [SerializeField] private GameObject _chairCollisionReplacement;
     private bool _dead = false;
 
     // Start is called before the first frame update
@@ -109,6 +110,7 @@ public class MonsterFace : Interactable
     private void EndTalk()
     {
         _chair.SetActive(true);
+        _chairCollisionReplacement.SetActive(false);
         _dead = true;
         _anim.SetTrigger("End");
         _coughSound.Play();

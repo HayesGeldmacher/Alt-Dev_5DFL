@@ -46,7 +46,24 @@ public class nightManager : Interactable
     [SerializeField] private Animator _garageLight;
 
     [SerializeField] private CameraController _camController;
-   // private float _disableController = false;
+
+
+
+    [Header("New Night Evidence Variables")]
+    [SerializeField] private int _evidenceCount;
+    [SerializeField] private int _totalEvidenceNeeded = 4;
+    [SerializeField] private GameObject _newPhone;
+    [SerializeField] private GameObject _oldPhone;
+    private bool _completedEvidence = false;
+
+
+
+
+
+
+
+
+    // private float _disableController = false;
     // Start is called before the first frame update
     void Start()
     {
@@ -63,7 +80,7 @@ public class nightManager : Interactable
 
         _camController.GotCamera();
 
-
+        _evidenceCount = 0;
 
 
         // _audio.clip = _soundClips[0];
@@ -223,5 +240,27 @@ public class nightManager : Interactable
         _char.enabled = true;
         _controller._frozen = false;
 
+    }
+
+
+
+    public void CollectEvidence()
+    {
+        _evidenceCount++;
+        if (_evidenceCount >= _totalEvidenceNeeded)
+        {
+            if (!_completedEvidence)
+            {
+                _completedEvidence = true;
+                CompleteEvidence();
+            }
+        }
+    }
+
+    private void CompleteEvidence()
+    {
+        Debug.Log("newPhoneDONE!");
+        _oldPhone.SetActive(false);
+        _newPhone.SetActive(true);
     }
 }
