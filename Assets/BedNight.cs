@@ -19,6 +19,9 @@ public class BedNight : Interactable
     [SerializeField] private GameObject _television;
     private bool _startedEnd = false;
     private bool _isBedTime = false;
+    [SerializeField] private CameraZoom _camZoom;
+    [SerializeField] private Door _door;
+    [SerializeField] private Animator _swivel;
     
 
 
@@ -26,10 +29,13 @@ public class BedNight : Interactable
     private void Start()
     {
         _player = PlayerController.instance.transform;
+        base.Start();
     }
 
     private void Update()
     {
+       
+        base.Update();
         if (base._canWalkAway && base._startedTalking && _player)
         {
             float _distance = Vector3.Distance(_player.position, transform.position);
@@ -54,8 +60,15 @@ public class BedNight : Interactable
 
         if (!_startedEnd)
         {
-        StartCoroutine(CompleteLevel());
-        _startedEnd = true;
+            if (!_door._isOpen)
+            {
+            _startedEnd = true;
+            StartCoroutine(CompleteLevel());
+            }
+            else
+            {
+                base.Interact();
+            }
         }
 
 
@@ -68,15 +81,21 @@ public class BedNight : Interactable
         PlayerController.instance.enabled = false;
         Destroy(PlayerController.instance.transform.gameObject);
         _isBedTime = true;
+        if (!_camZoom._flashOn)
+        {
+            _camZoom.TurnOffFlash();
+        }
+
         yield return new WaitForSeconds(2);
         _blackAnim.SetTrigger("black");
         yield return new WaitForSeconds(2);
         _television.SetActive(false);
-       // _hud.SetActive(false);
+         _hud.SetActive(false);
         _cursor.SetActive(false);
         _monster.SetActive(true);
         _blackAnim.SetTrigger("blinking");
-        yield return new WaitForSeconds(6);
+        _swivel.SetTrigger("swivel");
+        yield return new WaitForSeconds(8);
         GameManager.instance.LoadNextLevel();
 
     }

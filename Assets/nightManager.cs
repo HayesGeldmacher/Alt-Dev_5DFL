@@ -46,7 +46,7 @@ public class nightManager : Interactable
     [SerializeField] private Animator _garageLight;
 
     [SerializeField] private CameraController _camController;
-
+    [SerializeField] private GameObject _kitchenFakeEvidence;
 
 
     [Header("New Night Evidence Variables")]
@@ -211,6 +211,7 @@ public class nightManager : Interactable
     {
         _kitchenLight.SetTrigger("fade");
         yield return new WaitForSeconds(2f);
+        Destroy(_kitchenFakeEvidence);
         TeleportPlayer();
         yield return new WaitForSeconds(0.1f);
         _normalHouse.SetActive(true);
@@ -231,6 +232,7 @@ public class nightManager : Interactable
 
     private void TeleportPlayer()
     {
+       
         _playerParent.SetActive(false);
         //_controller._frozen = true;
         //_char.enabled = false;

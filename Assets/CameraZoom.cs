@@ -19,12 +19,13 @@ public class CameraZoom : MonoBehaviour
     [SerializeField] private AudioSource _flashSound;
     [SerializeField] private Light _flashLight;
     [HideInInspector] public bool _flashOn = false;
-    private bool _canFlash = false;
+    private bool _canFlash = true;
     private float _currentZoom;
     [HideInInspector] public bool _isZooming;
     private bool _hasPlayedSound;
     private CameraController _camController;
     private float _currentFlashCharge = 0;
+
 
     private void Start()
     {
@@ -44,32 +45,25 @@ public class CameraZoom : MonoBehaviour
 
 
 
-            if (!_canFlash)
-            {
-               // _flashIconAnim.SetBool("present", true);
-                _canFlash = true;
-            }
-            
             if (Input.GetMouseButtonDown(2) && !_handler._photoOpen)
             {
 
-                _flashSound.Play();
-                if (!_flashOn)
+                if (_canFlash)
                 {
-                    _flashLight.enabled = false;
-                    _flashOn = true;
-                }
-                else
-                {
-                    _flashLight.enabled = true;
-                    _flashOn = false;
-                }
+                    _flashSound.Play();
+                    if (!_flashOn)
+                    {
+                        _flashLight.enabled = false;
+                        _flashOn = true;
+                    }
+                    else
+                    {
+                        _flashLight.enabled = true;
+                        _flashOn = false;
+                    }
                 
-                //   _currentFlashCharge = 0;
-              //  _lightAnim.SetTrigger("flash");
-               // _flashIconAnim.SetBool("present", false);
-              //  _flashSound.Play();
-             //   _canFlash = false;
+
+                }
             }
 
         if (Input.GetMouseButton(1) && !_handler._photoOpen)
@@ -110,5 +104,14 @@ public class CameraZoom : MonoBehaviour
         _cam.fieldOfView = _currentZoom;
         _ghostCam.fieldOfView = _currentZoom;
         _virtualCam.m_Lens.FieldOfView = _currentZoom;
+    }
+
+    public void TurnOffFlash()
+    {
+        _flashSound.Play();
+        _flashLight.enabled = false;
+        _flashOn = true;
+       
+       
     }
 }
