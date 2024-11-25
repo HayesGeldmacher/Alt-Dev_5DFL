@@ -7,12 +7,14 @@ public class CrawlspaceNightTrigger : MonoBehaviour
 
     [SerializeField] private GameObject _crawlSpaceBlocker;
     [SerializeField] private AudioSource _thumpSound;
+    [SerializeField] private GameObject _crawlSpaceDadHusk;
     
     private void OnTriggerEnter(Collider other)
     {
         if(other.tag == "Player")
         {
             _crawlSpaceBlocker.SetActive(false);
+            _crawlSpaceDadHusk.SetActive(false);
             _thumpSound.Play();
 
         }
