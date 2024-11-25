@@ -55,7 +55,7 @@ public class nightManager : Interactable
     [SerializeField] private GameObject _newPhone;
     [SerializeField] private GameObject _oldPhone;
     private bool _completedEvidence = false;
-
+    [SerializeField] private AudioSource _publicAudio;
 
 
 
@@ -265,5 +265,11 @@ public class nightManager : Interactable
         _oldPhone.SetActive(false);
         _newPhone.SetActive(true);
         _newPhone.transform.GetComponent<PhoneNight1>().StartRinging();
+    }
+
+    public void PlaySound(AudioClip _clip)
+    {
+        _publicAudio.clip = _clip;
+        _publicAudio.Play();
     }
 }
