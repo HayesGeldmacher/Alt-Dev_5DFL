@@ -22,6 +22,9 @@ public class TVNewsReport : Interactable
     [SerializeField] private GameObject _currentTelevision;
     [SerializeField] private GameObject _frozenTelevision;
 
+    [SerializeField] private GameObject _monitorNormal;
+    [SerializeField] private GameObject _monitorEyes;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -68,6 +71,9 @@ public class TVNewsReport : Interactable
                     _turnOffTV.Play();
                     _currentTelevision.SetActive(false);
                     _frozenTelevision.SetActive(true);
+
+                    _monitorNormal.SetActive(false);
+                    _monitorEyes.SetActive(true);
                 }
                 else
                 {

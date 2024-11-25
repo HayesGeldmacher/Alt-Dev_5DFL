@@ -14,8 +14,13 @@ public class CrawlspaceNightTrigger : MonoBehaviour
         if(other.tag == "Player")
         {
             _crawlSpaceBlocker.SetActive(false);
-            _crawlSpaceDadHusk.SetActive(false);
             _thumpSound.Play();
+            
+            if(_crawlSpaceDadHusk != null)
+            {
+                _crawlSpaceDadHusk.SetActive(false);
+            }
+
 
         }
     }

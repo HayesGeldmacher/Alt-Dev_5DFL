@@ -118,19 +118,19 @@ public class nightManager : Interactable
         _audio.clip = _soundClips[_itemNum];
         
         _itemNum++;
+        _audio.Play();
 
         if (_itemNum < _Items.Count)
         {
-             _audio.Play();
-            StartCoroutine(NextItemGo());
+            //StartCoroutine(NextItemGo());
            
 
         }
         else
         {
-            _handler.CallSetMonster();
-            _TV.SetActive(false);
-            _turnOffSound.Play();
+           // _handler.CallSetMonster();
+            //_TV.SetActive(false);
+           // _turnOffSound.Play();
         }
     }
 
