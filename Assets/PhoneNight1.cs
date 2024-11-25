@@ -60,12 +60,11 @@ public class PhoneNight1 : Interactable
     [SerializeField] private float _totalDialogue = 5;
 
     [Header("DisappearShit")]
-    [SerializeField] private GameObject _showerBlocker;
-    [SerializeField] private GameObject _stairWellBlocker;
-    [SerializeField] private GameObject _showerDoorAppear;
-    [SerializeField] private GameObject _HallwayBedroomBlocker;
 
-
+    [SerializeField] private List<GameObject> _disappearObjects = new List<GameObject>();
+    [SerializeField] private List<GameObject> _appearObjects = new List<GameObject>();
+    [SerializeField] private bool _disappear;
+    [SerializeField] private bool _appear; 
 
 
     private void Start()
@@ -152,10 +151,22 @@ public class PhoneNight1 : Interactable
 
     private void DisappearHouse()
     {
-        _showerDoorAppear.SetActive(true);
-        _stairWellBlocker.SetActive(false);
-        _showerBlocker.SetActive(false);
-        _HallwayBedroomBlocker.SetActive(false);
+
+        if (_disappear)
+        {
+            foreach(GameObject _item in _disappearObjects)
+            {
+                _item.SetActive(false);
+            }
+        }
+
+        if (_appear)
+        {
+            foreach(GameObject _item in _appearObjects)
+            {
+                _item.SetActive(true);
+            }
+        }
 
     }
 
@@ -214,4 +225,9 @@ public class PhoneNight1 : Interactable
         
     }
 
+
+    public void StartRinging()
+    {
+        _ringSound.Play();
+    }
 }

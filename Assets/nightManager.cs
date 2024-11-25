@@ -262,5 +262,6 @@ public class nightManager : Interactable
         Debug.Log("newPhoneDONE!");
         _oldPhone.SetActive(false);
         _newPhone.SetActive(true);
+        _newPhone.transform.GetComponent<PhoneNight1>().StartRinging();
     }
 }

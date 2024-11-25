@@ -36,7 +36,7 @@ public class MonsterFace : Interactable
             {
                 if (_canContinue)
                 {
-                   if(_lines <= 7)
+                   if(_lines <= 6)
                     {
                     _lines++;
                      StartCoroutine(AnimateFace());
@@ -53,7 +53,7 @@ public class MonsterFace : Interactable
                     }
                     else
                     {
-                        EndTalk();
+                        StartCoroutine(EndTalk());
                     }
 
                 }
@@ -107,13 +107,14 @@ public class MonsterFace : Interactable
 
         }
         
-    private void EndTalk()
+    private IEnumerator EndTalk()
     {
         _chair.SetActive(true);
         _chairCollisionReplacement.SetActive(false);
         _dead = true;
         _anim.SetTrigger("End");
         _coughSound.Play();
+        yield return new WaitForSeconds(1f);
         _handler.ResetPicture();
         _nightManage.FreePlayer();
         base.EndDialogue();

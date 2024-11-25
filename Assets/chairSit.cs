@@ -42,6 +42,9 @@ public class chairSit : Interactable
 
     [SerializeField] private GameObject _teddyBear;
 
+    [SerializeField] private AudioSource _ambientStatic;
+    [SerializeField] private AudioSource _darkAmbience;
+
     private bool _startedAudio = false;
 
 
@@ -54,24 +57,24 @@ public class chairSit : Interactable
 
     public override void Interact()
     {
-        if (!_firstInteracted)
-        {
-            _firstInteracted = true;
-            
-            if (!_sat)
-            {
               if(_bulbOff && _doorClosed)
                 {
-                    EnterSit();
+                    if (!_firstInteracted)
+                    {
+                        _firstInteracted = true;
+            
+                        if (!_sat)
+                        {
+            
+                             EnterSit();
+                        }
+                    }
                 }
                 else
                 {
                      base.Interact();
                
                 }
-            
-            }
-        }
 
     }
 
@@ -100,6 +103,12 @@ public class chairSit : Interactable
 
     private void Update()
     {
+
+        if (!_sat)
+        {
+            base.Update();
+        }
+
         _bulbOff = !_lightSwitch._on;
         _doorClosed = !_door._isOpen;
         _flashOff = _camZoom._flashOn;
@@ -218,6 +227,8 @@ public class chairSit : Interactable
     private IEnumerator StartAudioTrack()
     {
         _startedAudio = true;
+        _ambientStatic.Stop();
+        _darkAmbience.Stop();
         yield return new WaitForSeconds(3);
         _chairAudio.Play();
     }
@@ -225,6 +236,8 @@ public class chairSit : Interactable
     private void TeleportPlayer()
     {
         AppearObjects();
+        _ambientStatic.Play();
+        _darkAmbience.Play();
         _playerParent.SetActive(false);
         //_controller._frozen = true;
         //_char.enabled = false;
