@@ -43,9 +43,28 @@ public class GameManager : MonoBehaviour
     [SerializeField] private Animator _blackAnim;
     [SerializeField] private Transform _faceDirectionPoint;
 
+
+    [Header("Audio Variables")]
+    [SerializeField] private float _fadeSpeed;
+    private float _currentVolumeStatic;
+    private float _currentVolumeDarkAmbience;
+    private bool _isFading;
+    [SerializeField] private AudioSource _staticAudio;
+    [SerializeField] private AudioSource _darkAmbience;
+
     private void Start()
     {
         _ghostCam.SetActive(false);
+
+        if(_darkAmbience != null)
+        {
+            _currentVolumeDarkAmbience = _darkAmbience.volume;
+        }
+
+        if(_staticAudio != null)
+        {
+            _currentVolumeStatic = _staticAudio.volume;
+        }
     }
    
     private void Update()
@@ -93,6 +112,22 @@ public class GameManager : MonoBehaviour
             }
         }
 
+
+        if (_isFading)
+        {
+            if(_darkAmbience != null)
+            {
+                 _currentVolumeDarkAmbience = Mathf.Lerp(_currentVolumeDarkAmbience, 0, _fadeSpeed * Time.deltaTime);
+                _darkAmbience.volume = _currentVolumeDarkAmbience;
+            }
+
+            if(_staticAudio != null)
+            {
+                _currentVolumeStatic = Mathf.Lerp(_currentVolumeStatic, 0, _fadeSpeed * Time.deltaTime);
+                _staticAudio.volume = _currentVolumeStatic;
+            }
+        }
+
     }
 
     public void LoadNextLevel()
@@ -130,5 +165,8 @@ public class GameManager : MonoBehaviour
         _controller._frozen = _freeze;
     }
 
-   
+   public void SetAudioBackgroundFade()
+    {
+        _isFading = true;
+    }
 }

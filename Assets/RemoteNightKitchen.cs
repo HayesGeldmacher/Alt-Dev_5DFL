@@ -8,6 +8,7 @@ public class RemoteNightKitchen : ShootTrigger
     [SerializeField] private nightManager _nightManage;
     [SerializeField] private GameObject _parentObject;
     [SerializeField] private AudioClip _shushSound;
+    [SerializeField] private Interactable _clapperInteract;
 
     public override void Interact()
     {
@@ -17,6 +18,11 @@ public class RemoteNightKitchen : ShootTrigger
         if(_shushSound != null)
         {
             _nightManage.PlaySound(_shushSound);
+        }
+
+        if(_clapperInteract != null)
+        {
+            _clapperInteract.EndDialogue();
         }
         Destroy(_parentObject);
     }

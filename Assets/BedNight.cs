@@ -81,12 +81,12 @@ public class BedNight : Interactable
         PlayerController.instance.enabled = false;
         Destroy(PlayerController.instance.transform.gameObject);
         _isBedTime = true;
+        GameManager.instance.SetAudioBackgroundFade();
+        yield return new WaitForSeconds(2);
         if (!_camZoom._flashOn)
         {
             _camZoom.TurnOffFlash();
         }
-
-        yield return new WaitForSeconds(2);
         _blackAnim.SetTrigger("black");
         yield return new WaitForSeconds(2);
         _television.SetActive(false);
