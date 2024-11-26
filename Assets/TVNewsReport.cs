@@ -69,8 +69,6 @@ public class TVNewsReport : Interactable
                     _camController._frozen = false;
                     PlayerController.instance._frozen = false;
                     _turnOffTV.Play();
-                    _currentTelevision.SetActive(false);
-                    _frozenTelevision.SetActive(true);
 
                     _monitorNormal.SetActive(false);
                     _monitorEyes.SetActive(true);
@@ -133,6 +131,8 @@ public class TVNewsReport : Interactable
         yield return new WaitForSeconds(1);
         _startedInteraction = false;
         base.EndDialogue();
+        _currentTelevision.SetActive(false);
+        _frozenTelevision.SetActive(true);
     }
 
 
