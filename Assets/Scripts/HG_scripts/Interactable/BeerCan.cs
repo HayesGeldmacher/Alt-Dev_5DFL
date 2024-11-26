@@ -72,4 +72,14 @@ public class BeerCan : Interactable
         yield return new WaitForSeconds(2f);
         _hasCollided = true;
     }
+
+    private void OnDisable()
+    {
+        _hasCollided = false;
+    }
+
+    private void OnEnable()
+    {
+        StartCoroutine(StartSoundWait());
+    }
 }
