@@ -74,7 +74,6 @@ public class CameraController : MonoBehaviour
 
     [HideInInspector] public float _camXMove;
 
-    [SerializeField] private GameObject _flash;
 
     [Header("")]
      
@@ -98,7 +97,6 @@ public class CameraController : MonoBehaviour
         //Ensuring there is no camerashot lag when starting the game
         _currentShotWait = _shotWait;
 
-        _flash.SetActive(true);
 
         //Makes it so the camera only animates to shift when camera is actually obtained
         if (_hasCamera)

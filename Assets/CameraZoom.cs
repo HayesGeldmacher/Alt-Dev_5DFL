@@ -14,11 +14,9 @@ public class CameraZoom : MonoBehaviour
     [SerializeField] private float _backZoomSpeed;
     [SerializeField] private AudioSource _zoomAudio;
     [SerializeField] private ScreenshotHandler _handler;
-    [SerializeField] private Animator _flashIconAnim;
-    [SerializeField] private Animator _lightAnim;
     [SerializeField] private AudioSource _flashSound;
     [SerializeField] private Light _flashLight;
-    [HideInInspector] public bool _flashOn = false;
+    public bool _flashOn = false;
     private bool _canFlash = true;
     private float _currentZoom;
     [HideInInspector] public bool _isZooming;
