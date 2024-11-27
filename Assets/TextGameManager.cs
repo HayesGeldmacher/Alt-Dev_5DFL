@@ -48,6 +48,8 @@ public class TextGameManager : MonoBehaviour
     [SerializeField] private GameObject _dialogueBox;
     [SerializeField] private GameObject _monster;
 
+    [SerializeField] private AudioSource _breatheAudio;
+
     //if you must select all options, set _allOptionsList to 3
 
     //if one option is correct
@@ -260,6 +262,7 @@ public class TextGameManager : MonoBehaviour
         PlayerController.instance._frozen = false;
         _camControl._frozen = false;
         _staticAudio.Stop();
+        _breatheAudio.Play();
         this.enabled = false;
     }
 

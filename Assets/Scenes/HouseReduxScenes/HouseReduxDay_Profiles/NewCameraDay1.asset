@@ -1,5 +1,81 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
+--- !u!114 &-5142413618693471575
+MonoBehaviour:
+  m_ObjectHideFlags: 3
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6050e2d5de785ce4d931e4dbdbf2d755, type: 3}
+  m_Name: ChromaticAberration
+  m_EditorClassIdentifier: 
+  active: 1
+  enabled:
+    overrideState: 1
+    value: 1
+  spectralLut:
+    overrideState: 0
+    value: {fileID: 0}
+    defaultState: 1
+  intensity:
+    overrideState: 1
+    value: 0.157
+  fastMode:
+    overrideState: 0
+    value: 0
+--- !u!114 &-1809970592561854750
+MonoBehaviour:
+  m_ObjectHideFlags: 3
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 556797029e73b2347956b6579e77e05b, type: 3}
+  m_Name: DepthOfField
+  m_EditorClassIdentifier: 
+  active: 1
+  enabled:
+    overrideState: 1
+    value: 1
+  focusDistance:
+    overrideState: 1
+    value: 1.72
+  aperture:
+    overrideState: 1
+    value: 14.9
+  focalLength:
+    overrideState: 1
+    value: 61
+  kernelSize:
+    overrideState: 1
+    value: 1
+--- !u!114 &-1523553249305479481
+MonoBehaviour:
+  m_ObjectHideFlags: 3
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b94fcd11afffcb142908bfcb1e261fba, type: 3}
+  m_Name: MotionBlur
+  m_EditorClassIdentifier: 
+  active: 1
+  enabled:
+    overrideState: 1
+    value: 1
+  shutterAngle:
+    overrideState: 1
+    value: 360
+  sampleCount:
+    overrideState: 1
+    value: 32
 --- !u!114 &-1208886032105233114
 MonoBehaviour:
   m_ObjectHideFlags: 3
@@ -50,6 +126,9 @@ MonoBehaviour:
   - {fileID: 7789873612680179061}
   - {fileID: -1208886032105233114}
   - {fileID: 813517439260309832}
+  - {fileID: -1523553249305479481}
+  - {fileID: -5142413618693471575}
+  - {fileID: -1809970592561854750}
 --- !u!114 &813517439260309832
 MonoBehaviour:
   m_ObjectHideFlags: 3
@@ -96,10 +175,10 @@ MonoBehaviour:
     value: 1
   intensity:
     overrideState: 1
-    value: 2.76
+    value: 6.82
   threshold:
     overrideState: 1
-    value: 0.71
+    value: 0.75
   softKnee:
     overrideState: 1
     value: 0.591

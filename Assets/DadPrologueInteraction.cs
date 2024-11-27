@@ -11,7 +11,18 @@ public class DadPrologueInteraction : Interactable
     [SerializeField] private int _totalLines;
     [SerializeField] private Animator _dadAnim;
     private bool _startedInteraction = false;
-    
+    private bool _animToPlay = false;
+
+
+    [SerializeField] private GameObject _fakeBed;
+    [SerializeField] private GameObject _realBed;
+
+    [SerializeField] private StartDataMosh _mosh;
+    private bool _startedKillDad = false;
+
+    [SerializeField] private AudioSource _shootSound;
+    [SerializeField] private AudioSource _crowdSound;
+    [SerializeField] private AudioSource _laughSound;
 
     // Start is called before the first frame update
     void Start()
@@ -32,8 +43,17 @@ public class DadPrologueInteraction : Interactable
             _startedInteraction = true;
             PlayerController.instance._frozen = true;
         }
-        
-            _dadAnim.SetTrigger("talk");
+
+        if (_animToPlay)
+        {
+            _animToPlay = false;
+            _dadAnim.SetTrigger("talk2");
+        }
+        else
+        {
+            _animToPlay = true;
+            _dadAnim.SetTrigger("talk1");
+        }
         
         base.Interact();
         if(_currentLine <= _dialogueClips.Count - 1)
@@ -43,10 +63,8 @@ public class DadPrologueInteraction : Interactable
         
         if(_currentLine >= _totalLines)
         {
-            _currentLine = 0;
-            _startedInteraction = false;
-            PlayerController.instance._frozen = false;
-            _dadAnim.SetTrigger("end");
+            KillDad();
+
         }
         else
         {
@@ -68,4 +86,42 @@ public class DadPrologueInteraction : Interactable
         _audio.clip = _dialogueClips[_currentLine];
         _audio.Play();
     }
+
+    private void KillDad()
+    {
+        _currentLine = 0;
+        _startedInteraction = false;
+        PlayerController.instance._frozen = false;
+        _realBed.SetActive(true);
+        _fakeBed.SetActive(false);
+        _dadAnim.SetTrigger("shoot");
+        transform.GetComponent<BoxCollider>().enabled = false;
+        _mosh.CallGlitch();
+       
+    }
+
+    public void CallDeath()
+    {
+        if (!_startedKillDad)
+        {
+            _startedKillDad = true;
+            StartCoroutine(Death());
+        }
+
+    }
+
+    private IEnumerator Death()
+    {
+        _mosh.CallGlitch();
+        _mosh.CallGlitch();
+        _shootSound.Play();
+        _crowdSound.Play();
+        _laughSound.Play();
+        yield return new WaitForSeconds(0.8f);
+        _mosh.CallGlitch();
+        Destroy(gameObject);
+
+    }
+
+
 }

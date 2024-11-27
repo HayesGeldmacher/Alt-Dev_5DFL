@@ -55,7 +55,7 @@ public class BedDayTime : Interactable
 
         if (_canStartNextDay)
         {
-            if (_door._isOpen)
+            if (_door != null && _door._isOpen)
             {
                 base.Interact();
             }
