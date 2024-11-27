@@ -258,19 +258,11 @@ public class ScreenshotHandler : MonoBehaviour
         {
             if(hit.transform.tag == "evidence")
             {
-                if (_illuminated)
-                {
+                
                     _evidenceManager.PictureTaken(hit.transform.gameObject);
                     _evidenceManager.StrikeOffItem(hit.transform.gameObject);
                     Debug.Log("Got a object!");
-                    StartCoroutine(EvidenceDing());
-
-                }
-                else
-                {
-                    Debug.Log("EVIDENCE IS TOO DARK!");
-                    _noLightSound.Play();
-                }
+                    StartCoroutine(EvidenceDing());     
             }
             else
             {

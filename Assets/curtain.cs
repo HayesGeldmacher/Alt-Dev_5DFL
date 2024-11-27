@@ -7,7 +7,6 @@ public class curtain : Interactable
 
     private Animator _curtain;
     private BoxCollider _collider;
-    [SerializeField] private GameObject _mannequin;
     [SerializeField] private AudioSource _curtainAudio;
 
 
@@ -26,7 +25,6 @@ public class curtain : Interactable
 
     public override void Interact()
     {
-        _mannequin.SetActive(false);
         _curtain.SetTrigger("fold");
         _collider.enabled = false;
         _curtainAudio.Play();

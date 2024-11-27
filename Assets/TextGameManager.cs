@@ -9,6 +9,7 @@ public class TextGameManager : MonoBehaviour
 
 
     private bool _ended = false;
+    private bool _endedInput = false;
 
     [Header("AnimationVariables")]
     [SerializeField] private Animator _canvasAnim;
@@ -42,6 +43,11 @@ public class TextGameManager : MonoBehaviour
     [SerializeField] private GameObject _blackBox3;
     [SerializeField] private GameObject _promptBox;
 
+    private bool _paused = false;
+    [SerializeField] private GameObject _pauseBox;
+    [SerializeField] private GameObject _dialogueBox;
+    [SerializeField] private GameObject _monster;
+
     //if you must select all options, set _allOptionsList to 3
 
     //if one option is correct
@@ -51,6 +57,7 @@ public class TextGameManager : MonoBehaviour
     void Start()
     {
         _currentPassage = 0;
+        _pauseBox.SetActive(false);
 
     }
 
@@ -58,7 +65,7 @@ public class TextGameManager : MonoBehaviour
     void Update()
     {
        
-        if(_ended) return;
+        if(_ended || _paused || _endedInput) return;
         
         if (Input.GetKeyDown(KeyCode.Alpha1) && _currentOptions > 0)
         {
@@ -72,7 +79,7 @@ public class TextGameManager : MonoBehaviour
         {
             ChooseOption(2);
         }
-        else if (Input.anyKeyDown && _currentOptions <= 0)
+        else if (Input.GetKeyDown(KeyCode.Space) && _currentOptions <= 0)
         {
             ChooseOption(0);
         }
@@ -190,7 +197,7 @@ public class TextGameManager : MonoBehaviour
             }
             else
             {
-                _optionText1.text = "Any Key To Continue";
+                _optionText1.text = "Space Key To Continue";
                 _blackBox1.SetActive(true);
                 _promptBox.SetActive(true);
 
@@ -244,6 +251,7 @@ public class TextGameManager : MonoBehaviour
     {
         Debug.Log("I FUCKIGN QUIT!");
         _canvasAnim.SetBool("visible", false);
+        _monster.SetActive(true);
         _brokenMonitor.SetActive(true);
         _workingMonitor.SetActive(false);
         _quitAudio.Play();
@@ -258,5 +266,25 @@ public class TextGameManager : MonoBehaviour
     public void EndScare()
     {
         QuitGame();
+    }
+
+    public void Pause()
+    {
+            _paused = true;
+            _dialogueBox.SetActive(false);
+            _pauseBox.SetActive(true);
+    }
+
+    public void UnPause()
+    {
+        _paused = false;
+        _dialogueBox.SetActive(true);
+        _pauseBox.SetActive(false);
+    }
+
+    public void SetEndInput()
+    {
+        //disables input once the final scary animation plays - no pausing, no repeating previous scenario!
+        _endedInput = true;
     }
 }

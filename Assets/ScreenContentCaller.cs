@@ -20,6 +20,11 @@ public class ScreenContentCaller : MonoBehaviour
         
     }
 
+    public void CallEndInput()
+    {
+        _textGame.SetEndInput();
+    }
+
     public void CallEndScare()
     {
         _textGame.EndScare();

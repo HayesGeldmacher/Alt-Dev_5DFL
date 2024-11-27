@@ -42,7 +42,8 @@ public class ComputerGame : Interactable
         _textGameManager.StartGame();
         GameManager.instance.FreezePlayer(true);
         _textGame.SetActive(true);
-
+        Cursor.lockState = CursorLockMode.Locked;
+        Cursor.visible = false;
         yield return new WaitForSeconds(1);
 
         _textGameAnim.SetBool("visible", true);

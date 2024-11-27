@@ -52,6 +52,8 @@ public class GameManager : MonoBehaviour
     [SerializeField] private AudioSource _staticAudio;
     [SerializeField] private AudioSource _darkAmbience;
 
+    [SerializeField] private TextGameManager _textGameManager;
+
     private void Start()
     {
         _ghostCam.SetActive(false);
@@ -73,37 +75,11 @@ public class GameManager : MonoBehaviour
         {
             if (_isPaused )
             {
-                if (_controller._hasCamera)
-                {
-                _pausedAnimator.SetBool("paused", false);
-                _pausedText.text = "REC";
-
-                }
-                _isPaused = false;
-                _controller.enabled = true;
-                _pauseButtons.SetActive(false);
-                Time.timeScale = 1f;
-                _hudBorder.SetActive(true);
-                _cursorSprite.enabled = true;
-
-                Cursor.lockState = CursorLockMode.Locked;
-                Cursor.visible = false;
-
+                Unpause();
             }
             else
             {
-                _pausedAnimator.SetBool("paused", true);
-                _isPaused = true;
-                _pausedText.text = "PAUSED";
-                _controller.enabled = false;
-                _pauseButtons.SetActive(true);
-                Time.timeScale = 0f;
-                _hudBorder.SetActive(false);
-                _cursorSprite.enabled = false;
-
-                Cursor.lockState = CursorLockMode.None;
-                Cursor.visible = true;
-
+                Pause();
             }
 
             if(!_pausedAudio.isPlaying)
@@ -168,5 +144,49 @@ public class GameManager : MonoBehaviour
    public void SetAudioBackgroundFade()
     {
         _isFading = true;
+    }
+
+
+    public void Pause()
+    {
+        _isPaused = true;
+        Cursor.lockState = CursorLockMode.None;
+        Cursor.visible = true;
+        _pausedAnimator.SetBool("paused", true);
+        _pausedText.text = "PAUSED";
+        _controller.enabled = false;
+        _pauseButtons.SetActive(true);
+        Time.timeScale = 0f;
+        _hudBorder.SetActive(false);
+        _cursorSprite.enabled = false;
+
+        if(_textGameManager != null)
+        {
+            _textGameManager.Pause();
+        }
+    }
+
+    public void Unpause()
+    {
+        _isPaused = false;
+        Cursor.lockState = CursorLockMode.Locked;
+        Cursor.visible = false;
+
+        if (_controller._hasCamera)
+        {
+            _pausedAnimator.SetBool("paused", false);
+            _pausedText.text = "REC";
+
+        }
+        _controller.enabled = true;
+        _pauseButtons.SetActive(false);
+        Time.timeScale = 1f;
+        _hudBorder.SetActive(true);
+        _cursorSprite.enabled = true;
+
+        if(_textGameManager != null )
+        {
+            _textGameManager.UnPause();
+        }
     }
 }

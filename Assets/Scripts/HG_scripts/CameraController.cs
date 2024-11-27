@@ -91,7 +91,6 @@ public class CameraController : MonoBehaviour
 
     void Start()
     {
-       
 
         //This makes the cursor invisible and locked to screen when playing the game
         Cursor.lockState = CursorLockMode.Locked;
@@ -125,6 +124,7 @@ public class CameraController : MonoBehaviour
 
         _zoom = transform.GetComponent<CameraZoom>();
 
+        //Just for testing! Delete this line after
         //GotCamera();
     }
 
