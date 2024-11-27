@@ -10,10 +10,22 @@ public class FlashilghtRot : MonoBehaviour
     [SerializeField] private Transform _cam;
     [SerializeField] private Transform _targetPoint;
     [SerializeField] private float _speed;
+    public bool _following = true;
+    private bool _followingLastFrame = true;
 
     private void Update()
     {
-        FlashUpdate();
+
+        
+        
+        
+        if (_following)
+        {
+                   
+            FlashUpdate();
+        }
+
+        _followingLastFrame = _following;
     }
 
     private void FlashUpdate()
@@ -28,6 +40,12 @@ public class FlashilghtRot : MonoBehaviour
        _targetPoint.rotation = _body.rotation;
         Vector3 _camRot = _cam.localEulerAngles;
         _targetPoint.rotation = Quaternion.Euler(_camRot.x, _targetPoint.localEulerAngles.y, _targetPoint.localEulerAngles.z);
+
+        if (!_followingLastFrame)
+        {
+            transform.rotation = _targetPoint.rotation;
+        }
+
 
         float _goalX = _targetPoint.localEulerAngles.x;
         float _goalY = _targetPoint.localEulerAngles.y;

@@ -53,12 +53,14 @@ public class CameraZoom : MonoBehaviour
                     {
                         _flashLight.enabled = false;
                         _flashOn = true;
+                        _flashLight.transform.GetComponent<FlashilghtRot>()._following = false;
                     }
                     else
                     {
                         _flashLight.enabled = true;
                         _flashOn = false;
-                    }
+                    _flashLight.transform.GetComponent<FlashilghtRot>()._following = true;
+                }
                 
 
                 }
@@ -109,6 +111,7 @@ public class CameraZoom : MonoBehaviour
         _flashSound.Play();
         _flashLight.enabled = false;
         _flashOn = true;
+        _flashLight.transform.GetComponent<FlashilghtRot>()._following = false;
        
        
     }

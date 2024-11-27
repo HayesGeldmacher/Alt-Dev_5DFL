@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.Rendering.PostProcessing;
 
 public class ScreenshotHandler : MonoBehaviour
 {
@@ -41,12 +42,15 @@ public class ScreenshotHandler : MonoBehaviour
     [SerializeField] private AudioSource _evilCamDing;
     public bool _dinging = false;
 
+    [SerializeField] private PostProcessLayer _volume;
+
 
     private void Awake()
     {
         //instance = this;
         _cam = transform.GetComponent<Camera>();
         _showPhoto = true;
+        _volume.enabled = false;
         
     }
 
@@ -179,6 +183,7 @@ public class ScreenshotHandler : MonoBehaviour
     private IEnumerator ScreenShot()
     {
         //Here we are creating a new render texture as a blank canvas to project the screenshot on to
+        _volume.enabled = true;
         RenderTexture screenTexture = new RenderTexture(Screen.width, Screen.height, 16);
         _cam.targetTexture = screenTexture;
         RenderTexture.active = screenTexture;
@@ -212,6 +217,8 @@ public class ScreenshotHandler : MonoBehaviour
           
             //Setting this bool ensures that the render texture is ready to go, allowing us to check elsewhere in the script
             _hasPhoto = true;
+
+        _volume.enabled = false;
 
             //This triggers the photo animation once the texture has been set;
             yield return new WaitForSeconds(0.4f);
@@ -294,7 +301,8 @@ public class ScreenshotHandler : MonoBehaviour
     //This is the function that we call from other scripts!
     public void TakeScreenshot_Static(int _width, int _height)
     {   
-       StartCoroutine(TakeScreenshot( _width, _height));       
+       StartCoroutine(TakeScreenshot( _width, _height));
+        _volume.enabled = true;
     }
 
 
@@ -316,8 +324,9 @@ public class ScreenshotHandler : MonoBehaviour
 
         _data.Glitch();
         _data.Glitch();
+        _data.Glitch();
        
-        yield return new WaitForSeconds(1.2f);
+        yield return new WaitForSeconds(0.2f);
         _chime.pitch = Random.Range(0.8f, 1.1f);
         _chime.Play();
     }
