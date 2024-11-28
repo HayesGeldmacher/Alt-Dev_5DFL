@@ -136,8 +136,8 @@ public class CameraController : MonoBehaviour
 
         //Here, we are getting the actualy mouse movement from the player and converting it to variables
         //All inputs should be multiplied Time.deltaTime in order for physics to work correctly
-        float mouseX = Input.GetAxis("Mouse X") * _mouseSensitivityX * Time.deltaTime;
-        float mouseY = Input.GetAxis("Mouse Y") * _mouseSensitivityY * Time.deltaTime;
+        float mouseX = Input.GetAxis("Mouse X") * _mouseSensitivityX;
+        float mouseY = Input.GetAxis("Mouse Y") * _mouseSensitivityY;
 
         _camXMove = mouseX;
 
