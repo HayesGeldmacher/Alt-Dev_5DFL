@@ -143,7 +143,7 @@ public class PhoneDaytime : Interactable
         {
 
             diaNum += 1;
-            if(diaNum >= 5)
+            if(diaNum >= 6)
             {
                 EndDialogue();
                 diaNum = 0;
