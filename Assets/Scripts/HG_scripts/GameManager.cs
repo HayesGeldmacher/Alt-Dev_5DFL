@@ -56,7 +56,6 @@ public class GameManager : MonoBehaviour
 
     private void Start()
     {
-        _ghostCam.SetActive(false);
 
         if(_darkAmbience != null)
         {

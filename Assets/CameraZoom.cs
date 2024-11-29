@@ -14,8 +14,7 @@ public class CameraZoom : MonoBehaviour
     [SerializeField] private float _backZoomSpeed;
     [SerializeField] private AudioSource _zoomAudio;
     [SerializeField] private ScreenshotHandler _handler;
-    [SerializeField] private AudioSource _flashSound;
-    [SerializeField] private Light _flashLight;
+    [SerializeField] private FlashilghtRot _flashLight;
     public bool _flashOn = false;
     private bool _canFlash = true;
     private float _currentZoom;
@@ -48,21 +47,8 @@ public class CameraZoom : MonoBehaviour
 
                 if (_canFlash)
                 {
-                    _flashSound.Play();
-                    if (!_flashOn)
-                    {
-                        _flashLight.enabled = false;
-                        _flashOn = true;
-                        _flashLight.transform.GetComponent<FlashilghtRot>()._following = false;
-                    }
-                    else
-                    {
-                        _flashLight.enabled = true;
-                        _flashOn = false;
-                    _flashLight.transform.GetComponent<FlashilghtRot>()._following = true;
-                }
-                
 
+                 _flashLight.ChangeFlashStatus();
                 }
             }
 
@@ -108,11 +94,11 @@ public class CameraZoom : MonoBehaviour
 
     public void TurnOffFlash()
     {
-        _flashSound.Play();
-        _flashLight.enabled = false;
-        _flashOn = true;
-        _flashLight.transform.GetComponent<FlashilghtRot>()._following = false;
-       
+
+        if (_flashLight._active)
+        {
+            _flashLight.ChangeFlashStatus();
+        }
        
     }
 }
