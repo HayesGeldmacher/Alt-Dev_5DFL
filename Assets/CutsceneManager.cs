@@ -12,7 +12,6 @@ public class CutsceneManager : MonoBehaviour
     private bool _hasStarted = false;
     [SerializeField] private AudioSource _interactSound;
     [SerializeField] private AudioSource _doorSound;
-    [SerializeField] private Animator _vhsAnim;
 
     [Header("Static Audio Fade")]
     [SerializeField] private AudioSource _staticAudio;
@@ -75,7 +74,6 @@ public class CutsceneManager : MonoBehaviour
 
     public void KillVisualNoise()
     {
-        _vhsAnim.SetTrigger("disappear");
         _fading = true;
     }
 

@@ -15,16 +15,22 @@ public class PauseButton : MonoBehaviour
     
     public void CallReset()
     {
-        StartCoroutine(Reset());    
+        Cursor.lockState = CursorLockMode.Locked;
+        Cursor.visible = false;
+        StartCoroutine(Reset());
     }
 
     public void CallMenu()
     {
+        Cursor.lockState = CursorLockMode.Locked;
+        Cursor.visible = false;
         StartCoroutine(Menu());
     }
 
     public void CallExit()
     {
+        Cursor.lockState = CursorLockMode.Locked;
+        Cursor.visible = false;
         StartCoroutine(Exit());
     }
 

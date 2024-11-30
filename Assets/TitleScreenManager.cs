@@ -14,7 +14,7 @@ public class TitleScreenManager : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        Cursor.visible = false;
+        Cursor.visible = true;
         Cursor.lockState = CursorLockMode.Confined;
     }
 
@@ -37,6 +37,8 @@ public class TitleScreenManager : MonoBehaviour
     private IEnumerator StartGame()
     {
         _blackOutAnim.SetTrigger("fade");
+        Cursor.visible = false;
+        Cursor.lockState = CursorLockMode.Locked;
         yield return new WaitForSeconds(1);
         SceneManager.LoadScene("ComputerGamePrologue");
     }
@@ -54,6 +56,8 @@ public class TitleScreenManager : MonoBehaviour
     private IEnumerator ExitGame()
     {
         _blackOutAnim.SetTrigger("fade");
+        Cursor.visible = false;
+        Cursor.lockState = CursorLockMode.Locked;
         yield return new WaitForSeconds(1);
         Application.Quit();
     }

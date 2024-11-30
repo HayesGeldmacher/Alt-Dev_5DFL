@@ -19,7 +19,7 @@ public class EventSystem : MonoBehaviour
 
     public void ReturnToMenu()
     {
-        SceneManager.LoadScene("menu");
+        SceneManager.LoadScene("TitleScreen");
     }
 
     public void RestartLevel()

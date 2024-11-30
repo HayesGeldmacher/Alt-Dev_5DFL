@@ -30,6 +30,7 @@ public class GameManager : MonoBehaviour
     [SerializeField] private CameraController _controller;
     [SerializeField] private TMP_Text _pausedText;
     [SerializeField] private GameObject _pauseButtons;
+    [SerializeField] private GameObject _pauseButtonsText;
     [SerializeField] private Animator _pausedAnimator;
     [SerializeField] private AudioSource _pausedAudio;
     [SerializeField] private GameObject _hudBorder;
@@ -155,6 +156,7 @@ public class GameManager : MonoBehaviour
         _pausedText.text = "PAUSED";
         _controller.enabled = false;
         _pauseButtons.SetActive(true);
+        _pauseButtonsText.SetActive(true);
         Time.timeScale = 0f;
         _hudBorder.SetActive(false);
         _cursorSprite.enabled = false;
@@ -179,6 +181,7 @@ public class GameManager : MonoBehaviour
         }
         _controller.enabled = true;
         _pauseButtons.SetActive(false);
+        _pauseButtonsText.SetActive(false);
         Time.timeScale = 1f;
         _hudBorder.SetActive(true);
         _cursorSprite.enabled = true;
