@@ -19,6 +19,7 @@ public class CutsceneManager : MonoBehaviour
     [SerializeField] private float _fadeSpeed;
     private bool _fading = false;
     private float _currentVol;
+    [SerializeField] private bool _returnToMenu = false;
      
     // Start is called before the first frame update
     void Start()
@@ -69,7 +70,20 @@ public class CutsceneManager : MonoBehaviour
 
     public void LoadNextScene()
     {
+        if (_returnToMenu) 
+        {   
+          LoadMainMenu();
+        }
+        else
+        {
+
         SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
+        }
+    }
+
+    public void LoadMainMenu()
+    {
+        SceneManager.LoadScene("TitleScreen");
     }
 
     public void KillVisualNoise()

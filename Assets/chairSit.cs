@@ -27,7 +27,7 @@ public class chairSit : Interactable
     [SerializeField] private bool _doorClosed = false;
     [SerializeField] private Door _door;
     [SerializeField] private bool _flashOff = false;
-    [SerializeField] CameraZoom _camZoom;
+    [SerializeField] FlashilghtRot _flashLight;
     public bool _firstInteracted = false;
     private bool _flashOffLastFrame = false;
 
@@ -111,7 +111,7 @@ public class chairSit : Interactable
 
         _bulbOff = !_lightSwitch._on;
         _doorClosed = !_door._isOpen;
-        _flashOff = _camZoom._flashOn;
+        _flashOff = !_flashLight._active;
         
         
         
@@ -189,7 +189,8 @@ public class chairSit : Interactable
             
         }
 
-        _flashOffLastFrame = _camZoom._flashOn;
+        _flashOffLastFrame = _flashOff;
+       
     }
 
 

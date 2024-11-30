@@ -12,6 +12,7 @@ public class FlashilghtRot : MonoBehaviour
     [SerializeField] private float _speed;
     private Light _light;
     public bool _active = false;
+    public bool _activeLastFrame;
     private AudioSource _clickAudio;
     
     private void Start()
