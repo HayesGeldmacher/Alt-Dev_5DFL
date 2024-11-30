@@ -50,7 +50,12 @@ public class ScreenshotHandler : MonoBehaviour
         //instance = this;
         _cam = transform.GetComponent<Camera>();
         _showPhoto = true;
-        _volume.enabled = false;
+       
+        
+        if(_volume != null)
+        {
+            _volume.enabled = false;
+        }
         
     }
 
