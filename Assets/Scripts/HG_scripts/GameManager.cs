@@ -116,11 +116,13 @@ public class GameManager : MonoBehaviour
     
     public void ReloadLevel()
     {
-        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
+        Unpause();
+        SceneManager.LoadScene(SceneManager.GetActiveScene().name);
     }
 
     public void LoadMenu()
     {
+        Unpause();
         SceneManager.LoadScene("menu");
     }
 
@@ -158,6 +160,11 @@ public class GameManager : MonoBehaviour
             Cursor.lockState = CursorLockMode.None;
             Cursor.visible = true;
         }
+        else
+        {
+            Cursor.lockState = CursorLockMode.Confined;
+            Cursor.visible = false;
+        }
         _pausedAnimator.SetBool("paused", true);
         _pausedText.text = "PAUSED";
         _controller.enabled = false;
@@ -183,6 +190,12 @@ public class GameManager : MonoBehaviour
             Cursor.visible = false;
 
         }
+        else
+        {
+            Cursor.lockState = CursorLockMode.Confined;
+            Cursor.visible = false;
+        }
+
 
         if (_controller._hasCamera)
         {

@@ -42,7 +42,7 @@ public class PauseButton : MonoBehaviour
         _menuText.SetTrigger("fade");
         _exitText.SetTrigger("fade");
         yield return new WaitForSecondsRealtime(_waitTime);
-        _event.ReturnToMenu();
+        GameManager.instance.LoadMenu();
     }
 
     private IEnumerator Exit()
@@ -64,6 +64,6 @@ public class PauseButton : MonoBehaviour
         _menuText.SetTrigger("fade");
         _exitText.SetTrigger("fade");
         yield return new WaitForSecondsRealtime(_waitTime);
-        _event.RestartLevel();
+        GameManager.instance.ReloadLevel();
     }
 }

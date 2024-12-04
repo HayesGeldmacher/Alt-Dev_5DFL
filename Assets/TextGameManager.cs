@@ -102,13 +102,19 @@ public class TextGameManager : MonoBehaviour
 
     }
 
-    public void StartGame()
+    private IEnumerator StartInteraction()
     {
+        yield return new WaitForSeconds(1);
         Cursor.visible = false;
         Cursor.lockState = CursorLockMode.Confined;
         _pauseMaster.SetActive(false);
+    }
+
+    public void StartGame()
+    {
 
         SetEncounter(0);
+        StartCoroutine(StartInteraction());
     }
 
     public void ChooseOption(int _option)
