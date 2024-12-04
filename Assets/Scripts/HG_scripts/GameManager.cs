@@ -123,7 +123,7 @@ public class GameManager : MonoBehaviour
     public void LoadMenu()
     {
         Unpause();
-        SceneManager.LoadScene("menu");
+        SceneManager.LoadScene("TitleScreen");
     }
 
     public void SpawnKillMonster()
