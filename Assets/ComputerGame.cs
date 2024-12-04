@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using UnityEditor;
 using UnityEngine;
 
 public class ComputerGame : Interactable
@@ -8,6 +9,9 @@ public class ComputerGame : Interactable
     [SerializeField] private GameObject _textGame;
     [SerializeField] private Animator _textGameAnim;
     [SerializeField] private TextGameManager _textGameManager;
+    [SerializeField] private GameObject _mouseCursorText;
+    [SerializeField] private GameObject _mouseCursorInteract;
+    [SerializeField] private GameObject _buttonParent;
     private bool _hasExited = false;
 
     private bool _canInteract = true;
@@ -16,7 +20,9 @@ public class ComputerGame : Interactable
     private void Start()
     {
         _textGameManager.enabled = false;
+        _mouseCursorText.SetActive(false);
         base.Start();
+        _buttonParent.SetActive(false);
     }
 
     private void Update()
@@ -42,11 +48,14 @@ public class ComputerGame : Interactable
         _textGameManager.StartGame();
         GameManager.instance.FreezePlayer(true);
         _textGame.SetActive(true);
-        Cursor.lockState = CursorLockMode.Locked;
-        Cursor.visible = false;
+        // Cursor.lockState = CursorLockMode.Locked;
+        //  Cursor.visible = false;
+        GameManager.instance._inTextGame = true;
+        _mouseCursorInteract.SetActive(false);
         yield return new WaitForSeconds(1);
-
+        _mouseCursorText.SetActive(true);
         _textGameAnim.SetBool("visible", true);
+        _buttonParent.SetActive(true);
     }
 
     private IEnumerator ExitGame()
@@ -56,11 +65,11 @@ public class ComputerGame : Interactable
             _hasExited = true;
 
         _textGameAnim.SetBool("visible", false);
-
         yield return new WaitForSeconds(1);
 
         GameManager.instance.FreezePlayer(false);
         _textGame.SetActive(false);
+            _mouseCursorInteract.SetActive(true);
 
 
         }

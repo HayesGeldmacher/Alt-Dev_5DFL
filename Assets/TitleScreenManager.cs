@@ -9,12 +9,12 @@ public class TitleScreenManager : MonoBehaviour
     private bool _startedTransition = false;
     [SerializeField] private Animator _blackOutAnim;
     [SerializeField] private AudioSource _interactAudio;
-    [SerializeField] private AudioSource _staticAudio;
-    
+    [SerializeField] private Transform _cursorSprite;
+    [SerializeField] TitleScreenSpriteFollowMouse _spriteFollow;
     // Start is called before the first frame update
     void Start()
     {
-        Cursor.visible = true;
+        Cursor.visible = false;
         Cursor.lockState = CursorLockMode.Confined;
     }
 
@@ -37,6 +37,8 @@ public class TitleScreenManager : MonoBehaviour
     private IEnumerator StartGame()
     {
         _blackOutAnim.SetTrigger("fade");
+        _cursorSprite.SetParent(null);
+        _cursorSprite.GetComponent<Animator>().SetTrigger("fade");
         Cursor.visible = false;
         Cursor.lockState = CursorLockMode.Locked;
         yield return new WaitForSeconds(1);
@@ -57,6 +59,8 @@ public class TitleScreenManager : MonoBehaviour
     {
         _blackOutAnim.SetTrigger("fade");
         Cursor.visible = false;
+        _cursorSprite.SetParent(null);
+        _cursorSprite.GetComponent<Animator>().SetTrigger("fade");
         Cursor.lockState = CursorLockMode.Locked;
         yield return new WaitForSeconds(1);
         Application.Quit();
