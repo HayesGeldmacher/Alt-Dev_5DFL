@@ -54,6 +54,8 @@ public class GameManager : MonoBehaviour
     [SerializeField] private AudioSource _darkAmbience;
 
     [SerializeField] private TextGameManager _textGameManager;
+    public bool _inTextGame = false;
+
 
     private void Start()
     {
@@ -114,12 +116,14 @@ public class GameManager : MonoBehaviour
     
     public void ReloadLevel()
     {
-        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
+        Unpause();
+        SceneManager.LoadScene(SceneManager.GetActiveScene().name);
     }
 
     public void LoadMenu()
     {
-        SceneManager.LoadScene("menu");
+        Unpause();
+        SceneManager.LoadScene("TitleScreen");
     }
 
     public void SpawnKillMonster()
@@ -150,8 +154,17 @@ public class GameManager : MonoBehaviour
     public void Pause()
     {
         _isPaused = true;
-        Cursor.lockState = CursorLockMode.None;
-        Cursor.visible = true;
+
+        if (!_inTextGame)
+        {
+            Cursor.lockState = CursorLockMode.None;
+            Cursor.visible = true;
+        }
+        else
+        {
+            Cursor.lockState = CursorLockMode.Confined;
+            Cursor.visible = false;
+        }
         _pausedAnimator.SetBool("paused", true);
         _pausedText.text = "PAUSED";
         _controller.enabled = false;
@@ -170,8 +183,19 @@ public class GameManager : MonoBehaviour
     public void Unpause()
     {
         _isPaused = false;
-        Cursor.lockState = CursorLockMode.Locked;
-        Cursor.visible = false;
+
+        if (!_inTextGame)
+        {
+            Cursor.lockState = CursorLockMode.Locked;
+            Cursor.visible = false;
+
+        }
+        else
+        {
+            Cursor.lockState = CursorLockMode.Confined;
+            Cursor.visible = false;
+        }
+
 
         if (_controller._hasCamera)
         {

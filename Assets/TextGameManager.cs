@@ -2,6 +2,8 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
+using UnityEngine.UI;
+using UnityEditor;
 
 public class TextGameManager : MonoBehaviour
 {
@@ -43,6 +45,12 @@ public class TextGameManager : MonoBehaviour
     [SerializeField] private GameObject _blackBox3;
     [SerializeField] private GameObject _promptBox;
 
+    [Header("Buttons")]
+    [SerializeField] private GameObject _buttonMaster;
+    [SerializeField] private GameObject _button1;
+    [SerializeField] private GameObject _button2;
+    [SerializeField] private GameObject _button3;
+
     private bool _paused = false;
     [SerializeField] private GameObject _pauseBox;
     [SerializeField] private GameObject _dialogueBox;
@@ -50,6 +58,11 @@ public class TextGameManager : MonoBehaviour
 
     [SerializeField] private AudioSource _breatheAudio;
 
+    [SerializeField] private GameObject _mouseCursor;
+    [SerializeField] private GameObject _mouseCursorInteract;
+    [SerializeField] private GameObject _pauseMaster;
+
+    private bool _canInteract = true;
     //if you must select all options, set _allOptionsList to 3
 
     //if one option is correct
@@ -61,6 +74,7 @@ public class TextGameManager : MonoBehaviour
         _currentPassage = 0;
         _pauseBox.SetActive(false);
 
+        
     }
 
     // Update is called once per frame
@@ -88,12 +102,19 @@ public class TextGameManager : MonoBehaviour
 
     }
 
+    private IEnumerator StartInteraction()
+    {
+        yield return new WaitForSeconds(1);
+        Cursor.visible = false;
+        Cursor.lockState = CursorLockMode.Confined;
+        _pauseMaster.SetActive(false);
+    }
+
     public void StartGame()
     {
-        Cursor.visible = true;
-        Cursor.lockState = CursorLockMode.Confined;
 
         SetEncounter(0);
+        StartCoroutine(StartInteraction());
     }
 
     public void ChooseOption(int _option)
@@ -135,10 +156,6 @@ public class TextGameManager : MonoBehaviour
     private void SetEncounter(int _nextEncounterNum)
     {
 
-        if (!_staticAudio.isPlaying)
-        {
-            _staticAudio.Play();
-        }
 
         //Set option to -1 in order to fully quit the game!
         if (_nextEncounterNum == -1) { QuitGame(); return; }
@@ -162,21 +179,25 @@ public class TextGameManager : MonoBehaviour
         {
             _optionText1.text = "1: " + _currentEncounter._options[0];
             _blackBox1.SetActive(true);
+            _button1.SetActive(true);
 
             if (_currentOptions > 1)
             {
                 _optionText2.text = "2: " + _currentEncounter._options[1];
                 _blackBox2.SetActive(true);
+                _button2.SetActive(true);
 
                 if (_currentOptions > 2)
                 {
-                    _blackBox3.SetActive(true);
                     _optionText3.text = "3: " + _currentEncounter._options[2];
+                    _blackBox3.SetActive(true);
+                    _button3.SetActive(true);
                 }
                 else
                 {
                     _optionText3.text = "";
                     _blackBox3.SetActive(false);
+                    _button3.SetActive(false);
                 }
             }
             else
@@ -186,6 +207,9 @@ public class TextGameManager : MonoBehaviour
 
                 _blackBox2.SetActive(false);
                 _blackBox3.SetActive(false);
+                
+                _button2.SetActive(false);
+                _button3.SetActive(false);
             }
         }
         else
@@ -196,12 +220,14 @@ public class TextGameManager : MonoBehaviour
                 _optionText1.text = "";
                 _blackBox1.SetActive(false);
                 _promptBox.SetActive(false);
+                _button1.SetActive(false);
             }
             else
             {
-                _optionText1.text = "Space Key To Continue";
+                _optionText1.text = "Continue";
                 _blackBox1.SetActive(true);
                 _promptBox.SetActive(true);
+                _button1.SetActive(true);
 
             }
             _optionText2.text = "";
@@ -209,6 +235,9 @@ public class TextGameManager : MonoBehaviour
 
             _blackBox2.SetActive(false);
             _blackBox3.SetActive(false);
+
+            _button2.SetActive(false);
+            _button3.SetActive(false);
         }
 
 
@@ -245,6 +274,7 @@ public class TextGameManager : MonoBehaviour
         if (!_ended)
         {
             _ended = true;
+            _mouseCursor.SetActive(false);
             StartCoroutine(DisableGame());
         }
     }
@@ -257,13 +287,18 @@ public class TextGameManager : MonoBehaviour
         _brokenMonitor.SetActive(true);
         _workingMonitor.SetActive(false);
         _quitAudio.Play();
+        _button1.SetActive(false);
+        _button2.SetActive(false);
+        _button3.SetActive(false);
         yield return new WaitForSeconds(0.5f);
-        //play a disconnect sound here!
         PlayerController.instance._frozen = false;
         _camControl._frozen = false;
         _staticAudio.Stop();
         _breatheAudio.Play();
         this.enabled = false;
+        GameManager.instance._inTextGame = false;
+        _mouseCursorInteract.SetActive(true);
+        _pauseMaster.SetActive(true);
     }
 
     public void EndScare()
@@ -276,6 +311,9 @@ public class TextGameManager : MonoBehaviour
             _paused = true;
             _dialogueBox.SetActive(false);
             _pauseBox.SetActive(true);
+            _canInteract = false;
+        _mouseCursor.transform.GetChild(0).gameObject.SetActive(false);
+        _buttonMaster.SetActive(false);
     }
 
     public void UnPause()
@@ -283,6 +321,9 @@ public class TextGameManager : MonoBehaviour
         _paused = false;
         _dialogueBox.SetActive(true);
         _pauseBox.SetActive(false);
+        _canInteract = true;
+        _mouseCursor.transform.GetChild(0).gameObject.SetActive(true);
+        _buttonMaster.SetActive(true);
     }
 
     public void SetEndInput()
@@ -290,4 +331,21 @@ public class TextGameManager : MonoBehaviour
         //disables input once the final scary animation plays - no pausing, no repeating previous scenario!
         _endedInput = true;
     }
+
+
+    public void OptionSeleted0()
+    {
+        ChooseOption(0);
+    }
+
+    public void OptionSelected1()
+    {
+        ChooseOption(1);
+    }
+
+    public void OptionSelected2()
+    {
+       ChooseOption(2);
+    }
+
 }
