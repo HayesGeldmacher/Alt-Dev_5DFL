@@ -60,7 +60,6 @@ public class TextGameManager : MonoBehaviour
 
     [SerializeField] private GameObject _mouseCursor;
     [SerializeField] private GameObject _mouseCursorInteract;
-    [SerializeField] private GameObject _pauseMaster;
 
     private bool _canInteract = true;
     //if you must select all options, set _allOptionsList to 3
@@ -107,7 +106,6 @@ public class TextGameManager : MonoBehaviour
         yield return new WaitForSeconds(1);
         Cursor.visible = false;
         Cursor.lockState = CursorLockMode.Confined;
-        _pauseMaster.SetActive(false);
     }
 
     public void StartGame()
@@ -298,7 +296,6 @@ public class TextGameManager : MonoBehaviour
         this.enabled = false;
         GameManager.instance._inTextGame = false;
         _mouseCursorInteract.SetActive(true);
-        _pauseMaster.SetActive(true);
     }
 
     public void EndScare()
