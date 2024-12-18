@@ -27,6 +27,8 @@ public class TextGameManager : MonoBehaviour
     [SerializeField] private TMP_Text _optionText2;
     [SerializeField] private TMP_Text _optionText3;
 
+    [SerializeField] private TMP_Text _startText;
+
     [SerializeField] private int _currentOptions;
     [SerializeField] private int _currentPassage;
 
@@ -175,7 +177,13 @@ public class TextGameManager : MonoBehaviour
 
         if (_currentOptions > 0)
         {
+            
+            
+                _startText.text = "";
             _optionText1.text = "1: " + _currentEncounter._options[0];
+
+            
+     
             _blackBox1.SetActive(true);
             _button1.SetActive(true);
 
@@ -213,29 +221,44 @@ public class TextGameManager : MonoBehaviour
         else
         {
 
-            if (_currentEncounter._hideOptions)
+            if (_currentEncounter._startScreen)
             {
+                _startText.text = "START GAME";
                 _optionText1.text = "";
-                _blackBox1.SetActive(false);
-                _promptBox.SetActive(false);
-                _button1.SetActive(false);
-            }
-            else
-            {
-                _optionText1.text = "Continue";
+
                 _blackBox1.SetActive(true);
                 _promptBox.SetActive(true);
                 _button1.SetActive(true);
-
             }
-            _optionText2.text = "";
-            _optionText3.text = "";
+            else
+            {
 
-            _blackBox2.SetActive(false);
-            _blackBox3.SetActive(false);
+                if (_currentEncounter._hideOptions)
+                {
+                    _optionText1.text = "";
+                    _blackBox1.SetActive(false);
+                    _promptBox.SetActive(false);
+                    _button1.SetActive(false);
+                }
+                else
+                {
+                    _optionText1.text = "Continue";
+                    _blackBox1.SetActive(true);
+                    _promptBox.SetActive(true);
+                    _button1.SetActive(true);
 
-            _button2.SetActive(false);
-            _button3.SetActive(false);
+                }
+            }
+                _optionText2.text = "";
+                _optionText3.text = "";
+
+                _blackBox2.SetActive(false);
+                _blackBox3.SetActive(false);
+
+                _button2.SetActive(false);
+                _button3.SetActive(false);
+
+
         }
 
 

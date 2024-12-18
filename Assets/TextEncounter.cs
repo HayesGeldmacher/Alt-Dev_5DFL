@@ -15,6 +15,8 @@ public class TextEncounter
     public int _imageAnimSet = -1;
     public bool _interactive = true;
 
+    public bool _startScreen = false;
+
     public bool _hasSound = false;
     public AudioClip _soundClip;
 
