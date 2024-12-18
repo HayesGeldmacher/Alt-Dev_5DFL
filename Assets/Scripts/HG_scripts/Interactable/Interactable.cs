@@ -9,7 +9,7 @@ public class Interactable : MonoBehaviour
 
     [Header("Dialogue Variables")]
     [SerializeField] protected bool _canTalk = false;
-    [HideInInspector] public bool _startedTalking = false;
+    public bool _startedTalking = false;
     [SerializeField] protected bool _canWalkAway;
     [SerializeField] protected float _dialogueTimer = 5;
     [SerializeField] protected float currentDialogueTime = 0;
@@ -70,7 +70,7 @@ public class Interactable : MonoBehaviour
                 currentDialogueTime -= Time.deltaTime;
                 if(currentDialogueTime < 0)
                 {
-                    EndDialogue();
+                   // EndDialogue();
                 }
             }
 
@@ -130,6 +130,7 @@ public class Interactable : MonoBehaviour
         if (!_startedTalking)
         {
             Interactable _interactable = transform.GetComponent<Interactable>();
+            Debug.Log("STARTED NEW DIALOGUE INTERRACTION");
             _manager.StartDialogue(_dialogue, _interactable);
             _startedTalking = true;
         }
@@ -141,7 +142,9 @@ public class Interactable : MonoBehaviour
 
     public virtual void EndDialogue()
     {
+        _startedTalking = false;
         _manager.EndDialogue();
+
         _player.GetComponent<PlayerController>()._frozen = false;
     }
 

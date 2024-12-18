@@ -258,7 +258,6 @@ public class TextGameManager : MonoBehaviour
                 _button2.SetActive(false);
                 _button3.SetActive(false);
 
-
         }
 
 

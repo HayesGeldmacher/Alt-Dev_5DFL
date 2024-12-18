@@ -7,9 +7,11 @@ public class DialogueManager : MonoBehaviour
 {
     private Queue<string> _sentences;
     public TMP_Text _dialogueText;
-    private Interactable _currentTrigger;
-    [SerializeField ]private Animator _textAnim;
+    [SerializeField] private Interactable _currentTrigger;
+    [SerializeField] private Animator _textAnim;
     [SerializeField] private PlayerController _controller;
+
+    public bool _currentlyTalking = true;
 
     private void Start()
     {
@@ -19,6 +21,15 @@ public class DialogueManager : MonoBehaviour
     //Begins a conversation when the dialogue trigger is activated from an NPC or item
     public void StartDialogue(Dialogue _dialogue, Interactable _trigger)
     {
+        
+        if(_currentTrigger != null)
+        {
+            _currentTrigger._startedTalking = false;
+        }
+        
+        
+        _currentlyTalking = true;
+        
         _currentTrigger = _trigger;
         
         _textAnim.SetBool("active", true);
@@ -36,6 +47,8 @@ public class DialogueManager : MonoBehaviour
 
     public void DisplayNextSentence()
     {
+        Debug.Log("FUCK CONTINUED!");
+        
         if(_sentences.Count == 0) 
         {
             EndDialogue();
@@ -57,7 +70,10 @@ public class DialogueManager : MonoBehaviour
         if (_currentTrigger)
         {
             _currentTrigger._startedTalking = false;
+            _currentTrigger = null;
         }
+
+        _currentlyTalking = false;
     }
 
     public void CallTimerEnd(float _textTime)
