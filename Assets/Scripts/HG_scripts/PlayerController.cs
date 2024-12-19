@@ -176,7 +176,7 @@ public class PlayerController : MonoBehaviour
             float z = Input.GetAxis("Vertical");
 
             //Stores that input in a variable to be used later in function
-            Vector3 _move = transform.right * x + transform.forward * z;
+            Vector3 _move = (transform.right * x + transform.forward * z);
 
             //Constantly adding a downward force to the player so they fall when not standing on something
 
