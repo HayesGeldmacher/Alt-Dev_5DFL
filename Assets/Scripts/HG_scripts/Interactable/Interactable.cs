@@ -70,7 +70,7 @@ public class Interactable : MonoBehaviour
                 currentDialogueTime -= Time.deltaTime;
                 if(currentDialogueTime < 0)
                 {
-                   // EndDialogue();
+                   EndDialogue();
                 }
             }
 

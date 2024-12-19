@@ -17,14 +17,14 @@ public class CameraPickup : Interactable
     [SerializeField] private CameraController _cam;
     [SerializeField] private GameObject _glimmer;
     private bool _canClickContinue = false;
-
+    [SerializeField] private GameObject _screenVHS;
     [SerializeField] private GameObject _ghostCam;
 
 
     private void Start()
     {
         base.Start();
-        _render = GetComponent<MeshRenderer>();
+        //_render = GetComponent<MeshRenderer>();
         _bc = GetComponent<BoxCollider>();
         _canClickContinue = false;
 
@@ -60,9 +60,8 @@ public class CameraPickup : Interactable
     public override void Interact()
     {
 
-        
-
         Debug.Log("interacting!");
+        Destroy(_screenVHS);
         
         if (_intro)
         {
@@ -111,7 +110,6 @@ public class CameraPickup : Interactable
         _cam._canInteract = true;
         Destroy(gameObject);
     }
-
     private IEnumerator ClickWait()
     {
         yield return new WaitForSeconds(0.4f);
