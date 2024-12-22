@@ -26,6 +26,7 @@ public class TitleScreenSpriteFollowMouse : MonoBehaviour
         //_anim = transform.GetComponent<Animator>();
         _clickSound = transform.GetComponent<AudioSource>();
         Cursor.lockState = CursorLockMode.Confined;
+
         
     }
 

@@ -71,6 +71,8 @@ public class GameManager : MonoBehaviour
         {
             _currentVolumeStatic = _staticAudio.volume;
         }
+
+        _pauseCursor.EnableCursor(false);
     }
    
     private void Update()
@@ -112,18 +114,21 @@ public class GameManager : MonoBehaviour
 
     public void LoadNextLevel()
     {
+        _pauseCursor.EnableCursor(false);
         SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
 
     }
     
     public void ReloadLevel()
     {
+        _pauseCursor.EnableCursor(false);
         Unpause();
         SceneManager.LoadScene(SceneManager.GetActiveScene().name);
     }
 
     public void LoadMenu()
     {
+        _pauseCursor.EnableCursor(false);
         Unpause();
         SceneManager.LoadScene("TitleScreen");
     }
@@ -189,7 +194,7 @@ public class GameManager : MonoBehaviour
 
         if (!_inTextGame)
         {
-            Cursor.lockState = CursorLockMode.Locked;
+            Cursor.lockState = CursorLockMode.Confined;
             Cursor.visible = false;
            
 

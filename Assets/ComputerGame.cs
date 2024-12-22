@@ -12,9 +12,11 @@ public class ComputerGame : Interactable
     [SerializeField] private GameObject _mouseCursorText;
     [SerializeField] private GameObject _mouseCursorInteract;
     [SerializeField] private GameObject _buttonParent;
+    [SerializeField] private GameObject _pauseButtonMaster;
     private bool _hasExited = false;
 
     private bool _canInteract = true;
+    [SerializeField] private TitleScreenSpriteFollowMouse _screenCursor;
 
     
     private void Start()
@@ -45,14 +47,16 @@ public class ComputerGame : Interactable
     private IEnumerator EnterGame()
     {
         _textGameManager.enabled = true;
+        _pauseButtonMaster.SetActive(true);
         _textGameManager.StartGame();
         GameManager.instance.FreezePlayer(true);
         _textGame.SetActive(true);
-        // Cursor.lockState = CursorLockMode.Locked;
-        //  Cursor.visible = false;
+        Cursor.lockState = CursorLockMode.Confined;
+        Cursor.visible = false;
         GameManager.instance._inTextGame = true;
         _mouseCursorInteract.SetActive(false);
         yield return new WaitForSeconds(1);
+        _screenCursor.EnableCursor(true);
         _mouseCursorText.SetActive(true);
         _textGameAnim.SetBool("visible", true);
         _buttonParent.SetActive(true);

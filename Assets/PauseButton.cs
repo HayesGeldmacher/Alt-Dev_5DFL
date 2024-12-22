@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using JetBrains.Annotations;
 using UnityEngine;
 
 public class PauseButton : MonoBehaviour
@@ -12,9 +13,12 @@ public class PauseButton : MonoBehaviour
     [SerializeField] private Animator _resetText;
     [SerializeField] private Animator _menuText;
     [SerializeField] private Animator _exitText;
+
+    [SerializeField] private TitleScreenSpriteFollowMouse _pauseCursor;
     
     public void CallReset()
     {
+        _pauseCursor.EnableCursor(false);
         Cursor.lockState = CursorLockMode.Locked;
         Cursor.visible = false;
         StartCoroutine(Reset());
@@ -22,6 +26,7 @@ public class PauseButton : MonoBehaviour
 
     public void CallMenu()
     {
+        _pauseCursor.EnableCursor(false);
         Cursor.lockState = CursorLockMode.Locked;
         Cursor.visible = false;
         StartCoroutine(Menu());
@@ -29,6 +34,7 @@ public class PauseButton : MonoBehaviour
 
     public void CallExit()
     {
+        _pauseCursor.EnableCursor(false);
         Cursor.lockState = CursorLockMode.Locked;
         Cursor.visible = false;
         StartCoroutine(Exit());
