@@ -56,6 +56,8 @@ public class GameManager : MonoBehaviour
     [SerializeField] private TextGameManager _textGameManager;
     public bool _inTextGame = false;
 
+    [SerializeField] private TitleScreenSpriteFollowMouse _pauseCursor;
+
 
     private void Start()
     {
@@ -157,8 +159,9 @@ public class GameManager : MonoBehaviour
 
         if (!_inTextGame)
         {
-            Cursor.lockState = CursorLockMode.None;
-            Cursor.visible = true;
+            Cursor.lockState = CursorLockMode.Confined;
+            Cursor.visible = false;
+            _pauseCursor.EnableCursor(true);
         }
         else
         {
@@ -188,6 +191,7 @@ public class GameManager : MonoBehaviour
         {
             Cursor.lockState = CursorLockMode.Locked;
             Cursor.visible = false;
+           
 
         }
         else
@@ -196,6 +200,7 @@ public class GameManager : MonoBehaviour
             Cursor.visible = false;
         }
 
+        _pauseCursor.EnableCursor(false);
 
         if (_controller._hasCamera)
         {

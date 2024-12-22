@@ -1,12 +1,14 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class TitleScreenSpriteFollowMouse : MonoBehaviour
 {
     [SerializeField] private Canvas _parentCanvas;
     [SerializeField] private Animator _anim;
     private AudioSource _clickSound;
+    [SerializeField] private RawImage _clickImage;
 
     [Header("Boundary Constraints")]
     [SerializeField] private bool _constrained = false;
@@ -16,6 +18,7 @@ public class TitleScreenSpriteFollowMouse : MonoBehaviour
     [SerializeField] private int _maxY;
 
     [SerializeField] private Vector2 _readCursorPosition;
+    private bool _active = false;
 
     // Start is called before the first frame update
     void Start()
@@ -23,12 +26,15 @@ public class TitleScreenSpriteFollowMouse : MonoBehaviour
         //_anim = transform.GetComponent<Animator>();
         _clickSound = transform.GetComponent<AudioSource>();
         Cursor.lockState = CursorLockMode.Confined;
+        
     }
 
     // Update is called once per frame
     void Update()
     {
        
+       if(!_active) return;
+        
         if(Input.GetMouseButtonDown(0))
         {
             _anim.SetTrigger("click");
@@ -51,6 +57,31 @@ public class TitleScreenSpriteFollowMouse : MonoBehaviour
 
         transform.position = _parentCanvas.transform.TransformPoint(_pos);
         _readCursorPosition = _pos;
+    }
+
+    public void EnableCursor(bool _kill)
+    {
+
+        //Set position BEFORE we re-enable image to avoid jumpy glitch
+        Vector2 _cursorPos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
+        transform.position = _cursorPos;
+
+        Vector2 _pos;
+        RectTransformUtility.ScreenPointToLocalPointInRectangle((RectTransform)_parentCanvas.transform, Input.mousePosition, _parentCanvas.worldCamera, out _pos);
+
+        if (_constrained)
+        {
+            float xPos = Mathf.Clamp(_pos.x, _minX, _maxX);
+            float yPos = Mathf.Clamp(_pos.y, _minY, _maxY);
+            _pos = new Vector2(xPos, yPos);
+        }
+
+        transform.position = _parentCanvas.transform.TransformPoint(_pos);
+        _readCursorPosition = _pos;
+
+        _active = _kill;
+        _clickImage.enabled = _kill;
+
     }
 
 }
