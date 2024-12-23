@@ -16,6 +16,7 @@ public class TitleScreenManager : MonoBehaviour
     {
         Cursor.visible = false;
         Cursor.lockState = CursorLockMode.Confined;
+        _spriteFollow.EnableCursor(true);
     }
 
     // Update is called once per frame

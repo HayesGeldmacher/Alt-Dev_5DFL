@@ -47,19 +47,20 @@ public class ComputerGame : Interactable
     private IEnumerator EnterGame()
     {
         _textGameManager.enabled = true;
-        _pauseButtonMaster.SetActive(true);
+        _pauseButtonMaster.SetActive(false);
         _textGameManager.StartGame();
         GameManager.instance.FreezePlayer(true);
         _textGame.SetActive(true);
-        Cursor.lockState = CursorLockMode.Confined;
-        Cursor.visible = false;
         GameManager.instance._inTextGame = true;
         _mouseCursorInteract.SetActive(false);
         yield return new WaitForSeconds(1);
+        _textGameAnim.SetBool("visible", true);
+        yield return new WaitForSeconds(1.5f);
         _screenCursor.EnableCursor(true);
         _mouseCursorText.SetActive(true);
-        _textGameAnim.SetBool("visible", true);
         _buttonParent.SetActive(true);
+        Cursor.lockState = CursorLockMode.Confined;
+        Cursor.visible = false;
     }
 
     private IEnumerator ExitGame()
