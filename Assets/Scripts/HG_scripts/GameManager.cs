@@ -61,6 +61,7 @@ public class GameManager : MonoBehaviour
 
     private void Start()
     {
+        _pauseCursor.EnableCursor(false);
 
         if(_darkAmbience != null)
         {
@@ -72,7 +73,6 @@ public class GameManager : MonoBehaviour
             _currentVolumeStatic = _staticAudio.volume;
         }
 
-        _pauseCursor.EnableCursor(false);
     }
    
     private void Update()
