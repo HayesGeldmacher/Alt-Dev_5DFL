@@ -62,7 +62,7 @@ public class GameManager : MonoBehaviour
     private void Start()
     {
         _pauseCursor.EnableCursor(false);
-
+        _pauseButtons.SetActive(false);
         if(_darkAmbience != null)
         {
             _currentVolumeDarkAmbience = _darkAmbience.volume;
