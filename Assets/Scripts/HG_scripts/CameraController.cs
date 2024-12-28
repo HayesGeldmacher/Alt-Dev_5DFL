@@ -128,8 +128,8 @@ public class CameraController : MonoBehaviour
 
     private void Update()
     {
-        
-        if (_frozen) return;
+
+        if (_frozen) { _cursorAnim.SetBool("isCasting", false); return; }
         InteractUpdate();
         if (_isHolding) return;
 
@@ -207,7 +207,7 @@ public class CameraController : MonoBehaviour
     {
 
 
-            if (!_canInteract)
+        if (!_canInteract)
         {
             _cursorAnim.SetBool("isCasting", false);
         }

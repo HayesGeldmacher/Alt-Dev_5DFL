@@ -12,7 +12,9 @@ public class TripodInteract : Interactable
     [SerializeField] private GameObject[] _disappearObjects;
     [SerializeField] private GameObject[] _appearObjects;
 
+    [SerializeField] private CameraController _camController;
 
+ 
 
     private bool _startedEnd = false;
     private bool _playedAnimatiton = false;
@@ -31,12 +33,27 @@ public class TripodInteract : Interactable
 
     public override void Interact()
     {
-        base.Interact();
-        _treeAnim.SetTrigger("transform");
-        if (_treeSound != null) 
-        { 
-            _treeSound.Play();
+
+        if (!_playedAnimatiton)
+        {
+            _playedAnimatiton = true;
+            PlayerController.instance._frozen = true;
+            _camController._canInteract = false;
+            _camController._frozen = true;
+            transform.GetComponent<BoxCollider>().enabled = false;
+            _treeAnim.SetTrigger("transform");
+            if (_treeSound != null) 
+            { 
+                _treeSound.Play();
+            }
         }
+        else
+        {
+            base.Interact();
+        }
+        
+
+
     }
 
 
@@ -45,6 +62,8 @@ public class TripodInteract : Interactable
 
         if (!_startedEnd)
         {
+            
+
             _startedEnd = true;
             if (_endInteractSound != null) 
             { 
@@ -64,7 +83,6 @@ public class TripodInteract : Interactable
 
             _treeAnim.SetTrigger("end");
 
-            GetComponent<MeshRenderer>().enabled = false; 
             StartCoroutine(AnimEnd());
 
         }
@@ -73,7 +91,11 @@ public class TripodInteract : Interactable
 
     private IEnumerator AnimEnd()
     {
-        yield return new WaitForSeconds(1);
-        Destroy(gameObject);
+        yield return new WaitForSeconds(1f);
+        _camController._frozen = false;
+        PlayerController.instance._frozen = false;
+        _camController._canInteract = true;
+        transform.GetComponent<BoxCollider>().enabled = true;
+
     }
 }
