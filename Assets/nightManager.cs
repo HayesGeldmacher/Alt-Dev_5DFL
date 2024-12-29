@@ -59,7 +59,8 @@ public class nightManager : Interactable
 
     [SerializeField] private CameraZoom _camZoom;
 
-
+    private bool _phoneCompletedDialogue = false;
+    private bool _phoneEndedDialogue = false;
 
     // private float _disableController = false;
     // Start is called before the first frame update
@@ -103,6 +104,13 @@ public class nightManager : Interactable
             _interactAudio.Play();
             _seenDialogue = false;
             StartCoroutine(SpawnFlags());
+        }
+        else if(Input.GetMouseButtonDown(0) && _phoneCompletedDialogue && !_phoneEndedDialogue)
+        {
+            _phoneEndedDialogue = true;
+            base.Interact();
+            _interactAudio.Play();
+
         }
 
 
@@ -161,6 +169,19 @@ public class nightManager : Interactable
         yield return new WaitForSeconds(1f);
         base.Interact();
         _seenDialogue = true;
+    }
+
+    public void CallEvidenceCompleteDialogue()
+    {
+        StartCoroutine(EvidenceCompleteDialogue());
+    }
+
+    private IEnumerator EvidenceCompleteDialogue()
+    {
+        yield return new WaitForSeconds(2); 
+        _dialogue._sentences[0] = "The phone is ringing again...";
+        base.Interact();
+        _phoneCompletedDialogue = true;
     }
 
     public void FreePlayer()
@@ -255,10 +276,13 @@ public class nightManager : Interactable
                 CompleteEvidence();
             }
         }
+
+        CallEvidenceCompleteDialogue();
     }
 
     private void CompleteEvidence()
     {
+        CallEvidenceCompleteDialogue();
         Debug.Log("newPhoneDONE!");
         _oldPhone.SetActive(false);
         _newPhone.SetActive(true);
