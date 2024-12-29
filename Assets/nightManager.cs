@@ -276,8 +276,6 @@ public class nightManager : Interactable
                 CompleteEvidence();
             }
         }
-
-        CallEvidenceCompleteDialogue();
     }
 
     private void CompleteEvidence()
