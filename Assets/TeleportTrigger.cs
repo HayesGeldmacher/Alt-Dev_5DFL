@@ -17,6 +17,8 @@ public class TeleportTrigger : MonoBehaviour
     [SerializeField] private List<GameObject> _disappearObjects = new List<GameObject>();
     [SerializeField] private List<GameObject> _appearObjects = new List<GameObject>();
 
+
+    [SerializeField] private CameraZoom _camZoom;
     // Start is called before the first frame update
     void Start()
     {
@@ -68,6 +70,8 @@ public class TeleportTrigger : MonoBehaviour
 
     private void TeleportPlayer()
     {
+
+        _camZoom.TurnOffFlash();
         _playerParent.SetActive(false);
         //_controller._frozen = true;
         //_char.enabled = false;
