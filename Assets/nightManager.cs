@@ -57,9 +57,7 @@ public class nightManager : Interactable
     private bool _completedEvidence = false;
     [SerializeField] private AudioSource _publicAudio;
 
-
-
-
+    [SerializeField] private CameraZoom _camZoom;
 
 
 
@@ -232,7 +230,7 @@ public class nightManager : Interactable
 
     private void TeleportPlayer()
     {
-       
+        _camZoom.TurnOffFlash();
         _playerParent.SetActive(false);
         //_controller._frozen = true;
         //_char.enabled = false;
