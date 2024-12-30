@@ -136,8 +136,8 @@ public class CameraController : MonoBehaviour
 
         //Here, we are getting the actualy mouse movement from the player and converting it to variables
         //All inputs should be multiplied Time.deltaTime in order for physics to work correctly
-        float mouseX = Input.GetAxis("Mouse X") * _mouseSensitivityX;
-        float mouseY = Input.GetAxis("Mouse Y") * _mouseSensitivityY;
+        float mouseX = Input.GetAxis("ControllerX") * _mouseSensitivityX;
+        float mouseY = Input.GetAxis("ControllerY") * _mouseSensitivityY;
 
         _camXMove = mouseX;
 
@@ -266,7 +266,7 @@ public class CameraController : MonoBehaviour
                     _currentInteractable.OnOutline();
                 }
 
-                if (Input.GetMouseButtonDown(0))
+                if (Input.GetButtonDown("Interact"))
                 {
                     if (_hitInfo.transform.tag == "door")
                     {
@@ -311,7 +311,7 @@ public class CameraController : MonoBehaviour
                         }
                     }
 
-                    else if (Input.GetMouseButtonDown(0))
+                    else if (Input.GetButtonDown("Interact"))
                     {
                         _cursorAnim.SetTrigger("clicked");
                         _interactAudio.PlayInteract();
@@ -319,7 +319,7 @@ public class CameraController : MonoBehaviour
                     }
 
                 }
-                else if(Input.GetMouseButtonUp(0))
+                else if(Input.GetButtonUp("Interact"))
                 {
                     _isHolding = false;
                     _cursorAnim.SetBool("isCasting", false);
@@ -342,7 +342,7 @@ public class CameraController : MonoBehaviour
             {
                 float distance = Vector3.Distance(_door.transform.position, transform.position);
 
-                if (Input.GetMouseButtonUp(0) || distance > _doorRange)
+                if (Input.GetButtonUp("Interact") || distance > _doorRange)
                 {
                 _isHolding = false;
                 _cursorAnim.SetBool("isCasting", false);
@@ -374,7 +374,7 @@ public class CameraController : MonoBehaviour
     private void ScreenShotUpdate()
     {
        //Ensures that player has to wait between each shot, cant spam
-        if (Input.GetMouseButtonDown(0) && _currentShotWait >= _shotWait && _zoom._isZooming)
+        if (Input.GetButtonDown("Interact") && _currentShotWait >= _shotWait && _zoom._isZooming)
         {
             if (_hasCamera)
             {

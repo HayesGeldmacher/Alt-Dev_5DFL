@@ -92,6 +92,7 @@ public class PlayerController : MonoBehaviour
     private float _currentIntensity = 0;
     private float _currentFrequency = 0;
     
+    
 
 
     //The below region just creates a reference of this specific controller that we can call from other scripts quickly
@@ -194,7 +195,7 @@ public class PlayerController : MonoBehaviour
             
 
             //Checking to see if the player is running!
-            if(_grounded && Input.GetKey(KeyCode.LeftShift) && !_isCrouching)
+            if(_grounded && Input.GetButton("run") && !_isCrouching)
             {
                 if (_move.magnitude > 0.1f)
                 {
@@ -521,7 +522,6 @@ public class PlayerController : MonoBehaviour
 
     private void CamShakeUpdate()
     {
-
         //Descending = check if running, if not walking, if not crouching, and then idle
 
         if(_camControl._hasCamera)

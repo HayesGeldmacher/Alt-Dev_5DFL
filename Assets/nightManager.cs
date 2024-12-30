@@ -98,7 +98,7 @@ public class nightManager : Interactable
     // Update is called once per frame
     void Update()
     {
-        if(Input.GetMouseButtonDown(0) && _seenDialogue)
+        if(Input.GetButtonDown("Interact") && _seenDialogue)
         {
             base.Interact();
             _interactAudio.Play();

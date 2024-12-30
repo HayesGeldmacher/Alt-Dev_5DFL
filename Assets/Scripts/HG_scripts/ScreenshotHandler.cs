@@ -68,7 +68,7 @@ public class ScreenshotHandler : MonoBehaviour
         if (_zoom._isZooming) return;
         if (_camControl._interacting) return;
 
-        if (Input.GetKeyDown(KeyCode.Tab))
+        if (Input.GetButtonDown("picture"))
         {
             if (_hasPhoto)
             {
@@ -230,7 +230,8 @@ public class ScreenshotHandler : MonoBehaviour
             _photoAnim.SetTrigger("fade");
             yield return new WaitForSeconds(0.1f);
             _iconAnim.SetTrigger("appear");
-        
+
+
     }
 
     private float CheckForLight(Texture2D renderTexture)
@@ -299,7 +300,9 @@ public class ScreenshotHandler : MonoBehaviour
     //This is called by the below function, and initiates the screenshot
     private IEnumerator TakeScreenshot(int _width, int _height)
     {
-         yield return _frameEnd;
+
+        
+        yield return _frameEnd;
         CheckForEvidence();
     }
 
