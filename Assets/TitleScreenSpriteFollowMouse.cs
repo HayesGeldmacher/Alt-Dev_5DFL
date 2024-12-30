@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.InputSystem;
 
 public class TitleScreenSpriteFollowMouse : MonoBehaviour
 {
@@ -20,6 +21,8 @@ public class TitleScreenSpriteFollowMouse : MonoBehaviour
     [SerializeField] private Vector2 _readCursorPosition;
     private bool _active = false;
 
+    private bool _controller = true;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -35,6 +38,11 @@ public class TitleScreenSpriteFollowMouse : MonoBehaviour
     {
        
        if(!_active) return;
+
+        if (_controller)
+        {
+            ControllerFollowUpdate();
+        }
         
         if(Input.GetMouseButtonDown(0))
         {
@@ -83,6 +91,21 @@ public class TitleScreenSpriteFollowMouse : MonoBehaviour
         _active = _kill;
         _clickImage.enabled = _kill;
 
+    }
+
+
+    private void ControllerFollowUpdate()
+    {
+        float mouseX = Input.GetAxis("ControllerX") * 300;
+        float mouseY = Input.GetAxis("ControllerY") * 300;
+
+        Vector2 _controllerInput = new Vector2(mouseX, mouseY);
+
+        Vector2 _currentPos = Input.mousePosition;
+        _currentPos += _controllerInput;
+        
+
+        Mouse.current.WarpCursorPosition(_currentPos);
     }
 
 }
