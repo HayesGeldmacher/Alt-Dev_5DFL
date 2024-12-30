@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using Cinemachine;
+using System.Runtime.CompilerServices;
 
 public class CameraZoom : MonoBehaviour
 {
@@ -42,7 +43,7 @@ public class CameraZoom : MonoBehaviour
 
 
 
-            if (Input.GetMouseButtonDown(2) && !_handler._photoOpen)
+            if (Input.GetButtonDown("flash") && !_handler._photoOpen)
             {
 
                 if (_canFlash)
@@ -52,10 +53,20 @@ public class CameraZoom : MonoBehaviour
                 }
             }
 
-        if (Input.GetMouseButton(1) && !_handler._photoOpen)
+
+        bool _PressingTrigger;
+        if (Input.GetAxis("Zoom") >= 0.1f || Input.GetButton("Zoom"))
+        {
+            _PressingTrigger = true;
+        }
+        else
+        {
+            _PressingTrigger= false;
+        }
+
+        if (_PressingTrigger && !_handler._photoOpen)
         {
             
-
             _isZooming = true;
             
             if (!_zoomAudio.isPlaying && !_hasPlayedSound)

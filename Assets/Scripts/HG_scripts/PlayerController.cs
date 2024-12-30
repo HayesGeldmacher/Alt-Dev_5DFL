@@ -291,7 +291,7 @@ public class PlayerController : MonoBehaviour
         {
             if (!_running)
             {
-                if (Input.GetKey(KeyCode.LeftControl))
+                if (Input.GetButton("crouch"))
                 {
                     if (!_isCrouching)
                     {
