@@ -3,8 +3,10 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.InputSystem;
+using System.Security.Cryptography;
+using UnityEngine.EventSystems;
 
-public class TitleScreenSpriteFollowMouse : MonoBehaviour
+public class TitleScreenSpriteFollowMouse : MonoBehaviour, IPointerEnterHandler
 {
     [SerializeField] private Canvas _parentCanvas;
     [SerializeField] private Animator _anim;
@@ -22,6 +24,9 @@ public class TitleScreenSpriteFollowMouse : MonoBehaviour
     private bool _active = false;
 
     private bool _controller = true;
+
+    [SerializeField] private Button _currentHoverButton;
+    [SerializeField] private bool _hasButton = false;
 
     // Start is called before the first frame update
     void Start()
@@ -44,7 +49,7 @@ public class TitleScreenSpriteFollowMouse : MonoBehaviour
             ControllerFollowUpdate();
         }
         
-        if(Input.GetMouseButtonDown(0))
+        if(Input.GetButtonDown("Interact"))
         {
             _anim.SetTrigger("click");
             _clickSound.Play();
@@ -96,8 +101,8 @@ public class TitleScreenSpriteFollowMouse : MonoBehaviour
 
     private void ControllerFollowUpdate()
     {
-        float mouseX = Input.GetAxis("ControllerX") * 300;
-        float mouseY = Input.GetAxis("ControllerY") * 300;
+        float mouseX = Input.GetAxis("Horizontal") * 15;
+        float mouseY = Input.GetAxis("Vertical") * 15;
 
         Vector2 _controllerInput = new Vector2(mouseX, mouseY);
 
@@ -106,6 +111,44 @@ public class TitleScreenSpriteFollowMouse : MonoBehaviour
         
 
         Mouse.current.WarpCursorPosition(_currentPos);
+
+
+        if (Input.GetButtonDown("Interact"))
+        {
+            if(_hasButton && _currentHoverButton != null)
+            {
+                PressButton();
+            }
+        }
+
+        //getting current button!
+
     }
+
+
+
+    public void PressButton()
+    {
+        _currentHoverButton.onClick.Invoke();
+    }
+
+    public void SelectButton(GameObject buttonObject)
+    {
+        _currentHoverButton = buttonObject.GetComponent<Button>();
+        _hasButton = true;
+    }
+
+    public void LeaveButton(GameObject buttonObject)
+    {
+        _hasButton = false;
+        _currentHoverButton = null;
+    }
+
+    public void OnPointerEnter(PointerEventData pointerEventData)
+    {
+        //Output to console the GameObject's name and the following message
+        Debug.Log("Cursor Entering " + name + " GameObject");
+    }
+
 
 }
