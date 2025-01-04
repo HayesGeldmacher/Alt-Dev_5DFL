@@ -13,6 +13,10 @@ public class TextGameManager : MonoBehaviour
     private bool _ended = false;
     private bool _endedInput = false;
 
+    [SerializeField] private float _totalButtonWait;
+    [SerializeField] private float _currentButtonWait;
+    [SerializeField] private bool _isWaiting = false;
+
     [Header("AnimationVariables")]
     [SerializeField] private Animator _canvasAnim;
     [SerializeField] private Animator _backGroundAnim;
@@ -101,6 +105,17 @@ public class TextGameManager : MonoBehaviour
             ChooseOption(0);
         }
 
+
+        if (_isWaiting)
+        {
+            _currentButtonWait -= Time.deltaTime;
+            if(_currentButtonWait <= 0)
+            {
+                _isWaiting = false;
+                _currentButtonWait = _totalButtonWait;
+            }
+        }
+
     }
 
     private IEnumerator StartInteraction()
@@ -119,7 +134,12 @@ public class TextGameManager : MonoBehaviour
 
     public void ChooseOption(int _option)
     {
-        if (_ended) return;
+        if (_ended || _paused || _endedInput) return;
+
+        if (_isWaiting) return;
+
+        _isWaiting = true;
+        _currentButtonWait = _totalButtonWait;
        
         if (_currentOptions > 0)
         {
@@ -168,6 +188,12 @@ public class TextGameManager : MonoBehaviour
             _newEncounter = _encounterList[_newEncounter._finalPath];
         }
         _currentEncounter = _newEncounter;
+
+        //freezing input
+        if (_currentEncounter._freezeInput)
+        {
+            _endedInput = true;
+        }
 
         Debug.Log("CURRENTOPTIONS: " + _currentEncounter._options.Count);
         _currentOptions = _currentEncounter._options.Count;

@@ -23,7 +23,12 @@ public class TitleScreenSpriteFollowMouse : MonoBehaviour, IPointerEnterHandler
     [SerializeField] private Vector2 _readCursorPosition;
     private bool _active = false;
 
-    private bool _controller = true;
+    [SerializeField] private bool _controller = false;
+
+    //Set to false when cursor should not be usable!
+    public bool _controllerCanPress = false;
+
+    
 
     [SerializeField] private Button _currentHoverButton;
     [SerializeField] private bool _hasButton = false;
@@ -126,10 +131,13 @@ public class TitleScreenSpriteFollowMouse : MonoBehaviour, IPointerEnterHandler
     }
 
 
-
+    //THIS IS BEING PRESSSED WHEN IT FUCKING SHOULDNT!
     public void PressButton()
     {
-        _currentHoverButton.onClick.Invoke();
+        if (_controllerCanPress && _controller)
+        {
+            _currentHoverButton.onClick.Invoke();
+        }
     }
 
     public void SelectButton(GameObject buttonObject)

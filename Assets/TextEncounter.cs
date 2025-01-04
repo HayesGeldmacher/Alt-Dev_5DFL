@@ -16,6 +16,7 @@ public class TextEncounter
     public bool _interactive = true;
 
     public bool _startScreen = false;
+    public bool _freezeInput = false;
 
     public bool _hasSound = false;
     public AudioClip _soundClip;

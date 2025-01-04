@@ -34,7 +34,7 @@ public class CameraPickup : Interactable
         if (!_intro) return;
         if (!_canClickContinue) return;
 
-        if (Input.GetMouseButtonDown(0) && _started)
+        if (Input.GetButtonDown("Interact") && _started)
         {
             if(_lines <= 0)
             {
