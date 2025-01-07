@@ -44,6 +44,11 @@ public class ScreenshotHandler : MonoBehaviour
 
     [SerializeField] private PostProcessLayer _volume;
 
+    //FRIDGE PHOTOS!!
+    [SerializeField] FridgePhotos _fridgePhotos;
+    [SerializeField] private bool _changeFridge = true;
+    private bool _isEvidence = false;
+
 
     private void Awake()
     {
@@ -187,6 +192,9 @@ public class ScreenshotHandler : MonoBehaviour
 
     private IEnumerator ScreenShot()
     {
+        
+        yield return new WaitForEndOfFrame();
+
         //Here we are creating a new render texture as a blank canvas to project the screenshot on to
         _volume.enabled = true;
         RenderTexture screenTexture = new RenderTexture(Screen.width, Screen.height, 16);
@@ -214,6 +222,13 @@ public class ScreenshotHandler : MonoBehaviour
         {
             _illuminated = true;
         }
+
+        //updating the photos on the fridge
+        if(_fridgePhotos != null && _changeFridge && _isEvidence)
+        {
+            _fridgePhotos.ChangePhoto(newScreenshot);
+        }
+
 
             //Once the screenshot has been applied to the render texture, we no longer need it;
             Destroy(screenshot);
@@ -260,11 +275,7 @@ public class ScreenshotHandler : MonoBehaviour
 
     private void CheckForEvidence()
     {
-        if (_showPhoto)
-        {
-        StartCoroutine(ScreenShot());
-        } 
-
+        _isEvidence = false;
 
         RaycastHit hit;
         if (Physics.Raycast(_checkPoint.position, transform.forward, out hit, _checkLength,  _checkMask))
@@ -275,7 +286,9 @@ public class ScreenshotHandler : MonoBehaviour
                     _evidenceManager.PictureTaken(hit.transform.gameObject);
                     _evidenceManager.StrikeOffItem(hit.transform.gameObject);
                     Debug.Log("Got a object!");
-                    StartCoroutine(EvidenceDing());     
+                    StartCoroutine(EvidenceDing()); 
+                    _isEvidence=true;
+                    Destroy(hit.transform.gameObject);
             }
             else
             {
@@ -294,6 +307,10 @@ public class ScreenshotHandler : MonoBehaviour
             }
         }
 
+        if (_showPhoto)
+        {
+           StartCoroutine(ScreenShot());
+        } 
     
     }
 
@@ -309,8 +326,8 @@ public class ScreenshotHandler : MonoBehaviour
     //This is the function that we call from other scripts!
     public void TakeScreenshot_Static(int _width, int _height)
     {   
-       StartCoroutine(TakeScreenshot( _width, _height));
         _volume.enabled = true;
+       StartCoroutine(TakeScreenshot( _width, _height));
     }
 
 

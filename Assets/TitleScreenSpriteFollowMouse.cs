@@ -23,7 +23,7 @@ public class TitleScreenSpriteFollowMouse : MonoBehaviour, IPointerEnterHandler
     [SerializeField] private Vector2 _readCursorPosition;
     private bool _active = false;
 
-    [SerializeField] private bool _controller = false;
+    private bool _controller = false;
 
     //Set to false when cursor should not be usable!
     public bool _controllerCanPress = false;

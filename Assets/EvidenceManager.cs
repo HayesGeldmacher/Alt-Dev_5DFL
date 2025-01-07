@@ -37,7 +37,6 @@ public class EvidenceManager : MonoBehaviour
     public void PictureTaken(GameObject evidence)
     {
         _picturesNeeded -= 1;
-        Destroy(evidence);
 
         if (!_takenPic && _intro)
         {
