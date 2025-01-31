@@ -112,4 +112,17 @@ public class CameraZoom : MonoBehaviour
         }
        
     }
+
+    public void TurnOnFlash()
+    {
+        if (!_flashLight._active)
+        {
+            _flashLight.ChangeFlashStatus();
+        }
+    }
+
+    public bool CheckFlash()
+    {
+        return _flashLight._active;
+    }
 }

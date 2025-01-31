@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Runtime.CompilerServices;
 using UnityEngine;
 
 public class TeleportTrigger : MonoBehaviour
@@ -19,6 +20,7 @@ public class TeleportTrigger : MonoBehaviour
 
 
     [SerializeField] private CameraZoom _camZoom;
+    private bool _flashActivated = false;
     // Start is called before the first frame update
     void Start()
     {
@@ -71,7 +73,13 @@ public class TeleportTrigger : MonoBehaviour
     private void TeleportPlayer()
     {
 
+        bool _changeFlash = _camZoom.CheckFlash();
+        if (_changeFlash)
+        {
         _camZoom.TurnOffFlash();
+            StartCoroutine(FlashBackOn());
+        }
+
         _playerParent.SetActive(false);
         //_controller._frozen = true;
         //_char.enabled = false;
@@ -81,5 +89,11 @@ public class TeleportTrigger : MonoBehaviour
         _char.enabled = true;
         _controller._frozen = false;
 
+    }
+
+    private IEnumerator FlashBackOn()
+    {
+        yield return new WaitForSeconds(1f);
+        _camZoom.TurnOffFlash();
     }
 }
