@@ -12,8 +12,7 @@ public class LightingTrigger : Interactable
     [SerializeField] private float _decreaseSpeed;
     private float _currentAmbience;
     private float _playerDistance;
-    [SerializeField] private GameObject _chair;
-    private bool _destroyedChair = true;
+
 
 
     private bool _canCollide = true;
@@ -66,13 +65,6 @@ public class LightingTrigger : Interactable
 
             if (other.gameObject.tag == "Player")
             {
-                
-                if(_chair != null && !_destroyedChair)
-                {
-                    _destroyedChair = true;
-                    Destroy(_chair);
-                }
-                
                 _playerDistance = transform.position.y - other.transform.position.y;
                 Debug.Log("PLAYERDIST:" + _playerDistance);
                 _canCollide = false;
