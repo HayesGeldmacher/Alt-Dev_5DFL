@@ -14,7 +14,10 @@ public class LightingTrigger : Interactable
     private float _playerDistance;
     [SerializeField] private GameObject _chair;
     private bool _destroyedChair = true;
+<<<<<<< HEAD
     [SerializeField] private GameObject _waterLeak;
+=======
+>>>>>>> parent of fb0d300 (Revert "Added tons of shit!")
 
 
     private bool _canCollide = true;
