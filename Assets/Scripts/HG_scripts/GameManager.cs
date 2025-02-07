@@ -161,6 +161,8 @@ public class GameManager : MonoBehaviour
     public void Pause()
     {
         _isPaused = true;
+        _controller.enabled = false;
+        Time.timeScale = 0f;
 
         if (!_inTextGame)
         {
@@ -175,10 +177,8 @@ public class GameManager : MonoBehaviour
         }
         _pausedAnimator.SetBool("paused", true);
         _pausedText.text = "PAUSED";
-        _controller.enabled = false;
         _pauseButtons.SetActive(true);
         _pauseButtonsText.SetActive(true);
-        Time.timeScale = 0f;
         _hudBorder.SetActive(false);
         _cursorSprite.enabled = false;
 
@@ -191,6 +191,8 @@ public class GameManager : MonoBehaviour
     public void Unpause()
     {
         _isPaused = false;
+        Time.timeScale = 1f;
+        _controller.enabled = true;
 
         if (!_inTextGame)
         {
@@ -213,10 +215,8 @@ public class GameManager : MonoBehaviour
             _pausedText.text = "REC";
 
         }
-        _controller.enabled = true;
         _pauseButtons.SetActive(false);
         _pauseButtonsText.SetActive(false);
-        Time.timeScale = 1f;
         _hudBorder.SetActive(true);
         _cursorSprite.enabled = true;
 
