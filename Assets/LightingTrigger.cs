@@ -13,6 +13,9 @@ public class LightingTrigger : Interactable
     private float _currentAmbience;
     private float _playerDistance;
 
+    [SerializeField] private GameObject _waterLeak;
+    [SerializeField] private GameObject _rockingChair;
+    private bool _destroyedChair = false;
 
 
     private bool _canCollide = true;
@@ -61,7 +64,11 @@ public class LightingTrigger : Interactable
     {
         if (_canCollide)
         {
-
+            if (!_destroyedChair)
+            {
+                _destroyedChair = true;
+                Destroy(_rockingChair);
+            }
 
             if (other.gameObject.tag == "Player")
             {
@@ -74,12 +81,14 @@ public class LightingTrigger : Interactable
                 {
                     _decreasing = true;
                     _increasing = false;
+                    _waterLeak.SetActive(true);
 
                 }
                 else
                 {
                     _decreasing = false;
                     _increasing = true;
+                    _waterLeak.SetActive(false);
                 }
 
             }
