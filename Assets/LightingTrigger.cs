@@ -15,6 +15,7 @@ public class LightingTrigger : Interactable
 
     [SerializeField] private GameObject _waterLeak;
     [SerializeField] private GameObject _rockingChair;
+    [SerializeField] private GameObject _sunLight;
     private bool _destroyedChair = false;
 
 
@@ -82,6 +83,7 @@ public class LightingTrigger : Interactable
                     _decreasing = true;
                     _increasing = false;
                     _waterLeak.SetActive(true);
+                    _sunLight.SetActive(false);
 
                 }
                 else
@@ -89,6 +91,7 @@ public class LightingTrigger : Interactable
                     _decreasing = false;
                     _increasing = true;
                     _waterLeak.SetActive(false);
+                    _sunLight.SetActive(true);
                 }
 
             }
