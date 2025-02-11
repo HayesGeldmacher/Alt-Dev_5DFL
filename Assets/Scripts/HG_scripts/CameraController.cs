@@ -123,7 +123,7 @@ public class CameraController : MonoBehaviour
         _zoom = transform.GetComponent<CameraZoom>();
 
         //Just for testing! Delete this line after
-        GotCamera();
+        //GotCamera();
     }
 
     private void Update()

@@ -252,7 +252,7 @@ public class TextGameManager : MonoBehaviour
                 _startText.text = "START GAME";
                 _optionText1.text = "";
 
-                _blackBox1.SetActive(true);
+                _blackBox1.SetActive(false);
                 _promptBox.SetActive(true);
                 _button1.SetActive(true);
             }
