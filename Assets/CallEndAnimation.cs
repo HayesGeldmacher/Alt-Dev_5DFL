@@ -6,6 +6,7 @@ using UnityEngine;
 public class CallEndAnimation : MonoBehaviour
 {
     [SerializeField] private TripodInteract _tripod;
+    [SerializeField] private DollTalk _dollTalk;
     
     // Start is called before the first frame update
     void Start()
@@ -24,5 +25,14 @@ public class CallEndAnimation : MonoBehaviour
         _tripod.CallAnimEnd();
     }
 
+    public void EndDollAnimation()
+    {
+        _dollTalk.CallAnimEnd();
+    }
+
+    public void CallDestroyDoll()
+    {
+        _dollTalk.CallDestroyObjects();
+    }
 
 }

@@ -59,6 +59,7 @@ public class TripodInteract : Interactable
 
     public void CallAnimEnd()
     {
+       
 
         if (!_startedEnd)
         {
