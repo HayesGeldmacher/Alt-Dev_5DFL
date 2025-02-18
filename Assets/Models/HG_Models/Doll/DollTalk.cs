@@ -81,10 +81,6 @@ public class DollTalk : Interactable
 
 
             _startedEnd = true;
-            if (_endInteractSound != null)
-            {
-                _endInteractSound.Play();
-            }
 
             StartCoroutine(AnimEnd());
 
