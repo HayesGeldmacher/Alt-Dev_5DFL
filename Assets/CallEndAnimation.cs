@@ -35,4 +35,9 @@ public class CallEndAnimation : MonoBehaviour
         _dollTalk.CallDestroyObjects();
     }
 
+    public void CallTeleportPlayer()
+    {
+        _dollTalk.TeleportPlayer();
+    }
+
 }

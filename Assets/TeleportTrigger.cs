@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using System.Runtime.CompilerServices;
+using System.Xml.Serialization;
 using UnityEngine;
 
 public class TeleportTrigger : MonoBehaviour
@@ -21,6 +22,10 @@ public class TeleportTrigger : MonoBehaviour
 
     [SerializeField] private CameraZoom _camZoom;
     private bool _flashActivated = false;
+
+    public bool _rotatePlayer = false;
+    [SerializeField] private Transform _targetRot;
+    public bool _shouldChangeFlash = true;
     // Start is called before the first frame update
     void Start()
     {
@@ -70,15 +75,37 @@ public class TeleportTrigger : MonoBehaviour
     }
 
 
+    public void CallTeleport()
+    {
+        TeleportPlayer();
+    }
+
+
     private void TeleportPlayer()
     {
-
-        bool _changeFlash = _camZoom.CheckFlash();
-        if (_changeFlash)
+        if (_shouldChangeFlash)
         {
-        _camZoom.TurnOffFlash();
-            StartCoroutine(FlashBackOn());
+
+            bool _changeFlash = _camZoom.CheckFlash();
+            if (_changeFlash)
+            {
+            _camZoom.TurnOffFlash();
+                StartCoroutine(FlashBackOn());
+            }
+
+
         }
+        if(_rotatePlayer && _targetRot != null)
+        {
+
+            Vector3 relativePos = _targetRot.position - _playerParent.transform.position;
+
+            // the second argument, upwards, defaults to Vector3.up
+            Quaternion rotation = Quaternion.LookRotation(relativePos, Vector3.up);
+
+            _playerParent.transform.rotation = Quaternion.Euler(_playerParent.transform.localRotation.x, rotation.y, _playerParent.transform.localRotation.z);
+        }
+
 
         _playerParent.SetActive(false);
         //_controller._frozen = true;

@@ -13,11 +13,12 @@ public class DollTalk : Interactable
     [SerializeField] private GameObject[] _appearObjects;
 
     [SerializeField] private CameraController _camController;
-
-
+    [SerializeField] private TeleportTrigger _teleportTrigger;
 
     private bool _startedEnd = false;
     private bool _playedAnimatiton = false;
+
+    
 
     // Start is called before the first frame update
     private void Start()
@@ -90,6 +91,7 @@ public class DollTalk : Interactable
 
     private IEnumerator AnimEnd()
     {
+       
         yield return new WaitForSeconds(0.2f);
             _treeAnim.SetTrigger("end");
         _camController._frozen = false;
@@ -98,5 +100,10 @@ public class DollTalk : Interactable
         transform.GetComponent<BoxCollider>().enabled = true;
         Destroy(gameObject);
 
+    }
+
+    public void TeleportPlayer()
+    {
+        _teleportTrigger.CallTeleport();
     }
 }
