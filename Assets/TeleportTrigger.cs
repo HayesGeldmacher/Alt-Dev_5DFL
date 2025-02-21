@@ -121,6 +121,6 @@ public class TeleportTrigger : MonoBehaviour
     private IEnumerator FlashBackOn()
     {
         yield return new WaitForSeconds(1f);
-        _camZoom.TurnOffFlash();
+        _camZoom.TurnOnFlash();
     }
 }
