@@ -49,6 +49,9 @@ public class ScreenshotHandler : MonoBehaviour
     [SerializeField] private bool _changeFridge = true;
     private bool _isEvidence = false;
 
+    public bool _killItems = false;
+    private GameObject _currentKillItem;
+
 
     private void Awake()
     {
@@ -240,8 +243,15 @@ public class ScreenshotHandler : MonoBehaviour
 
         _volume.enabled = false;
 
-            //This triggers the photo animation once the texture has been set;
-            yield return new WaitForSeconds(0.4f);
+
+        if (!_killItems && _currentKillItem != null)
+        {
+            Destroy(_currentKillItem);
+            _currentKillItem = null;
+        }
+
+        //This triggers the photo animation once the texture has been set;
+        yield return new WaitForSeconds(0.4f);
             _photoAnim.SetTrigger("fade");
             yield return new WaitForSeconds(0.1f);
             _iconAnim.SetTrigger("appear");
@@ -288,7 +298,15 @@ public class ScreenshotHandler : MonoBehaviour
                     Debug.Log("Got a object!");
                     StartCoroutine(EvidenceDing()); 
                     _isEvidence=true;
-                    Destroy(hit.transform.gameObject);
+
+                if (_killItems)
+                {
+                  Destroy(hit.transform.gameObject);
+                }
+                else
+                {
+                    _currentKillItem = hit.transform.gameObject;
+                }
             }
             else
             {

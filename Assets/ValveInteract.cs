@@ -7,6 +7,8 @@ public class ValveInteract : Interactable
     [SerializeField] private Animator _anim;
     [SerializeField] private AudioSource _screechSound;
     [SerializeField] private GameObject _grandHallGate;
+
+    [SerializeField] private GameObject[] _disappearObjects;
     
     // Start is called before the first frame update
     void Start()
@@ -25,5 +27,16 @@ public class ValveInteract : Interactable
         _anim.SetTrigger("turn");
         _screechSound.Play();
         _grandHallGate.SetActive(false);
+
+
+        if( _disappearObjects.Length > 0)
+        {
+            foreach (var obj in _disappearObjects)
+            {
+                obj.gameObject.SetActive(false);
+
+            }
+        }
+
     }
 }
