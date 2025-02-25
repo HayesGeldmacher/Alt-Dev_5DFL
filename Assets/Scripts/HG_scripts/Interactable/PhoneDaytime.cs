@@ -68,7 +68,7 @@ public class PhoneDaytime : Interactable
 
 
         //Test trigger day end
-        StartCoroutine(Darkness());
+        //StartCoroutine(Darkness());
     }
 
     private void Update()
