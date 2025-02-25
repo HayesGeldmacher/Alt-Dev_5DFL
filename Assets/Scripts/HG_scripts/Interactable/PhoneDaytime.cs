@@ -65,6 +65,10 @@ public class PhoneDaytime : Interactable
         _isDarkening = false;
         RenderSettings.skybox.SetColor("_Tint", colorStart);
         t = 0;
+
+
+        //Test trigger day end
+        StartCoroutine(Darkness());
     }
 
     private void Update()
@@ -230,7 +234,8 @@ public class PhoneDaytime : Interactable
         _isDarkening = true;
         Destroy(_pointWindowLight);
         yield return new WaitForSeconds(1);
-        RenderSettings.fog = false;
+        RenderSettings.fogColor = Color.black;
+        RenderSettings.fogDensity = 0.01f;
         Destroy(_lightShaft1);
         Destroy(_lightShaft2);
         Destroy(_sun);
