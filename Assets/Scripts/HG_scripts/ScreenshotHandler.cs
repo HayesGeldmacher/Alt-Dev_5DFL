@@ -317,11 +317,19 @@ public class ScreenshotHandler : MonoBehaviour
             if (hit.transform.tag == "ShootTrigger")
             {
                 hit.transform.GetComponent<ShootTrigger>().Interact();
+                if (_killItems)
+                {
+                    Destroy(hit.transform.gameObject);
+                }
+                else
+                {
+                    _currentKillItem = hit.transform.gameObject;
+                }
             }
             else
             {
                 Debug.Log("RAYHIT" + hit.transform.name);
-               
+
             }
         }
 

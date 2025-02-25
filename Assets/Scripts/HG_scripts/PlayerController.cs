@@ -379,10 +379,8 @@ public class PlayerController : MonoBehaviour
 
             if (!_breathing.isPlaying)
             {
-                _breathing.clip = _breathingClips[Random.Range(0, 2)];
 
-
-                _breathing.pitch = Random.Range(0.9f, 1.2f);
+                _breathing.pitch = Random.Range(0.95f, 1.05f);
                 _breathing.Play();
 
             }

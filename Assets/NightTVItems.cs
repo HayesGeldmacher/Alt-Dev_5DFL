@@ -44,6 +44,6 @@ public class NightTVItems : ShootTrigger
         }
 
 
-        Destroy(gameObject);
+        //Destroy(gameObject);
     }
 }
