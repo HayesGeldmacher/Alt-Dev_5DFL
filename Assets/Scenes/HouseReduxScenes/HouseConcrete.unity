@@ -242086,6 +242086,7 @@ MonoBehaviour:
   _waterLeak: {fileID: 0}
   _rockingChair: {fileID: 0}
   _sunLight: {fileID: 0}
+  _waterBoiler: {fileID: 0}
 --- !u!65 &1179104262
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -242316,6 +242317,7 @@ MonoBehaviour:
   _ringSound: {fileID: 1189094645}
   _tvBroken: {fileID: 2003569456}
   _tvWorking: {fileID: 1092813827}
+  _pickupSound: {fileID: 0}
 --- !u!65 &1189094643
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -478544,7 +478546,7 @@ Transform:
   m_GameObject: {fileID: 706101870748153958}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: 0.019758755, z: -0, w: -0.99980485}
-  m_LocalPosition: {x: 85.02, y: -0.31999993, z: 41.13}
+  m_LocalPosition: {x: 67.56, y: -2.27, z: 72.24}
   m_LocalScale: {x: 1.3198432, y: 1.319843, z: 1.3198432}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -478610,6 +478612,7 @@ MonoBehaviour:
   _volume: {fileID: 0}
   _fridgePhotos: {fileID: 0}
   _changeFridge: 1
+  _killItems: 0
 --- !u!65 &4517446800501681816
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -478895,6 +478898,7 @@ MonoBehaviour:
   _runSpeed: 7
   _running: 0
   _breathing: {fileID: 1563903008}
+  _breathingClips: []
   _runAnim: {fileID: 6532821420204698344}
   _cameraParent: {fileID: 6677075160896486579}
   _crouchSpeed: 2
