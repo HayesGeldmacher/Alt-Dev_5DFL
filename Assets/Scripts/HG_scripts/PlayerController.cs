@@ -32,6 +32,7 @@ public class PlayerController : MonoBehaviour
     [SerializeField] private float _runSpeed;
     [SerializeField] private bool _running;
     [SerializeField] private AudioSource _breathing;
+    [SerializeField] private AudioClip[] _breathingClips;
     [SerializeField] private Animator _runAnim;
 
     [Header("Crouch Variables")]
@@ -374,11 +375,15 @@ public class PlayerController : MonoBehaviour
 
         if (_running)
         {
-            _breathing.loop = true;
+           
 
             if (!_breathing.isPlaying)
             {
-            _breathing.Play();
+                _breathing.clip = _breathingClips[Random.Range(0, 2)];
+
+
+                _breathing.pitch = Random.Range(0.9f, 1.2f);
+                _breathing.Play();
 
             }
             _footSteps.volume = _runVolume;
