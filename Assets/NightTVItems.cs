@@ -42,8 +42,5 @@ public class NightTVItems : ShootTrigger
                 _item.SetActive(false);
             }
         }
-
-
-        //Destroy(gameObject);
     }
 }
