@@ -30,7 +30,7 @@ public class KitchenEntranceTrigger : MonoBehaviour
             if (_canTrigger)
             {
                 _canTrigger = false;
-                //StartCoroutine(TransitionLevel());
+                StartCoroutine(TransitionLevel());
             
             }
         }
