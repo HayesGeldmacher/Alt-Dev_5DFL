@@ -62,6 +62,8 @@ public class nightManager : Interactable
     private bool _phoneCompletedDialogue = false;
     private bool _phoneEndedDialogue = false;
 
+    
+
     // private float _disableController = false;
     // Start is called before the first frame update
     void Start()
@@ -228,15 +230,16 @@ public class nightManager : Interactable
 
     private IEnumerator ExitKitchen()
     {
-        _kitchenLight.SetTrigger("fade");
-        yield return new WaitForSeconds(2f);
-        Destroy(_kitchenFakeEvidence);
-        TeleportPlayer();
+        //_kitchenLight.SetTrigger("fade");
+        //yield return new WaitForSeconds(2f);
+        //Destroy(_kitchenFakeEvidence);
+        //TeleportPlayer();
         yield return new WaitForSeconds(0.1f);
         _normalHouse.SetActive(true);
         yield return new WaitForSeconds(0.1f);
         _endlessKitchen.SetActive(false);
-        _stairWellLight.SetTrigger("appear");
+        //_stairWellLight.SetTrigger("appear");
+        _kitchenLight.SetTrigger("appear");
         yield return new WaitForSeconds(1.5f);
         _garageLight.SetTrigger("appear");
     }

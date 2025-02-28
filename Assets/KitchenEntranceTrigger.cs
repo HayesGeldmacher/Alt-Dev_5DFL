@@ -11,6 +11,9 @@ public class KitchenEntranceTrigger : MonoBehaviour
     [SerializeField] private Animator _light1;
 
     [SerializeField] private AudioSource _spotLightSound;
+    [SerializeField] private FlashilghtRot _flash;
+
+
 
     private void Start()
     {
@@ -43,6 +46,10 @@ public class KitchenEntranceTrigger : MonoBehaviour
         
         _light1.SetTrigger("fade");
         _spotLightSound.Play();
+        if (_flash._active)
+        {
+           _flash.ChangeFlashStatus();
+        }
         yield return new WaitForSeconds(1f);
         foreach (GameObject _obj in _disappearItems)
         {
