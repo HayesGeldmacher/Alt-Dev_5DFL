@@ -12,6 +12,7 @@ public class CameraController : MonoBehaviour
     [SerializeField] private float _mouseSensitivityX;
     [SerializeField] private float _mouseSensitivityY;
     [SerializeField] private JPGPU _jpg;
+    [SerializeField] private JPGPU _jpgNoCam;
     [SerializeField] private Datamosh _mosh;
     [SerializeField] private StartDataMosh _startMosh;
     [SerializeField] private PostProcessVolume _volume;
@@ -421,6 +422,14 @@ public class CameraController : MonoBehaviour
         _hasCamera = true;
         _camHud.SetActive(true);
         _camAnimator.SetBool("still", false);
+
+        if(_jpgNoCam != null)
+        {
+            Destroy(_jpgNoCam);
+            _jpgNoCam = null;
+        }
+
+
         if (_jpg != null)
         {
         _jpg.enabled = true;

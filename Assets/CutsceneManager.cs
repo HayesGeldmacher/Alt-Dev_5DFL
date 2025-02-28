@@ -45,8 +45,8 @@ public class CutsceneManager : MonoBehaviour
 
         if (_fading)
         {
-             _currentVol = Mathf.Lerp(_currentVol, 0, _fadeSpeed * Time.deltaTime);
-            _staticAudio.volume = _currentVol;
+          //   _currentVol = Mathf.Lerp(_currentVol, 0, _fadeSpeed * Time.deltaTime);
+          //  _staticAudio.volume = _currentVol;
             
         }
     }

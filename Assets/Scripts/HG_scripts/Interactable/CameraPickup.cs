@@ -21,6 +21,10 @@ public class CameraPickup : Interactable
     [SerializeField] private GameObject _ghostCam;
 
 
+    [SerializeField] private AudioSource _staticPickupSound;
+
+
+
     private void Start()
     {
         base.Start();
@@ -68,6 +72,7 @@ public class CameraPickup : Interactable
             if (!_started)
             {
                  _camController.GotCamera();
+                _staticPickupSound.Stop();
                 _controller._frozen = true;
                 Destroy(_glimmer);
                 _lines -= 1;
