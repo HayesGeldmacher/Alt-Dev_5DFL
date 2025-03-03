@@ -61,8 +61,11 @@ public class nightManager : Interactable
 
     private bool _phoneCompletedDialogue = false;
     private bool _phoneEndedDialogue = false;
+    [SerializeField] private GameObject _telephoneHallwayBlocker;
+    [SerializeField] private GameObject _bedroomHallwayBlocker;
 
-    
+   // [SerializeField] private float _totaldialogueTimer;
+   //[SerializeField] private float _currentDialogueTimer;
 
     // private float _disableController = false;
     // Start is called before the first frame update
@@ -100,6 +103,8 @@ public class nightManager : Interactable
     // Update is called once per frame
     void Update()
     {
+       base.Update();
+        
         if(Input.GetButtonDown("Interact") && _seenDialogue)
         {
             base.Interact();
@@ -288,6 +293,9 @@ public class nightManager : Interactable
         _oldPhone.SetActive(false);
         _newPhone.SetActive(true);
         _newPhone.transform.GetComponent<PhoneNight1>().StartRinging();
+
+        _telephoneHallwayBlocker.SetActive(false);
+        _bedroomHallwayBlocker.SetActive(true);
     }
 
     public void PlaySound(AudioClip _clip)

@@ -64,7 +64,12 @@ public class PhoneNight1 : Interactable
     [SerializeField] private List<GameObject> _disappearObjects = new List<GameObject>();
     [SerializeField] private List<GameObject> _appearObjects = new List<GameObject>();
     [SerializeField] private bool _disappear;
-    [SerializeField] private bool _appear; 
+    [SerializeField] private bool _appear;
+
+
+    [SerializeField] private GameObject _newDoorExit;
+    private bool _endedFirstTime = false;
+    [SerializeField] private AudioSource _doorOpenSound;
 
 
     private void Start()
@@ -171,7 +176,12 @@ public class PhoneNight1 : Interactable
     }
 
 
-   
+   private IEnumerator OpenDoor()
+    {
+        yield return new WaitForSeconds(1.5f);
+        _newDoorExit.GetComponent<Door>().SetDirection();
+        _doorOpenSound.Play();
+    }
 
 
     private void TriggerDialogue(Dialogue _dialogue)
@@ -199,6 +209,13 @@ public class PhoneNight1 : Interactable
         _cam._canInteract = true;
         _controller._frozen = false;
 
+        if (!_endedFirstTime)
+        {
+            _endedFirstTime = true;
+            StartCoroutine(OpenDoor());
+            Debug.Log("opened Door!");
+        }
+
     }
 
     private IEnumerator WaitTime()
@@ -222,6 +239,7 @@ public class PhoneNight1 : Interactable
         _gargleSource.Play();
 
         }
+   
         
     }
 
