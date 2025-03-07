@@ -4771,7 +4771,7 @@ MonoBehaviour:
   _isTimed: 0
   _dialogueDistance: 5
   _isIntro: 0
-  _manager: {fileID: 8690994448522396041}
+  _manager: {fileID: 0}
   _dialogue:
     _sentences:
     - 'The wall here feels flimsy... is it caulked over? '
@@ -4994,12 +4994,6 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 01b710524b3ac894282aef58e7eb4fc9, type: 3}
---- !u!1 &131339883 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 919132149155446097, guid: a16142e00ae644b469cfd2ed7435fbed,
-    type: 3}
-  m_PrefabInstance: {fileID: 1202249063}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &131664844
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -6809,7 +6803,7 @@ PrefabInstance:
         type: 3}
       propertyPath: _evidence
       value: 
-      objectReference: {fileID: 8690994448522396034}
+      objectReference: {fileID: 0}
     - target: {fileID: 7879442034344708799, guid: 478c4d87c14ffd149bb1c83a49beee48,
         type: 3}
       propertyPath: _blackAnim
@@ -11310,12 +11304,6 @@ PrefabInstance:
       insertIndex: -1
       addedObject: {fileID: 285366878}
   m_SourcePrefab: {fileID: 100100000, guid: 7840f66f1c662d947b740975345287ab, type: 3}
---- !u!1 &420658771 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 7425590745790711700, guid: 7deb12fc76f1282448b50657e73be38e,
-    type: 3}
-  m_PrefabInstance: {fileID: 4320451922169682089}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &428964209
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -145138,7 +145126,7 @@ MonoBehaviour:
   _isTimed: 0
   _dialogueDistance: 5
   _isIntro: 0
-  _manager: {fileID: 8690994448522396041}
+  _manager: {fileID: 0}
   _dialogue:
     _sentences:
     - Weird, It's like I can see behind the television...
@@ -149647,6 +149635,10 @@ MonoBehaviour:
   _dayAmbience: 0.45
   _nightAmbience: 2
   _decreaseSpeed: 0.05
+  _waterLeak: {fileID: 0}
+  _rockingChair: {fileID: 0}
+  _sunLight: {fileID: 0}
+  _waterBoiler: {fileID: 0}
 --- !u!65 &1179104262
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -149825,7 +149817,7 @@ MonoBehaviour:
   _isDarkening: 0
   colorStart: {r: 0.5019608, g: 0.5019608, b: 0.5019608, a: 1}
   colorEnd: {r: 0, g: 0, b: 0, a: 1}
-  _interactAudio: {fileID: 8690994448522396030}
+  _interactAudio: {fileID: 0}
   _phoneDialogue:
     _sentences:
     - "Hey honey, \nDid you take pics of everything I asked? "
@@ -149849,7 +149841,7 @@ MonoBehaviour:
     - 'I left my old camcorder downstairs on the kitchen table - you can use that
       to to take the pics. '
     - I'll give you a call later to check up - good luck sweetheart!
-  _evidence: {fileID: 8690994448522396034}
+  _evidence: {fileID: 0}
   _garble1: {fileID: 0}
   _garble2: {fileID: 0}
   _garble3: {fileID: 0}
@@ -149865,11 +149857,13 @@ MonoBehaviour:
   _startMorning: 0
   _currentMorningDialogue: 0
   _totalMorningDialogue: 7
+  _bed: {fileID: 0}
   _controller: {fileID: 1563903003}
   _cam: {fileID: 207289420546856960}
   _ringSound: {fileID: 1189094645}
   _tvBroken: {fileID: 2003569456}
   _tvWorking: {fileID: 1092813827}
+  _pickupSound: {fileID: 0}
 --- !u!65 &1189094643
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -251777,8 +251771,9 @@ MonoBehaviour:
   _outlined: 0
   _isOutlined: 0
   _player: {fileID: 0}
-  _mannequin: {fileID: 131339883}
   _curtainAudio: {fileID: 1559599527}
+  _disappear: 0
+  _disappearObject: {fileID: 0}
 --- !u!65 &1559599524
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -255227,7 +255222,9 @@ MonoBehaviour:
   _intro: 1
   _cam: {fileID: 207289420546856960}
   _glimmer: {fileID: 1600356858}
+  _screenVHS: {fileID: 0}
   _ghostCam: {fileID: 1561524693}
+  _staticPickupSound: {fileID: 0}
 --- !u!65 &1684355838
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -276435,7 +276432,7 @@ PrefabInstance:
         type: 3}
       propertyPath: _manager
       value: 
-      objectReference: {fileID: 8690994448522396048}
+      objectReference: {fileID: 0}
     - target: {fileID: 4119934136683064566, guid: 79395b83797865047ac1dfbf6bd3b8b6,
         type: 3}
       propertyPath: _texture
@@ -276475,7 +276472,7 @@ PrefabInstance:
         type: 3}
       propertyPath: _evidenceManager
       value: 
-      objectReference: {fileID: 8690994448522396034}
+      objectReference: {fileID: 0}
     - target: {fileID: 4119934136683064566, guid: 79395b83797865047ac1dfbf6bd3b8b6,
         type: 3}
       propertyPath: _checkMask.m_Bits
@@ -276580,7 +276577,7 @@ PrefabInstance:
         type: 3}
       propertyPath: _ambience
       value: 
-      objectReference: {fileID: 2967488742663558725}
+      objectReference: {fileID: 0}
     - target: {fileID: 4806364461108671919, guid: 79395b83797865047ac1dfbf6bd3b8b6,
         type: 3}
       propertyPath: _cursorAnim
@@ -276590,12 +276587,12 @@ PrefabInstance:
         type: 3}
       propertyPath: _postProcess
       value: 
-      objectReference: {fileID: 420658771}
+      objectReference: {fileID: 0}
     - target: {fileID: 4806364461108671919, guid: 79395b83797865047ac1dfbf6bd3b8b6,
         type: 3}
       propertyPath: _interactAudio
       value: 
-      objectReference: {fileID: 8690994448522396030}
+      objectReference: {fileID: 0}
     - target: {fileID: 4806364461108671919, guid: 79395b83797865047ac1dfbf6bd3b8b6,
         type: 3}
       propertyPath: _whiteAnimator
@@ -276680,7 +276677,7 @@ PrefabInstance:
         type: 3}
       propertyPath: _soundManager
       value: 
-      objectReference: {fileID: 8690994448522396030}
+      objectReference: {fileID: 0}
     - target: {fileID: 4807616839488180194, guid: 79395b83797865047ac1dfbf6bd3b8b6,
         type: 3}
       propertyPath: _moveBackSpeed
@@ -277942,12 +277939,6 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 3084de74f742637438bd7db9e5b49278, type: 3}
---- !u!82 &2967488742663558725 stripped
-AudioSource:
-  m_CorrespondingSourceObject: {fileID: 5028637353491376462, guid: 7deb12fc76f1282448b50657e73be38e,
-    type: 3}
-  m_PrefabInstance: {fileID: 4320451922169682089}
-  m_PrefabAsset: {fileID: 0}
 --- !u!65 &3056448562617511564
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -280188,54 +280179,6 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!114 &8690994448522396030 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 6491700388962441570, guid: 7deb12fc76f1282448b50657e73be38e,
-    type: 3}
-  m_PrefabInstance: {fileID: 4320451922169682089}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 9572c4bbe1a5222468dcbd0b1111465b, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
---- !u!114 &8690994448522396034 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 1034708018688376741, guid: 7deb12fc76f1282448b50657e73be38e,
-    type: 3}
-  m_PrefabInstance: {fileID: 4320451922169682089}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 1d337d0da1dc2674dbdf74a2528ba076, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
---- !u!114 &8690994448522396041 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 8142140769521078333, guid: 7deb12fc76f1282448b50657e73be38e,
-    type: 3}
-  m_PrefabInstance: {fileID: 4320451922169682089}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 27d8d83f2986440448346a15e67b43f8, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
---- !u!114 &8690994448522396048 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 8297263720476178708, guid: 7deb12fc76f1282448b50657e73be38e,
-    type: 3}
-  m_PrefabInstance: {fileID: 4320451922169682089}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f7cb909fc6397e54b8508223a014aab1, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1 &8700725329348860310
 GameObject:
   m_ObjectHideFlags: 0
