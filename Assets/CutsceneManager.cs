@@ -20,6 +20,7 @@ public class CutsceneManager : MonoBehaviour
     private bool _fading = false;
     private float _currentVol;
     [SerializeField] private bool _returnToMenu = false;
+    private bool _doorAppeared = false;
      
     // Start is called before the first frame update
     void Start()
@@ -36,7 +37,7 @@ public class CutsceneManager : MonoBehaviour
     {
         if (Input.GetMouseButtonDown(0))
         {
-            if (!_hasStarted)
+            if (!_hasStarted && _doorAppeared)
             {
                 _hasStarted = true;
                 StartSequence();
@@ -91,6 +92,23 @@ public class CutsceneManager : MonoBehaviour
         _fading = true;
     }
 
+    public void CallDoorIntro()
+    {
+        if (!_doorAppeared)
+        {
+            StartCoroutine(DoorIntro());
+        } 
+    }
+
+    private IEnumerator DoorIntro()
+    {
+
+        _doorAnim.SetTrigger("door");
+       yield return new WaitForSeconds(1f);
+        
+        _doorAppeared = true;
+        _clickAnim.SetTrigger("appear");
+    }
 
 
 }

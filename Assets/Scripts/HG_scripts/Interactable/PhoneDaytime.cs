@@ -50,6 +50,10 @@ public class PhoneDaytime : Interactable
     //Dialup sound
     [SerializeField] private AudioSource _pickupSound;
 
+    [Header("Bedroom Screens")]
+    [SerializeField] private GameObject _monitorMorning;
+    [SerializeField] private GameObject _monitorNight;
+
 
     private bool _canInteract = true;
 
@@ -68,7 +72,7 @@ public class PhoneDaytime : Interactable
 
 
         //Test trigger day end
-        //StartCoroutine(Darkness());
+        StartCoroutine(Darkness());
     }
 
     private void Update()
@@ -229,6 +233,8 @@ public class PhoneDaytime : Interactable
     private IEnumerator Darkness()
     {
 
+        _monitorMorning.SetActive(false);
+        _monitorNight.SetActive(true);
         _bed.EnableBedTime();
         yield return new WaitForSeconds(3);
         _isDarkening = true;

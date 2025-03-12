@@ -18,6 +18,7 @@ public class BedDayTime : Interactable
     [SerializeField] private bool _startedEnd = false;
     [SerializeField] private Door _door;
     [SerializeField] private Interactable _altDialogue;
+    [SerializeField] private MonitorWatch _watch;
     private bool _isBedTime = false;
     public bool _canStartNextDay = false;
 
@@ -57,16 +58,29 @@ public class BedDayTime : Interactable
         {
             if (_door != null && _door._isOpen)
             {
+
+                base._dialogue._sentences[0] = "I can't go to bed with the door open...";
                 base.Interact();
             }
             else
             {
-                if (!_startedEnd)
+               
+                if(_watch != null && !_watch._activated)
                 {
-                    Debug.Log("Interacted!");
-                    StartCoroutine(CompleteLevel());
-                    _startedEnd = true;
+                    base._dialogue._sentences[0] = "Watching something on the computer might help me sleep...";
+                    base.Interact();
                 }
+                else
+                {
+
+                    if (!_startedEnd)
+                    {
+                        Debug.Log("Interacted!");
+                        StartCoroutine(CompleteLevel());
+                        _startedEnd = true;
+                    }
+                }
+
 
             }
 
