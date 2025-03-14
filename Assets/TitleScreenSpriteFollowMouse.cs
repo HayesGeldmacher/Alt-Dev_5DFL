@@ -82,10 +82,10 @@ public class TitleScreenSpriteFollowMouse : MonoBehaviour, IPointerEnterHandler
 
     private void LateUpdate()
     {
-        Vector2 virtualMousePosition = _virtualMouse.virtualMouse.position.value;
-        virtualMousePosition.x = Mathf.Clamp(virtualMousePosition.x, 0f, Screen.width);
-        virtualMousePosition.y = Mathf.Clamp(virtualMousePosition.y, 0f, Screen.height);
-        InputState.Change(_virtualMouse.virtualMouse.position, virtualMousePosition);
+        Vector2 newVirtPos = _virtualMouse.virtualMouse.position.value;
+        newVirtPos.x = Mathf.Clamp(newVirtPos.x, 0f, Screen.width);
+        newVirtPos.y = Mathf.Clamp(newVirtPos.y, 0f, Screen.height);
+        InputState.Change(_virtualMouse.virtualMouse.position, newVirtPos);
     }
 
 
