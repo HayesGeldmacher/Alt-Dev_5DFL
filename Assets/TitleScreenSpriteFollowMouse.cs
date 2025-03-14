@@ -5,6 +5,8 @@ using UnityEngine.UI;
 using UnityEngine.InputSystem;
 using System.Security.Cryptography;
 using UnityEngine.EventSystems;
+using UnityEngine.InputSystem.UI;
+using UnityEngine.InputSystem.LowLevel;
 
 public class TitleScreenSpriteFollowMouse : MonoBehaviour, IPointerEnterHandler
 {
@@ -23,11 +25,12 @@ public class TitleScreenSpriteFollowMouse : MonoBehaviour, IPointerEnterHandler
     [SerializeField] private Vector2 _readCursorPosition;
     private bool _active = false;
 
-    private bool _controller = false;
+    [SerializeField] private bool _controller = false;
 
     //Set to false when cursor should not be usable!
     public bool _controllerCanPress = false;
 
+    [SerializeField] private VirtualMouseInput _virtualMouse;
     
 
     [SerializeField] private Button _currentHoverButton;
@@ -49,10 +52,7 @@ public class TitleScreenSpriteFollowMouse : MonoBehaviour, IPointerEnterHandler
        
        if(!_active) return;
 
-        if (_controller)
-        {
-            ControllerFollowUpdate();
-        }
+
         
         if(Input.GetButtonDown("Interact"))
         {
@@ -60,6 +60,7 @@ public class TitleScreenSpriteFollowMouse : MonoBehaviour, IPointerEnterHandler
             _clickSound.Play();
         }
 
+        if (_controller) return;
 
         Vector2 _cursorPos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
         transform.position = _cursorPos;
@@ -74,16 +75,26 @@ public class TitleScreenSpriteFollowMouse : MonoBehaviour, IPointerEnterHandler
             _pos = new Vector2(xPos, yPos);
         }
 
-        transform.position = _parentCanvas.transform.TransformPoint(_pos);
+        //transform.position = _parentCanvas.transform.TransformPoint(_pos);
         _readCursorPosition = _pos;
     }
+
+
+    private void LateUpdate()
+    {
+        Vector2 virtualMousePosition = _virtualMouse.virtualMouse.position.value;
+        virtualMousePosition.x = Mathf.Clamp(virtualMousePosition.x, 0f, Screen.width);
+        virtualMousePosition.y = Mathf.Clamp(virtualMousePosition.y, 0f, Screen.height);
+        InputState.Change(_virtualMouse.virtualMouse.position, virtualMousePosition);
+    }
+
 
     public void EnableCursor(bool _kill)
     {
 
-        //Set position BEFORE we re-enable image to avoid jumpy glitch
+       // Set position BEFORE we re-enable image to avoid jumpy glitch
         Vector2 _cursorPos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
-        transform.position = _cursorPos;
+        //transform.position = _cursorPos;
 
         Vector2 _pos;
         RectTransformUtility.ScreenPointToLocalPointInRectangle((RectTransform)_parentCanvas.transform, Input.mousePosition, _parentCanvas.worldCamera, out _pos);
@@ -95,7 +106,7 @@ public class TitleScreenSpriteFollowMouse : MonoBehaviour, IPointerEnterHandler
             _pos = new Vector2(xPos, yPos);
         }
 
-        transform.position = _parentCanvas.transform.TransformPoint(_pos);
+        //transform.position = _parentCanvas.transform.TransformPoint(_pos);
         _readCursorPosition = _pos;
 
         _active = _kill;
@@ -104,39 +115,14 @@ public class TitleScreenSpriteFollowMouse : MonoBehaviour, IPointerEnterHandler
     }
 
 
-    private void ControllerFollowUpdate()
-    {
-        float mouseX = Input.GetAxis("Horizontal") * 15;
-        float mouseY = Input.GetAxis("Vertical") * 15;
-
-        Vector2 _controllerInput = new Vector2(mouseX, mouseY);
-
-        Vector2 _currentPos = Input.mousePosition;
-        _currentPos += _controllerInput;
-        
-
-        Mouse.current.WarpCursorPosition(_currentPos);
-
-
-        if (Input.GetButtonDown("Interact"))
-        {
-            if(_hasButton && _currentHoverButton != null)
-            {
-                PressButton();
-            }
-        }
-
-        //getting current button!
-
-    }
-
+  
 
     //THIS IS BEING PRESSSED WHEN IT FUCKING SHOULDNT!
     public void PressButton()
     {
         if (_controllerCanPress && _controller)
         {
-            _currentHoverButton.onClick.Invoke();
+          //  _currentHoverButton.onClick.Invoke();
         }
     }
 
