@@ -69,8 +69,16 @@ public class TitleScreenSpriteFollowMouse : MonoBehaviour, IPointerEnterHandler
             _clickSound.Play();
         }
 
-        if (_controller) return;
+        if (_usingMouse)
+        {
+            MouseUpdate();
+        }
 
+        
+    }
+
+    private void MouseUpdate()
+    {
         Vector2 _cursorPos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
         transform.position = _cursorPos;
 
@@ -84,13 +92,14 @@ public class TitleScreenSpriteFollowMouse : MonoBehaviour, IPointerEnterHandler
             _pos = new Vector2(xPos, yPos);
         }
 
-        //transform.position = _parentCanvas.transform.TransformPoint(_pos);
+        transform.position = _parentCanvas.transform.TransformPoint(_pos);
         _readCursorPosition = _pos;
     }
 
-
     private void LateUpdate()
     {
+        if (!_usingMouse)
+        {
         Vector2 newVirtPos = _virtualMouse.virtualMouse.position.value;
 
         //Adding borders
@@ -101,6 +110,9 @@ public class TitleScreenSpriteFollowMouse : MonoBehaviour, IPointerEnterHandler
         newVirtPos.x = Mathf.Clamp(newVirtPos.x, 0f + borderX, Screen.width - borderX);
         newVirtPos.y = Mathf.Clamp(newVirtPos.y, 0f + borderYMin, Screen.height - borderYMax);
         InputState.Change(_virtualMouse.virtualMouse.position, newVirtPos);
+
+        }
+        
     }
 
 
@@ -159,10 +171,22 @@ public class TitleScreenSpriteFollowMouse : MonoBehaviour, IPointerEnterHandler
         Debug.Log("Cursor Entering " + name + " GameObject");
     }
 
-    private void OnDeviceChanged(bool isMouse)
+    private void OnDeviceChanged()
     {
+
         //This is where we get rid of the virtual mouse!
         Debug.Log("DEVICE CHANGED BITCH WHOOO");
-        _usingMouse = isMouse;
+
+        _usingMouse = GameInputManager.instance._usingMouse;
+
+
+        if (_usingMouse)
+        {
+            _virtualMouse.enabled = false;
+        }
+        else
+        {
+            _virtualMouse.enabled = true;
+        }
     }
 }

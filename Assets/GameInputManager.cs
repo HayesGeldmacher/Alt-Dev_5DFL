@@ -9,8 +9,10 @@ public class GameInputManager : MonoBehaviour
     private const string PLAYER_PREFS_BINDINGS = "InputBindings";
     public static GameInputManager instance { get; private set; }
 
-    public delegate void GameChangeAction(bool isMouse);
-    public static event GameChangeAction OnGameDeviceChanged; 
+    public delegate void GameChangeAction();
+    public static event GameChangeAction OnGameDeviceChanged;
+
+    public bool _usingMouse = true;
 
     public enum GameDevice 
     { 
@@ -69,16 +71,18 @@ public class GameInputManager : MonoBehaviour
         this._activeGameDevice = activeGameDevice;
         Debug.Log("New Active Game Device: " + activeGameDevice);
 
-        bool isMouse = true;
+        
 
         if(_activeGameDevice == GameDevice.Gamepad)
         {
-            isMouse = false;
+            _usingMouse = false;
         }
-       
+        else
+        {
+            _usingMouse = true;
+        }
 
-        //This is where we want shit to happen!
-        OnGameDeviceChanged?.Invoke(isMouse);
+       OnGameDeviceChanged?.Invoke();
     }
 
     
