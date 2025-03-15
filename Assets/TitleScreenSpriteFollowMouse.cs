@@ -8,7 +8,7 @@ using UnityEngine.EventSystems;
 using UnityEngine.InputSystem.UI;
 using UnityEngine.InputSystem.LowLevel;
 
-public class TitleScreenSpriteFollowMouse : MonoBehaviour, IPointerEnterHandler
+public class TitleScreenSpriteFollowMouse : MonoBehaviour
 {
 
     [SerializeField] private Transform _mouseVisual;
@@ -27,7 +27,7 @@ public class TitleScreenSpriteFollowMouse : MonoBehaviour, IPointerEnterHandler
     [SerializeField] private int _maxY;
 
     [SerializeField] private Vector2 _readCursorPosition;
-    private bool _active = false;
+    [SerializeField] private bool _active = false;
 
     [SerializeField] private bool _controller = false;
 
@@ -40,7 +40,7 @@ public class TitleScreenSpriteFollowMouse : MonoBehaviour, IPointerEnterHandler
     [SerializeField] private Button _currentHoverButton;
     [SerializeField] private bool _hasButton = false;
 
-    public bool _usingMouse = true;
+    public bool _usingMouse;
 
     // Start is called before the first frame update
     void Start()
@@ -100,16 +100,16 @@ public class TitleScreenSpriteFollowMouse : MonoBehaviour, IPointerEnterHandler
     {
         if (!_usingMouse)
         {
-        Vector2 newVirtPos = _virtualMouse.virtualMouse.position.value;
+            Vector2 newVirtPos = _virtualMouse.virtualMouse.position.value;
 
-        //Adding borders
-        float borderX = Screen.width / 10;
-        float borderYMax = Screen.height / 10;
-        float borderYMin = Screen.height / 7;
+            //Adding borders
+            float borderX = Screen.width / 10;
+            float borderYMax = Screen.height / 10;
+            float borderYMin = Screen.height / 7;
 
-        newVirtPos.x = Mathf.Clamp(newVirtPos.x, 0f + borderX, Screen.width - borderX);
-        newVirtPos.y = Mathf.Clamp(newVirtPos.y, 0f + borderYMin, Screen.height - borderYMax);
-        InputState.Change(_virtualMouse.virtualMouse.position, newVirtPos);
+            newVirtPos.x = Mathf.Clamp(newVirtPos.x, 0f + borderX, Screen.width - borderX);
+            newVirtPos.y = Mathf.Clamp(newVirtPos.y, 0f + borderYMin, Screen.height - borderYMax);
+            InputState.Change(_virtualMouse.virtualMouse.position, newVirtPos);
 
         }
         
@@ -119,23 +119,6 @@ public class TitleScreenSpriteFollowMouse : MonoBehaviour, IPointerEnterHandler
     public void EnableCursor(bool _kill)
     {
 
-       // Set position BEFORE we re-enable image to avoid jumpy glitch
-        Vector2 _cursorPos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
-        //transform.position = _cursorPos;
-
-        Vector2 _pos;
-        RectTransformUtility.ScreenPointToLocalPointInRectangle((RectTransform)_parentCanvas.transform, Input.mousePosition, _parentCanvas.worldCamera, out _pos);
-
-        if (_constrained)
-        {
-            float xPos = Mathf.Clamp(_pos.x, _minX, _maxX);
-            float yPos = Mathf.Clamp(_pos.y, _minY, _maxY);
-            _pos = new Vector2(xPos, yPos);
-        }
-
-        //transform.position = _parentCanvas.transform.TransformPoint(_pos);
-        _readCursorPosition = _pos;
-
         _active = _kill;
         _clickImage.enabled = _kill;
 
@@ -143,33 +126,6 @@ public class TitleScreenSpriteFollowMouse : MonoBehaviour, IPointerEnterHandler
 
 
   
-
-    //THIS IS BEING PRESSSED WHEN IT FUCKING SHOULDNT!
-    public void PressButton()
-    {
-        if (_controllerCanPress && _controller)
-        {
-          //  _currentHoverButton.onClick.Invoke();
-        }
-    }
-
-    public void SelectButton(GameObject buttonObject)
-    {
-        _currentHoverButton = buttonObject.GetComponent<Button>();
-        _hasButton = true;
-    }
-
-    public void LeaveButton(GameObject buttonObject)
-    {
-        _hasButton = false;
-        _currentHoverButton = null;
-    }
-
-    public void OnPointerEnter(PointerEventData pointerEventData)
-    {
-        //Output to console the GameObject's name and the following message
-        Debug.Log("Cursor Entering " + name + " GameObject");
-    }
 
     private void OnDeviceChanged()
     {
@@ -182,11 +138,11 @@ public class TitleScreenSpriteFollowMouse : MonoBehaviour, IPointerEnterHandler
 
         if (_usingMouse)
         {
-            _virtualMouse.enabled = false;
+            //_virtualMouse.enabled = false;
         }
         else
         {
-            _virtualMouse.enabled = true;
+            //_virtualMouse.enabled = true;
         }
     }
 }

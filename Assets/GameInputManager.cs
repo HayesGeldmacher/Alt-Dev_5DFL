@@ -82,6 +82,8 @@ public class GameInputManager : MonoBehaviour
             _usingMouse = true;
         }
 
+
+
        OnGameDeviceChanged?.Invoke();
     }
 
