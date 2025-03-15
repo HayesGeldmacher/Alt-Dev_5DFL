@@ -41,6 +41,7 @@ public class TitleScreenSpriteFollowMouse : MonoBehaviour
     [SerializeField] private bool _hasButton = false;
 
     public bool _usingMouse;
+    private Vector2 _currentVirtPos;
 
     // Start is called before the first frame update
     void Start()
@@ -50,7 +51,7 @@ public class TitleScreenSpriteFollowMouse : MonoBehaviour
         Cursor.lockState = CursorLockMode.Confined;
         GameInputManager.OnGameDeviceChanged += OnDeviceChanged;
 
-
+        _currentVirtPos = _virtualMouse.virtualMouse.position.value;
     }
 
     // Update is called once per frame
@@ -102,18 +103,28 @@ public class TitleScreenSpriteFollowMouse : MonoBehaviour
     {
         if (!_usingMouse)
         {
-            Vector2 newVirtPos = _virtualMouse.virtualMouse.position.value;
 
-            //Adding borders
-            float borderX = Screen.width / 10;
-            float borderYMax = Screen.height / 10;
-            float borderYMin = Screen.height / 7;
+            if (!_active)
+            {
+                InputState.Change(_virtualMouse.virtualMouse.position, _currentVirtPos);
+            }
+            else
+            {
+                Vector2 newVirtPos = _virtualMouse.virtualMouse.position.value;
 
-            newVirtPos.x = Mathf.Clamp(newVirtPos.x, 0f + borderX, Screen.width - borderX);
-            newVirtPos.y = Mathf.Clamp(newVirtPos.y, 0f + borderYMin, Screen.height - borderYMax);
-            InputState.Change(_virtualMouse.virtualMouse.position, newVirtPos);
+                //Adding borders
+                float borderX = Screen.width / 10;
+                float borderYMax = Screen.height / 10;
+                float borderYMin = Screen.height / 7;
 
+                newVirtPos.x = Mathf.Clamp(newVirtPos.x, 0f + borderX, Screen.width - borderX);
+                newVirtPos.y = Mathf.Clamp(newVirtPos.y, 0f + borderYMin, Screen.height - borderYMax);
+                InputState.Change(_virtualMouse.virtualMouse.position, newVirtPos);
+
+            }
         }
+
+
         
     }
 
@@ -126,14 +137,7 @@ public class TitleScreenSpriteFollowMouse : MonoBehaviour
 
         if (!_kill)
         {
-            _virtualMouse.enabled = false;
-        }
-        else
-        {
-            if (!_usingMouse)
-            {
-                _virtualMouse.enabled = true;
-            }
+            _currentVirtPos = _virtualMouse.virtualMouse.position.value;
         }
     }
 
@@ -143,7 +147,6 @@ public class TitleScreenSpriteFollowMouse : MonoBehaviour
     private void OnDeviceChanged()
     {
 
-        if (!_active) return;
 
         //This is where we get rid of the virtual mouse!
         Debug.Log("DEVICE CHANGED BITCH WHOOO");
@@ -151,13 +154,6 @@ public class TitleScreenSpriteFollowMouse : MonoBehaviour
         _usingMouse = GameInputManager.instance._usingMouse;
 
 
-        if (_usingMouse)
-        {
-            _virtualMouse.enabled = false;
-        }
-        else
-        {
-            _virtualMouse.enabled = true; 
-        }
+
     }
 }

@@ -212,7 +212,9 @@ public class GameManager : MonoBehaviour
             Cursor.visible = false;
         }
 
+        //THIS LINE CAUSES THE FUCKING PROBLEM!
         _pauseCursor.EnableCursor(false);
+
 
         if (_controller._hasCamera)
         {
@@ -222,7 +224,6 @@ public class GameManager : MonoBehaviour
         }
 
 
-        //THIS LINE CAUSES THE FUCKING PROBLEM!
         _pauseButtons.SetActive(false);
 
 
