@@ -10,6 +10,10 @@ using UnityEngine.InputSystem.LowLevel;
 
 public class TitleScreenSpriteFollowMouse : MonoBehaviour, IPointerEnterHandler
 {
+
+    [SerializeField] private Transform _mouseVisual;
+    [SerializeField] private RectTransform _canvasTransform;
+    [SerializeField] private Transform _virtualMouseParent;
     [SerializeField] private Canvas _parentCanvas;
     [SerializeField] private Animator _anim;
     private AudioSource _clickSound;
@@ -36,14 +40,17 @@ public class TitleScreenSpriteFollowMouse : MonoBehaviour, IPointerEnterHandler
     [SerializeField] private Button _currentHoverButton;
     [SerializeField] private bool _hasButton = false;
 
+    public bool _usingMouse = true;
+
     // Start is called before the first frame update
     void Start()
     {
         //_anim = transform.GetComponent<Animator>();
         _clickSound = transform.GetComponent<AudioSource>();
         Cursor.lockState = CursorLockMode.Confined;
+        GameInputManager.OnGameDeviceChanged += OnDeviceChanged;
 
-        
+
     }
 
     // Update is called once per frame
@@ -52,7 +59,9 @@ public class TitleScreenSpriteFollowMouse : MonoBehaviour, IPointerEnterHandler
        
        if(!_active) return;
 
-
+        _virtualMouseParent.localScale = Vector3.one * (1f / _canvasTransform.localScale.x);
+        _mouseVisual.localScale = Vector3.one * (_canvasTransform.localScale.y);
+        _virtualMouseParent.SetAsLastSibling();
         
         if(Input.GetButtonDown("Interact"))
         {
@@ -83,8 +92,14 @@ public class TitleScreenSpriteFollowMouse : MonoBehaviour, IPointerEnterHandler
     private void LateUpdate()
     {
         Vector2 newVirtPos = _virtualMouse.virtualMouse.position.value;
-        newVirtPos.x = Mathf.Clamp(newVirtPos.x, 0f, Screen.width);
-        newVirtPos.y = Mathf.Clamp(newVirtPos.y, 0f, Screen.height);
+
+        //Adding borders
+        float borderX = Screen.width / 10;
+        float borderYMax = Screen.height / 10;
+        float borderYMin = Screen.height / 7;
+
+        newVirtPos.x = Mathf.Clamp(newVirtPos.x, 0f + borderX, Screen.width - borderX);
+        newVirtPos.y = Mathf.Clamp(newVirtPos.y, 0f + borderYMin, Screen.height - borderYMax);
         InputState.Change(_virtualMouse.virtualMouse.position, newVirtPos);
     }
 
@@ -144,5 +159,10 @@ public class TitleScreenSpriteFollowMouse : MonoBehaviour, IPointerEnterHandler
         Debug.Log("Cursor Entering " + name + " GameObject");
     }
 
-
+    private void OnDeviceChanged(bool isMouse)
+    {
+        //This is where we get rid of the virtual mouse!
+        Debug.Log("DEVICE CHANGED BITCH WHOOO");
+        _usingMouse = isMouse;
+    }
 }
