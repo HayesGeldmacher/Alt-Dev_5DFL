@@ -56,7 +56,9 @@ public class TitleScreenSpriteFollowMouse : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-       
+    
+
+
        if(!_active) return;
 
         _virtualMouseParent.localScale = Vector3.one * (1f / _canvasTransform.localScale.x);
@@ -122,6 +124,17 @@ public class TitleScreenSpriteFollowMouse : MonoBehaviour
         _active = _kill;
         _clickImage.enabled = _kill;
 
+        if (!_kill)
+        {
+            _virtualMouse.enabled = false;
+        }
+        else
+        {
+            if (!_usingMouse)
+            {
+                _virtualMouse.enabled = true;
+            }
+        }
     }
 
 
@@ -129,6 +142,8 @@ public class TitleScreenSpriteFollowMouse : MonoBehaviour
 
     private void OnDeviceChanged()
     {
+
+        if (!_active) return;
 
         //This is where we get rid of the virtual mouse!
         Debug.Log("DEVICE CHANGED BITCH WHOOO");
@@ -138,11 +153,11 @@ public class TitleScreenSpriteFollowMouse : MonoBehaviour
 
         if (_usingMouse)
         {
-            //_virtualMouse.enabled = false;
+            _virtualMouse.enabled = false;
         }
         else
         {
-            //_virtualMouse.enabled = true;
+            _virtualMouse.enabled = true; 
         }
     }
 }

@@ -77,10 +77,14 @@ public class GameManager : MonoBehaviour
    
     private void Update()
     {
+        
+        
         if (Input.GetButtonDown("Pause"))
         {
+            
             if (_isPaused )
             {
+                
                 Unpause();
             }
             else
@@ -114,21 +118,21 @@ public class GameManager : MonoBehaviour
 
     public void LoadNextLevel()
     {
-        //_pauseCursor.EnableCursor(false);
+        _pauseCursor.EnableCursor(false);
         SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
 
     }
     
     public void ReloadLevel()
     {
-        //_pauseCursor.EnableCursor(false);
+        _pauseCursor.EnableCursor(false);
         Unpause();
         SceneManager.LoadScene(SceneManager.GetActiveScene().name);
     }
 
     public void LoadMenu()
     {
-        //_pauseCursor.EnableCursor(false);
+        _pauseCursor.EnableCursor(false);
         Unpause();
         SceneManager.LoadScene("TitleScreen");
     }
@@ -194,6 +198,7 @@ public class GameManager : MonoBehaviour
         Time.timeScale = 1f;
         _controller.enabled = true;
 
+
         if (!_inTextGame)
         {
             Cursor.lockState = CursorLockMode.Confined;
@@ -215,7 +220,12 @@ public class GameManager : MonoBehaviour
             _pausedText.text = "REC";
 
         }
+
+
+        //THIS LINE CAUSES THE FUCKING PROBLEM!
         _pauseButtons.SetActive(false);
+
+
         _pauseButtonsText.SetActive(false);
         _hudBorder.SetActive(true);
         _cursorSprite.enabled = true;

@@ -12,7 +12,7 @@ public class GameInputManager : MonoBehaviour
     public delegate void GameChangeAction();
     public static event GameChangeAction OnGameDeviceChanged;
 
-    public bool _usingMouse = true;
+    public bool _usingMouse;
 
     public enum GameDevice 
     { 
@@ -38,6 +38,7 @@ public class GameInputManager : MonoBehaviour
 
     private void InputSystem_OnActionChange(object arg1, InputActionChange inputActionChange)
     {
+        Debug.Log("InoutSystemCalled!");
         if (inputActionChange == InputActionChange.ActionPerformed && arg1 is InputAction)
         {
             InputAction inputAction = arg1 as InputAction;
@@ -46,7 +47,8 @@ public class GameInputManager : MonoBehaviour
                 //ignore virtual mouse
                 return;
             }
-            else if(inputAction.activeControl.device is Gamepad)
+            
+            if(inputAction.activeControl.device is Gamepad)
             {
                 if(_activeGameDevice != GameDevice.Gamepad)
                 {
@@ -68,23 +70,23 @@ public class GameInputManager : MonoBehaviour
 
 
 
-        this._activeGameDevice = activeGameDevice;
+        _activeGameDevice = activeGameDevice;
         Debug.Log("New Active Game Device: " + activeGameDevice);
 
         
 
-        if(_activeGameDevice == GameDevice.Gamepad)
+        if(activeGameDevice is GameDevice.Gamepad)
         {
             _usingMouse = false;
         }
-        else
+        else if(activeGameDevice is GameDevice.KeyboardMouse)
         {
             _usingMouse = true;
         }
 
+        OnGameDeviceChanged();
 
 
-       OnGameDeviceChanged?.Invoke();
     }
 
     
