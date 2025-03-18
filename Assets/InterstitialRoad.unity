@@ -513,6 +513,7 @@ GameObject:
   - component: {fileID: 1022394589}
   - component: {fileID: 1022394588}
   - component: {fileID: 1022394590}
+  - component: {fileID: 1022394591}
   m_Layer: 5
   m_Name: MonitorScreen
   m_TagString: Untagged
@@ -598,6 +599,102 @@ Animator:
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
   m_WriteDefaultValuesOnDisable: 0
+--- !u!82 &1022394591
+AudioSource:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1022394586}
+  m_Enabled: 1
+  serializedVersion: 4
+  OutputAudioMixerGroup: {fileID: 0}
+  m_audioClip: {fileID: 8300000, guid: 89bed76c1ef078c43ba0ff3bf67acd8b, type: 3}
+  m_PlayOnAwake: 0
+  m_Volume: 1
+  m_Pitch: 1
+  Loop: 0
+  Mute: 0
+  Spatialize: 0
+  SpatializePostEffects: 0
+  Priority: 128
+  DopplerLevel: 1
+  MinDistance: 1
+  MaxDistance: 500
+  Pan2D: 0
+  rolloffMode: 0
+  BypassEffects: 0
+  BypassListenerEffects: 0
+  BypassReverbZones: 0
+  rolloffCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    - serializedVersion: 3
+      time: 1
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  panLevelCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  spreadCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  reverbZoneMixCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
 --- !u!1 &1342415542
 GameObject:
   m_ObjectHideFlags: 0
@@ -724,7 +821,7 @@ RectTransform:
   m_GameObject: {fileID: 1960745084}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 1.1175599}
-  m_LocalScale: {x: 4.4603133, y: 4.4603133, z: 4.4603133}
+  m_LocalScale: {x: 4.5785117, y: 4.5785117, z: 4.5785117}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 315467314}
@@ -732,7 +829,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 73.58655, y: -344}
+  m_AnchoredPosition: {x: 73.58655, y: -514}
   m_SizeDelta: {x: -1247.9998, y: -1448}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1960745087
@@ -785,13 +882,15 @@ MonoBehaviour:
   _screenAnim: {fileID: 1022394590}
   _vidAnim: {fileID: 1960745094}
   _vid: {fileID: 1960745093}
+  _carAmbience: {fileID: 1960745095}
+  _infomercialSound: {fileID: 1022394591}
   _clickAnim: {fileID: 8693397557527951733}
   _interactSound: {fileID: 1960745092}
   _doorSound: {fileID: 1960745091}
   _staticAudio: {fileID: 1960745090}
   _fadeSpeed: 2
   _returnToMenu: 0
-  _peanutWatchTime: 5
+  _peanutWatchTime: 8
 --- !u!82 &1960745090
 AudioSource:
   m_ObjectHideFlags: 0
@@ -1149,7 +1248,7 @@ AudioSource:
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 8300000, guid: 0175ca07dc0b0984bad87124bfa040e6, type: 3}
-  m_PlayOnAwake: 1
+  m_PlayOnAwake: 0
   m_Volume: 1
   m_Pitch: 1
   Loop: 0

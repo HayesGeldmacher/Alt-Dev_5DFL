@@ -13,7 +13,7 @@ public class CutsceneManager : MonoBehaviour
 
     [SerializeField] private VideoPlayer _vid;
     [SerializeField] private AudioSource _carAmbience;
-
+    [SerializeField] private AudioSource _infomercialSound;
 
 
     [SerializeField] private Animator _clickAnim;
@@ -79,6 +79,7 @@ public class CutsceneManager : MonoBehaviour
     private IEnumerator StartPeanutSequence()
     {
         _screenAnim.SetTrigger("start");
+        _infomercialSound.Play();
         yield return new WaitForSeconds(_peanutWatchTime);
         EndPeanutSequence();
         
@@ -92,12 +93,13 @@ public class CutsceneManager : MonoBehaviour
 
     private IEnumerator StartRoadTripSequence()
     {
+        yield return new WaitForSeconds(1f);
+        _screenAnim.SetTrigger("fade");
         yield return new WaitForSeconds(5f);
         _vidAnim.SetTrigger("road");
         _vid.Play();
         _carAmbience.Play();
-        yield return new WaitForSeconds(2f);
-        _screenAnim.SetTrigger("fade");
+
     }
 
     private IEnumerator WaitForStart()
@@ -150,7 +152,7 @@ public class CutsceneManager : MonoBehaviour
 
     private IEnumerator DoorIntro()
     {
-
+        yield return new WaitForSeconds(2);
         _vidAnim.SetTrigger("door");
        yield return new WaitForSeconds(1f);
         
