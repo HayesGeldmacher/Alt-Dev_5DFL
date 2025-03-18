@@ -216,7 +216,6 @@ RectTransform:
   m_Children:
   - {fileID: 805306651}
   - {fileID: 1022394587}
-  - {fileID: 1960745085}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
@@ -533,6 +532,7 @@ RectTransform:
   m_LocalScale: {x: 0.23102, y: 0.23102, z: 0.23102}
   m_ConstrainProportionsScale: 0
   m_Children:
+  - {fileID: 1960745085}
   - {fileID: 1988877719}
   m_Father: {fileID: 286498691}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -722,18 +722,18 @@ RectTransform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1960745084}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0.25818}
-  m_LocalScale: {x: 1.0304216, y: 1.0304216, z: 1.0304216}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 1.1175599}
+  m_LocalScale: {x: 4.4603133, y: 4.4603133, z: 4.4603133}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 315467314}
-  m_Father: {fileID: 286498691}
+  m_Father: {fileID: 1022394587}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 0.00018311, y: 0}
+  m_AnchoredPosition: {x: 73.58655, y: -344}
+  m_SizeDelta: {x: -1247.9998, y: -1448}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1960745087
 MonoBehaviour:
@@ -782,13 +782,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 609ba451a1e196a4f8338a082a4aac44, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _doorAnim: {fileID: 1960745094}
+  _screenAnim: {fileID: 1022394590}
+  _vidAnim: {fileID: 1960745094}
+  _vid: {fileID: 1960745093}
   _clickAnim: {fileID: 8693397557527951733}
   _interactSound: {fileID: 1960745092}
   _doorSound: {fileID: 1960745091}
   _staticAudio: {fileID: 1960745090}
   _fadeSpeed: 2
   _returnToMenu: 0
+  _peanutWatchTime: 5
 --- !u!82 &1960745090
 AudioSource:
   m_ObjectHideFlags: 0
@@ -1107,7 +1110,7 @@ VideoPlayer:
   m_EnabledAudioTracks: 01
   m_DirectAudioMutes: 00
   m_ControlledAudioTrackCount: 1
-  m_PlayOnAwake: 1
+  m_PlayOnAwake: 0
   m_SkipOnDrop: 1
   m_Looping: 0
   m_WaitForFirstFrame: 1

@@ -1,12 +1,21 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Runtime.CompilerServices;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using UnityEngine.Video;
 
 public class CutsceneManager : MonoBehaviour
 {
 
-    [SerializeField] private Animator _doorAnim;
+    [SerializeField] private Animator _screenAnim;
+    [SerializeField] private Animator _vidAnim;
+
+    [SerializeField] private VideoPlayer _vid;
+    [SerializeField] private AudioSource _carAmbience;
+
+
+
     [SerializeField] private Animator _clickAnim;
     private bool _canStart = false;
     private bool _hasStarted = false;
@@ -21,10 +30,18 @@ public class CutsceneManager : MonoBehaviour
     private float _currentVol;
     [SerializeField] private bool _returnToMenu = false;
     private bool _doorAppeared = false;
-     
+
+
+    [Header("PeanutSequence")]
+    [SerializeField] private float _peanutWatchTime;
+
     // Start is called before the first frame update
     void Start()
     {
+
+        StartCoroutine(DelayStart());
+        
+        
         Cursor.visible = false;
         Cursor.lockState = CursorLockMode.Locked;
         StartCoroutine(WaitForStart());
@@ -52,6 +69,37 @@ public class CutsceneManager : MonoBehaviour
         }
     }
 
+
+    private IEnumerator DelayStart()
+    {
+        yield return new WaitForSeconds(2f);
+        StartCoroutine(StartPeanutSequence());
+    }
+
+    private IEnumerator StartPeanutSequence()
+    {
+        _screenAnim.SetTrigger("start");
+        yield return new WaitForSeconds(_peanutWatchTime);
+        EndPeanutSequence();
+        
+    }
+
+    private void EndPeanutSequence()
+    {
+        _screenAnim.SetTrigger("end");
+        StartCoroutine(StartRoadTripSequence());
+    }
+
+    private IEnumerator StartRoadTripSequence()
+    {
+        yield return new WaitForSeconds(5f);
+        _vidAnim.SetTrigger("road");
+        _vid.Play();
+        _carAmbience.Play();
+        yield return new WaitForSeconds(2f);
+        _screenAnim.SetTrigger("fade");
+    }
+
     private IEnumerator WaitForStart()
     {
         yield return new WaitForSeconds(1.5f);
@@ -63,7 +111,7 @@ public class CutsceneManager : MonoBehaviour
 
     private void StartSequence()
     {
-        _doorAnim.SetTrigger("start");
+        _vidAnim.SetTrigger("start");
         _clickAnim.SetTrigger("click");
         _doorSound.Play();
         _interactSound.Play();
@@ -103,7 +151,7 @@ public class CutsceneManager : MonoBehaviour
     private IEnumerator DoorIntro()
     {
 
-        _doorAnim.SetTrigger("door");
+        _vidAnim.SetTrigger("door");
        yield return new WaitForSeconds(1f);
         
         _doorAppeared = true;
