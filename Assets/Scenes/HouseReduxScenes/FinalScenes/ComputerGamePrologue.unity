@@ -4723,7 +4723,11 @@ MonoBehaviour:
   _startedEnd: 0
   _door: {fileID: 0}
   _altDialogue: {fileID: 336840265}
+  _watch: {fileID: 0}
   _canStartNextDay: 1
+  _monitorAudio: {fileID: 0}
+  _audioFadeSpeed: 0
+  _startFading: 0
 --- !u!1 &104451749
 GameObject:
   m_ObjectHideFlags: 0
@@ -146070,6 +146074,9 @@ MonoBehaviour:
   _tvBroken: {fileID: 2003569456}
   _tvWorking: {fileID: 1092813827}
   _pickupSound: {fileID: 0}
+  _monitorMorning: {fileID: 0}
+  _monitorNight: {fileID: 0}
+  _sunLightBlockerNight: {fileID: 0}
 --- !u!65 &1189094643
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -264603,6 +264610,20 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+--- !u!114 &2027712995
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1552682024}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 88f2d1796af82dc499dd4a3347214505, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _usingMouse: 0
+  _activeGameDevice: 0
 --- !u!4 &2027986090 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 633147474307304620, guid: c87abce9b9769894a8ac5fffb16b9a04,
@@ -274867,6 +274888,10 @@ PrefabInstance:
         type: 3}
       insertIndex: -1
       addedObject: {fileID: 2027712994}
+    - targetCorrespondingSourceObject: {fileID: 1152277542137410548, guid: 2f0dbb151b81b1b4a8dace253c8a7b51,
+        type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 2027712995}
   m_SourcePrefab: {fileID: 100100000, guid: 2f0dbb151b81b1b4a8dace253c8a7b51, type: 3}
 --- !u!4 &7510281646199196380 stripped
 Transform:

@@ -22,6 +22,10 @@ public class BedDayTime : Interactable
     private bool _isBedTime = false;
     public bool _canStartNextDay = false;
 
+    [Header("AudioFadeOutShit")]
+    [SerializeField] private AudioSource _monitorAudio;
+    [SerializeField] private float _audioFadeSpeed;
+    [SerializeField] private bool _startFading = false;
 
     private void Start()
     {
@@ -46,6 +50,17 @@ public class BedDayTime : Interactable
             _camHolder.position = Vector3.Lerp(_camHolder.position, _anchorPoint.position, 1 * Time.deltaTime);
             _camHolder.rotation = Quaternion.Lerp(_camHolder.rotation, _lookPoint.rotation, 1 * Time.deltaTime);
 
+        }
+
+
+        if (_startFading)
+        {
+            if(_monitorAudio.volume > 0)
+            {
+                float currentVol = _monitorAudio.volume;
+                float newVol = currentVol - 0.1f;
+                _monitorAudio.volume = newVol;
+            }
         }
     }
 
@@ -106,7 +121,7 @@ public class BedDayTime : Interactable
         Destroy(PlayerController.instance.transform.gameObject);
 
         _camHolder.position = _pos;
-
+        _startFading = true;
         _isBedTime = true;
         yield return new WaitForSeconds(2);
         _blackAnim.SetTrigger("black");
@@ -127,5 +142,10 @@ public class BedDayTime : Interactable
     public void EnableBedTime()
     {
         _canStartNextDay = true;
+    }
+
+    public void StartMonitorAudioDecline()
+    {
+        _startFading = true;
     }
 }

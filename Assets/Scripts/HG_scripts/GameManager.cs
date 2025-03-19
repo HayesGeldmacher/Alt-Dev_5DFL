@@ -179,8 +179,13 @@ public class GameManager : MonoBehaviour
             Cursor.lockState = CursorLockMode.Confined;
             Cursor.visible = false;
         }
+        
+        if (_controller._hasCamera)
+        {
         _pausedAnimator.SetBool("paused", true);
         _pausedText.text = "PAUSED";
+
+        }
         _pauseButtons.SetActive(true);
         _pauseButtonsText.SetActive(true);
         _hudBorder.SetActive(false);
