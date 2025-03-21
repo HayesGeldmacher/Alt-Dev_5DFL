@@ -36,8 +36,6 @@ public class TitleScreenSpriteFollowMouse : MonoBehaviour
 
     [SerializeField] private VirtualMouseInput _virtualMouse;
     
-
-    [SerializeField] private Button _currentHoverButton;
     [SerializeField] private bool _hasButton = false;
 
     public bool _usingMouse;
@@ -140,9 +138,6 @@ public class TitleScreenSpriteFollowMouse : MonoBehaviour
             _currentVirtPos = _virtualMouse.virtualMouse.position.value;
         }
     }
-
-
-  
 
     private void OnDeviceChanged()
     {
