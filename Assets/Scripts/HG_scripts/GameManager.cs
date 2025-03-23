@@ -137,17 +137,6 @@ public class GameManager : MonoBehaviour
         SceneManager.LoadScene("TitleScreen");
     }
 
-    public void SpawnKillMonster()
-    {
-        _blackAnim.SetTrigger("blink");
-        GameObject _monsterSpawn = Instantiate(_killMonster, _spawnPoint.position, Quaternion.identity);
-        MonsterKill _monster = _monsterSpawn.GetComponent<MonsterKill>(); 
-        _monster._spawnPoint = _spawnPoint;
-        _monster._cam = _cam;
-        _monster._blackAnim = _blackAnim;
-        _monster._faceDirectionPoint = _faceDirectionPoint;
-        StartCoroutine(_monster.KillPlayer());
-    }
 
 
     public void FreezePlayer(bool _freeze)

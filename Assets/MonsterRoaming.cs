@@ -70,7 +70,7 @@ public class MonsterRoaming : MonoBehaviour
                 _currentKillCountDown -= Time.deltaTime;
                 if(_currentKillCountDown <= 0)
                 {
-                    GameManager.instance.SpawnKillMonster();
+                   // GameManager.instance.SpawnKillMonster();
                     Destroy(gameObject);
                 }
             }
@@ -87,7 +87,7 @@ public class MonsterRoaming : MonoBehaviour
 
         if(_listening)
         {
-            NoiseUpdate();
+           // NoiseUpdate();
         }
         else
         {
@@ -117,26 +117,6 @@ public class MonsterRoaming : MonoBehaviour
         _hasStartedRecharge = false;
     }
 
-    private void NoiseUpdate()
-    {
-        if(_currentNoise > _noiseLimit)
-        {
-            GameManager.instance.SpawnKillMonster();
-            Destroy(gameObject);
-
-        }
-
-        if (!_inSight && range > _killRange)
-        {
-
-        _currentNoise -= Time.deltaTime;
-        if(_currentNoise <= 0)
-            {
-                _currentNoise = 0;
-            }
-        }
-        
-    }
 
     public void AddNoise(float noise)
     {

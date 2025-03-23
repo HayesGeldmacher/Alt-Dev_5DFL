@@ -135,7 +135,11 @@ public class TitleScreenSpriteFollowMouse : MonoBehaviour
 
         if (!_kill)
         {
-            _currentVirtPos = _virtualMouse.virtualMouse.position.value;
+            if(_virtualMouse != null)
+            {
+               //problem LINE!!! - theres gotta be something not instantiated here
+                _currentVirtPos = _virtualMouse.virtualMouse.position.value;
+            }
         }
     }
 
