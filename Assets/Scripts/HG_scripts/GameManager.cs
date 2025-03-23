@@ -57,6 +57,7 @@ public class GameManager : MonoBehaviour
     public bool _inTextGame = false;
 
     [SerializeField] private TitleScreenSpriteFollowMouse _pauseCursor;
+    [SerializeField] private TitleScreenSpriteFollowMouse _textCursor;
 
 
     private void Start()
@@ -168,7 +169,12 @@ public class GameManager : MonoBehaviour
             Cursor.lockState = CursorLockMode.Confined;
             Cursor.visible = false;
         }
-        
+
+        if (_textCursor != null)
+        {
+            _textCursor.EnableCursor(false);
+        }
+
         if (_controller._hasCamera)
         {
         _pausedAnimator.SetBool("paused", true);
@@ -192,22 +198,16 @@ public class GameManager : MonoBehaviour
         Time.timeScale = 1f;
         _controller.enabled = true;
 
-
-        if (!_inTextGame)
-        {
             Cursor.lockState = CursorLockMode.Confined;
             Cursor.visible = false;
            
-
-        }
-        else
-        {
-            Cursor.lockState = CursorLockMode.Confined;
-            Cursor.visible = false;
-        }
-
         //THIS LINE CAUSES THE FUCKING PROBLEM!
         _pauseCursor.EnableCursor(false);
+
+        if(_textCursor != null)
+        {
+            _textCursor.EnableCursor(true);
+        }
 
 
         if (_controller._hasCamera)
