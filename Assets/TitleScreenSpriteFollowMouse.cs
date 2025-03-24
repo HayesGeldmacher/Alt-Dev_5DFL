@@ -26,6 +26,14 @@ public class TitleScreenSpriteFollowMouse : MonoBehaviour
     [SerializeField] private int _minY;
     [SerializeField] private int _maxY;
 
+    [Header("Controller Boundary")]
+    [SerializeField] private bool _controllerConstrained = false;
+    [SerializeField] private int _minXController;
+    [SerializeField] private int _maxXController;
+    [SerializeField] private int _minYController;
+    [SerializeField] private int _maxYController;
+
+
     [SerializeField] private Vector2 _readCursorPosition;
     [SerializeField] private bool _active = false;
 
@@ -75,6 +83,10 @@ public class TitleScreenSpriteFollowMouse : MonoBehaviour
             MouseUpdate();
         }
 
+        ControllerUpdate();
+        
+
+
         
     }
 
@@ -97,7 +109,7 @@ public class TitleScreenSpriteFollowMouse : MonoBehaviour
         _readCursorPosition = _pos;
     }
 
-    private void LateUpdate()
+    private void ControllerUpdate()
     {
         if (!_usingMouse)
         {
@@ -105,6 +117,20 @@ public class TitleScreenSpriteFollowMouse : MonoBehaviour
             if (!_active)
             {
                 InputState.Change(_virtualMouse.virtualMouse.position, _currentVirtPos);
+            }
+            else if(_controllerConstrained)
+            {
+                Vector2 newVirtPos = _virtualMouse.virtualMouse.position.value;
+                //Adding borders
+
+
+                newVirtPos.x = Mathf.Clamp(newVirtPos.x, _minXController, _maxXController);
+                newVirtPos.y = Mathf.Clamp(newVirtPos.y, _minYController, _maxYController);
+
+                InputState.Change(_virtualMouse.virtualMouse.position, newVirtPos);
+
+                Debug.Log("VALUEX: " + _virtualMouse.virtualMouse.position.value.x);
+
             }
             else
             {
@@ -117,13 +143,13 @@ public class TitleScreenSpriteFollowMouse : MonoBehaviour
 
                 newVirtPos.x = Mathf.Clamp(newVirtPos.x, 0f + borderX, Screen.width - borderX);
                 newVirtPos.y = Mathf.Clamp(newVirtPos.y, 0f + borderYMin, Screen.height - borderYMax);
+
                 InputState.Change(_virtualMouse.virtualMouse.position, newVirtPos);
+                Debug.Log("VALUEX: " + _virtualMouse.virtualMouse.position.value.x);
 
             }
         }
-
-
-        
+ 
     }
 
 

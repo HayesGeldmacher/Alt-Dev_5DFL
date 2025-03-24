@@ -22,7 +22,7 @@ public class ComputerGame : Interactable
     private void Start()
     {
         _textGameManager.enabled = false;
-        _mouseCursorText.SetActive(false);
+        _screenCursor.EnableCursor(false);
         base.Start();
         _buttonParent.SetActive(false);
     }

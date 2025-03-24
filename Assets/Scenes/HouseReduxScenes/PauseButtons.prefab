@@ -135,12 +135,12 @@ MonoBehaviour:
   m_Transition: 1
   m_Colors:
     m_NormalColor: {r: 1, g: 1, b: 1, a: 0}
-    m_HighlightedColor: {r: 0.33962262, g: 0.33962262, b: 0.33962262, a: 0.5882353}
-    m_PressedColor: {r: 0.5943396, g: 0.5943396, b: 0.5943396, a: 0.7372549}
+    m_HighlightedColor: {r: 0, g: 0, b: 0, a: 0.5882353}
+    m_PressedColor: {r: 0, g: 0, b: 0, a: 0}
     m_SelectedColor: {r: 0.9607843, g: 0.9607843, b: 0.9607843, a: 0}
     m_DisabledColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 0}
     m_ColorMultiplier: 1
-    m_FadeDuration: 0.1
+    m_FadeDuration: 0
   m_SpriteState:
     m_HighlightedSprite: {fileID: 0}
     m_PressedSprite: {fileID: 0}
@@ -329,12 +329,12 @@ MonoBehaviour:
   m_Transition: 1
   m_Colors:
     m_NormalColor: {r: 1, g: 1, b: 1, a: 0}
-    m_HighlightedColor: {r: 0.33962262, g: 0.33962262, b: 0.33962262, a: 0.5882353}
-    m_PressedColor: {r: 0.5943396, g: 0.5943396, b: 0.5943396, a: 0.7372549}
+    m_HighlightedColor: {r: 0, g: 0, b: 0, a: 0.5882353}
+    m_PressedColor: {r: 0.1981132, g: 0.1981132, b: 0.1981132, a: 0}
     m_SelectedColor: {r: 0.9607843, g: 0.9607843, b: 0.9607843, a: 0}
     m_DisabledColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 0}
     m_ColorMultiplier: 1
-    m_FadeDuration: 0.1
+    m_FadeDuration: 0
   m_SpriteState:
     m_HighlightedSprite: {fileID: 0}
     m_PressedSprite: {fileID: 0}
@@ -637,7 +637,6 @@ GameObject:
   - component: {fileID: 4506153614052480314}
   - component: {fileID: 6175065466555065748}
   - component: {fileID: 6350740923984452098}
-  - component: {fileID: 5061456233696550326}
   m_Layer: 5
   m_Name: PauseMaster
   m_TagString: Untagged
@@ -682,7 +681,7 @@ MonoBehaviour:
   _buttonSound: {fileID: 6350740923984452098}
   _blackAnim: {fileID: 0}
   _waitTime: 1
-  _event: {fileID: 5061456233696550326}
+  _event: {fileID: 0}
   _resetText: {fileID: 0}
   _menuText: {fileID: 0}
   _exitText: {fileID: 0}
@@ -783,18 +782,6 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
---- !u!114 &5061456233696550326
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4884523640982853793}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 28f05f2af8272b346af8dec3ba88c84e, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1 &9055074119033381202
 GameObject:
   m_ObjectHideFlags: 0
@@ -894,12 +881,12 @@ MonoBehaviour:
   m_Transition: 1
   m_Colors:
     m_NormalColor: {r: 1, g: 1, b: 1, a: 0}
-    m_HighlightedColor: {r: 0.33962262, g: 0.33962262, b: 0.33962262, a: 0.5882353}
-    m_PressedColor: {r: 0.5943396, g: 0.5943396, b: 0.5943396, a: 0.7372549}
+    m_HighlightedColor: {r: 0, g: 0, b: 0, a: 0.5882353}
+    m_PressedColor: {r: 0, g: 0, b: 0, a: 0}
     m_SelectedColor: {r: 0.9607843, g: 0.9607843, b: 0.9607843, a: 0}
     m_DisabledColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 0}
     m_ColorMultiplier: 1
-    m_FadeDuration: 0.1
+    m_FadeDuration: 0
   m_SpriteState:
     m_HighlightedSprite: {fileID: 0}
     m_PressedSprite: {fileID: 0}

@@ -170,7 +170,7 @@ public class GameManager : MonoBehaviour
             Cursor.visible = false;
         }
 
-        if (_textCursor != null)
+        if (_textCursor != null && _inTextGame)
         {
             _textCursor.EnableCursor(false);
         }
@@ -204,7 +204,7 @@ public class GameManager : MonoBehaviour
         //THIS LINE CAUSES THE FUCKING PROBLEM!
         _pauseCursor.EnableCursor(false);
 
-        if(_textCursor != null)
+        if(_textCursor != null && _inTextGame)
         {
             _textCursor.EnableCursor(true);
         }
