@@ -70,10 +70,10 @@ public class ComputerGame : Interactable
 
         _textGameAnim.SetBool("visible", false);
         yield return new WaitForSeconds(1);
-
-        GameManager.instance.FreezePlayer(false);
+            _mouseCursorText.EnterTextGame(false);
+            GameManager.instance.FreezePlayer(false);
         _textGame.SetActive(false);
-            _mouseCursorInteract.SetActive(true);
+        _mouseCursorInteract.SetActive(true);
 
 
         }

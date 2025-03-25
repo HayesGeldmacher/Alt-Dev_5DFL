@@ -19,22 +19,23 @@ public class TitleScreenSpriteFollowMouse : MonoBehaviour
     private AudioSource _clickSound;
     [SerializeField] private RawImage _clickImage;
 
+    [SerializeField] private Vector2 _readCursorPosition;
+
     [Header("Boundary Constraints")]
     [SerializeField] private bool _constrained = false;
-    [SerializeField] private int[] _minX;
-    [SerializeField] private int[] _maxX;
-    [SerializeField] private int[] _minY;
-    [SerializeField] private int[] _maxY;
+    [SerializeField] private float[] _minX;
+    [SerializeField] private float[] _maxX;
+    [SerializeField] private float[] _minY;
+    [SerializeField] private float[] _maxY;
 
     [Header("Controller Boundary")]
     [SerializeField] private bool _controllerConstrained = false;
-    [SerializeField] private int[] _minXController;
-    [SerializeField] private int[] _maxXController;
-    [SerializeField] private int[] _minYController;
-    [SerializeField] private int[] _maxYController;
+    [SerializeField] private float[] _minXController;
+    [SerializeField] private float[] _maxXController;
+    [SerializeField] private float[] _minYController;
+    [SerializeField] private float[] _maxYController;
 
 
-    [SerializeField] private Vector2 _readCursorPosition;
     [SerializeField] private bool _active = false;
 
     [SerializeField] private bool _controller = false;
