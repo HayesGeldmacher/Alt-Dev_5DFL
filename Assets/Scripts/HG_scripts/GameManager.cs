@@ -198,11 +198,15 @@ public class GameManager : MonoBehaviour
         Time.timeScale = 1f;
         _controller.enabled = true;
 
-            Cursor.lockState = CursorLockMode.Confined;
-            Cursor.visible = false;
-           
-        //THIS LINE CAUSES THE FUCKING PROBLEM!
-        _pauseCursor.EnableCursor(false);
+        Cursor.lockState = CursorLockMode.Confined;
+        Cursor.visible = false;
+
+        if (!_inTextGame)
+        {
+            //THIS LINE CAUSES THE FUCKING PROBLEM!
+            _pauseCursor.EnableCursor(false);
+
+        }
 
         if(_textCursor != null && _inTextGame)
         {

@@ -47,7 +47,7 @@ public class TitleScreenSpriteFollowMouse : MonoBehaviour
     [SerializeField] private bool _hasButton = false;
 
     public bool _usingMouse;
-    private Vector2 _currentVirtPos;
+    [SerializeField] private Vector2 _currentVirtPos;
 
     // Start is called before the first frame update
     void Start()
@@ -72,19 +72,20 @@ public class TitleScreenSpriteFollowMouse : MonoBehaviour
         _mouseVisual.localScale = Vector3.one * (_canvasTransform.localScale.y);
         _virtualMouseParent.SetAsLastSibling();
         
-        if(Input.GetButtonDown("Interact"))
-        {
-            _anim.SetTrigger("click");
-            _clickSound.Play();
-        }
 
-        if (_usingMouse)
+        if (_usingMouse && _active)
         {
             MouseUpdate();
         }
 
         ControllerUpdate();
         
+
+        if(Input.GetButtonDown("Interact"))
+        {
+            _anim.SetTrigger("click");
+            _clickSound.Play();
+        }
 
 
         
@@ -111,9 +112,7 @@ public class TitleScreenSpriteFollowMouse : MonoBehaviour
 
     private void ControllerUpdate()
     {
-        if (!_usingMouse)
-        {
-
+      
             if (!_active)
             {
                 InputState.Change(_virtualMouse.virtualMouse.position, _currentVirtPos);
@@ -129,8 +128,6 @@ public class TitleScreenSpriteFollowMouse : MonoBehaviour
 
                 InputState.Change(_virtualMouse.virtualMouse.position, newVirtPos);
 
-                Debug.Log("VALUEX: " + _virtualMouse.virtualMouse.position.value.x);
-
             }
             else
             {
@@ -145,16 +142,14 @@ public class TitleScreenSpriteFollowMouse : MonoBehaviour
                 newVirtPos.y = Mathf.Clamp(newVirtPos.y, 0f + borderYMin, Screen.height - borderYMax);
 
                 InputState.Change(_virtualMouse.virtualMouse.position, newVirtPos);
-                Debug.Log("VALUEX: " + _virtualMouse.virtualMouse.position.value.x);
 
             }
-        }
- 
     }
 
 
     public void EnableCursor(bool _kill)
     {
+        Debug.Log("ENABLED : " + _kill);
 
         _active = _kill;
         _clickImage.enabled = _kill;
