@@ -43,16 +43,6 @@ public class TeleportTrigger : MonoBehaviour
         if(other.gameObject.tag == "Player")
         {
             TeleportPlayer();
-
-            if (_appear)
-            {
-                AppearObjects();
-            }
-
-            if (_disappear)
-            {
-                DisappearObjects();
-            }
         }
     }
 
@@ -106,6 +96,15 @@ public class TeleportTrigger : MonoBehaviour
             _playerParent.transform.rotation = Quaternion.Euler(_playerParent.transform.localRotation.x, rotation.y, _playerParent.transform.localRotation.z);
         }
 
+        if (_appear)
+        {
+            AppearObjects();
+        }
+
+        if (_disappear)
+        {
+            DisappearObjects();
+        }
 
         _playerParent.SetActive(false);
         //_controller._frozen = true;
