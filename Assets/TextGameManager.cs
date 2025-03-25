@@ -337,6 +337,7 @@ public class TextGameManager : MonoBehaviour
         _button2.SetActive(false);
         _button3.SetActive(false);
         yield return new WaitForSeconds(0.5f);
+        _mouseCursor.EnterTextGame(false);
         PlayerController.instance._frozen = false;
         _camControl._frozen = false;
         _staticAudio.Stop();
@@ -344,6 +345,7 @@ public class TextGameManager : MonoBehaviour
         this.enabled = false;
         GameManager.instance._inTextGame = false;
         _mouseCursorInteract.SetActive(true);
+        
     }
 
     public void EndScare()

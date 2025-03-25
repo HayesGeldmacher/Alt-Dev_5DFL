@@ -68,12 +68,13 @@ public class ComputerGame : Interactable
         {
             _hasExited = true;
 
-        _textGameAnim.SetBool("visible", false);
-        yield return new WaitForSeconds(1);
+            _textGameAnim.SetBool("visible", false);
+            yield return new WaitForSeconds(1);
             _mouseCursorText.EnterTextGame(false);
             GameManager.instance.FreezePlayer(false);
-        _textGame.SetActive(false);
-        _mouseCursorInteract.SetActive(true);
+            _textGame.SetActive(false);
+            _mouseCursorInteract.SetActive(true);
+            Debug.Log("ENDEDTEXTGAME!!");
 
 
         }

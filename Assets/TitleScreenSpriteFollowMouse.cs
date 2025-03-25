@@ -75,7 +75,6 @@ public class TitleScreenSpriteFollowMouse : MonoBehaviour
             _currentRestraint = 0;
         }
 
-       if(!_active) return;
 
         _virtualMouseParent.localScale = Vector3.one * (1f / _canvasTransform.localScale.x);
         _mouseVisual.localScale = Vector3.one * (_canvasTransform.localScale.y);
@@ -89,6 +88,7 @@ public class TitleScreenSpriteFollowMouse : MonoBehaviour
 
         ControllerUpdate();
         
+       if(!_active) return;
 
         if(Input.GetButtonDown("Interact"))
         {
