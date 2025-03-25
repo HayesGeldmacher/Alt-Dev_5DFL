@@ -64,7 +64,7 @@ public class TextGameManager : MonoBehaviour
 
     [SerializeField] private AudioSource _breatheAudio;
 
-    [SerializeField] private GameObject _mouseCursor;
+    [SerializeField] private TitleScreenSpriteFollowMouse _mouseCursor;
     [SerializeField] private GameObject _mouseCursorInteract;
 
     private bool _canInteract = true;
@@ -320,7 +320,7 @@ public class TextGameManager : MonoBehaviour
         if (!_ended)
         {
             _ended = true;
-            _mouseCursor.SetActive(false);
+            _mouseCursor.EnableCursor(false);
             StartCoroutine(DisableGame());
         }
     }
@@ -357,7 +357,7 @@ public class TextGameManager : MonoBehaviour
             _dialogueBox.SetActive(false);
             _pauseBox.SetActive(true);
             _canInteract = false;
-        _mouseCursor.transform.GetChild(0).gameObject.SetActive(false);
+     //  _mouseCursor.transform.GetChild(0).gameObject.SetActive(false);
         _buttonMaster.SetActive(false);
     }
 
@@ -367,7 +367,7 @@ public class TextGameManager : MonoBehaviour
         _dialogueBox.SetActive(true);
         _pauseBox.SetActive(false);
         _canInteract = true;
-        _mouseCursor.transform.GetChild(0).gameObject.SetActive(true);
+       // _mouseCursor.transform.GetChild(0).gameObject.SetActive(true);
         _buttonMaster.SetActive(true);
     }
 

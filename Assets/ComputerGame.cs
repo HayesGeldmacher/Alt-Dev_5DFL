@@ -9,20 +9,19 @@ public class ComputerGame : Interactable
     [SerializeField] private GameObject _textGame;
     [SerializeField] private Animator _textGameAnim;
     [SerializeField] private TextGameManager _textGameManager;
-    [SerializeField] private GameObject _mouseCursorText;
+    [SerializeField] private TitleScreenSpriteFollowMouse _mouseCursorText;
     [SerializeField] private GameObject _mouseCursorInteract;
     [SerializeField] private GameObject _buttonParent;
     [SerializeField] private GameObject _pauseButtonMaster;
     private bool _hasExited = false;
 
     private bool _canInteract = true;
-    [SerializeField] private TitleScreenSpriteFollowMouse _screenCursor;
+
 
     
     private void Start()
     {
         _textGameManager.enabled = false;
-        _screenCursor.EnableCursor(false);
         base.Start();
         _buttonParent.SetActive(false);
     }
@@ -56,8 +55,8 @@ public class ComputerGame : Interactable
         yield return new WaitForSeconds(1);
         _textGameAnim.SetBool("visible", true);
         yield return new WaitForSeconds(1.5f);
-        _screenCursor.EnableCursor(true);
-        _mouseCursorText.SetActive(true);
+        _mouseCursorText.EnableCursor(true);
+        _mouseCursorText.EnterTextGame(true);
         _buttonParent.SetActive(true);
         Cursor.lockState = CursorLockMode.Confined;
         Cursor.visible = false;

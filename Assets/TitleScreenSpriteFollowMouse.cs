@@ -21,17 +21,17 @@ public class TitleScreenSpriteFollowMouse : MonoBehaviour
 
     [Header("Boundary Constraints")]
     [SerializeField] private bool _constrained = false;
-    [SerializeField] private int _minX;
-    [SerializeField] private int _maxX;
-    [SerializeField] private int _minY;
-    [SerializeField] private int _maxY;
+    [SerializeField] private int[] _minX;
+    [SerializeField] private int[] _maxX;
+    [SerializeField] private int[] _minY;
+    [SerializeField] private int[] _maxY;
 
     [Header("Controller Boundary")]
     [SerializeField] private bool _controllerConstrained = false;
-    [SerializeField] private int _minXController;
-    [SerializeField] private int _maxXController;
-    [SerializeField] private int _minYController;
-    [SerializeField] private int _maxYController;
+    [SerializeField] private int[] _minXController;
+    [SerializeField] private int[] _maxXController;
+    [SerializeField] private int[] _minYController;
+    [SerializeField] private int[] _maxYController;
 
 
     [SerializeField] private Vector2 _readCursorPosition;
@@ -45,8 +45,9 @@ public class TitleScreenSpriteFollowMouse : MonoBehaviour
     [SerializeField] private VirtualMouseInput _virtualMouse;
     
     [SerializeField] private bool _hasButton = false;
-
+    [SerializeField] private int _currentRestraint = 0;
     public bool _usingMouse;
+    public bool _inTextGame = false;
     [SerializeField] private Vector2 _currentVirtPos;
 
     // Start is called before the first frame update
@@ -63,8 +64,15 @@ public class TitleScreenSpriteFollowMouse : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-    
 
+        if (_inTextGame)
+        {
+            _currentRestraint = 1;
+        }
+        else
+        {
+            _currentRestraint = 0;
+        }
 
        if(!_active) return;
 
@@ -93,6 +101,7 @@ public class TitleScreenSpriteFollowMouse : MonoBehaviour
 
     private void MouseUpdate()
     {
+        
         Vector2 _cursorPos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
         transform.position = _cursorPos;
 
@@ -101,8 +110,8 @@ public class TitleScreenSpriteFollowMouse : MonoBehaviour
 
         if (_constrained)
         {
-            float xPos = Mathf.Clamp(_pos.x, _minX, _maxX);
-            float yPos = Mathf.Clamp(_pos.y, _minY, _maxY);
+            float xPos = Mathf.Clamp(_pos.x, _minX[_currentRestraint], _maxX[_currentRestraint]);
+            float yPos = Mathf.Clamp(_pos.y, _minY[_currentRestraint], _maxY[_currentRestraint]);
             _pos = new Vector2(xPos, yPos);
         }
 
@@ -123,8 +132,8 @@ public class TitleScreenSpriteFollowMouse : MonoBehaviour
                 //Adding borders
 
 
-                newVirtPos.x = Mathf.Clamp(newVirtPos.x, _minXController, _maxXController);
-                newVirtPos.y = Mathf.Clamp(newVirtPos.y, _minYController, _maxYController);
+                newVirtPos.x = Mathf.Clamp(newVirtPos.x, _minXController[_currentRestraint], _maxXController[_currentRestraint]);
+                newVirtPos.y = Mathf.Clamp(newVirtPos.y, _minYController[_currentRestraint], _maxYController[_currentRestraint]);
 
                 InputState.Change(_virtualMouse.virtualMouse.position, newVirtPos);
 
@@ -173,7 +182,10 @@ public class TitleScreenSpriteFollowMouse : MonoBehaviour
 
         _usingMouse = GameInputManager.instance._usingMouse;
 
+    }
 
-
+    public void EnterTextGame(bool enter)
+    {
+        _inTextGame = enter;
     }
 }

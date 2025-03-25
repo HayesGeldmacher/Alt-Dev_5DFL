@@ -74,5 +74,6 @@ public class TitleScreenManager : MonoBehaviour
     private void CallDataGlitch()
     {
         _data.Glitch();
+        _data.Glitch();
     }
 }
