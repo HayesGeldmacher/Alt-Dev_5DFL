@@ -11,6 +11,8 @@ public class TitleScreenManager : MonoBehaviour
     [SerializeField] private AudioSource _interactAudio;
     [SerializeField] private Transform _cursorSprite;
     [SerializeField] TitleScreenSpriteFollowMouse _spriteFollow;
+
+    [SerializeField] private Datamosh _data;
     // Start is called before the first frame update
     void Start()
     {
@@ -37,6 +39,7 @@ public class TitleScreenManager : MonoBehaviour
 
     private IEnumerator StartGame()
     {
+        CallDataGlitch();
         _blackOutAnim.SetTrigger("fade");
         _cursorSprite.SetParent(null);
         _cursorSprite.GetComponent<Animator>().SetTrigger("fade");
@@ -58,6 +61,7 @@ public class TitleScreenManager : MonoBehaviour
 
     private IEnumerator ExitGame()
     {
+        CallDataGlitch();
         _blackOutAnim.SetTrigger("fade");
         Cursor.visible = false;
         _cursorSprite.SetParent(null);
@@ -65,5 +69,10 @@ public class TitleScreenManager : MonoBehaviour
         Cursor.lockState = CursorLockMode.Locked;
         yield return new WaitForSeconds(1);
         Application.Quit();
+    }
+
+    private void CallDataGlitch()
+    {
+        _data.Glitch();
     }
 }
