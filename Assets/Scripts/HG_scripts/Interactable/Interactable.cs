@@ -145,7 +145,10 @@ public class Interactable : MonoBehaviour
         _startedTalking = false;
         _manager.EndDialogue();
 
-        _player.GetComponent<PlayerController>()._frozen = false;
+        if (_important)
+        {
+             _player.GetComponent<PlayerController>()._frozen = false;
+        }
     }
 
     public virtual void CallEndDialogue()

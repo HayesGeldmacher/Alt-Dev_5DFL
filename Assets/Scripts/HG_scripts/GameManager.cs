@@ -142,6 +142,8 @@ public class GameManager : MonoBehaviour
 
     public void FreezePlayer(bool _freeze)
     {
+        Debug.Log("FUCKING STOPPED FREEZING BITCHES!");
+        
         PlayerController.instance._frozen = _freeze;
         _controller._frozen = _freeze;
     }
