@@ -23,7 +23,7 @@ public class DadPrologueInteraction : Interactable
     [SerializeField] private AudioSource _shootSound;
     [SerializeField] private AudioSource _crowdSound;
     [SerializeField] private AudioSource _laughSound;
-
+    [SerializeField] private AudioSource _breathSound;
     // Start is called before the first frame update
     void Start()
     {
@@ -38,10 +38,13 @@ public class DadPrologueInteraction : Interactable
 
     public override void Interact()
     {
+       
+        
         if (!_startedInteraction)
         {
             _startedInteraction = true;
             PlayerController.instance._frozen = true;
+            _breathSound.Stop();
         }
 
         if (_animToPlay)
