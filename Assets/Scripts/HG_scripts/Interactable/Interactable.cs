@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 
 public class Interactable : MonoBehaviour
@@ -28,12 +29,20 @@ public class Interactable : MonoBehaviour
     [Header("Outline Variables")]
     [SerializeField] private bool _outlined;
     [HideInInspector] public bool _isOutlined = false;
-    
+
 
     [HideInInspector] public Transform _player;
 
+    [Header("Sound Variables")]
+    [SerializeField] protected bool _playsSound = false;
+    [SerializeField] protected AudioClip[] _soundList;
+    [SerializeField] protected AudioSource _soundSource;
+    [SerializeField] protected int _currentSound = 0;
+
     public virtual void Start()
     {
+
+        
         //_manager = GameManager.instance.GetComponent<DialogueManager>();
         _player = PlayerController.instance.transform;
 
@@ -96,9 +105,27 @@ public class Interactable : MonoBehaviour
             }
             TriggerDialogue();
         }
-        
 
-        //Adds an outline to object when interacting, if we set the bool 
+        if (_playsSound)
+        {
+            int length = _soundList.Length;
+            if(length >= 1)
+            {
+                _soundSource.clip = _soundList[_currentSound];
+                _soundSource.pitch = Random.Range(0.8f, 1.1f);
+                _soundSource.Play();
+
+                if(_currentSound >= _soundList.Length-1)
+                {
+                    _currentSound = 0;
+                }
+                else
+                {
+                    _currentSound++;
+                }
+            }
+        }
+     
       
 
     }
