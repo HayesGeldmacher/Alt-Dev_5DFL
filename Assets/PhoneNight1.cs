@@ -72,6 +72,9 @@ public class PhoneNight1 : Interactable
     [SerializeField] private AudioSource _doorOpenSound;
 
 
+    [SerializeField] private Animator _phoneLightAnim;
+    [SerializeField] private AudioSource _phonePutDown;
+
     private void Start()
     {
         //base.Start();
@@ -80,6 +83,11 @@ public class PhoneNight1 : Interactable
         _dialogueManager = GameManager.instance.GetComponent<DialogueManager>();
         _player = PlayerController.instance.transform;
         _defaultDialogue = base._dialogue;
+
+        if (_phoneLightAnim != null)
+        {
+            _phoneLightAnim.SetTrigger("on");
+        }
     }
 
     private void Update()
@@ -114,10 +122,12 @@ public class PhoneNight1 : Interactable
         if (_ringSound.isPlaying)
         {
             _ringSound.Stop();
+
+            if (_phoneLightAnim != null)
+            {
+                _phoneLightAnim.SetTrigger("talking");
+            }
         }
-
-        //if (!_canInteract) return;
-
 
 
         if(_currentDialogueLine >= _totalDialogue)
@@ -216,6 +226,8 @@ public class PhoneNight1 : Interactable
             Debug.Log("opened Door!");
         }
 
+        _phonePutDown.Play();
+
     }
 
     private IEnumerator WaitTime()
@@ -247,5 +259,10 @@ public class PhoneNight1 : Interactable
     public void StartRinging()
     {
         _ringSound.Play();
+        if (_phoneLightAnim != null)
+        {
+            _phoneLightAnim.SetTrigger("on");
+        }
     }
+
 }
