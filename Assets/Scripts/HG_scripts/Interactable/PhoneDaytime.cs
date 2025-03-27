@@ -56,7 +56,7 @@ public class PhoneDaytime : Interactable
     [SerializeField] private GameObject _sunLightBlockerNight;
 
     [SerializeField] private Animator _phoneLightAnim;
-
+    [SerializeField] private AudioSource _phonePutDown;
 
     private bool _canInteract = true;
 
@@ -269,6 +269,8 @@ public class PhoneDaytime : Interactable
             _cam._canInteract = true;
             _controller._frozen = false;
 
+        _phonePutDown.Play();
+
         if (_phoneLightAnim != null)
         {
             _phoneLightAnim.SetTrigger("off");
@@ -296,4 +298,14 @@ public class PhoneDaytime : Interactable
 
     }
 
+
+    public void StartRing()
+    {
+        _ringSound.Play();
+
+        if(_phoneLightAnim != null)
+        {
+            _phoneLightAnim.SetTrigger("on");
+        }
+    }
 }

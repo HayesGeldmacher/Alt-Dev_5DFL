@@ -22,6 +22,7 @@ public class EvidenceManager : MonoBehaviour
     [SerializeField] private List<GameObject> _itemLabels = new List<GameObject>();
     private Dictionary<GameObject, GameObject> _itemsDict = new Dictionary<GameObject, GameObject>();
     [SerializeField] private AudioSource _phoneRing;
+    [SerializeField] private PhoneDaytime _phone;
   
 
 
@@ -96,7 +97,8 @@ public class EvidenceManager : MonoBehaviour
 
     private IEnumerator PhoneRing()
     {
+        
         yield return new WaitForSeconds(2f);
-        _phoneRing.Play();
+        _phone.StartRing();
     }
 }
