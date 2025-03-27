@@ -55,6 +55,8 @@ public class PhoneDaytime : Interactable
     [SerializeField] private GameObject _monitorNight;
     [SerializeField] private GameObject _sunLightBlockerNight;
 
+    [SerializeField] private Animator _phoneLightAnim;
+
 
     private bool _canInteract = true;
 
@@ -70,7 +72,11 @@ public class PhoneDaytime : Interactable
         _isDarkening = false;
         RenderSettings.skybox.SetColor("_Tint", colorStart);
         t = 0;
-
+        
+        if(_phoneLightAnim != null)
+        {
+            _phoneLightAnim.SetTrigger("on");
+        }
 
         //Test trigger day end
         //StartCoroutine(Darkness());
@@ -119,6 +125,11 @@ public class PhoneDaytime : Interactable
         {
             _ringSound.Stop();
             _pickupSound.Play();
+
+            if (_phoneLightAnim != null)
+            {
+                _phoneLightAnim.SetTrigger("talking");
+            }
         }
         
         if (!_canInteract) return;
@@ -257,6 +268,11 @@ public class PhoneDaytime : Interactable
         _dialogueManager.EndDialogue();
             _cam._canInteract = true;
             _controller._frozen = false;
+
+        if (_phoneLightAnim != null)
+        {
+            _phoneLightAnim.SetTrigger("off");
+        }
 
         if (!_doneMorning)
         {
