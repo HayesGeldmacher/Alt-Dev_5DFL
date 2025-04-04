@@ -50,40 +50,6 @@ MonoBehaviour:
   sampleCount:
     overrideState: 1
     value: 5
---- !u!114 &-6011753981666947589
-MonoBehaviour:
-  m_ObjectHideFlags: 3
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 9b77c5407dc277943b591ade9e6b18c5, type: 3}
-  m_Name: LensDistortion
-  m_EditorClassIdentifier: 
-  active: 1
-  enabled:
-    overrideState: 1
-    value: 1
-  intensity:
-    overrideState: 1
-    value: 32
-  intensityX:
-    overrideState: 0
-    value: 1
-  intensityY:
-    overrideState: 0
-    value: 1
-  centerX:
-    overrideState: 0
-    value: 0
-  centerY:
-    overrideState: 0
-    value: 0
-  scale:
-    overrideState: 0
-    value: 1
 --- !u!114 &-3847449548972441842
 MonoBehaviour:
   m_ObjectHideFlags: 3
@@ -139,8 +105,6 @@ MonoBehaviour:
   - {fileID: 8210402177844917817}
   - {fileID: -7844971573727218340}
   - {fileID: 728676877688741871}
-  - {fileID: 7803177866180935452}
-  - {fileID: -6011753981666947589}
   - {fileID: 481768927740997218}
   - {fileID: 3553046628556594583}
   - {fileID: -3847449548972441842}
@@ -308,39 +272,13 @@ MonoBehaviour:
     value: 1
   intensity:
     overrideState: 1
-    value: 0.699
+    value: 0.302
   size:
     overrideState: 1
-    value: 1.04
+    value: 3
   lumContrib:
     overrideState: 1
     value: 0.8
---- !u!114 &7803177866180935452
-MonoBehaviour:
-  m_ObjectHideFlags: 3
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 6050e2d5de785ce4d931e4dbdbf2d755, type: 3}
-  m_Name: ChromaticAberration
-  m_EditorClassIdentifier: 
-  active: 1
-  enabled:
-    overrideState: 1
-    value: 1
-  spectralLut:
-    overrideState: 0
-    value: {fileID: 0}
-    defaultState: 1
-  intensity:
-    overrideState: 1
-    value: 0.77
-  fastMode:
-    overrideState: 0
-    value: 0
 --- !u!114 &8210402177844917817
 MonoBehaviour:
   m_ObjectHideFlags: 3
