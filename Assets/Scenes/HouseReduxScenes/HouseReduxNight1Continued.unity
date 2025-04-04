@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 1585952577}
-  m_IndirectSpecularColor: {r: 0.00039958887, g: 0, b: 0.00039958887, a: 1}
+  m_IndirectSpecularColor: {r: 0, g: 0, b: 0, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -3179,6 +3179,10 @@ MonoBehaviour:
   _outlined: 0
   _isOutlined: 0
   _player: {fileID: 0}
+  _playsSound: 0
+  _soundList: []
+  _soundSource: {fileID: 0}
+  _currentSound: 0
   _strength: 3
   _canSound: 0
   _soundWait: 0
@@ -17537,6 +17541,10 @@ MonoBehaviour:
   _outlined: 0
   _isOutlined: 0
   _player: {fileID: 0}
+  _playsSound: 0
+  _soundList: []
+  _soundSource: {fileID: 0}
+  _currentSound: 0
   _switchAnim: {fileID: 89062496}
   _ceilingLight: {fileID: 1714093550}
   _on: 0
@@ -31993,6 +32001,10 @@ MonoBehaviour:
   _outlined: 0
   _isOutlined: 0
   _player: {fileID: 0}
+  _playsSound: 0
+  _soundList: []
+  _soundSource: {fileID: 0}
+  _currentSound: 0
   _glimmer: {fileID: 1571253525}
   _crumble: {fileID: 124851486}
   _crumbleAnim: {fileID: 1942534055}
@@ -32558,6 +32570,10 @@ MonoBehaviour:
   _outlined: 0
   _isOutlined: 0
   _player: {fileID: 0}
+  _playsSound: 0
+  _soundList: []
+  _soundSource: {fileID: 0}
+  _currentSound: 0
   _colFlag1: {fileID: 718128987}
   _colFlag2: {fileID: 1681852534}
   _currentFlag: {fileID: 0}
@@ -32639,7 +32655,7 @@ Mesh:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: pb_Mesh33890
+  m_Name: pb_Mesh101062
   serializedVersion: 11
   m_SubMeshes:
   - serializedVersion: 2
@@ -33446,7 +33462,7 @@ Mesh:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: pb_Mesh31828
+  m_Name: pb_Mesh98954
   serializedVersion: 11
   m_SubMeshes:
   - serializedVersion: 2
@@ -33901,6 +33917,10 @@ MonoBehaviour:
   _outlined: 0
   _isOutlined: 0
   _player: {fileID: 0}
+  _playsSound: 0
+  _soundList: []
+  _soundSource: {fileID: 0}
+  _currentSound: 0
 --- !u!65 &215122785
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -34610,6 +34630,10 @@ MonoBehaviour:
   _outlined: 0
   _isOutlined: 0
   _player: {fileID: 0}
+  _playsSound: 0
+  _soundList: []
+  _soundSource: {fileID: 0}
+  _currentSound: 0
 --- !u!65 &221695068
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -35660,6 +35684,10 @@ MonoBehaviour:
   _outlined: 0
   _isOutlined: 0
   _player: {fileID: 0}
+  _playsSound: 0
+  _soundList: []
+  _soundSource: {fileID: 0}
+  _currentSound: 0
   _strength: 3
   _canSound: 0
   _soundWait: 0
@@ -37538,6 +37566,10 @@ MonoBehaviour:
   _outlined: 0
   _isOutlined: 0
   _player: {fileID: 0}
+  _playsSound: 0
+  _soundList: []
+  _soundSource: {fileID: 0}
+  _currentSound: 0
 --- !u!1 &285366874 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 919132149155446097, guid: 7840f66f1c662d947b740975345287ab,
@@ -37688,7 +37720,7 @@ Mesh:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: pb_Mesh32162
+  m_Name: pb_Mesh99292
   serializedVersion: 11
   m_SubMeshes:
   - serializedVersion: 2
@@ -37962,6 +37994,10 @@ MonoBehaviour:
   _outlined: 0
   _isOutlined: 0
   _player: {fileID: 0}
+  _playsSound: 0
+  _soundList: []
+  _soundSource: {fileID: 0}
+  _currentSound: 0
 --- !u!65 &292494591
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -38123,6 +38159,10 @@ MonoBehaviour:
   _outlined: 0
   _isOutlined: 0
   _player: {fileID: 0}
+  _playsSound: 0
+  _soundList: []
+  _soundSource: {fileID: 0}
+  _currentSound: 0
 --- !u!4 &296748846 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: adea0933ff9a063479a456a857577158,
@@ -38391,6 +38431,10 @@ MonoBehaviour:
   _outlined: 0
   _isOutlined: 0
   _player: {fileID: 0}
+  _playsSound: 0
+  _soundList: []
+  _soundSource: {fileID: 0}
+  _currentSound: 0
 --- !u!65 &298485042
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -56172,6 +56216,191 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 0.059553, y: 0.006891924, z: 0.055504233}
   m_Center: {x: -0.0047088135, y: 1.9684015e-16, z: 0.027702782}
+--- !u!43 &434735876
+Mesh:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_Name: pb_Mesh-75162
+  serializedVersion: 11
+  m_SubMeshes:
+  - serializedVersion: 2
+    firstByte: 0
+    indexCount: 12
+    topology: 0
+    baseVertex: 0
+    firstVertex: 0
+    vertexCount: 24
+    localAABB:
+      m_Center: {x: -0.19123647, y: 3.6509857, z: 43.09544}
+      m_Extent: {x: 1.1730124, y: 3.7857609, z: 4.068016}
+  - serializedVersion: 2
+    firstByte: 24
+    indexCount: 18
+    topology: 0
+    baseVertex: 0
+    firstVertex: 8
+    vertexCount: 12
+    localAABB:
+      m_Center: {x: -0.19123566, y: 3.6509926, z: 42.9105}
+      m_Extent: {x: 1.1730132, y: 3.7857678, z: 4.2529564}
+  - serializedVersion: 2
+    firstByte: 60
+    indexCount: 6
+    topology: 0
+    baseVertex: 0
+    firstVertex: 4
+    vertexCount: 4
+    localAABB:
+      m_Center: {x: -0.042609632, y: 3.6509926, z: 42.9105}
+      m_Extent: {x: 1.0243871, y: 3.7857678, z: 4.2529564}
+  m_Shapes:
+    vertices: []
+    shapes: []
+    channels: []
+    fullWeights: []
+  m_BindPose: []
+  m_BoneNameHashes: 
+  m_RootBoneNameHash: 0
+  m_BonesAABB: []
+  m_VariableBoneCountWeights:
+    m_Data: 
+  m_MeshCompression: 0
+  m_IsReadable: 1
+  m_KeepVertices: 1
+  m_KeepIndices: 1
+  m_IndexFormat: 0
+  m_IndexBuffer: 000001000200010003000200140015001600150017001600080009000a0009000b000a000c000d000e000d000f000e00100011001200110013001200040005000600050007000600
+  m_VertexData:
+    serializedVersion: 3
+    m_VertexCount: 24
+    m_Channels:
+    - stream: 0
+      offset: 0
+      format: 0
+      dimension: 3
+    - stream: 0
+      offset: 12
+      format: 0
+      dimension: 3
+    - stream: 0
+      offset: 24
+      format: 0
+      dimension: 4
+    - stream: 0
+      offset: 0
+      format: 0
+      dimension: 0
+    - stream: 0
+      offset: 40
+      format: 0
+      dimension: 2
+    - stream: 0
+      offset: 0
+      format: 0
+      dimension: 0
+    - stream: 0
+      offset: 0
+      format: 0
+      dimension: 0
+    - stream: 0
+      offset: 0
+      format: 0
+      dimension: 0
+    - stream: 0
+      offset: 0
+      format: 0
+      dimension: 0
+    - stream: 0
+      offset: 0
+      format: 0
+      dimension: 0
+    - stream: 0
+      offset: 0
+      format: 0
+      dimension: 0
+    - stream: 0
+      offset: 0
+      format: 0
+      dimension: 0
+    - stream: 0
+      offset: 0
+      format: 0
+      dimension: 0
+    - stream: 0
+      offset: 0
+      format: 0
+      dimension: 0
+    m_DataSize: 1152
+    _typelessdata: b59faebf6210e9b761a73c42bad7ff2cb1b109350000803f000080bf00000000bad7ff2c000080bfb59fae3fb6005ab85a9388bfb63406b861a73c4229baf32cb1b109350000803f000080bfb1b1891629baf32c000080bf5a93883f3bad6bb8ad9faebfd4f9ed4060a73c4229baf32cb1b109350000803f000080bfb1b1891629baf32c000080bfad9fae3fa1f9ed40529388bfccf9ed4060a73c42989ce72cb1b109350000803f000080bfb1b18916989ce72c000080bf5293883f99f9ed405a9388bfb63406b861a73c420840783f472178305a0d7a3e5a0d7abe000000000840783f000080bf24fc3742df3e06b8ab557b3f89020abe151c1c42dc8e783f7f68bb3b83e9743e64ec74be6744eab0c991783f000080bfc16c16428a020abe529388bfccf9ed4060a73c42dc8e783f7f68bb3b83e9743e64ec74be6744eab0c991783f000080bf23fc3742ccf9ed40c6557b3ff1f9ed4053a11a42afdd783f7e683b3cacc56f3eb0c96fbe7e683bafdae1783f000080bf77fd1442f1f9ed40ab557b3f89020abe151c1c427f2839b578db47bdf1b17fbf0000803fcdec0ab5a19732b5000080bfe7537b3f307d02c0e53c2f3f6f010abe151c1c427c5398b37fdb47bdf1b17fbf0000803fb65b8db53813a8b2000080bf213b2f3f1f7d02c0c6557b3ff1f9ed4053a11a427c5398b37fdb47bdf1b17fbf0000803fb65b8db53813a8b2000080bf06547b3f6455b140113d2f3feaf9ed4053a11a42a013133586db47bdf1b17fbf0000803f0641d5b56e162835000080bf513b2f3f5d55b140e53c2f3f6f010abe151c1c42953e78bf604743bc1ed879bea8dc793e637d63b0184378bf000080bf15b916c2832983beb59faebf6210e9b761a73c42389078bf5b47c3bbe6d074be04d4743e964d7db84a9378bf000080bf774838c2bbacf8bd113d2f3feaf9ed4053a11a42389078bf5b47c3bbe6d074be04d4743e964d7db84a9378bf000080bfc64915c2c51bea40ad9faebfd4f9ed4060a73c42dae178bfef879c31aec96fbeaec96f3ea44cfdb8dae178bf000080bf764838c20713ea40ad9faebfd4f9ed4060a73c42344e57370000803f1c1a91360000803f344e57b71c1a9122000080bfcea2aebf58a73c42529388bfccf9ed4060a73c42104e57350000803f9ee4f7350000803f104e57b59a8da622000080bf739688bf58a73c42113d2f3feaf9ed4053a11a42104e57350000803f9ee4f7350000803f104e57b59a8da622000080bfd0362f3f4ba11a42c6557b3ff1f9ed4053a11a4272643cb70000803f693e29b50000803f72643c3700000000000080bf854f7b3f4ba11a42e53c2f3f6f010abe151c1c42a2236db705f77fbf599f873c000080bff42b6d3700000000000080bf053d2fbf52141c42ab557b3f89020abe151c1c42be236db705f77fbf599f873c000080bf102c6d3700000000000080bfcb557bbf52141c42b59faebf6210e9b761a73c42be236db705f77fbf599f873c000080bf102c6d3700000000000080bfb59fae3fc3a03c425a9388bfb63406b861a73c42db236db705f77fbf599f873c000080bf2d2c6d37599f87a8000080bf5a93883fc3a03c42
+  m_CompressedMesh:
+    m_Vertices:
+      m_NumItems: 0
+      m_Range: 0
+      m_Start: 0
+      m_Data: 
+      m_BitSize: 0
+    m_UV:
+      m_NumItems: 0
+      m_Range: 0
+      m_Start: 0
+      m_Data: 
+      m_BitSize: 0
+    m_Normals:
+      m_NumItems: 0
+      m_Range: 0
+      m_Start: 0
+      m_Data: 
+      m_BitSize: 0
+    m_Tangents:
+      m_NumItems: 0
+      m_Range: 0
+      m_Start: 0
+      m_Data: 
+      m_BitSize: 0
+    m_Weights:
+      m_NumItems: 0
+      m_Data: 
+      m_BitSize: 0
+    m_NormalSigns:
+      m_NumItems: 0
+      m_Data: 
+      m_BitSize: 0
+    m_TangentSigns:
+      m_NumItems: 0
+      m_Data: 
+      m_BitSize: 0
+    m_FloatColors:
+      m_NumItems: 0
+      m_Range: 0
+      m_Start: 0
+      m_Data: 
+      m_BitSize: 0
+    m_BoneIndices:
+      m_NumItems: 0
+      m_Data: 
+      m_BitSize: 0
+    m_Triangles:
+      m_NumItems: 0
+      m_Data: 
+      m_BitSize: 0
+    m_UVInfo: 0
+  m_LocalAABB:
+    m_Center: {x: -0.19123566, y: 3.6509926, z: 42.9105}
+    m_Extent: {x: 1.1730132, y: 3.7857678, z: 4.2529564}
+  m_MeshUsageFlags: 0
+  m_CookingOptions: 30
+  m_BakedConvexCollisionMesh: 
+  m_BakedTriangleCollisionMesh: 
+  'm_MeshMetrics[0]': 1.0001206
+  'm_MeshMetrics[1]': 1
+  m_MeshOptimizationFlags: 1
+  m_StreamData:
+    serializedVersion: 2
+    offset: 0
+    size: 0
+    path: 
 --- !u!1001 &436294457
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -57701,6 +57930,10 @@ MonoBehaviour:
   _outlined: 0
   _isOutlined: 0
   _player: {fileID: 0}
+  _playsSound: 0
+  _soundList: []
+  _soundSource: {fileID: 0}
+  _currentSound: 0
   _switchAnim: {fileID: 501077750}
   _ceilingLight: {fileID: 453801677}
   _on: 0
@@ -58020,6 +58253,10 @@ MonoBehaviour:
   _outlined: 0
   _isOutlined: 0
   _player: {fileID: 0}
+  _playsSound: 0
+  _soundList: []
+  _soundSource: {fileID: 0}
+  _currentSound: 0
 --- !u!4 &508017296
 Transform:
   m_ObjectHideFlags: 0
@@ -59737,6 +59974,10 @@ MonoBehaviour:
   _outlined: 0
   _isOutlined: 0
   _player: {fileID: 0}
+  _playsSound: 0
+  _soundList: []
+  _soundSource: {fileID: 0}
+  _currentSound: 0
   _switchAnim: {fileID: 533446615}
   _ceilingLight: {fileID: 1714093550}
   _on: 0
@@ -59909,6 +60150,10 @@ MonoBehaviour:
   _outlined: 0
   _isOutlined: 0
   _player: {fileID: 0}
+  _playsSound: 0
+  _soundList: []
+  _soundSource: {fileID: 0}
+  _currentSound: 0
 --- !u!1 &535522055
 GameObject:
   m_ObjectHideFlags: 0
@@ -60020,7 +60265,7 @@ Mesh:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: pb_Mesh32522
+  m_Name: pb_Mesh99666
   serializedVersion: 11
   m_SubMeshes:
   - serializedVersion: 2
@@ -61307,6 +61552,10 @@ MonoBehaviour:
   _outlined: 0
   _isOutlined: 0
   _player: {fileID: 0}
+  _playsSound: 0
+  _soundList: []
+  _soundSource: {fileID: 0}
+  _currentSound: 0
   _colFlag1: {fileID: 1712225834}
   _colFlag2: {fileID: 2054071738}
   _currentFlag: {fileID: 0}
@@ -61421,6 +61670,7 @@ MonoBehaviour:
   - {fileID: 949697207}
   _light1: {fileID: 1714093556}
   _spotLightSound: {fileID: 586062118}
+  _flash: {fileID: 0}
 --- !u!65 &586062114
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -61638,6 +61888,10 @@ MonoBehaviour:
   _outlined: 0
   _isOutlined: 0
   _player: {fileID: 0}
+  _playsSound: 0
+  _soundList: []
+  _soundSource: {fileID: 0}
+  _currentSound: 0
 --- !u!65 &586146428
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -164934,6 +165188,10 @@ MonoBehaviour:
   _outlined: 0
   _isOutlined: 0
   _player: {fileID: 0}
+  _playsSound: 0
+  _soundList: []
+  _soundSource: {fileID: 0}
+  _currentSound: 0
 --- !u!4 &703892139 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 6066555346148965647, guid: 3084de74f742637438bd7db9e5b49278,
@@ -166755,6 +167013,10 @@ MonoBehaviour:
   _outlined: 0
   _isOutlined: 0
   _player: {fileID: 0}
+  _playsSound: 0
+  _soundList: []
+  _soundSource: {fileID: 0}
+  _currentSound: 0
   _colFlag1: {fileID: 1949234655}
   _colFlag2: {fileID: 1881841565}
   _currentFlag: {fileID: 0}
@@ -167411,7 +167673,7 @@ Mesh:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: pb_Mesh32700
+  m_Name: pb_Mesh99848
   serializedVersion: 11
   m_SubMeshes:
   - serializedVersion: 2
@@ -167858,6 +168120,10 @@ MonoBehaviour:
   _outlined: 0
   _isOutlined: 0
   _player: {fileID: 0}
+  _playsSound: 0
+  _soundList: []
+  _soundSource: {fileID: 0}
+  _currentSound: 0
 --- !u!65 &763897388
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -169786,6 +170052,10 @@ MonoBehaviour:
   _outlined: 0
   _isOutlined: 0
   _player: {fileID: 0}
+  _playsSound: 0
+  _soundList: []
+  _soundSource: {fileID: 0}
+  _currentSound: 0
   _switchAnim: {fileID: 808223633}
   _ceilingLight: {fileID: 453801677}
   _on: 1
@@ -170579,6 +170849,10 @@ MonoBehaviour:
   _outlined: 0
   _isOutlined: 0
   _player: {fileID: 0}
+  _playsSound: 0
+  _soundList: []
+  _soundSource: {fileID: 0}
+  _currentSound: 0
 --- !u!65 &829511755
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -170830,6 +171104,93 @@ MonoBehaviour:
   _outlined: 0
   _isOutlined: 0
   _player: {fileID: 0}
+  _playsSound: 0
+  _soundList: []
+  _soundSource: {fileID: 0}
+  _currentSound: 0
+--- !u!1001 &836520622
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 2840461921896988231, guid: 34d1ea9d092f0ac42bd1c48834148f1b,
+        type: 3}
+      propertyPath: m_Name
+      value: PorchRoof
+      objectReference: {fileID: 0}
+    - target: {fileID: 4335349603863778298, guid: 34d1ea9d092f0ac42bd1c48834148f1b,
+        type: 3}
+      propertyPath: m_Mesh
+      value: 
+      objectReference: {fileID: 434735876}
+    - target: {fileID: 7713015733040849178, guid: 34d1ea9d092f0ac42bd1c48834148f1b,
+        type: 3}
+      propertyPath: m_Mesh
+      value: 
+      objectReference: {fileID: 434735876}
+    - target: {fileID: 8790582053713670544, guid: 34d1ea9d092f0ac42bd1c48834148f1b,
+        type: 3}
+      propertyPath: m_Mesh
+      value: 
+      objectReference: {fileID: 434735876}
+    - target: {fileID: 9196745770453449616, guid: 34d1ea9d092f0ac42bd1c48834148f1b,
+        type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 94.96
+      objectReference: {fileID: 0}
+    - target: {fileID: 9196745770453449616, guid: 34d1ea9d092f0ac42bd1c48834148f1b,
+        type: 3}
+      propertyPath: m_LocalPosition.y
+      value: -2.4
+      objectReference: {fileID: 0}
+    - target: {fileID: 9196745770453449616, guid: 34d1ea9d092f0ac42bd1c48834148f1b,
+        type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 18.12
+      objectReference: {fileID: 0}
+    - target: {fileID: 9196745770453449616, guid: 34d1ea9d092f0ac42bd1c48834148f1b,
+        type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 0.70606595
+      objectReference: {fileID: 0}
+    - target: {fileID: 9196745770453449616, guid: 34d1ea9d092f0ac42bd1c48834148f1b,
+        type: 3}
+      propertyPath: m_LocalRotation.x
+      value: -0.001486869
+      objectReference: {fileID: 0}
+    - target: {fileID: 9196745770453449616, guid: 34d1ea9d092f0ac42bd1c48834148f1b,
+        type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0.0014912427
+      objectReference: {fileID: 0}
+    - target: {fileID: 9196745770453449616, guid: 34d1ea9d092f0ac42bd1c48834148f1b,
+        type: 3}
+      propertyPath: m_LocalRotation.z
+      value: -0.708143
+      objectReference: {fileID: 0}
+    - target: {fileID: 9196745770453449616, guid: 34d1ea9d092f0ac42bd1c48834148f1b,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 9196745770453449616, guid: 34d1ea9d092f0ac42bd1c48834148f1b,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 9196745770453449616, guid: 34d1ea9d092f0ac42bd1c48834148f1b,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 34d1ea9d092f0ac42bd1c48834148f1b, type: 3}
 --- !u!1 &837358574
 GameObject:
   m_ObjectHideFlags: 0
@@ -178159,7 +178520,7 @@ Mesh:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: pb_Mesh30142
+  m_Name: pb_Mesh97300
   serializedVersion: 11
   m_SubMeshes:
   - serializedVersion: 2
@@ -201775,6 +202136,10 @@ MonoBehaviour:
   _outlined: 0
   _isOutlined: 0
   _player: {fileID: 0}
+  _playsSound: 0
+  _soundList: []
+  _soundSource: {fileID: 0}
+  _currentSound: 0
 --- !u!65 &934924556
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -201956,6 +202321,10 @@ MonoBehaviour:
   _outlined: 0
   _isOutlined: 0
   _player: {fileID: 0}
+  _playsSound: 0
+  _soundList: []
+  _soundSource: {fileID: 0}
+  _currentSound: 0
 --- !u!65 &943381393
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -202092,6 +202461,10 @@ MonoBehaviour:
   _outlined: 0
   _isOutlined: 0
   _player: {fileID: 0}
+  _playsSound: 0
+  _soundList: []
+  _soundSource: {fileID: 0}
+  _currentSound: 0
   _cam: {fileID: 0}
   _letterAnim: {fileID: 0}
   _timesInteracted: 0
@@ -202225,6 +202598,10 @@ MonoBehaviour:
   _outlined: 0
   _isOutlined: 0
   _player: {fileID: 0}
+  _playsSound: 0
+  _soundList: []
+  _soundSource: {fileID: 0}
+  _currentSound: 0
   _open: 0
   _isMoving: 0
   _maxX: -2.2
@@ -202604,6 +202981,10 @@ MonoBehaviour:
   _outlined: 0
   _isOutlined: 0
   _player: {fileID: 0}
+  _playsSound: 0
+  _soundList: []
+  _soundSource: {fileID: 0}
+  _currentSound: 0
   _colFlag1: {fileID: 1003600111}
   _colFlag2: {fileID: 522398424}
   _currentFlag: {fileID: 0}
@@ -209701,6 +210082,10 @@ MonoBehaviour:
   _outlined: 0
   _isOutlined: 0
   _player: {fileID: 0}
+  _playsSound: 0
+  _soundList: []
+  _soundSource: {fileID: 0}
+  _currentSound: 0
 --- !u!65 &1017096405
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -210155,6 +210540,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _manager: {fileID: 8690994448522396055}
+  _disappearItem: 0
+  _appearItem: 1
+  _disappearItems: []
+  _appearItems: []
 --- !u!1 &1030697779
 GameObject:
   m_ObjectHideFlags: 0
@@ -210770,7 +211159,7 @@ Mesh:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: pb_Mesh33000
+  m_Name: pb_Mesh100174
   serializedVersion: 11
   m_SubMeshes:
   - serializedVersion: 2
@@ -211721,6 +212110,10 @@ MonoBehaviour:
   _outlined: 0
   _isOutlined: 0
   _player: {fileID: 0}
+  _playsSound: 0
+  _soundList: []
+  _soundSource: {fileID: 0}
+  _currentSound: 0
   _switchAnim: {fileID: 1071239096}
   _ceilingLight: {fileID: 625695548}
   _on: 0
@@ -216467,6 +216860,10 @@ MonoBehaviour:
   _outlined: 0
   _isOutlined: 0
   _player: {fileID: 0}
+  _playsSound: 0
+  _soundList: []
+  _soundSource: {fileID: 0}
+  _currentSound: 0
   _switchAnim: {fileID: 1128439544}
   _ceilingLight: {fileID: 1905580177}
   _on: 1
@@ -218297,6 +218694,10 @@ MonoBehaviour:
   _outlined: 0
   _isOutlined: 0
   _player: {fileID: 0}
+  _playsSound: 0
+  _soundList: []
+  _soundSource: {fileID: 0}
+  _currentSound: 0
   _switchAnim: {fileID: 1170583690}
   _ceilingLight: {fileID: 453801677}
   _on: 0
@@ -218648,6 +219049,10 @@ MonoBehaviour:
   _outlined: 0
   _isOutlined: 0
   _player: {fileID: 0}
+  _playsSound: 0
+  _soundList: []
+  _soundSource: {fileID: 0}
+  _currentSound: 0
 --- !u!65 &1176313579
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -219376,9 +219781,17 @@ MonoBehaviour:
   _outlined: 0
   _isOutlined: 0
   _player: {fileID: 0}
+  _playsSound: 0
+  _soundList: []
+  _soundSource: {fileID: 0}
+  _currentSound: 0
   _dayAmbience: 0.45
   _nightAmbience: 2
   _decreaseSpeed: 0.05
+  _waterLeak: {fileID: 0}
+  _rockingChair: {fileID: 0}
+  _sunLight: {fileID: 0}
+  _waterBoiler: {fileID: 0}
 --- !u!65 &1179104262
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -219558,6 +219971,10 @@ MonoBehaviour:
   _outlined: 0
   _isOutlined: 0
   _player: {fileID: 0}
+  _playsSound: 0
+  _soundList: []
+  _soundSource: {fileID: 0}
+  _currentSound: 0
   _cameraPickup: {fileID: 1684355834}
   speed: 1
   _isDarkening: 0
@@ -219603,11 +220020,18 @@ MonoBehaviour:
   _startMorning: 0
   _currentMorningDialogue: 0
   _totalMorningDialogue: 7
+  _bed: {fileID: 0}
   _controller: {fileID: 1563903003}
   _cam: {fileID: 207289420546856960}
   _ringSound: {fileID: 1189094645}
   _tvBroken: {fileID: 2003569456}
   _tvWorking: {fileID: 1092813827}
+  _pickupSound: {fileID: 0}
+  _monitorMorning: {fileID: 0}
+  _monitorNight: {fileID: 0}
+  _sunLightBlockerNight: {fileID: 0}
+  _phoneLightAnim: {fileID: 0}
+  _phonePutDown: {fileID: 0}
 --- !u!65 &1189094643
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -220904,6 +221328,10 @@ MonoBehaviour:
   _outlined: 0
   _isOutlined: 0
   _player: {fileID: 0}
+  _playsSound: 0
+  _soundList: []
+  _soundSource: {fileID: 0}
+  _currentSound: 0
   _anchorPoint: {fileID: 1950565590}
   _lookPoint: {fileID: 983264411}
   _camHolder: {fileID: 1936350028}
@@ -220915,6 +221343,9 @@ MonoBehaviour:
   _hud: {fileID: 0}
   _cursor: {fileID: 2869696350377081150}
   _television: {fileID: 277523670}
+  _camZoom: {fileID: 0}
+  _door: {fileID: 0}
+  _swivel: {fileID: 0}
 --- !u!1001 &1231367706
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -221131,6 +221562,10 @@ MonoBehaviour:
   _outlined: 0
   _isOutlined: 0
   _player: {fileID: 0}
+  _playsSound: 0
+  _soundList: []
+  _soundSource: {fileID: 0}
+  _currentSound: 0
 --- !u!65 &1239696686
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -222226,7 +222661,7 @@ Mesh:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: pb_Mesh33712
+  m_Name: pb_Mesh100874
   serializedVersion: 11
   m_SubMeshes:
   - serializedVersion: 2
@@ -307365,7 +307800,7 @@ Mesh:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: pb_Mesh31238
+  m_Name: pb_Mesh98384
   serializedVersion: 11
   m_SubMeshes:
   - serializedVersion: 2
@@ -308186,6 +308621,10 @@ MonoBehaviour:
   _outlined: 0
   _isOutlined: 0
   _player: {fileID: 0}
+  _playsSound: 0
+  _soundList: []
+  _soundSource: {fileID: 0}
+  _currentSound: 0
 --- !u!65 &1294361160
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -309891,6 +310330,10 @@ MonoBehaviour:
   _outlined: 0
   _isOutlined: 0
   _player: {fileID: 0}
+  _playsSound: 0
+  _soundList: []
+  _soundSource: {fileID: 0}
+  _currentSound: 0
 --- !u!65 &1331423683
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -310194,6 +310637,10 @@ MonoBehaviour:
   _outlined: 0
   _isOutlined: 0
   _player: {fileID: 0}
+  _playsSound: 0
+  _soundList: []
+  _soundSource: {fileID: 0}
+  _currentSound: 0
 --- !u!65 &1358327665
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -314994,6 +315441,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _manager: {fileID: 8690994448522396055}
+  _disappearItem: 0
+  _appearItem: 1
+  _disappearItems: []
+  _appearItems: []
 --- !u!4 &1421799267 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: 7832a1adfebb714479e05100f2bf9732,
@@ -317894,6 +318345,10 @@ MonoBehaviour:
   _outlined: 0
   _isOutlined: 0
   _player: {fileID: 0}
+  _playsSound: 0
+  _soundList: []
+  _soundSource: {fileID: 0}
+  _currentSound: 0
   _colFlag1: {fileID: 1077427957}
   _colFlag2: {fileID: 1333006793}
   _currentFlag: {fileID: 0}
@@ -318478,7 +318933,7 @@ Mesh:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: pb_Mesh32382
+  m_Name: pb_Mesh99526
   serializedVersion: 11
   m_SubMeshes:
   - serializedVersion: 2
@@ -319370,6 +319825,10 @@ MonoBehaviour:
   _outlined: 0
   _isOutlined: 0
   _player: {fileID: 0}
+  _playsSound: 0
+  _soundList: []
+  _soundSource: {fileID: 0}
+  _currentSound: 0
 --- !u!65 &1458868098
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -319735,7 +320194,7 @@ Mesh:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: pb_Mesh31282
+  m_Name: pb_Mesh98428
   serializedVersion: 11
   m_SubMeshes:
   - serializedVersion: 2
@@ -319999,6 +320458,10 @@ MonoBehaviour:
   _outlined: 0
   _isOutlined: 0
   _player: {fileID: 0}
+  _playsSound: 0
+  _soundList: []
+  _soundSource: {fileID: 0}
+  _currentSound: 0
 --- !u!65 &1475922738
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -320315,6 +320778,10 @@ MonoBehaviour:
   _outlined: 0
   _isOutlined: 0
   _player: {fileID: 0}
+  _playsSound: 0
+  _soundList: []
+  _soundSource: {fileID: 0}
+  _currentSound: 0
 --- !u!65 &1487542510
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -321717,6 +322184,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _nightManage: {fileID: 8690994448522396055}
   _parentObject: {fileID: 2142894574}
+  _shushSound: {fileID: 0}
+  _clapperInteract: {fileID: 0}
 --- !u!65 &1522457986
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -322416,6 +322885,10 @@ MonoBehaviour:
   _outlined: 0
   _isOutlined: 0
   _player: {fileID: 0}
+  _playsSound: 0
+  _soundList: []
+  _soundSource: {fileID: 0}
+  _currentSound: 0
 --- !u!4 &1547191923 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: f1982d5f32a2a234f844835b4f11b373,
@@ -322563,8 +323036,13 @@ MonoBehaviour:
   _outlined: 0
   _isOutlined: 0
   _player: {fileID: 0}
-  _mannequin: {fileID: 0}
+  _playsSound: 0
+  _soundList: []
+  _soundSource: {fileID: 0}
+  _currentSound: 0
   _curtainAudio: {fileID: 1559599527}
+  _disappear: 0
+  _disappearObject: {fileID: 0}
 --- !u!65 &1559599524
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -327662,6 +328140,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _manager: {fileID: 8690994448522396055}
+  _disappearItem: 0
+  _appearItem: 1
+  _disappearItems: []
+  _appearItems: []
 --- !u!4 &1657391142 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: 4f24563122128bb49a93841e9ddbe9f0,
@@ -328135,7 +328617,7 @@ Mesh:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: pb_Mesh34654
+  m_Name: pb_Mesh101834
   serializedVersion: 11
   m_SubMeshes:
   - serializedVersion: 2
@@ -328620,6 +329102,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _manager: {fileID: 8690994448522396055}
+  _disappearItem: 0
+  _appearItem: 1
+  _disappearItems: []
+  _appearItems: []
 --- !u!1001 &1680675027
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -329093,6 +329579,10 @@ MonoBehaviour:
   _outlined: 0
   _isOutlined: 0
   _player: {fileID: 0}
+  _playsSound: 0
+  _soundList: []
+  _soundSource: {fileID: 0}
+  _currentSound: 0
   _camController: {fileID: 207289420546856960}
   _render: {fileID: 0}
   _bc: {fileID: 0}
@@ -329103,7 +329593,9 @@ MonoBehaviour:
   _intro: 1
   _cam: {fileID: 207289420546856960}
   _glimmer: {fileID: 1600356858}
+  _screenVHS: {fileID: 0}
   _ghostCam: {fileID: 1561524693}
+  _staticPickupSound: {fileID: 0}
 --- !u!65 &1684355838
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -343283,6 +343775,10 @@ MonoBehaviour:
   _outlined: 0
   _isOutlined: 0
   _player: {fileID: 0}
+  _playsSound: 0
+  _soundList: []
+  _soundSource: {fileID: 0}
+  _currentSound: 0
 --- !u!65 &1738462658
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -344950,6 +345446,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _manager: {fileID: 8690994448522396055}
+  _disappearItem: 0
+  _appearItem: 1
+  _disappearItems: []
+  _appearItems: []
 --- !u!4 &1754668740 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: fee86e308fd62b345a2dc4d5d4ec8c23,
@@ -346592,6 +347092,10 @@ MonoBehaviour:
   _outlined: 0
   _isOutlined: 0
   _player: {fileID: 0}
+  _playsSound: 0
+  _soundList: []
+  _soundSource: {fileID: 0}
+  _currentSound: 0
 --- !u!65 &1765295734
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -359925,6 +360429,10 @@ MonoBehaviour:
   _outlined: 0
   _isOutlined: 0
   _player: {fileID: 0}
+  _playsSound: 0
+  _soundList: []
+  _soundSource: {fileID: 0}
+  _currentSound: 0
   _ghost: {fileID: 0}
 --- !u!1001 &1782865573
 PrefabInstance:
@@ -360182,6 +360690,10 @@ MonoBehaviour:
   _outlined: 0
   _isOutlined: 0
   _player: {fileID: 0}
+  _playsSound: 0
+  _soundList: []
+  _soundSource: {fileID: 0}
+  _currentSound: 0
   _gargle: {fileID: 1784842955}
   _gargle2: {fileID: 1784842954}
   _coughSound: {fileID: 1784842956}
@@ -360189,7 +360701,9 @@ MonoBehaviour:
   _handler: {fileID: 1561524702}
   _cursorAnim: {fileID: 1995704244}
   _nightManage: {fileID: 8690994448522396055}
-  _kitchenLight: {fileID: 0}
+  _blackAnim: {fileID: 0}
+  _chair: {fileID: 0}
+  _chairCollisionReplacement: {fileID: 0}
 --- !u!82 &1784842954
 AudioSource:
   m_ObjectHideFlags: 0
@@ -362918,6 +363432,10 @@ MonoBehaviour:
   _outlined: 0
   _isOutlined: 0
   _player: {fileID: 0}
+  _playsSound: 0
+  _soundList: []
+  _soundSource: {fileID: 0}
+  _currentSound: 0
 --- !u!4 &1825159962 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: ce65da5da6963cb40a1659ed3a6d0597,
@@ -363008,7 +363526,7 @@ Mesh:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: pb_Mesh34720
+  m_Name: pb_Mesh101908
   serializedVersion: 11
   m_SubMeshes:
   - serializedVersion: 2
@@ -378741,6 +379259,10 @@ MonoBehaviour:
   _outlined: 0
   _isOutlined: 0
   _player: {fileID: 0}
+  _playsSound: 0
+  _soundList: []
+  _soundSource: {fileID: 0}
+  _currentSound: 0
 --- !u!1001 &1859596967
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -381193,6 +381715,10 @@ MonoBehaviour:
   _outlined: 0
   _isOutlined: 0
   _player: {fileID: 0}
+  _playsSound: 0
+  _soundList: []
+  _soundSource: {fileID: 0}
+  _currentSound: 0
 --- !u!65 &1884137858
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -381445,6 +381971,10 @@ MonoBehaviour:
   _outlined: 0
   _isOutlined: 0
   _player: {fileID: 0}
+  _playsSound: 0
+  _soundList: []
+  _soundSource: {fileID: 0}
+  _currentSound: 0
 --- !u!1 &1902364008
 GameObject:
   m_ObjectHideFlags: 0
@@ -388366,6 +388896,10 @@ MonoBehaviour:
   _outlined: 0
   _isOutlined: 0
   _player: {fileID: 0}
+  _playsSound: 0
+  _soundList: []
+  _soundSource: {fileID: 0}
+  _currentSound: 0
 --- !u!65 &1945634082
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -389270,6 +389804,10 @@ MonoBehaviour:
   _outlined: 0
   _isOutlined: 0
   _player: {fileID: 0}
+  _playsSound: 0
+  _soundList: []
+  _soundSource: {fileID: 0}
+  _currentSound: 0
 --- !u!65 &1954947235
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -389352,6 +389890,10 @@ MonoBehaviour:
   _outlined: 0
   _isOutlined: 0
   _player: {fileID: 0}
+  _playsSound: 0
+  _soundList: []
+  _soundSource: {fileID: 0}
+  _currentSound: 0
   _switchAnim: {fileID: 1964367624}
   _ceilingLight: {fileID: 120931104}
   _on: 1
@@ -390380,6 +390922,10 @@ MonoBehaviour:
   _outlined: 0
   _isOutlined: 0
   _player: {fileID: 0}
+  _playsSound: 0
+  _soundList: []
+  _soundSource: {fileID: 0}
+  _currentSound: 0
   _colFlag1: {fileID: 1478465725}
   _colFlag2: {fileID: 1367468200}
   _currentFlag: {fileID: 0}
@@ -390390,7 +390936,7 @@ Mesh:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: pb_Mesh33998
+  m_Name: pb_Mesh101182
   serializedVersion: 11
   m_SubMeshes:
   - serializedVersion: 2
@@ -391013,6 +391559,10 @@ MonoBehaviour:
   _outlined: 0
   _isOutlined: 0
   _player: {fileID: 0}
+  _playsSound: 0
+  _soundList: []
+  _soundSource: {fileID: 0}
+  _currentSound: 0
   _strength: 3
   _canSound: 0
   _soundWait: 0
@@ -391622,7 +392172,7 @@ Mesh:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: pb_Mesh34110
+  m_Name: pb_Mesh101294
   serializedVersion: 11
   m_SubMeshes:
   - serializedVersion: 2
@@ -392323,6 +392873,10 @@ MonoBehaviour:
   _outlined: 0
   _isOutlined: 0
   _player: {fileID: 0}
+  _playsSound: 0
+  _soundList: []
+  _soundSource: {fileID: 0}
+  _currentSound: 0
 --- !u!65 &2003569462
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -393883,6 +394437,10 @@ MonoBehaviour:
   _outlined: 0
   _isOutlined: 0
   _player: {fileID: 0}
+  _playsSound: 0
+  _soundList: []
+  _soundSource: {fileID: 0}
+  _currentSound: 0
   _colFlag1: {fileID: 1310722555}
   _colFlag2: {fileID: 1213460414}
   _currentFlag: {fileID: 0}
@@ -395710,7 +396268,7 @@ Mesh:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: pb_Mesh31326
+  m_Name: pb_Mesh98472
   serializedVersion: 11
   m_SubMeshes:
   - serializedVersion: 2
@@ -396657,6 +397215,10 @@ MonoBehaviour:
   _outlined: 0
   _isOutlined: 0
   _player: {fileID: 0}
+  _playsSound: 0
+  _soundList: []
+  _soundSource: {fileID: 0}
+  _currentSound: 0
   _switchAnim: {fileID: 2085120983}
   _fanAnim: {fileID: 834629862}
 --- !u!65 &2085120982
@@ -396863,6 +397425,10 @@ MonoBehaviour:
   _outlined: 0
   _isOutlined: 0
   _player: {fileID: 0}
+  _playsSound: 0
+  _soundList: []
+  _soundSource: {fileID: 0}
+  _currentSound: 0
   _colFlag1: {fileID: 1992995607}
   _colFlag2: {fileID: 2026299208}
   _currentFlag: {fileID: 0}
@@ -411393,6 +411959,10 @@ MonoBehaviour:
   _outlined: 0
   _isOutlined: 0
   _player: {fileID: 0}
+  _playsSound: 0
+  _soundList: []
+  _soundSource: {fileID: 0}
+  _currentSound: 0
   _strength: 3
   _canSound: 0
   _soundWait: 0
@@ -411688,6 +412258,10 @@ MonoBehaviour:
   _outlined: 0
   _isOutlined: 0
   _player: {fileID: 0}
+  _playsSound: 0
+  _soundList: []
+  _soundSource: {fileID: 0}
+  _currentSound: 0
 --- !u!65 &2107847152
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -412058,6 +412632,10 @@ MonoBehaviour:
   _outlined: 0
   _isOutlined: 0
   _player: {fileID: 0}
+  _playsSound: 0
+  _soundList: []
+  _soundSource: {fileID: 0}
+  _currentSound: 0
 --- !u!65 &2115493689
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -416722,6 +417300,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _timeText: {fileID: 6780706143044852906}
+  _speed: 1
+  _currentTime: 0
+  _seconds: 0
+  _minutes: 0
+  _hours: 0
 --- !u!222 &2701865627049342869
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -417448,6 +418031,10 @@ MonoBehaviour:
   _outlined: 0
   _isOutlined: 0
   _player: {fileID: 0}
+  _playsSound: 0
+  _soundList: []
+  _soundSource: {fileID: 0}
+  _currentSound: 0
 --- !u!1001 &3513898426160177324
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -418333,6 +418920,10 @@ MonoBehaviour:
   _outlined: 0
   _isOutlined: 0
   _player: {fileID: 0}
+  _playsSound: 0
+  _soundList: []
+  _soundSource: {fileID: 0}
+  _currentSound: 0
 --- !u!1 &4560757996090261180
 GameObject:
   m_ObjectHideFlags: 0
@@ -419655,6 +420246,7 @@ MonoBehaviour:
   _resetText: {fileID: 2832615552208701918}
   _menuText: {fileID: 3019219828610912868}
   _exitText: {fileID: 6317562779837181302}
+  _pauseCursor: {fileID: 0}
 --- !u!1 &6057629369191593543
 GameObject:
   m_ObjectHideFlags: 0
@@ -419997,6 +420589,10 @@ MonoBehaviour:
   _outlined: 0
   _isOutlined: 0
   _player: {fileID: 0}
+  _playsSound: 0
+  _soundList: []
+  _soundSource: {fileID: 0}
+  _currentSound: 0
 --- !u!224 &6456459657913209498
 RectTransform:
   m_ObjectHideFlags: 0
@@ -421629,6 +422225,10 @@ MonoBehaviour:
   _outlined: 0
   _isOutlined: 0
   _player: {fileID: 0}
+  _playsSound: 0
+  _soundList: []
+  _soundSource: {fileID: 0}
+  _currentSound: 0
   _neededRooms: 5
   _currentRooms: 0
   _enteredRightRoom: 0
@@ -421667,6 +422267,16 @@ MonoBehaviour:
   _data: {fileID: 207289420546856977}
   _char: {fileID: 1563903009}
   _garageLight: {fileID: 0}
+  _camController: {fileID: 0}
+  _kitchenFakeEvidence: {fileID: 0}
+  _evidenceCount: 0
+  _totalEvidenceNeeded: 4
+  _newPhone: {fileID: 0}
+  _oldPhone: {fileID: 0}
+  _publicAudio: {fileID: 0}
+  _camZoom: {fileID: 0}
+  _telephoneHallwayBlocker: {fileID: 0}
+  _bedroomHallwayBlocker: {fileID: 0}
 --- !u!82 &8690994448522396056
 AudioSource:
   m_ObjectHideFlags: 0
@@ -422685,3 +423295,4 @@ SceneRoots:
   - {fileID: 1832743866}
   - {fileID: 799379565}
   - {fileID: 644674187}
+  - {fileID: 836520622}
