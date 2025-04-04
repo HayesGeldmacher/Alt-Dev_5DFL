@@ -7,13 +7,14 @@ public class DollTalk : Interactable
 
     [SerializeField] private Animator _treeAnim;
     [SerializeField] private AudioSource _treeSound;
-    [SerializeField] private AudioSource _endInteractSound;
 
     [SerializeField] private GameObject[] _disappearObjects;
     [SerializeField] private GameObject[] _appearObjects;
 
     [SerializeField] private CameraController _camController;
     [SerializeField] private TeleportTrigger _teleportTrigger;
+
+    [SerializeField] private AudioSource _creakingSound;
 
     private bool _startedEnd = false;
     private bool _playedAnimatiton = false;
@@ -37,16 +38,17 @@ public class DollTalk : Interactable
 
         if (!_playedAnimatiton)
         {
+            if (_treeSound != null)
+            {
+                _treeSound.Play();
+            }
             _playedAnimatiton = true;
+            _creakingSound.Stop();
             PlayerController.instance._frozen = true;
             _camController._canInteract = false;
             _camController._frozen = true;
             transform.GetComponent<BoxCollider>().enabled = false;
             _treeAnim.SetTrigger("startDoll");
-            if (_treeSound != null)
-            {
-                _treeSound.Play();
-            }
         }
         else
         {
