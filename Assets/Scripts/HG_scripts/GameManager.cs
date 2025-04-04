@@ -183,7 +183,12 @@ public class GameManager : MonoBehaviour
         _pausedText.text = "PAUSED";
 
         }
-        _pauseButtons.SetActive(true);
+
+
+        if (!_inTextGame)
+        {
+         _pauseButtons.SetActive(true);
+        }
         _pauseButtonsText.SetActive(true);
         _hudBorder.SetActive(false);
         _cursorSprite.enabled = false;
