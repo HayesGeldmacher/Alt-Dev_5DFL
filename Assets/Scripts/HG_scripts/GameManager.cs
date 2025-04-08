@@ -26,6 +26,9 @@ public class GameManager : MonoBehaviour
 
     #endregion
 
+    List<int> _newList = new List<int>();
+
+
     [HideInInspector] public bool _isPaused = false;
     [SerializeField] private CameraController _controller;
     [SerializeField] private TMP_Text _pausedText;
