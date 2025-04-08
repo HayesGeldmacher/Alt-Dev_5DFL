@@ -19,6 +19,7 @@ public class CameraPickup : Interactable
     private bool _canClickContinue = false;
     [SerializeField] private GameObject _screenVHS;
     [SerializeField] private GameObject _ghostCam;
+    [SerializeField] private CRT _crt;
 
 
     [SerializeField] private AudioSource _staticPickupSound;
@@ -74,6 +75,7 @@ public class CameraPickup : Interactable
                  _camController.GotCamera();
                 _staticPickupSound.Stop();
                 _controller._frozen = true;
+                _crt.enabled = true;
                 Destroy(_glimmer);
                 _lines -= 1;
                 _started = true;
@@ -81,7 +83,6 @@ public class CameraPickup : Interactable
                 _bc.enabled = false;
                 _render.enabled = false;
                 _ghostCam.SetActive(true);
-                
             }
 
         }
