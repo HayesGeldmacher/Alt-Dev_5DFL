@@ -38,6 +38,7 @@ public class CRT : MonoBehaviour
     public void OnRenderImage(RenderTexture source, RenderTexture destination)
     {
         material.SetInt("hardScan", (int)_hardness);
+        material.SetInt("hardPix", (int)_pixHardness);
         material.SetInt("resScale", (int)_resolution);
         material.SetVector("warp", _displayWarp);
         material.SetFloat("maskDark", (float)_maskDark);
