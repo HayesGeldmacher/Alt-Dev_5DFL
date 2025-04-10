@@ -23,6 +23,8 @@ public class PlayerController : MonoBehaviour
     [SerializeField] private float _neededFootTime;
     [SerializeField] private float _neededFootRunTime;
     [SerializeField] private Animator _spriteAnim;
+    public bool _animateBody = false;
+    [SerializeField] private Animator _bodyAnim;
     private float _currentFootTime;
     public List<AudioClip> _audioClips = new List<AudioClip>();
     private float _walkVolume;
@@ -257,6 +259,7 @@ public class PlayerController : MonoBehaviour
                 _walkTime += Time.deltaTime;
                 _walking = true;
                 _camAnim.SetBool("walking", true);
+                _bodyAnim.SetBool("walking", true);
                 _spriteAnim.SetBool("walking", true);
                 
                 //play footsteps here
@@ -267,6 +270,7 @@ public class PlayerController : MonoBehaviour
                 _walking = false;
                 _camAnim.SetBool("walking", false);
                 _spriteAnim.SetBool("walking", false);
+                _bodyAnim.SetBool("walking", false);
                 _currentFootTime = 0;
                 _walkTime = 0;
             }
@@ -298,8 +302,8 @@ public class PlayerController : MonoBehaviour
                     {
                         _controller.height = 1.4f;
                         _controller.center = new Vector3(0, -0.4f, 0);
-                    _isCrouching = true;
-                    Debug.Log("isCrouching@");
+                        _isCrouching = true;
+                        Debug.Log("isCrouching@");
 
                     }
                 }
@@ -329,11 +333,13 @@ public class PlayerController : MonoBehaviour
             {            
                 _yCamPoint = Mathf.Lerp(_yCamPoint, _crouchingYCamPoint, _crouchTransSpeed * Time.deltaTime);
                 _spriteAnim.SetBool("crouching", true);
+                _bodyAnim.SetBool("crouching", true);
             }
             else
             {
                 _yCamPoint = Mathf.Lerp(_yCamPoint, _standingYCamPoint, _crouchTransSpeed * Time.deltaTime);
                 _spriteAnim.SetBool("crouching", false);
+                _bodyAnim.SetBool("crouching", false);
             }
 
             _cameraParent.localPosition = new Vector3(_cameraParent.localPosition.x, _yCamPoint, _cameraParent.localPosition.z);
