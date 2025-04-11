@@ -4,6 +4,7 @@ using UnityEngine;
 using UnityEngine.Rendering;
 using UnityEngine.Rendering.Universal;
 using UnityEngine.Rendering.PostProcessing;
+using Unity.VisualScripting.InputSystem;
 
 public class CameraController : MonoBehaviour
 {
@@ -25,7 +26,10 @@ public class CameraController : MonoBehaviour
     private float _xMove;
     private float _yMove;
 
-   
+
+    public bool _animateBody = false;
+    [SerializeField] private Animator _playerBodyAnim;
+    [SerializeField] private float _bodyRot;
 
 
 
@@ -144,6 +148,12 @@ public class CameraController : MonoBehaviour
 
         _xRotation -= mouseY;
         _xRotation = Mathf.Clamp(_xRotation, -90f, 90f);
+
+       //Animating player body to face camera up or down!
+       if(_animateBody && _playerBodyAnim != null)
+        {
+            _playerBodyAnim.SetFloat("aim", _xRotation);
+        }
 
         
         //The below snippet lerps the camera from side to side depending on which direction the player is walking
