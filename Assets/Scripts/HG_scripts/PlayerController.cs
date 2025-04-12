@@ -23,12 +23,19 @@ public class PlayerController : MonoBehaviour
     [SerializeField] private float _neededFootTime;
     [SerializeField] private float _neededFootRunTime;
     [SerializeField] private Animator _spriteAnim;
-    public bool _animateBody = false;
-    [SerializeField] private Animator _bodyAnim;
+
     private float _currentFootTime;
     public List<AudioClip> _audioClips = new List<AudioClip>();
     private float _walkVolume;
     [SerializeField] private float _runVolume;
+
+
+    [Header("Body Variables")]
+    public bool _animateBody = false;
+    [SerializeField] private Animator _bodyAnim;
+    [SerializeField] private Animator _legsAnim;
+    [HideInInspector] public float _moveMag;
+
 
     [Header("Running")]
     [SerializeField] private float _runSpeed;
@@ -181,6 +188,8 @@ public class PlayerController : MonoBehaviour
 
             //Stores that input in a variable to be used later in function
             Vector3 _move = (transform.right * x + transform.forward * z);
+            _moveMag = _move.magnitude;
+           
 
             //Constantly adding a downward force to the player so they fall when not standing on something
 
@@ -259,8 +268,20 @@ public class PlayerController : MonoBehaviour
                 _walkTime += Time.deltaTime;
                 _walking = true;
                 _camAnim.SetBool("walking", true);
-                _bodyAnim.SetBool("walking", true);
                 _spriteAnim.SetBool("walking", true);
+
+                if (_animateBody)
+                {
+                   if(_bodyAnim != null)
+                    {
+                        _bodyAnim.SetBool("walking", true);
+                    }
+
+                   if(_legsAnim != null)
+                    {
+                        _legsAnim.SetBool("walking", true);
+                    }
+                }
                 
                 //play footsteps here
                 FootStepUpdate();
@@ -270,7 +291,20 @@ public class PlayerController : MonoBehaviour
                 _walking = false;
                 _camAnim.SetBool("walking", false);
                 _spriteAnim.SetBool("walking", false);
-                _bodyAnim.SetBool("walking", false);
+
+                if (_animateBody)
+                {
+                    if (_bodyAnim != null)
+                    {
+                        _bodyAnim.SetBool("walking", false);
+                    }
+
+                    if (_legsAnim != null)
+                    {
+                        _legsAnim.SetBool("walking", false);
+                    }
+                }
+
                 _currentFootTime = 0;
                 _walkTime = 0;
             }
@@ -333,13 +367,38 @@ public class PlayerController : MonoBehaviour
             {            
                 _yCamPoint = Mathf.Lerp(_yCamPoint, _crouchingYCamPoint, _crouchTransSpeed * Time.deltaTime);
                 _spriteAnim.SetBool("crouching", true);
-                _bodyAnim.SetBool("crouching", true);
+
+                if (_animateBody)
+                {
+                    if (_bodyAnim != null)
+                    {
+                        _bodyAnim.SetBool("crouching", true);
+                    }
+
+                    if (_legsAnim != null)
+                    {
+                        _legsAnim.SetBool("crouching", true);
+                    }
+                }
             }
             else
             {
                 _yCamPoint = Mathf.Lerp(_yCamPoint, _standingYCamPoint, _crouchTransSpeed * Time.deltaTime);
                 _spriteAnim.SetBool("crouching", false);
-                _bodyAnim.SetBool("crouching", false);
+
+
+                if (_animateBody)
+                {
+                    if (_bodyAnim != null)
+                    {
+                        _bodyAnim.SetBool("crouching", false);
+                    }
+
+                    if (_legsAnim != null)
+                    {
+                        _legsAnim.SetBool("crouching", false);
+                    }
+                }
             }
 
             _cameraParent.localPosition = new Vector3(_cameraParent.localPosition.x, _yCamPoint, _cameraParent.localPosition.z);

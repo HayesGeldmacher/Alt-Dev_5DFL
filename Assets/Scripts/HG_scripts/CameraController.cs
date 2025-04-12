@@ -26,10 +26,14 @@ public class CameraController : MonoBehaviour
     private float _xMove;
     private float _yMove;
 
-
+    [Header("Body Animation")]
     public bool _animateBody = false;
     [SerializeField] private Animator _playerBodyAnim;
+    [SerializeField] private Animator _playerLegsAnim;
+    [SerializeField] private bool _turning;
     [SerializeField] private float _bodyRot;
+    [SerializeField] private float _neededAnimTurn;
+    [SerializeField] private float _currentAnimTurn;
 
 
 
@@ -77,7 +81,7 @@ public class CameraController : MonoBehaviour
     [SerializeField] private float _doorOpenNoise;
     [SerializeField] private float _snapShotNoise;
 
-    [HideInInspector] public float _camXMove;
+    public float _camXMove;
 
 
     [Header("")]
@@ -153,6 +157,46 @@ public class CameraController : MonoBehaviour
        if(_animateBody && _playerBodyAnim != null)
         {
             _playerBodyAnim.SetFloat("aim", _xRotation);
+
+            //Determining how long they have been moving camera!
+
+            if(Mathf.Abs(_camXMove) > 2f)
+            {
+                 _currentAnimTurn = _neededAnimTurn;
+            }
+            else
+            {
+                _currentAnimTurn -= Time.deltaTime;
+            }
+
+            if(_currentAnimTurn > 0)
+            {
+                _turning = true;
+            }
+            else
+            {
+                _turning = false;
+            }
+
+
+            if (_turning)
+            {
+                if (PlayerController.instance._moveMag <= 0.1f)
+                {
+                    _playerBodyAnim.SetBool("turning", true);
+                    _playerLegsAnim.SetBool("turning", true);
+                }
+                else
+                {
+                    _playerBodyAnim.SetBool("turning", false);
+                    _playerLegsAnim.SetBool("turning", false);
+                }
+            }
+            else
+            {
+                _playerBodyAnim.SetBool("turning", false);
+                _playerLegsAnim.SetBool("turning", false);
+            }
         }
 
         
@@ -212,6 +256,11 @@ public class CameraController : MonoBehaviour
         _virtualCam.parent.transform.localRotation = Quaternion.Euler(_yRotation, 0f, 0f);
 
         
+    }
+
+    private void AnimateBodyUpdate()
+    {
+
     }
 
     private void InteractUpdate()
