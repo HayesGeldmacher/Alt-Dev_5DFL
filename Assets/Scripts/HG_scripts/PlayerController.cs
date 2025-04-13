@@ -257,6 +257,35 @@ public class PlayerController : MonoBehaviour
                 _speed = _walkSpeed;
             }
 
+            //Setting run animations
+            if (_animateBody)
+            {
+                if (_running)
+                {
+                    if(_bodyAnim != null)
+                    {
+                        _bodyAnim.SetBool("running", true);
+                    }
+
+                    if(_legsAnim != null)
+                    {
+                        _legsAnim.SetBool("running", true);
+                    }
+                }
+                else
+                {
+                    if(_bodyAnim != null)
+                    {
+                         _bodyAnim.SetBool("running", false);
+                    }
+
+                    if(_legsAnim != null)
+                    {
+                        _legsAnim.SetBool("running", false);
+                    }
+                }
+            }
+
            //controller.move is how the character actually moves - always multiply by Time.deltaTime so physics work correctly!
             _controller.Move(_move * _speed * Time.deltaTime);
             _controller.Move(_velocity * Time.deltaTime);

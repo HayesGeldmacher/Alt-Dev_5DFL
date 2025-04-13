@@ -19,19 +19,25 @@ public class CameraPickup : Interactable
     private bool _canClickContinue = false;
     [SerializeField] private GameObject _screenVHS;
     [SerializeField] private GameObject _ghostCam;
-    [SerializeField] private CRT _crt;
+    [SerializeField] private Animator _bodyAnim;
+
 
 
     [SerializeField] private AudioSource _staticPickupSound;
 
 
+    private void Awake()
+    {
 
+    }
     private void Start()
     {
         base.Start();
         //_render = GetComponent<MeshRenderer>();
         _bc = GetComponent<BoxCollider>();
         _canClickContinue = false;
+
+
 
     }
     private void Update()
@@ -75,7 +81,6 @@ public class CameraPickup : Interactable
                  _camController.GotCamera();
                 _staticPickupSound.Stop();
                 _controller._frozen = true;
-                _crt.enabled = true;
                 Destroy(_glimmer);
                 _lines -= 1;
                 _started = true;
@@ -83,6 +88,11 @@ public class CameraPickup : Interactable
                 _bc.enabled = false;
                 _render.enabled = false;
                 _ghostCam.SetActive(true);
+
+                if(_bodyAnim != null)
+                {
+                    _bodyAnim.SetBool("hasCam", true);
+                }
             }
 
         }
@@ -122,4 +132,5 @@ public class CameraPickup : Interactable
         _canClickContinue = true;
 
     }
+
 }
