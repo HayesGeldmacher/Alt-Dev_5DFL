@@ -58,7 +58,7 @@ public class BedDayTime : Interactable
         }
 
 
-        if (_startFading)
+        if (_startFading && _monitorAudio != null)
         {
             if(_monitorAudio.volume > 0)
             {

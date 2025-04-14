@@ -64,6 +64,7 @@ public class nightManager : Interactable
     [SerializeField] private GameObject _telephoneHallwayBlocker;
     [SerializeField] private GameObject _bedroomHallwayBlocker;
     [SerializeField] private List<GameObject> _disappearComplete;
+    [SerializeField] private List<GameObject> _appearComplete;
 
 
    // [SerializeField] private float _totaldialogueTimer;
@@ -304,6 +305,14 @@ public class nightManager : Interactable
             if(obj != null)
             {
                 Destroy(obj);
+            }
+        }
+
+        foreach(GameObject obj in _appearComplete)
+        {
+            if(obj != null)
+            {
+                obj.SetActive(true);
             }
         }
     }

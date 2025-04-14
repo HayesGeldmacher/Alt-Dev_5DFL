@@ -22,6 +22,8 @@ public class BedNight : Interactable
     [SerializeField] private CameraZoom _camZoom;
     [SerializeField] private Door _door;
     [SerializeField] private Animator _swivel;
+
+    [SerializeField] private MonitorWatch _watch;
     
 
 
@@ -62,11 +64,20 @@ public class BedNight : Interactable
         {
             if (!_door._isOpen)
             {
-            _startedEnd = true;
-            StartCoroutine(CompleteLevel());
+                if (_watch._activated)
+                {
+                     _startedEnd = true;
+                    StartCoroutine(CompleteLevel());
+                }
+                else
+                {
+                    base._dialogue._sentences[0] = "Watching something on my computer might help me sleep...";
+                    base.Interact();
+                }
             }
             else
             {
+                base._dialogue._sentences[0] = "I can't go to sleep with the door open...";
                 base.Interact();
             }
         }

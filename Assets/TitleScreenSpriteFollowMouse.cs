@@ -162,7 +162,6 @@ public class TitleScreenSpriteFollowMouse : MonoBehaviour
         Debug.Log("ENABLED : " + _kill);
 
         _active = _kill;
-        _clickImage.enabled = _kill;
 
         if (!_kill)
         {
@@ -171,7 +170,18 @@ public class TitleScreenSpriteFollowMouse : MonoBehaviour
                //problem LINE!!! - theres gotta be something not instantiated here
                 _currentVirtPos = _virtualMouse.virtualMouse.position.value;
             }
+            _clickImage.enabled = false;
         }
+        else
+        {
+           StartCoroutine(EnableSprite());
+        }
+    }
+
+    private IEnumerator EnableSprite()
+    {
+        yield return new WaitForSecondsRealtime(0.1f);
+        _clickImage.enabled = true;
     }
 
     private void OnDeviceChanged()

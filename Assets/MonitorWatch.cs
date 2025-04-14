@@ -33,8 +33,6 @@ public class MonitorWatch : Interactable
             _vid.Play();
             _anim.SetTrigger("play");
         }
-        else{
-            base.Interact();
-        }
+        base.Interact();
     }
 }

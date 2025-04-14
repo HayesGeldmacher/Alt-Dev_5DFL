@@ -23,7 +23,7 @@ public class EvidenceManager : MonoBehaviour
     private Dictionary<GameObject, GameObject> _itemsDict = new Dictionary<GameObject, GameObject>();
     [SerializeField] private AudioSource _phoneRing;
     [SerializeField] private PhoneDaytime _phone;
-  
+    [SerializeField] private PhoneRingTrigger _phoneDialogue;
 
 
     private void Start()
@@ -97,7 +97,7 @@ public class EvidenceManager : MonoBehaviour
 
     private IEnumerator PhoneRing()
     {
-        
+        _phoneDialogue.CallDialogueStart();
         yield return new WaitForSeconds(2f);
         _phone.StartRing();
     }

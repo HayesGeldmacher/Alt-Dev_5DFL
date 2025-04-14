@@ -60,6 +60,7 @@ public class ComputerGame : Interactable
         _buttonParent.SetActive(true);
         Cursor.lockState = CursorLockMode.Confined;
         Cursor.visible = false;
+
     }
 
     private IEnumerator ExitGame()
