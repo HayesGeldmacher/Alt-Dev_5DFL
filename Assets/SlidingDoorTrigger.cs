@@ -61,20 +61,26 @@ public class SlidingDoorTrigger : MonoBehaviour
 
             foreach (Transform obj in disappearList)
             {
-                if (obj.GetComponent<MeshRenderer>() != null)
+
+                if(obj != null)
                 {
-                    obj.GetComponent<MeshRenderer>().enabled = true;
+                    if (obj.GetComponent<MeshRenderer>() != null)
+                    {
+                        obj.GetComponent<MeshRenderer>().enabled = true;
+                    }
+
+                    if (obj.GetComponent<SpriteRenderer>() != null)
+                    {
+                        obj.GetComponent<SpriteRenderer>().enabled = true;
+                    }
+
+                    if (obj.childCount > 0)
+                    {
+                        RecursiveCheck(obj, true);
+                    }
+
                 }
 
-                if (obj.GetComponent<SpriteRenderer>() != null)
-                {
-                    obj.GetComponent<SpriteRenderer>().enabled = true;
-                }
-
-                if (obj.childCount > 0)
-                {
-                    RecursiveCheck(obj, true);
-                }
 
             }
         }

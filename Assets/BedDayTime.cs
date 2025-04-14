@@ -27,6 +27,11 @@ public class BedDayTime : Interactable
     [SerializeField] private float _audioFadeSpeed;
     [SerializeField] private bool _startFading = false;
 
+
+    [Header("Body Variables")]
+    [SerializeField] private GameObject _playerBody;
+    public bool _animateBody = true;
+
     private void Start()
     {
         base.Start();
@@ -125,6 +130,10 @@ public class BedDayTime : Interactable
         _isBedTime = true;
         yield return new WaitForSeconds(2);
         _blackAnim.SetTrigger("black");
+        if(_animateBody && _playerBody != null)
+        {
+          StartCoroutine(SpawnBody());
+        }
         yield return new WaitForSeconds(2);
         // _hud.SetActive(false);
         _cursor.SetActive(false);
@@ -138,6 +147,13 @@ public class BedDayTime : Interactable
         GameManager.instance.LoadNextLevel();
 
     }
+
+    private IEnumerator SpawnBody()
+    {
+        yield return new WaitForSeconds(0.5f);
+        _playerBody.SetActive(true);
+    }
+
 
     public void EnableBedTime()
     {
