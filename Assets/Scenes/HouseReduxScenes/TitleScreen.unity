@@ -183446,7 +183446,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8b5c4a5641fc62a4197389133101a785, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  material: {fileID: 2134267539}
+  material: {fileID: 1000019056}
   _hardness: -3
   _pixHardness: 0
   _displayWarp: {x: 0.03, y: 0.03, z: 0, w: 0}
@@ -221282,6 +221282,39 @@ Mesh:
     offset: 0
     size: 0
     path: 
+--- !u!21 &1000019056
+Material:
+  serializedVersion: 8
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_Name: Hidden/CRT
+  m_Shader: {fileID: 4800000, guid: 825ff68a80df47d439dbf4cf9552851c, type: 3}
+  m_Parent: {fileID: 0}
+  m_ModifiedSerializedProperties: 0
+  m_ValidKeywords: []
+  m_InvalidKeywords: []
+  m_LightmapFlags: 4
+  m_EnableInstancingVariants: 0
+  m_DoubleSidedGI: 0
+  m_CustomRenderQueue: -1
+  stringTagMap: {}
+  disabledShaderPasses: []
+  m_LockedProperties: 
+  m_SavedProperties:
+    serializedVersion: 3
+    m_TexEnvs: []
+    m_Ints: []
+    m_Floats:
+    - hardPix: 0
+    - hardScan: -3
+    - maskDark: 0.63
+    - maskLight: 0.87
+    - resScale: 1
+    m_Colors:
+    - warp: {r: 0.03, g: 0.03, b: 0, a: 0}
+  m_BuildTextureStacks: []
 --- !u!4 &1010716643 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 4732217283539082056, guid: c47ef3e2d346bee448624660c6b215d4,
@@ -386797,8 +386830,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -5.2082, y: -33.70813}
-  m_SizeDelta: {x: 241.695, y: 32.5175}
+  m_AnchoredPosition: {x: -3.5647, y: -31.2426}
+  m_SizeDelta: {x: 268.4431, y: 32.0221}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1625593352
 MonoBehaviour:
@@ -437649,8 +437682,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -6.1674, y: 23.7081}
-  m_SizeDelta: {x: 210.5741, y: 33.6194}
+  m_AnchoredPosition: {x: -5.7729, y: 23.7081}
+  m_SizeDelta: {x: 225.2584, y: 33.6194}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1904694197
 MonoBehaviour:
@@ -463994,39 +464027,6 @@ PrefabInstance:
       insertIndex: -1
       addedObject: {fileID: 1619324096}
   m_SourcePrefab: {fileID: 100100000, guid: 8de5c8dd884d7164eae1c9b89b7ec360, type: 3}
---- !u!21 &2134267539
-Material:
-  serializedVersion: 8
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_Name: Hidden/CRT
-  m_Shader: {fileID: 4800000, guid: 825ff68a80df47d439dbf4cf9552851c, type: 3}
-  m_Parent: {fileID: 0}
-  m_ModifiedSerializedProperties: 0
-  m_ValidKeywords: []
-  m_InvalidKeywords: []
-  m_LightmapFlags: 4
-  m_EnableInstancingVariants: 0
-  m_DoubleSidedGI: 0
-  m_CustomRenderQueue: -1
-  stringTagMap: {}
-  disabledShaderPasses: []
-  m_LockedProperties: 
-  m_SavedProperties:
-    serializedVersion: 3
-    m_TexEnvs: []
-    m_Ints: []
-    m_Floats:
-    - hardPix: 0
-    - hardScan: -3
-    - maskDark: 0.63
-    - maskLight: 0.87
-    - resScale: 1
-    m_Colors:
-    - warp: {r: 0.03, g: 0.03, b: 0, a: 0}
-  m_BuildTextureStacks: []
 --- !u!1001 &2136248506
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -468244,7 +468244,7 @@ PrefabInstance:
     - target: {fileID: 6327717054966027000, guid: fd05a77f43177254b8b8a270df3a4269,
         type: 3}
       propertyPath: '_maxY.Array.data[0]'
-      value: 45
+      value: 55
       objectReference: {fileID: 0}
     - target: {fileID: 6327717054966027000, guid: fd05a77f43177254b8b8a270df3a4269,
         type: 3}
@@ -468254,7 +468254,7 @@ PrefabInstance:
     - target: {fileID: 6327717054966027000, guid: fd05a77f43177254b8b8a270df3a4269,
         type: 3}
       propertyPath: '_minY.Array.data[0]'
-      value: -20
+      value: -45
       objectReference: {fileID: 0}
     - target: {fileID: 6327717054966027000, guid: fd05a77f43177254b8b8a270df3a4269,
         type: 3}
