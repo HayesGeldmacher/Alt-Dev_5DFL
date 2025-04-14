@@ -31,7 +31,10 @@ public class NightTVItems : ShootTrigger
         {
             foreach(GameObject _item in _appearItems)
             {
+               if(_item != null )
+                {
                 _item.SetActive(true);
+                }
             }
         }
 
@@ -39,7 +42,11 @@ public class NightTVItems : ShootTrigger
         {
             foreach(GameObject _item in _disappearItems)
             {
+               if(_item != null)
+                {
                 _item.SetActive(false);
+
+                }
             }
         }
     }

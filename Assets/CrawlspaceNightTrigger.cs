@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class CrawlspaceNightTrigger : MonoBehaviour
 {
-
+    private bool _hasTriggered = false;
     [SerializeField] private GameObject _crawlSpaceBlocker;
     [SerializeField] private AudioSource _thumpSound;
     [SerializeField] private GameObject _crawlSpaceDadHusk;
@@ -13,15 +13,17 @@ public class CrawlspaceNightTrigger : MonoBehaviour
     {
         if(other.tag == "Player")
         {
-            _crawlSpaceBlocker.SetActive(false);
-            _thumpSound.Play();
-            
-            if(_crawlSpaceDadHusk != null)
+            if (!_hasTriggered)
             {
-                _crawlSpaceDadHusk.SetActive(false);
+                _hasTriggered = true;
+                _crawlSpaceBlocker.SetActive(false);
+                _thumpSound.Play();
+            
+                if(_crawlSpaceDadHusk != null)
+                {
+                    _crawlSpaceDadHusk.SetActive(false);
+                }
             }
-
-
         }
     }
 

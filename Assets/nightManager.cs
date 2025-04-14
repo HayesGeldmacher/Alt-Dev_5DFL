@@ -63,6 +63,8 @@ public class nightManager : Interactable
     private bool _phoneEndedDialogue = false;
     [SerializeField] private GameObject _telephoneHallwayBlocker;
     [SerializeField] private GameObject _bedroomHallwayBlocker;
+    [SerializeField] private List<GameObject> _disappearComplete;
+
 
    // [SerializeField] private float _totaldialogueTimer;
    //[SerializeField] private float _currentDialogueTimer;
@@ -296,6 +298,14 @@ public class nightManager : Interactable
 
         _telephoneHallwayBlocker.SetActive(false);
         _bedroomHallwayBlocker.SetActive(true);
+
+        foreach(GameObject obj in _disappearComplete)
+        {
+            if(obj != null)
+            {
+                Destroy(obj);
+            }
+        }
     }
 
     public void PlaySound(AudioClip _clip)
