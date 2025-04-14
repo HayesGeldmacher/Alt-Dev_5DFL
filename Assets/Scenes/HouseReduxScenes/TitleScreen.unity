@@ -61778,6 +61778,39 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 0.67828923, y: 1.9987984, z: 2.327415}
   m_Center: {x: -8.459572, y: 2.569245, z: -5.657074}
+--- !u!21 &373364236
+Material:
+  serializedVersion: 8
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_Name: Hidden/CRT
+  m_Shader: {fileID: 4800000, guid: 825ff68a80df47d439dbf4cf9552851c, type: 3}
+  m_Parent: {fileID: 0}
+  m_ModifiedSerializedProperties: 0
+  m_ValidKeywords: []
+  m_InvalidKeywords: []
+  m_LightmapFlags: 4
+  m_EnableInstancingVariants: 0
+  m_DoubleSidedGI: 0
+  m_CustomRenderQueue: -1
+  stringTagMap: {}
+  disabledShaderPasses: []
+  m_LockedProperties: 
+  m_SavedProperties:
+    serializedVersion: 3
+    m_TexEnvs: []
+    m_Ints: []
+    m_Floats:
+    - hardPix: 0
+    - hardScan: -8
+    - maskDark: 1.5
+    - maskLight: 1.5
+    - resScale: 1
+    m_Colors:
+    - warp: {r: 0.03, g: 0.03, b: 0, a: 0}
+  m_BuildTextureStacks: []
 --- !u!1001 &375701260
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -62345,39 +62378,6 @@ Transform:
   - {fileID: 806628876}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!21 &420867403
-Material:
-  serializedVersion: 8
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_Name: Hidden/CRT
-  m_Shader: {fileID: 4800000, guid: 825ff68a80df47d439dbf4cf9552851c, type: 3}
-  m_Parent: {fileID: 0}
-  m_ModifiedSerializedProperties: 0
-  m_ValidKeywords: []
-  m_InvalidKeywords: []
-  m_LightmapFlags: 4
-  m_EnableInstancingVariants: 0
-  m_DoubleSidedGI: 0
-  m_CustomRenderQueue: -1
-  stringTagMap: {}
-  disabledShaderPasses: []
-  m_LockedProperties: 
-  m_SavedProperties:
-    serializedVersion: 3
-    m_TexEnvs: []
-    m_Ints: []
-    m_Floats:
-    - hardPix: -3
-    - hardScan: -8
-    - maskDark: 1.5
-    - maskLight: 1.5
-    - resScale: 2
-    m_Colors:
-    - warp: {r: 0.03, g: 0.03, b: 0, a: 0}
-  m_BuildTextureStacks: []
 --- !u!1 &425707150
 GameObject:
   m_ObjectHideFlags: 0
@@ -183479,11 +183479,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8b5c4a5641fc62a4197389133101a785, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  material: {fileID: 420867403}
+  material: {fileID: 373364236}
   _hardness: -8
   _pixHardness: 0
   _displayWarp: {x: 0.03, y: 0.03, z: 0, w: 0}
-  _resolution: 2.94
+  _resolution: 1
   _maskDark: 1.5
   _maskLight: 1.5
 --- !u!43 &857654524
@@ -389880,6 +389880,7 @@ MonoBehaviour:
   _glimmer: {fileID: 1600356858}
   _screenVHS: {fileID: 0}
   _ghostCam: {fileID: 5692315929005068054}
+  _bodyAnim: {fileID: 0}
   _staticPickupSound: {fileID: 0}
 --- !u!65 &1684355838
 BoxCollider:
