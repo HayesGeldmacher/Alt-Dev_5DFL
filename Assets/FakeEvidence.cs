@@ -6,6 +6,7 @@ public class FakeEvidence :  ShootTrigger
 {
 
     [SerializeField] private ScreenshotHandler _handler;
+    private bool _triggered = false;
 
     // Start is called before the first frame update
     void Start()
@@ -21,7 +22,20 @@ public class FakeEvidence :  ShootTrigger
 
     public override void Interact()
     {
-        _handler.CallEvidenceDing();
+        if (!_triggered)
+        {
+            _triggered = true;
+            _handler.CallEvidenceDing();
+            StartCoroutine(DestroyVase());
+        }
+
+    }
+
+    private IEnumerator DestroyVase()
+    {
+       
+        yield return new WaitForSeconds(0.2f);
         Destroy(gameObject);
+        _triggered = false;
     }
 }

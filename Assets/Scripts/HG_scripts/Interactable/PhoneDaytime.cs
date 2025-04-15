@@ -273,6 +273,7 @@ public class PhoneDaytime : Interactable
 
         if (_phoneLightAnim != null)
         {
+            _phoneLightAnim.ResetTrigger("on");
             _phoneLightAnim.SetTrigger("off");
         }
 

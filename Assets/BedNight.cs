@@ -107,7 +107,7 @@ public class BedNight : Interactable
         _blackAnim.SetTrigger("blinking");
         _swivel.SetTrigger("swivel");
         yield return new WaitForSeconds(8);
-        GameManager.instance.LoadNextLevel();
+        GameManager.instance.LoadMenu();
 
     }
 

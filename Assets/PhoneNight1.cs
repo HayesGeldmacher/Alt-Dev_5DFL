@@ -226,6 +226,12 @@ public class PhoneNight1 : Interactable
             Debug.Log("opened Door!");
         }
 
+        if(_phoneLightAnim != null)
+        {
+            _phoneLightAnim.ResetTrigger("on");
+            _phoneLightAnim.SetTrigger("off");
+        }
+
         _phonePutDown.Play();
 
     }
