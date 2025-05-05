@@ -60,6 +60,8 @@ public class PhoneDaytime : Interactable
     public LightingManager _lightManager;
     private bool _canInteract = true;
 
+    [SerializeField] private AudioSource _neutralTone;
+
     private void Start()
     {
         //base.Start();
@@ -258,6 +260,12 @@ public class PhoneDaytime : Interactable
         Destroy(_lightShaft1);
         Destroy(_lightShaft2);
         Destroy(_sun);
+
+        if(_neutralTone != null)
+        {
+            _neutralTone.Stop();
+        }
+
         if(_lightManager != null)
         {
             _lightManager.StartDecrease();
