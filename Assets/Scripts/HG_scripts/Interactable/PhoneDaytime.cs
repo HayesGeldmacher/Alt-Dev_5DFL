@@ -57,7 +57,7 @@ public class PhoneDaytime : Interactable
 
     [SerializeField] private Animator _phoneLightAnim;
     [SerializeField] private AudioSource _phonePutDown;
-
+    public LightingManager _lightManager;
     private bool _canInteract = true;
 
     private void Start()
@@ -258,6 +258,10 @@ public class PhoneDaytime : Interactable
         Destroy(_lightShaft1);
         Destroy(_lightShaft2);
         Destroy(_sun);
+        if(_lightManager != null)
+        {
+            _lightManager.StartDecrease();
+        }
     }
 
 

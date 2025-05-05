@@ -18,7 +18,7 @@ public class LightingTrigger : Interactable
     [SerializeField] private GameObject _sunLight;
     [SerializeField] private GameObject _waterBoiler;
     private bool _destroyedChair = false;
-
+   
 
     private bool _canCollide = true;
 
