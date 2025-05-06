@@ -10,7 +10,7 @@ public class CamChangePositions : MonoBehaviour
     [SerializeField] private Transform _cam;
 
     public Transform[] _location;
-    private int _currentCam;
+    public int _currentCam;
 
 
     // Start is called before the first frame update
