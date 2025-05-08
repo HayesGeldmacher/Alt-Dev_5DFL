@@ -6,17 +6,19 @@ public class CamChangeTrigger : MonoBehaviour
 {
 
 
-    [SerializeField] private CamChangePositions _camChange;
-    [SerializeField] private int _camNum;
-    private bool _forward = true;
-    private bool _canEnter = true;
+    [SerializeField] protected private CamChangePositions _camChange;
+    [SerializeField] protected private int _camNum;
+    protected bool _canEnter = true;
+    [SerializeField] private GameObject[] _disappearObjects;
+    [SerializeField] private GameObject[] _appearObjects;
+    
     // Start is called before the first frame update
     void Start()
     {
         
     }
 
-    private void OnTriggerEnter(Collider other)
+    public void OnTriggerEnter(Collider other)
     {
         if (_canEnter && _camNum != _camChange._currentCam)
         {
@@ -24,12 +26,13 @@ public class CamChangeTrigger : MonoBehaviour
             {
                _camChange.ChangePos(_camNum); 
                _canEnter = false;
+                CallGeneric();
             }
         }
         
     }
 
-    private void OnTriggerExit(Collider other)
+    public void OnTriggerExit(Collider other)
     {
         if(other.tag == "Player")
         {
@@ -37,4 +40,28 @@ public class CamChangeTrigger : MonoBehaviour
         }
     }
 
+    public virtual void CallGeneric()
+    {
+        if(_appearObjects.Length > 0)
+        {
+            foreach(GameObject item in _appearObjects)
+            {
+               if(item != null)
+                {
+                item.SetActive(true);
+                }
+            }
+        }
+
+        if(_disappearObjects.Length > 0)
+        {
+            foreach(GameObject item in _disappearObjects)
+            {
+                if (item != null)
+                {
+                 item.SetActive(false);
+                }
+            }
+        }
+    }
 }
