@@ -9,7 +9,6 @@ public class DialogueManager : MonoBehaviour
     public TMP_Text _dialogueText;
     [SerializeField] private Interactable _currentTrigger;
     [SerializeField] private Animator _textAnim;
-    [SerializeField] private PlayerController _controller;
 
     public bool _currentlyTalking = true;
 

@@ -57,6 +57,13 @@ public class PlayerController3rdPerson : MonoBehaviour
     [SerializeField] private Transform _playerBody;
     [SerializeField] private float _turnSensitivity;
 
+    [Header("Interactable")]
+    [SerializeField] private float _interactRange;
+    [SerializeField] private LayerMask _interactMask;
+    [SerializeField] private Animator _clickAnim;
+    [SerializeField] private Transform _castPos;
+    public bool _frozen = false;
+
 
     //The below region just creates a reference of this specific controller that we can call from other scripts quickly
     #region Singleton
@@ -94,8 +101,12 @@ public class PlayerController3rdPerson : MonoBehaviour
 
     private void Update()
     {
-        CrouchUpdate();
 
+
+        if (_frozen) return;
+        
+        CrouchUpdate();
+        RaycastUpdate();
 
         //This line checks if the player is touching the ground, or in the air
         //_grounded = Physics.CheckSphere(_groundCheck.position, _groundDistance, _groundMask);
@@ -385,6 +396,29 @@ public class PlayerController3rdPerson : MonoBehaviour
     {
         yield return new WaitForSeconds(0.2f);
         _running = false;
+    }
+
+
+    private void RaycastUpdate()
+    {
+        RaycastHit hit;
+        if (Physics.Raycast(_castPos.position, transform.forward, out hit, _interactRange, _interactMask))
+        {
+            if (Input.GetButtonDown("Interact"))
+            {
+                hit.transform.GetComponent<Interactable>().Interact();
+                _clickAnim.SetTrigger("click");
+            }
+
+            _clickAnim.SetBool("casting", true);
+            Debug.Log("Casting!!");
+        }
+        else
+        {
+            _clickAnim.SetBool("casting", false);
+        }
+        
+        
     }
 
 }

@@ -34,19 +34,19 @@ public class CutsceneManager : MonoBehaviour
 
     [Header("PeanutSequence")]
     [SerializeField] private float _peanutWatchTime;
+    [SerializeField] private Animator _blackScreen;
 
     // Start is called before the first frame update
-    void Start()
+   public void Begin()
     {
 
-        StartCoroutine(DelayStart());
         
         
         Cursor.visible = false;
         Cursor.lockState = CursorLockMode.Locked;
-        StartCoroutine(WaitForStart());
         _startingVol = _staticAudio.volume;
         _currentVol = _startingVol;
+        StartCoroutine(StartPeanutSequence());
     }
 
     // Update is called once per frame
@@ -70,14 +70,13 @@ public class CutsceneManager : MonoBehaviour
     }
 
 
-    private IEnumerator DelayStart()
-    {
-        yield return new WaitForSeconds(2f);
-        StartCoroutine(StartPeanutSequence());
-    }
 
     private IEnumerator StartPeanutSequence()
     {
+        _blackScreen.SetTrigger("black");
+        yield return new WaitForSeconds(1.5f);
+        _screenAnim.SetTrigger("black");
+        yield return new WaitForSeconds(1.5f);
         _screenAnim.SetTrigger("start");
         _infomercialSound.Play();
         yield return new WaitForSeconds(_peanutWatchTime);
