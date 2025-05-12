@@ -11,7 +11,12 @@ public class CamChangeTrigger : MonoBehaviour
     protected bool _canEnter = true;
     [SerializeField] private GameObject[] _disappearObjects;
     [SerializeField] private GameObject[] _appearObjects;
-    
+
+    [Header("TeleportVariables")]
+    [SerializeField] private protected bool _teleportPlayer;
+    [SerializeField] private protected Transform _player;
+    [SerializeField] private protected Transform _spawnPos;
+     
     // Start is called before the first frame update
     void Start()
     {
@@ -63,5 +68,18 @@ public class CamChangeTrigger : MonoBehaviour
                 }
             }
         }
+
+        if (_teleportPlayer && _player != null)
+        {
+            CharacterController _controller = _player.GetComponent<CharacterController>();
+            _controller.enabled = false;
+            _player.position = _spawnPos.position;
+            _controller.enabled = true;
+        }
+    }
+
+    private void TeleportPlayer()
+    {
+
     }
 }
