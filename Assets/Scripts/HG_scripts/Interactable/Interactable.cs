@@ -26,11 +26,6 @@ public class Interactable : MonoBehaviour
     [Header("Item Variables")]
     [SerializeField] private bool _canBeGrabbed;
 
-    [Header("Outline Variables")]
-    [SerializeField] private bool _outlined;
-    [HideInInspector] public bool _isOutlined = false;
-
-
     [HideInInspector] public Transform _player;
 
     [Header("Sound Variables")]
@@ -128,26 +123,6 @@ public class Interactable : MonoBehaviour
      
       
 
-    }
-    
-    public virtual void OnOutline()
-    {
-        if (_outlined)
-        {
-            _isOutlined = true;
-            int _outlineLayer = LayerMask.NameToLayer("evidence");
-            gameObject.layer = _outlineLayer;
-
-        }
-    }
-    public virtual void StopInteract()
-    {
-        if (_outlined)
-        {
-            _isOutlined = false;
-            int _interactableLayer = LayerMask.NameToLayer("Interactable");
-            gameObject.layer = _interactableLayer;
-        }
     }
 
 

@@ -321,10 +321,6 @@ public class CameraController : MonoBehaviour
                 _cursorAnim.SetBool("isCasting", true);
                 _interacting = true;
                 _currentInteractable = _hitInfo.transform.GetComponent<Interactable>();
-                if (!_currentInteractable._isOutlined)
-                {
-                    _currentInteractable.OnOutline();
-                }
 
                 if (Input.GetButtonDown("Interact"))
                 {
@@ -423,7 +419,6 @@ public class CameraController : MonoBehaviour
 
             if (_currentInteractable)
             {
-                _currentInteractable.StopInteract();
                 _currentInteractable = null;
             }
         }

@@ -17,7 +17,7 @@ public class CamChangePositions : MonoBehaviour
     void Start()
     {
         //just for testing...
-        ChangePos(5);
+        ChangePos(2);
     }
 
     // Update is called once per frame
