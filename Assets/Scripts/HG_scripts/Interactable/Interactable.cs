@@ -39,7 +39,7 @@ public class Interactable : MonoBehaviour
 
         
         //_manager = GameManager.instance.GetComponent<DialogueManager>();
-        _player = PlayerController.instance.transform;
+        //_player = PlayerController.instance.transform;
 
         if (!_isIntro)
         {
