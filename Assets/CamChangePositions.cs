@@ -1,4 +1,3 @@
-using NUnit.Framework.Constraints;
 using System;
 using System.Collections;
 using System.Collections.Generic;
@@ -8,7 +7,7 @@ public class CamChangePositions : MonoBehaviour
 {
 
     [SerializeField] private Transform _cam;
-
+    [SerializeField] private SingleMosh _mosh;
     public Transform[] _location;
     public int _currentCam;
 
@@ -29,6 +28,7 @@ public class CamChangePositions : MonoBehaviour
 
     public void ChangePos(int newPos)
     {
+        _mosh.CallGlitch();
         _currentCam = newPos;
         _cam.position = _location[newPos].position;
         _cam.rotation = _location[newPos].rotation;

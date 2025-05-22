@@ -5,7 +5,8 @@ using UnityEngine;
 public class StartDataMosh : MonoBehaviour
 {
     [SerializeField] private Datamosh _data;
-    
+
+
     // Start is called before the first frame update
     void Start()
     {
