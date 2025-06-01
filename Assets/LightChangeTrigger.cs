@@ -1,0 +1,35 @@
+using System.Collections;
+using System.Collections.Generic;
+using UnityEngine;
+
+public class LightChangeTrigger : MonoBehaviour
+{
+
+
+    [SerializeField] private float _lightValue;
+    public lightingThirdPerson _lightThirdPerson;
+    [SerializeField] private Interactable _interact;
+
+
+
+    public void OnTriggerEnter(Collider other)
+    {
+        
+            if (other.tag == "Player")
+            {
+            _lightThirdPerson._lightValue = _lightValue;
+                _lightThirdPerson._lerping = true;
+
+                if(_interact != null)
+                {
+                    _interact.Interact();
+                }
+           
+            }
+        
+
+    }
+
+
+   
+}

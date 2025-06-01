@@ -74,12 +74,8 @@ public class CameraController : MonoBehaviour
     [SerializeField] private AudioSource _ambience;
     [HideInInspector] public bool _frozen = false;
     [HideInInspector] public bool _canInteract = true;
-    private CameraZoom _zoom;
+    [SerializeField] private CameraZoom _zoom;
 
-    [Header("Noise Variables")]
-    [SerializeField] private List<MonsterRoaming> _monsters = new List<MonsterRoaming>();
-    [SerializeField] private float _doorOpenNoise;
-    [SerializeField] private float _snapShotNoise;
 
     public float _camXMove;
 
@@ -121,18 +117,10 @@ public class CameraController : MonoBehaviour
             _camHud.SetActive(false);
  
         }
-        if (_dayTime)
-
-
-        foreach (GameObject monster in GameObject.FindGameObjectsWithTag("Roaming"))
-        {
-            _monsters.Add(monster.GetComponent<MonsterRoaming>());
-        }
-
         _zoom = transform.GetComponent<CameraZoom>();
 
         //Just for testing! Delete this line after
-        //GotCamera();
+        GotCamera();
     }
 
     private void Update()
@@ -332,7 +320,7 @@ public class CameraController : MonoBehaviour
 
                             if (!_isHolding)
                             {
-                                AddNoise(_doorOpenNoise);
+                              
                              _door.SetDirection();
                             _door._isHeld = true;
                              _isHolding = true;
@@ -460,7 +448,6 @@ public class CameraController : MonoBehaviour
     private void ScreenShot()
     {
       //This lines calls to the actual screenshot object
-        AddNoise(_snapShotNoise);
         _handler.GetComponent<ScreenshotHandler>().TakeScreenshot_Static(Screen.width, Screen.height);
         _whiteAnimator.SetTrigger("snap");
         _VHS.SetTrigger("flash");
@@ -514,12 +501,5 @@ public class CameraController : MonoBehaviour
         transform.rotation = rotation;
     }
 
-    private void AddNoise(float noise)
-    {
-        foreach(MonsterRoaming monster in _monsters)
-        {
-            monster.AddNoise(noise);
-        }
-    }
    
 }
