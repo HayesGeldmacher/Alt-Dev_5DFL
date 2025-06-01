@@ -8,6 +8,19 @@ public class CamChangeLighting : CamChangeTrigger
 
     [SerializeField] private bool _light = false;
     [SerializeField] private float _lightValue;
+    [SerializeField] private bool _playSound = false;
+    [SerializeField] private bool _stopSound = false;
+    [SerializeField] private AudioSource _sound;
+
+    [SerializeField] private bool _changeVol;
+    [SerializeField] private float _soundVol;
+
+    [SerializeField] private bool _changePan;
+    [SerializeField] private float _soundPan;
+
+    [SerializeField] private bool _goFirstPerson;
+    [SerializeField] private GameObject _playerFirstPerson;
+    [SerializeField] private GameObject _playerThirdPerson;
 
     // Start is called before the first frame update
     void Start()
@@ -25,6 +38,48 @@ public class CamChangeLighting : CamChangeTrigger
     {
         base.CallGeneric();
         ChangeLighting();
+        if (_playSound)
+        {
+            ChangeSound(true);
+        }
+        else if (_stopSound)
+        {
+            ChangeSound(false);
+        }
+
+        if (_changeVol)
+        {
+            ChangeVolume(_soundVol);
+        }
+
+
+        if (_changePan)
+        {
+            _sound.spatialBlend = _soundPan;
+        }
+
+        if (_goFirstPerson)
+        {
+            GoFirstPerson(true);
+        }
+    }
+
+
+    private void ChangeVolume(float vol)
+    {
+        _sound.volume = vol;
+    }
+
+    private void ChangeSound(bool play)
+    {
+        if (play)
+        {
+            _sound.Play();
+        }
+        else
+        {
+            _sound.Stop();
+        }
     }
 
     private void ChangeLighting()
@@ -32,6 +87,15 @@ public class CamChangeLighting : CamChangeTrigger
         if (_light)
         {
             RenderSettings.ambientIntensity = _lightValue;
+        }
+    }
+
+    private void GoFirstPerson(bool first)
+    {
+        if (first)
+        {
+            _playerFirstPerson.SetActive(true);
+            _playerThirdPerson.SetActive(false);
         }
     }
 }

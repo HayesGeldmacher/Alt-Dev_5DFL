@@ -56,6 +56,7 @@ public class PlayerController3rdPerson : MonoBehaviour
     [Header("turn Sensitivity")]
     [SerializeField] private Transform _playerBody;
     [SerializeField] private float _turnSensitivity;
+    public bool _turning = false;
 
     [Header("Interactable")]
     [SerializeField] private float _interactRange;
@@ -131,23 +132,18 @@ public class PlayerController3rdPerson : MonoBehaviour
 
              //Stores that input in a variable to be used later in function
              Vector3 _move = (transform.forward * z);
-            _moveMag = _move.magnitude;
 
-        if (_moveMag <= 0.1f)
-        {
+      
             if(Mathf.Abs(x) > 0.1f)
             {
                 _bodyAnim.SetBool("turning", true);
+                _turning = true;
             }
             else
             {
                 _bodyAnim.SetBool("turning", false);
+                _turning = false;
             }
-        }
-        else
-        {
-            _bodyAnim.SetBool("turning", false);
-        }
 
         //Constantly adding a downward force to the player so they fall when not standing on something
 
