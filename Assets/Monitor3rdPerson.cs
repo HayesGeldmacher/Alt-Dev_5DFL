@@ -9,10 +9,7 @@ public class Monitor3rdPerson : Interactable
     [SerializeField] private CutsceneManager _scene;
     private bool _started = false;
     [SerializeField] private PlayerController3rdPerson _player3rd;
-    private void Start()
-    {
-
-    }
+    [SerializeField] private SingleMosh _mosh;
 
     private void Update()
     {
@@ -37,6 +34,7 @@ public class Monitor3rdPerson : Interactable
 
         if (!_started)
         {
+            _mosh.CallGlitch();
             _player3rd._frozen = true;
             _started = true;
             base.Interact();
