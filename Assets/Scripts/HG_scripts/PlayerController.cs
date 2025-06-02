@@ -103,6 +103,7 @@ public class PlayerController : MonoBehaviour
     private float _currentFrequency = 0;
 
     public bool _lockedForward = false;
+    public bool _lockedHorizontal = false;
 
     //The below region just creates a reference of this specific controller that we can call from other scripts quickly
     #region Singleton
@@ -188,6 +189,11 @@ public class PlayerController : MonoBehaviour
             if (_lockedForward)
             {
                 z = Mathf.Abs(z);
+            }
+
+            if (_lockedHorizontal)
+            {
+                x = 0;
             }
 
             //Stores that input in a variable to be used later in function

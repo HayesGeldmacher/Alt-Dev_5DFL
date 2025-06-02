@@ -12,6 +12,9 @@ public class CamChangeLighting : CamChangeTrigger
     [SerializeField] private bool _stopSound = false;
     [SerializeField] private AudioSource _sound;
 
+    [SerializeField] private bool _changeFog = false;
+    [SerializeField] private float _fogDensity;
+
     [SerializeField] private bool _changeVol;
     [SerializeField] private float _soundVol;
 
@@ -51,6 +54,10 @@ public class CamChangeLighting : CamChangeTrigger
             ChangeVolume(_soundVol);
         }
 
+        if (_changeFog)
+        {
+            RenderSettings.fogDensity = _fogDensity;
+        }
 
         if (_changePan)
         {
