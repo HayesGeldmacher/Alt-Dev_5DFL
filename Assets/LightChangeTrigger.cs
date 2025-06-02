@@ -9,7 +9,7 @@ public class LightChangeTrigger : MonoBehaviour
     [SerializeField] private float _lightValue;
     public lightingThirdPerson _lightThirdPerson;
     [SerializeField] private Interactable _interact;
-
+    private bool _interacted = false;
 
 
     public void OnTriggerEnter(Collider other)
@@ -22,7 +22,13 @@ public class LightChangeTrigger : MonoBehaviour
 
                 if(_interact != null)
                 {
+                    if (!_interacted)
+                    {
+                        
                     _interact.Interact();
+                    _interacted = true;
+
+                    }    
                 }
            
             }

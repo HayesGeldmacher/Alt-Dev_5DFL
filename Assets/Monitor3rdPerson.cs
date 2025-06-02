@@ -5,6 +5,7 @@ using UnityEngine.SceneManagement;
 
 public class Monitor3rdPerson : Interactable
 {
+    private bool _canEnter = true;
     [SerializeField] private CutsceneManager _scene;
     private bool _started = false;
     [SerializeField] private PlayerController3rdPerson _player3rd;
@@ -16,6 +17,19 @@ public class Monitor3rdPerson : Interactable
     private void Update()
     {
         base.Update();
+    }
+
+
+    public void OnTriggerEnter(Collider other)
+    {
+        if (_canEnter)
+        {
+            if (other.tag == "Player")
+            {
+                Interact();
+            }
+        }
+
     }
 
     public override void Interact()

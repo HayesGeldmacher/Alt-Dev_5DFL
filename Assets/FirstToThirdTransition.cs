@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class FirstToThirdTransition : MonoBehaviour
 {
-
+    public bool exitFirst = false;
     [SerializeField] private bool _entered = false;
     [SerializeField] private GameObject _playerFirstPerson;
     [SerializeField] private GameObject _playerThirdPerson;
@@ -15,6 +15,22 @@ public class FirstToThirdTransition : MonoBehaviour
 
     [SerializeField] private float _lightValue;
     [SerializeField] private float _fogDensity;
+
+    [SerializeField] private Camera _firstHUDCam;
+    [SerializeField] private Camera _thirdHUDCam;
+    [SerializeField] private Canvas _HUDCanvas;
+
+    [Header("TeleportVariables")]
+    [SerializeField] private protected bool _teleportPlayer;
+    [SerializeField] private protected Transform _player;
+    [SerializeField] private protected Transform _spawnPos;
+
+    [SerializeField] protected bool _interact = false;
+    public Interactable _interactable;
+
+    [SerializeField] protected private CamChangePositions _camChange;
+    [SerializeField] protected private int _camNum;
+
     public void OnTriggerEnter(Collider other)
     {
 
@@ -23,20 +39,42 @@ public class FirstToThirdTransition : MonoBehaviour
             Debug.Log("COLLIDEDWITHTRIGGA");
             if (!_entered)
             {
-              EnterFirstPerson();
-                _entered = true;
+                if (!exitFirst)
+                {
+                    EnterFirstPerson(true);
+                    _entered = true;
+                }
+                else
+                {
+                    EnterFirstPerson(false);
+                    _entered = true;
+                }
             }
         }
 
 
     }
 
-    private void EnterFirstPerson()
+    private void EnterFirstPerson(bool first)
     {
+
+        if (first)
+        {
         _playerFirstPerson.SetActive(true);
-        _playerFirstHUD.SetActive(true);
-        _playerThirdHUD.SetActive(false);
         _playerThirdPerson.SetActive(false);
+        
+        _HUDCanvas.worldCamera = _firstHUDCam;
+
+        }
+        else
+        {
+            _playerThirdPerson.SetActive(true);
+            _playerFirstPerson.SetActive(false);
+
+            _HUDCanvas.worldCamera = _thirdHUDCam;
+            _camChange.ChangePos(_camNum);
+        }
+
         _mosh.CallGlitch();
         _mosh.CallGlitch();
         _mosh.CallGlitch();
@@ -48,6 +86,19 @@ public class FirstToThirdTransition : MonoBehaviour
         RenderSettings.fogDensity = _fogDensity;
 
         _SunBeams.SetActive(false);
+
+        if (_interact)
+        {
+            _interactable.Interact();
+        }
+
+        if (_teleportPlayer && _player != null)
+        {
+            CharacterController _controller = _player.GetComponent<CharacterController>();
+            _controller.enabled = false;
+            _player.position = _spawnPos.position;
+            _controller.enabled = true;
+        }
     }
 
 }

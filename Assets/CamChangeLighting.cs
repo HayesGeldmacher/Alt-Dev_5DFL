@@ -22,7 +22,6 @@ public class CamChangeLighting : CamChangeTrigger
     [SerializeField] private float _soundPan;
 
 
-
     // Start is called before the first frame update
     void Start()
     {
@@ -37,9 +36,10 @@ public class CamChangeLighting : CamChangeTrigger
 
   public override void CallGeneric()
     {
+        base.CallGeneric();
         ChangeLighting();
 
-        base.CallGeneric();
+
         if (_playSound)
         {
             ChangeSound(true);

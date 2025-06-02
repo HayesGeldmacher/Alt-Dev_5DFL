@@ -16,6 +16,11 @@ public class CamChangeTrigger : MonoBehaviour
     [SerializeField] private protected bool _teleportPlayer;
     [SerializeField] private protected Transform _player;
     [SerializeField] private protected Transform _spawnPos;
+
+    [SerializeField] protected bool _interact = false;
+    private bool _interacted = false;
+    [SerializeField] protected Interactable _interactable;
+
      
     // Start is called before the first frame update
     void Start()
@@ -25,7 +30,7 @@ public class CamChangeTrigger : MonoBehaviour
 
     public void OnTriggerEnter(Collider other)
     {
-        if (_canEnter && _camNum != _camChange._currentCam)
+        if (_canEnter)
         {
             if(other.tag == "Player")
             {
@@ -47,6 +52,23 @@ public class CamChangeTrigger : MonoBehaviour
 
     public virtual void CallGeneric()
     {
+
+        if (_interact)
+        {
+            if (!_interacted)
+            {
+                Debug.Log("FUCKING INTERACTED YOU TSUPIP FUCK");
+                _interactable.Interact();
+                _interacted = true;
+            }
+            else
+            {
+               
+            }
+
+        }
+      
+        
         if(_appearObjects.Length > 0)
         {
             foreach(GameObject item in _appearObjects)
