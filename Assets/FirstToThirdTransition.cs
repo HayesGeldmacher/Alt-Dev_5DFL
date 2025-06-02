@@ -31,6 +31,11 @@ public class FirstToThirdTransition : MonoBehaviour
     [SerializeField] protected private CamChangePositions _camChange;
     [SerializeField] protected private int _camNum;
 
+    [SerializeField] private GameObject _camOverlayHUD;
+
+    public bool _eliminateAudioSource = false;
+    [SerializeField] private AudioSource _breatheAudio;
+    [SerializeField] private AudioSource _crowdAudio;
     public void OnTriggerEnter(Collider other)
     {
 
@@ -62,7 +67,7 @@ public class FirstToThirdTransition : MonoBehaviour
         {
         _playerFirstPerson.SetActive(true);
         _playerThirdPerson.SetActive(false);
-        
+            _camOverlayHUD.SetActive(true);
         _HUDCanvas.worldCamera = _firstHUDCam;
 
         }
@@ -70,9 +75,10 @@ public class FirstToThirdTransition : MonoBehaviour
         {
             _playerThirdPerson.SetActive(true);
             _playerFirstPerson.SetActive(false);
-
+            _camOverlayHUD.SetActive(false);
             _HUDCanvas.worldCamera = _thirdHUDCam;
             _camChange.ChangePos(_camNum);
+            _breatheAudio.Play();
         }
 
         _mosh.CallGlitch();
@@ -98,6 +104,11 @@ public class FirstToThirdTransition : MonoBehaviour
             _controller.enabled = false;
             _player.position = _spawnPos.position;
             _controller.enabled = true;
+        }
+
+        if (_eliminateAudioSource)
+        {
+            _crowdAudio.Stop();
         }
     }
 

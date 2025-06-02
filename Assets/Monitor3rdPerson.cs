@@ -10,6 +10,7 @@ public class Monitor3rdPerson : Interactable
     private bool _started = false;
     [SerializeField] private PlayerController3rdPerson _player3rd;
     [SerializeField] private SingleMosh _mosh;
+    [SerializeField] private AudioSource _breatheAudio;
 
     private void Update()
     {
@@ -39,7 +40,7 @@ public class Monitor3rdPerson : Interactable
             _started = true;
             base.Interact();
             _scene.Begin();
-
+            _breatheAudio.Stop();
         }
     }
 }
