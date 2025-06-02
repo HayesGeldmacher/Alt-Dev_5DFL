@@ -101,9 +101,8 @@ public class PlayerController : MonoBehaviour
     private bool _walking = false;
     private float _currentIntensity = 0;
     private float _currentFrequency = 0;
-    
-    
 
+    public bool _lockedForward = false;
 
     //The below region just creates a reference of this specific controller that we can call from other scripts quickly
     #region Singleton
@@ -185,6 +184,11 @@ public class PlayerController : MonoBehaviour
             //takes the raw player input to move character 
             float x = Input.GetAxis("Horizontal");
             float z = Input.GetAxis("Vertical");
+
+            if (_lockedForward)
+            {
+                z = Mathf.Abs(z);
+            }
 
             //Stores that input in a variable to be used later in function
             Vector3 _move = (transform.right * x + transform.forward * z);

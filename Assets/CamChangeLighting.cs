@@ -18,9 +18,7 @@ public class CamChangeLighting : CamChangeTrigger
     [SerializeField] private bool _changePan;
     [SerializeField] private float _soundPan;
 
-    [SerializeField] private bool _goFirstPerson;
-    [SerializeField] private GameObject _playerFirstPerson;
-    [SerializeField] private GameObject _playerThirdPerson;
+
 
     // Start is called before the first frame update
     void Start()
@@ -36,8 +34,9 @@ public class CamChangeLighting : CamChangeTrigger
 
   public override void CallGeneric()
     {
-        base.CallGeneric();
         ChangeLighting();
+
+        base.CallGeneric();
         if (_playSound)
         {
             ChangeSound(true);
@@ -58,10 +57,7 @@ public class CamChangeLighting : CamChangeTrigger
             _sound.spatialBlend = _soundPan;
         }
 
-        if (_goFirstPerson)
-        {
-            GoFirstPerson(true);
-        }
+        
     }
 
 
@@ -90,12 +86,5 @@ public class CamChangeLighting : CamChangeTrigger
         }
     }
 
-    private void GoFirstPerson(bool first)
-    {
-        if (first)
-        {
-            _playerFirstPerson.SetActive(true);
-            _playerThirdPerson.SetActive(false);
-        }
-    }
+  
 }

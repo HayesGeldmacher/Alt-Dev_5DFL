@@ -41,7 +41,6 @@ public class PlayerController3rdPerson : MonoBehaviour
     [SerializeField] private Animator _runAnim;
 
     [Header("Crouch Variables")]
-    [SerializeField] private Transform _cameraParent;
     [SerializeField] private float _crouchSpeed = 6;
     [SerializeField] private float _crouchTransSpeed;
     [SerializeField] private float _crouchingYCamPoint = 0;
@@ -86,8 +85,7 @@ public class PlayerController3rdPerson : MonoBehaviour
 
     private void Start()
     {
-        //Getting a reference for where the camera should be when standing
-        _standingYCamPoint = _cameraParent.transform.localPosition.y;
+
 
         //Disables the player capsule mesh so we dont see it during playtime!
         MeshRenderer _mesh = GetComponent<MeshRenderer>();
