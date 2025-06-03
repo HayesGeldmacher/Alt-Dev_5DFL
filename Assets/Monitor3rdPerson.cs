@@ -41,6 +41,7 @@ public class Monitor3rdPerson : Interactable
             base.Interact();
             _scene.Begin();
             _breatheAudio.Stop();
+            GameManager.instance.PlayInteractSound();
         }
     }
 }

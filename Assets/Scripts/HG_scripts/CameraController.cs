@@ -171,19 +171,31 @@ public class CameraController : MonoBehaviour
             {
                 if (PlayerController.instance._moveMag <= 0.1f)
                 {
-                    _playerBodyAnim.SetBool("turning", true);
+                    if(_playerLegsAnim != null)
+                    {
                     _playerLegsAnim.SetBool("turning", true);
+
+                    }
+                    _playerBodyAnim.SetBool("turning", true);
                 }
                 else
                 {
-                    _playerBodyAnim.SetBool("turning", false);
+                    if(_playerLegsAnim != null)
+                    {
                     _playerLegsAnim.SetBool("turning", false);
+
+                    }
+                    _playerBodyAnim.SetBool("turning", false);
                 }
             }
             else
             {
-                _playerBodyAnim.SetBool("turning", false);
+                if(_playerLegsAnim != null)
+                {
                 _playerLegsAnim.SetBool("turning", false);
+
+                }
+                _playerBodyAnim.SetBool("turning", false);
             }
         }
 

@@ -52,6 +52,7 @@ public class CamChangeTrigger : MonoBehaviour
 
     public virtual void CallGeneric()
     {
+   
 
         if (_interact)
         {
@@ -59,6 +60,7 @@ public class CamChangeTrigger : MonoBehaviour
             {
                 Debug.Log("FUCKING INTERACTED YOU TSUPIP FUCK");
                 _interactable.Interact();
+                GameManager.instance.PlayInteractSound();
                 _interacted = true;
             }
             else

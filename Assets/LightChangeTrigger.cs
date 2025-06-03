@@ -27,6 +27,7 @@ public class LightChangeTrigger : MonoBehaviour
                         
                     _interact.Interact();
                     _interacted = true;
+                    GameManager.instance.PlayInteractSound();
 
                     }    
                 }

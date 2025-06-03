@@ -96,6 +96,7 @@ public class FirstToThirdTransition : MonoBehaviour
         if (_interact)
         {
             _interactable.Interact();
+            GameManager.instance.PlayInteractSound();
         }
 
         if (_teleportPlayer && _player != null)

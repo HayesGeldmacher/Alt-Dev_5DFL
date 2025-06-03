@@ -56,11 +56,15 @@ public class GameManager : MonoBehaviour
     [SerializeField] private AudioSource _staticAudio;
     [SerializeField] private AudioSource _darkAmbience;
 
+    [SerializeField] private AudioSource _interactSound;
+
     [SerializeField] private TextGameManager _textGameManager;
     public bool _inTextGame = false;
 
     [SerializeField] private TitleScreenSpriteFollowMouse _pauseCursor;
     [SerializeField] private TitleScreenSpriteFollowMouse _textCursor;
+
+   
 
 
     private void Start()
@@ -243,5 +247,12 @@ public class GameManager : MonoBehaviour
         {
             _textGameManager.UnPause();
         }
+    }
+
+
+    public void PlayInteractSound()
+    {
+        _interactSound.pitch = Random.Range(0.8f, 1.2f);
+        _interactSound.Play();
     }
 }
