@@ -31,11 +31,11 @@ public class CutsceneManager : MonoBehaviour
     [SerializeField] private bool _returnToMenu = false;
     private bool _doorAppeared = false;
 
+    public bool _endEarly = false;
 
     [Header("PeanutSequence")]
     [SerializeField] private float _peanutWatchTime;
     [SerializeField] private Animator _blackScreen;
-
     // Start is called before the first frame update
    public void Begin()
     {
@@ -76,9 +76,9 @@ public class CutsceneManager : MonoBehaviour
         _blackScreen.SetTrigger("black");
         yield return new WaitForSeconds(1.5f);
         _screenAnim.SetTrigger("black");
-        yield return new WaitForSeconds(1.5f);
-        _screenAnim.SetTrigger("start");
         _infomercialSound.Play();
+        yield return new WaitForSeconds(0.5f);
+        _screenAnim.SetTrigger("start");
         yield return new WaitForSeconds(_peanutWatchTime);
         EndPeanutSequence();
         
@@ -87,14 +87,12 @@ public class CutsceneManager : MonoBehaviour
     private void EndPeanutSequence()
     {
         _screenAnim.SetTrigger("end");
-        StartCoroutine(StartRoadTripSequence());
+       StartCoroutine(StartRoadTripSequence());
     }
 
     private IEnumerator StartRoadTripSequence()
     {
-        yield return new WaitForSeconds(1f);
-        _screenAnim.SetTrigger("fade");
-        yield return new WaitForSeconds(5f);
+         yield return new WaitForSeconds(5f);
         _vidAnim.SetTrigger("road");
         _vid.Play();
         _carAmbience.Play();
@@ -152,11 +150,22 @@ public class CutsceneManager : MonoBehaviour
     private IEnumerator DoorIntro()
     {
         yield return new WaitForSeconds(2);
-        _vidAnim.SetTrigger("door");
+        if (_endEarly)
+        {
+            yield return new WaitForSeconds(3f);
+            SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
+        }
+        else
+        {
+
+            _vidAnim.SetTrigger("door");
        yield return new WaitForSeconds(1f);
         
         _doorAppeared = true;
         _clickAnim.SetTrigger("appear");
+
+        }
+
     }
 
 
