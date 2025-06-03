@@ -73,8 +73,8 @@ public class ScreenshotHandler : MonoBehaviour
     {
        
         if (_manager._isPaused) return;
-        if (_zoom._isZooming) return;
-        if (_camControl._interacting) return;
+        if ((_zoom != null) && _zoom._isZooming ) return;
+        if ((_camControl != null) && _camControl._interacting) return;
 
         if (Input.GetButtonDown("picture"))
         {

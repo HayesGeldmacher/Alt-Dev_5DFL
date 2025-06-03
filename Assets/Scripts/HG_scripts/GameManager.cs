@@ -164,7 +164,10 @@ public class GameManager : MonoBehaviour
     public void Pause()
     {
         _isPaused = true;
+        if(_controller != null)
+        {
         _controller.enabled = false;
+        }
         Time.timeScale = 0f;
 
         if (!_inTextGame)
@@ -210,7 +213,11 @@ public class GameManager : MonoBehaviour
     {
         _isPaused = false;
         Time.timeScale = 1f;
-        _controller.enabled = true;
+
+        if(_controller != null)
+        {
+            _controller.enabled = true;
+        }
 
         Cursor.lockState = CursorLockMode.Confined;
         Cursor.visible = false;
