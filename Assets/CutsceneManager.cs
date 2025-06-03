@@ -49,6 +49,15 @@ public class CutsceneManager : MonoBehaviour
         StartCoroutine(StartPeanutSequence());
     }
 
+    public void BeginDoor()
+    {
+        Cursor.visible = false;
+        Cursor.lockState = CursorLockMode.Locked;
+        _startingVol = _staticAudio.volume;
+        _currentVol = _startingVol;
+        StartCoroutine(DoorIntro());
+    }
+
     // Update is called once per frame
     void Update()
     {
@@ -149,9 +158,9 @@ public class CutsceneManager : MonoBehaviour
 
     private IEnumerator DoorIntro()
     {
-        yield return new WaitForSeconds(2);
         if (_endEarly)
         {
+            yield return new WaitForSeconds(2);
             yield return new WaitForSeconds(3f);
             SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
         }

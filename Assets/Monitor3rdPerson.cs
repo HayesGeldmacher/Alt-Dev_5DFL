@@ -11,6 +11,7 @@ public class Monitor3rdPerson : Interactable
     [SerializeField] private PlayerController3rdPerson _player3rd;
     [SerializeField] private SingleMosh _mosh;
     [SerializeField] private AudioSource _breatheAudio;
+    [SerializeField] private GameObject _UICam;
 
     private void Update()
     {
@@ -38,10 +39,10 @@ public class Monitor3rdPerson : Interactable
             _mosh.CallGlitch();
             _player3rd._frozen = true;
             _started = true;
-            base.Interact();
-            _scene.Begin();
+            _scene.BeginDoor();
             _breatheAudio.Stop();
             GameManager.instance.PlayInteractSound();
+            _UICam.SetActive(true);
         }
     }
 }

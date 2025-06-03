@@ -187,10 +187,15 @@ public class GameManager : MonoBehaviour
             _textCursor.EnableCursor(false);
         }
 
-        if (_controller._hasCamera)
+        
+        if(_controller != null)
         {
-        _pausedAnimator.SetBool("paused", true);
-        _pausedText.text = "PAUSED";
+            if(_controller._hasCamera)
+            {
+            _pausedAnimator.SetBool("paused", true);
+            _pausedText.text = "PAUSED";
+
+            }
 
         }
 
@@ -229,16 +234,22 @@ public class GameManager : MonoBehaviour
 
         }
 
-        if(_textCursor != null && _inTextGame)
+        if(_textCursor != null)
         {
-            _textCursor.EnableCursor(true);
+            if(_inTextGame)
+            {
+                _textCursor.EnableCursor(true);
+            }
         }
 
-
-        if (_controller._hasCamera)
+        if(_controller != null)
         {
-            _pausedAnimator.SetBool("paused", false);
-            _pausedText.text = "REC";
+            if (_controller._hasCamera)
+            {
+                _pausedAnimator.SetBool("paused", false);
+                _pausedText.text = "REC";
+
+            }
 
         }
 
