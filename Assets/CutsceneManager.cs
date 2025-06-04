@@ -33,7 +33,7 @@ public class CutsceneManager : MonoBehaviour
     private bool _doorAppeared = false;
 
     public bool _endEarly = false;
-
+    public Monitor3rdPerson _monitorPerson;
     [Header("PeanutSequence")]
     [SerializeField] private float _peanutWatchTime;
     [SerializeField] private Animator _blackScreen;
@@ -136,6 +136,10 @@ public class CutsceneManager : MonoBehaviour
     }
     private IEnumerator FinalSequence()
     {
+        if(_monitorPerson != null)
+        {
+            _monitorPerson._lerpVolumeStatic = true;
+        }
         yield return new WaitForSeconds(1.5f);
         _screenAnim.SetTrigger("end");
     }

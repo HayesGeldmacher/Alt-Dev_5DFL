@@ -7,6 +7,7 @@ public class Monitor3rdPerson : Interactable
 {
     private bool _canEnter = true;
     [SerializeField] private CutsceneManager _scene;
+    [SerializeField] private StartDataMosh _startMosh;
     private bool _started = false;
     [SerializeField] private PlayerController _player3rd;
     [SerializeField] private StartDataMosh _mosh;
@@ -17,9 +18,32 @@ public class Monitor3rdPerson : Interactable
     [SerializeField] private Animator _blackoutAnim;
     [SerializeField] private GameObject _dialogueBox;
     [SerializeField] private AudioSource _staticAudio;
+
+    public bool _lerpVolume = false;
+    public bool _lerpVolumeStatic = false;
+    public float _lerpSpeed = 0.1f;
+
     private void Update()
     {
         base.Update();
+        if (_lerpVolume)
+        {
+            _breatheAudio.volume -= _lerpSpeed * Time.deltaTime;
+            if(_breatheAudio.volume <= 0)
+            {
+                _lerpVolume = false;
+            }
+        }
+
+        if (_lerpVolumeStatic)
+        {
+            _staticAudio.volume -= _lerpSpeed * Time.deltaTime;
+            if (_staticAudio.volume <= 0)
+            {
+                _lerpVolumeStatic = false;
+            }
+        }
+
     }
 
 
@@ -40,8 +64,6 @@ public class Monitor3rdPerson : Interactable
 
         if (!_started)
         {
-            _mosh.CallGlitch();
-            _mosh.CallGlitch();
             GameManager.instance.PlayInteractSound();
             _player3rd._frozen = true;
             _started = true;
@@ -52,19 +74,20 @@ public class Monitor3rdPerson : Interactable
     private IEnumerator StartDream()
     {
         _blackoutAnim.SetTrigger("long");
-        _mosh.CallGlitch();
         yield return new WaitForSeconds(0.2f);
-            _mosh.CallGlitch();
         _dialogueBox.SetActive(false);
-        yield return new WaitForSeconds(1f);
+        yield return new WaitForSeconds(1.5f);
         _blackoutAnim.SetTrigger("out");
         _interstitialCanvas.SetActive(true);
         _camOverlay.SetActive(false);
-            _breatheAudio.Stop();
+        _lerpVolume = true;
         _staticAudio.Play();
         _UICam.SetActive(true);
         yield return new WaitForSeconds(1f);
             _mosh.CallGlitch();
         _scene.BeginDoor();
+
     }
+
+    
 }
