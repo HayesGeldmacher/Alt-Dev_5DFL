@@ -32,7 +32,7 @@ public class FirstToThirdTransition : MonoBehaviour
     [SerializeField] protected private int _camNum;
 
     [SerializeField] private GameObject _camOverlayHUD;
-
+    public bool _playBreath = false;
     public bool _eliminateAudioSource = false;
     [SerializeField] private AudioSource _breatheAudio;
     [SerializeField] private AudioSource _crowdAudio;
@@ -78,7 +78,11 @@ public class FirstToThirdTransition : MonoBehaviour
             _camOverlayHUD.SetActive(false);
             _HUDCanvas.worldCamera = _thirdHUDCam;
             _camChange.ChangePos(_camNum);
-            _breatheAudio.Play();
+        }
+        if (_playBreath)
+        {
+        _breatheAudio.Play();
+
         }
 
         _mosh.CallGlitch();

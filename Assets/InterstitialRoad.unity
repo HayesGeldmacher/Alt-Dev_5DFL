@@ -120,7 +120,7 @@ NavMeshSettings:
     debug:
       m_Flags: 0
   m_NavMeshData: {fileID: 0}
---- !u!21 &54284591
+--- !u!21 &1840082629
 Material:
   serializedVersion: 8
   m_ObjectHideFlags: 0
@@ -149,7 +149,7 @@ Material:
     - hardScan: 0
     - maskDark: 0.37
     - maskLight: 0.88
-    - resScale: 1
+    - resScale: 2
     m_Colors:
     - warp: {r: 0.03125, g: 0.04166, b: 0, a: 0}
   m_BuildTextureStacks: []
@@ -165,11 +165,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8b5c4a5641fc62a4197389133101a785, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  material: {fileID: 54284591}
+  material: {fileID: 1840082629}
   _hardness: 0
   _pixHardness: -1.63
   _displayWarp: {x: 0.03125, y: 0.04166, z: 0, w: 0}
-  _resolution: 1
+  _resolution: 2
   _maskDark: 0.37
   _maskLight: 0.88
 --- !u!114 &1907057693
@@ -197,7 +197,7 @@ GameObject:
   - component: {fileID: 2120445299}
   - component: {fileID: 2120445301}
   - component: {fileID: 2120445300}
-  m_Layer: 5
+  m_Layer: 0
   m_Name: MonitorBackGround
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -677,7 +677,7 @@ AudioSource:
   m_Enabled: 1
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 0}
-  m_audioClip: {fileID: 8300000, guid: 89bed76c1ef078c43ba0ff3bf67acd8b, type: 3}
+  m_audioClip: {fileID: 8300000, guid: 5eeb65d15d1362b4d9b7f456972e0c0e, type: 3}
   m_PlayOnAwake: 0
   m_Volume: 1
   m_Pitch: 1
@@ -1253,6 +1253,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _screenAnim: {fileID: 863392922043146074}
+  _screenAnim2: {fileID: 0}
   _vidAnim: {fileID: 176117115100410910}
   _vid: {fileID: 2574249986496622808}
   _carAmbience: {fileID: 8236913330308472311}
@@ -1300,7 +1301,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_Color: {r: 1, g: 1, b: 1, a: 0}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
@@ -1451,7 +1452,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Texture: {fileID: 2800000, guid: 6f7ee513ee9d1c247808fe24ebf231c7, type: 3}
+  m_Texture: {fileID: 2800000, guid: f57d3cb86995539468e671c000c1c2cb, type: 3}
   m_UVRect:
     serializedVersion: 2
     x: 0

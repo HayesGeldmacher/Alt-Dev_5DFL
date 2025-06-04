@@ -9,6 +9,7 @@ public class CutsceneManager : MonoBehaviour
 {
 
     [SerializeField] private Animator _screenAnim;
+    [SerializeField] private Animator _screenAnim2;
     [SerializeField] private Animator _vidAnim;
 
     [SerializeField] private VideoPlayer _vid;
@@ -40,8 +41,8 @@ public class CutsceneManager : MonoBehaviour
    public void Begin()
     {
 
-        
-        
+
+    
         Cursor.visible = false;
         Cursor.lockState = CursorLockMode.Locked;
         _startingVol = _staticAudio.volume;
@@ -84,9 +85,17 @@ public class CutsceneManager : MonoBehaviour
     {
         _blackScreen.SetTrigger("black");
         yield return new WaitForSeconds(1.5f);
+        if(_screenAnim2 != null)
+        {
+            _screenAnim2.SetTrigger("black");
+        }
         _screenAnim.SetTrigger("black");
         _infomercialSound.Play();
         yield return new WaitForSeconds(0.5f);
+        if(_screenAnim2 != null)
+        {
+            _screenAnim2.SetTrigger("start");
+        }
         _screenAnim.SetTrigger("start");
         yield return new WaitForSeconds(_peanutWatchTime);
         EndPeanutSequence();
@@ -123,6 +132,12 @@ public class CutsceneManager : MonoBehaviour
         _clickAnim.SetTrigger("click");
         _doorSound.Play();
         _interactSound.Play();
+        StartCoroutine(FinalSequence());
+    }
+    private IEnumerator FinalSequence()
+    {
+        yield return new WaitForSeconds(1.5f);
+        _screenAnim.SetTrigger("end");
     }
 
     public void LoadNextScene()
@@ -134,8 +149,14 @@ public class CutsceneManager : MonoBehaviour
         else
         {
 
-        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
+            StartCoroutine(NextSceneWait());
         }
+    }
+
+    private IEnumerator NextSceneWait()
+    {
+        yield return new WaitForSeconds(2f);
+        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
     }
 
     public void LoadMainMenu()
@@ -166,9 +187,9 @@ public class CutsceneManager : MonoBehaviour
         }
         else
         {
-
+            _screenAnim.SetTrigger("black");
             _vidAnim.SetTrigger("door");
-       yield return new WaitForSeconds(1f);
+        yield return new WaitForSeconds(1f);
         
         _doorAppeared = true;
         _clickAnim.SetTrigger("appear");
