@@ -13,8 +13,10 @@ public class TripodInteract : Interactable
     [SerializeField] private GameObject[] _appearObjects;
 
     [SerializeField] private CameraController _camController;
-
- 
+    [SerializeField] private Transform _playerBody;
+    [SerializeField] private CharacterController _charController;
+    [SerializeField] private Transform _newSpawnPoint;
+   
 
     private bool _startedEnd = false;
     private bool _playedAnimatiton = false;
@@ -92,6 +94,10 @@ public class TripodInteract : Interactable
 
     private IEnumerator AnimEnd()
     {
+        //teleport the player\
+        _charController.enabled = false;
+        _playerBody.position = _newSpawnPoint.position;
+        _charController.enabled = true;
         yield return new WaitForSeconds(1f);
         _camController._frozen = false;
         PlayerController.instance._frozen = false;

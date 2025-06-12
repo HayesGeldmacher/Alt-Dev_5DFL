@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Threading.Tasks;
 using UnityEngine;
 
 public class NightTVItems : ShootTrigger
@@ -11,6 +12,12 @@ public class NightTVItems : ShootTrigger
 
     [SerializeField] private List<GameObject> _disappearItems = new List<GameObject>();
     [SerializeField] private List<GameObject> _appearItems = new List<GameObject>();
+
+    public bool _teleport = false;
+    [SerializeField] private Transform _playerBody;
+    [SerializeField] private CharacterController _charController;
+    [SerializeField] private Transform _newSpawnPosition;
+
     void Start()
     {
         
@@ -24,8 +31,18 @@ public class NightTVItems : ShootTrigger
 
     public override void Interact()
     {
-        _manager.NextItem();
-        _manager.CollectEvidence();
+        if (_teleport)
+        {
+            if(_playerBody != null)
+            {
+                if(_charController != null)
+                {
+                    _charController.enabled = false;
+                    _playerBody.position = _newSpawnPosition.position;
+                    _charController.enabled = true;
+                }
+            }
+        }
 
         if (_appearItem)
         {
@@ -49,5 +66,8 @@ public class NightTVItems : ShootTrigger
                 }
             }
         }
+
+        _manager.NextItem();
+        _manager.CollectEvidence();
     }
 }
