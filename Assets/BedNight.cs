@@ -24,8 +24,10 @@ public class BedNight : Interactable
     [SerializeField] private Animator _swivel;
 
     [SerializeField] private MonitorWatch _watch;
-    
 
+
+    [SerializeField] private GameObject _doorInteract;
+    [SerializeField] private GameObject _televisionOld;
 
 
     private void Start()
@@ -96,6 +98,8 @@ public class BedNight : Interactable
          _hud.SetActive(false);
         _cursor.SetActive(false);
         _monster.SetActive(true);
+        _doorInteract.SetActive(false);
+        _televisionOld.SetActive(false);
         _blackAnim.SetTrigger("blinking");
         _swivel.SetTrigger("swivel");
         yield return new WaitForSeconds(8);
