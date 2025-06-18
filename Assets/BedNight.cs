@@ -60,25 +60,17 @@ public class BedNight : Interactable
     public override void Interact()
     {
 
-           _startedEnd = true;
-          StartCoroutine(CompleteLevel());
         if (!_startedEnd)
         {
             if (!_door._isOpen)
             {
-                if (_watch._activated)
-                {
-                }
-                else
-                {
-                   // base._dialogue._sentences[0] = "Watching something on my computer might help me sleep...";
-                    //base.Interact();
-                }
+               base._dialogue._sentences[0] = "I can't see the TV with the door closed...";
+               base.Interact();
             }
             else
             {
-              //  base._dialogue._sentences[0] = "I can't go to sleep with the door open...";
-              //  base.Interact();
+               _startedEnd = true;
+              StartCoroutine(CompleteLevel());
             }
         }
 
