@@ -25,11 +25,15 @@ public class TelevisionRemoteChange : MonoBehaviour
     public Animator _camAnim;
     public Animator _fadeAnim;
 
+    private AudioSource _clickSound;
+
+    public AudioSource _blipSound;
+    public AudioClip[] _blipClips;
 
     // Start is called before the first frame update
     void Start()
     {
-        
+        _clickSound = transform.GetComponent<AudioSource>();
     }
 
     // Update is called once per frame
@@ -40,8 +44,11 @@ public class TelevisionRemoteChange : MonoBehaviour
             if (_canClick)
             {
                 _canClick = false;
+                _clickSound.pitch = Random.Range(0.85f, 1.15f);
+                _clickSound.Play();
                 _currentCoolDown = _clickCoolDown;
                 ChannelChange();
+                PlayBlip();
                 Debug.Log("CHangled the channel!");
             }
         }
@@ -54,6 +61,13 @@ public class TelevisionRemoteChange : MonoBehaviour
                 _canClick = true;
             }
         }
+    }
+
+    private void PlayBlip()
+    {
+        _blipSound.clip = _blipClips[Random.Range(0, _blipClips.Length)];
+        _blipSound.pitch = Random.Range(0.85f, 1.15f);
+        _blipSound.Play();
     }
 
     private void ChannelChange()
@@ -89,10 +103,13 @@ public class TelevisionRemoteChange : MonoBehaviour
         //Cam - swivel, HG_ANimator_Camera
         //black fade in
         _fadeAnim.SetTrigger("long");
-        yield return new WaitForSeconds(2f);
+        yield return new WaitForSeconds(2.5f);
+        _camAnim.enabled = true;
+        _camAnim.SetTrigger("sleep");
+        yield return new WaitForSeconds(1);
         _fadeAnim.SetTrigger("blinking");
+        yield return new WaitForSeconds(5f);
         EndScene();
-        yield return new WaitForSeconds(2f);
 
     }
 
