@@ -30,6 +30,11 @@ public class TelevisionRemoteChange : MonoBehaviour
     public AudioSource _blipSound;
     public AudioClip[] _blipClips;
 
+    public AudioSource _channelSound;
+
+    private bool _tooSleepy = false;
+
+    [SerializeField] private AudioFadeOut _audioFade;
     // Start is called before the first frame update
     void Start()
     {
@@ -41,7 +46,7 @@ public class TelevisionRemoteChange : MonoBehaviour
     {
         if (Input.GetButtonDown("Interact"))
         {
-            if (_canClick)
+            if (_canClick && !_tooSleepy)
             {
                 _canClick = false;
                 _clickSound.pitch = Random.Range(0.85f, 1.15f);
@@ -87,9 +92,13 @@ public class TelevisionRemoteChange : MonoBehaviour
             _currentChannel = 0;
         }
 
+        Channel newChannel = _channels[_currentChannel];
+
         _currentScreen.SetActive(false);
-        _currentScreen = _channels[_currentChannel].screen;
+        _currentScreen =newChannel.screen;
         _currentScreen.SetActive(true);
+        _channelSound.clip = newChannel.audio;
+        _channelSound.Play();
 
     }
 
@@ -102,13 +111,15 @@ public class TelevisionRemoteChange : MonoBehaviour
 
         //Cam - swivel, HG_ANimator_Camera
         //black fade in
+        _audioFade.StartFading();
         _fadeAnim.SetTrigger("long");
         yield return new WaitForSeconds(2f);
         _camAnim.enabled = true;
         _camAnim.SetTrigger("sleep");
+        _tooSleepy = true;
         yield return new WaitForSeconds(1);
         _fadeAnim.SetTrigger("blinking");
-        yield return new WaitForSeconds(5f);
+        yield return new WaitForSeconds(10f);
         EndScene();
 
     }

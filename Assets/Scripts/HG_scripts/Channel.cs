@@ -7,7 +7,7 @@ using UnityEngine;
 public class Channel
 {
     public bool playSound;
-    public AudioSource audio;
+    public AudioClip audio;
 
     public GameObject screen;
 
