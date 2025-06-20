@@ -76,6 +76,15 @@ public class BedDayTime : Interactable
 
         if (_canStartNextDay)
         {
+            
+            if (!_startedEnd)
+            {
+                Debug.Log("Interacted!");
+                StartCoroutine(CompleteLevel());
+                _startedEnd = true;
+            }
+            
+            
             if (_door != null && _door._isOpen)
             {
 
@@ -93,12 +102,6 @@ public class BedDayTime : Interactable
                 else
                 {
 
-                    if (!_startedEnd)
-                    {
-                        Debug.Log("Interacted!");
-                        StartCoroutine(CompleteLevel());
-                        _startedEnd = true;
-                    }
                 }
 
 

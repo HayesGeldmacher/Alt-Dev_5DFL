@@ -62,6 +62,9 @@ public class PhoneDaytime : Interactable
 
     [SerializeField] private AudioSource _neutralTone;
 
+    public GameObject[] _disappearObjects;
+    public GameObject[] _appearObjects;
+
     private void Start()
     {
         //base.Start();
@@ -170,7 +173,7 @@ public class PhoneDaytime : Interactable
         {
 
             diaNum += 1;
-            if(diaNum >= 6)
+            if(diaNum >= 5)
             {
                 EndDialogue();
                 diaNum = 0;
@@ -246,6 +249,23 @@ public class PhoneDaytime : Interactable
 
     private IEnumerator Darkness()
     {
+
+        
+        foreach(GameObject appear in _appearObjects)
+        {
+            if (appear != null)
+            {
+                appear.SetActive(true);
+            }
+        }
+
+        foreach (GameObject disappear in _disappearObjects)
+        {
+            if (disappear != null)
+            {
+                disappear.SetActive(false);
+            }
+        }
 
         _monitorMorning.SetActive(false);
         _monitorNight.SetActive(true);
