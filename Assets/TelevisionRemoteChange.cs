@@ -103,7 +103,7 @@ public class TelevisionRemoteChange : MonoBehaviour
         //Cam - swivel, HG_ANimator_Camera
         //black fade in
         _fadeAnim.SetTrigger("long");
-        yield return new WaitForSeconds(2.5f);
+        yield return new WaitForSeconds(2f);
         _camAnim.enabled = true;
         _camAnim.SetTrigger("sleep");
         yield return new WaitForSeconds(1);
