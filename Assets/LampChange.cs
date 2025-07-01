@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class LampChange : MonoBehaviour
 {
@@ -18,6 +19,12 @@ public class LampChange : MonoBehaviour
     public AudioSource _lampClick;
     public Animator _lampAnim;
 
+    public int _maxIterations = 8;
+    public bool _tooSleepy = false;
+
+    [Header("End Fields")]
+    public CRT _crt;
+    
 
     // Start is called before the first frame update
     void Start()
@@ -29,21 +36,25 @@ public class LampChange : MonoBehaviour
     void Update()
     {
 
-        if (_canClick)
+        if (!_tooSleepy)
         {
-            if (Input.GetButtonDown("Interact"))
+            if (_canClick)
             {
-                StartCoroutine(LampSwitch(true));
+                if (Input.GetButtonDown("Interact"))
+                {
+                    StartCoroutine(LampSwitch(true));
+                }
+
+            }
+            else
+            {
+                _currentClickCoolDown -= Time.deltaTime;
+                if(_currentClickCoolDown <= 0)
+                {
+                    _canClick = true;
+                }
             }
 
-        }
-        else
-        {
-            _currentClickCoolDown -= Time.deltaTime;
-            if(_currentClickCoolDown <= 0)
-            {
-                _canClick = true;
-            }
         }
         
     }
@@ -53,7 +64,12 @@ public class LampChange : MonoBehaviour
         _lampAnim.SetTrigger("pull");
         yield return new WaitForSeconds(0.25f);
         _lampClick.Play();
-        
+
+        if (!on)
+        {
+            _lamp.Interact();
+        }
+
         _canClick = false;
         _currentClickCoolDown = _clickCoolDown;
 
@@ -66,17 +82,27 @@ public class LampChange : MonoBehaviour
         _currentLamp = _iterations[_currentIteration];
         _currentLamp.Activate(true);
         
-        if (_currentLamp._playBreathingSound)
-        {
-            _breathAudio.Play();
-        }
-        else if (_currentLamp._stopBreathingSound)
-        {
-            _breathAudio.Stop();
-        }
 
+        if (on)
+        {
             _lamp.Interact();
+        }  
 
         _currentIteration++;
+        on = !on;
+
+        if(_currentIteration >= _maxIterations)
+        {
+            StartCoroutine(EndSequence());
+        }
+    }
+
+    private IEnumerator EndSequence()
+    {
+        _tooSleepy = true;
+        _crt.StartBreathing();
+        yield return new WaitForSeconds(1f);
+        
+        Debug.Log("Sequence Ended!");
     }
 }

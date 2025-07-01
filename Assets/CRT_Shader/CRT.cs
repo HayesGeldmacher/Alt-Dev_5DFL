@@ -10,7 +10,22 @@ public class CRT : MonoBehaviour
     [SerializeField] private float _resolution = 4;
     [SerializeField] private float _maskDark;
     [SerializeField] private float _maskLight;
+    
 
+    [Header("Breathing Anim")]
+    public bool _breathing = false;
+    public float _breathUpSpeed;
+    public float _breathDownSpeed;
+    public bool _goingUp;
+    public float _maxRes;
+    public float _minRes;
+    public float _currentWaitTime;
+    public float _waitTime;
+    public bool _waiting = false;
+
+    [Header("Stop Fields")]
+    private bool _shouldStop = false;
+    public int _endRes = 2;
 
     //default values range!!
 
@@ -45,5 +60,57 @@ public class CRT : MonoBehaviour
         material.SetFloat("maskLight", (float)_maskLight);
         material.SetTexture("_MainTex", source);
         Graphics.Blit(source, destination, material);
+    }
+
+    private void Update()
+    {
+        if (_breathing)
+        {
+            if(_shouldStop && (_resolution == _endRes))
+            {
+                _breathing = false;
+            }
+
+            if (_waiting)
+            {
+                
+                _currentWaitTime -= Time.deltaTime;
+                if(_currentWaitTime <= 0)
+                {
+                    _waiting = false;
+                }
+            }
+            else if (_goingUp)
+            {
+                _resolution += (Time.deltaTime * _breathUpSpeed);
+                if(_resolution > _maxRes)
+                {
+                    _waiting = true;
+                    _currentWaitTime = _waitTime;
+                    _goingUp = false;
+                }
+
+            }
+            else
+            {
+                _resolution -= (Time.deltaTime * _breathDownSpeed);
+                if(_resolution < _minRes)
+                {
+                    _waiting = false;
+                    _currentWaitTime = _waitTime;
+                    _goingUp = true;
+                }
+            }
+        }
+    }
+
+    public void EndBreathing()
+    {
+        _shouldStop = true;
+    }
+
+    public void StartBreathing()
+    {
+        _breathing = true;
     }
 }
