@@ -24,6 +24,8 @@ public class LampChange : MonoBehaviour
 
     [Header("End Fields")]
     public CRT _crt;
+    public Animator _camAnim;
+    public Animator _blackAnim;
     
 
     // Start is called before the first frame update
@@ -61,8 +63,11 @@ public class LampChange : MonoBehaviour
 
     private IEnumerator LampSwitch(bool turnOn)
     {
+        _canClick = false;
+        _currentClickCoolDown = _clickCoolDown;
         _lampAnim.SetTrigger("pull");
         yield return new WaitForSeconds(0.25f);
+        _currentClickCoolDown = _clickCoolDown;
         _lampClick.Play();
 
         if (!on)
@@ -70,8 +75,6 @@ public class LampChange : MonoBehaviour
             _lamp.Interact();
         }
 
-        _canClick = false;
-        _currentClickCoolDown = _clickCoolDown;
 
         if(_currentLamp != null)
         {
@@ -100,9 +103,16 @@ public class LampChange : MonoBehaviour
     private IEnumerator EndSequence()
     {
         _tooSleepy = true;
+        yield return new WaitForSeconds(2f);
+        _camAnim.SetTrigger("sleep");
+        yield return new WaitForSeconds(1.5f);
         _crt.StartBreathing();
-        yield return new WaitForSeconds(1f);
-        
+        yield return new WaitForSeconds(2.5f);
+        _blackAnim.SetTrigger("long");
+        yield return new WaitForSeconds(4f);
+        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
+
+
         Debug.Log("Sequence Ended!");
     }
 }
