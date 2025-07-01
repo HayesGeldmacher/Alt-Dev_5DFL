@@ -113,10 +113,10 @@ public class TelevisionRemoteChange : MonoBehaviour
         //black fade in
         _audioFade.StartFading();
         _fadeAnim.SetTrigger("long");
+        _tooSleepy = true;
         yield return new WaitForSeconds(2f);
         _camAnim.enabled = true;
         _camAnim.SetTrigger("sleep");
-        _tooSleepy = true;
         yield return new WaitForSeconds(1);
         _fadeAnim.SetTrigger("blinking");
         yield return new WaitForSeconds(10f);
