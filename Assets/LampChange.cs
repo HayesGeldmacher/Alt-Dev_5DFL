@@ -9,9 +9,15 @@ public class LampChange : MonoBehaviour
     private float _currentClickCoolDown;
     public bool _canClick;
     public lampMini _lamp;
-    public int _currentIteration;
     bool on = true;
-    
+
+    public int _currentIteration;
+    public LampIteration[] _iterations;
+    public AudioSource _breathAudio;
+    public LampIteration _currentLamp;
+    public AudioSource _lampClick;
+    public Animator _lampAnim;
+
 
     // Start is called before the first frame update
     void Start()
@@ -27,7 +33,7 @@ public class LampChange : MonoBehaviour
         {
             if (Input.GetButtonDown("Interact"))
             {
-                LampSwitch(true);
+                StartCoroutine(LampSwitch(true));
             }
 
         }
@@ -42,16 +48,35 @@ public class LampChange : MonoBehaviour
         
     }
 
-    private void LampSwitch(bool turnOn)
+    private IEnumerator LampSwitch(bool turnOn)
     {
+        _lampAnim.SetTrigger("pull");
+        yield return new WaitForSeconds(0.25f);
+        _lampClick.Play();
+        
         _canClick = false;
         _currentClickCoolDown = _clickCoolDown;
 
-        if (turnOn)
+        if(_currentLamp != null)
         {
+            _currentLamp.Activate(false);
 
         }
 
-        _lamp.Interact();
+        _currentLamp = _iterations[_currentIteration];
+        _currentLamp.Activate(true);
+        
+        if (_currentLamp._playBreathingSound)
+        {
+            _breathAudio.Play();
+        }
+        else if (_currentLamp._stopBreathingSound)
+        {
+            _breathAudio.Stop();
+        }
+
+            _lamp.Interact();
+
+        _currentIteration++;
     }
 }
