@@ -20,7 +20,7 @@ RenderSettings:
   m_FogDensity: 0.01
   m_LinearFogStart: 0
   m_LinearFogEnd: 300
-  m_AmbientSkyColor: {r: 0.031817377, g: 0.04209683, b: 0.103773594, a: 1}
+  m_AmbientSkyColor: {r: 0.020692414, g: 0.020692414, b: 0.047169805, a: 1}
   m_AmbientEquatorColor: {r: 1, g: 0.86226416, b: 0.9159262, a: 1}
   m_AmbientGroundColor: {r: 0.9716981, g: 0.9270856, b: 0.83786047, a: 1}
   m_AmbientIntensity: 0
@@ -3210,7 +3210,7 @@ Mesh:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: pb_Mesh825582
+  m_Name: pb_Mesh87460
   serializedVersion: 11
   m_SubMeshes:
   - serializedVersion: 2
@@ -50366,7 +50366,7 @@ Mesh:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: pb_Mesh826868
+  m_Name: pb_Mesh88738
   serializedVersion: 11
   m_SubMeshes:
   - serializedVersion: 2
@@ -58646,7 +58646,7 @@ Mesh:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: pb_Mesh828692
+  m_Name: pb_Mesh90542
   serializedVersion: 11
   m_SubMeshes:
   - serializedVersion: 2
@@ -140919,7 +140919,7 @@ Mesh:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: pb_Mesh825508
+  m_Name: pb_Mesh87386
   serializedVersion: 11
   m_SubMeshes:
   - serializedVersion: 2
@@ -175854,7 +175854,7 @@ Mesh:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: pb_Mesh827230
+  m_Name: pb_Mesh89090
   serializedVersion: 11
   m_SubMeshes:
   - serializedVersion: 2
@@ -176277,7 +176277,7 @@ Mesh:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: pb_Mesh827062
+  m_Name: pb_Mesh88922
   serializedVersion: 11
   m_SubMeshes:
   - serializedVersion: 2
@@ -177234,7 +177234,7 @@ Mesh:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: pb_Mesh827746
+  m_Name: pb_Mesh89596
   serializedVersion: 11
   m_SubMeshes:
   - serializedVersion: 2
@@ -212433,7 +212433,7 @@ Mesh:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: pb_Mesh827308
+  m_Name: pb_Mesh89168
   serializedVersion: 11
   m_SubMeshes:
   - serializedVersion: 2
@@ -212991,7 +212991,7 @@ Mesh:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: pb_Mesh826696
+  m_Name: pb_Mesh88566
   serializedVersion: 11
   m_SubMeshes:
   - serializedVersion: 2
@@ -213475,7 +213475,7 @@ PrefabInstance:
         type: 3}
       propertyPath: material
       value: 
-      objectReference: {fileID: 1919230723}
+      objectReference: {fileID: 1251502945}
     - target: {fileID: 6343557861002900910, guid: 68f86a15c60cc5844a4a1abc828baf19,
         type: 3}
       propertyPath: m_Enabled
@@ -213488,8 +213488,13 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6343557861002900910, guid: 68f86a15c60cc5844a4a1abc828baf19,
         type: 3}
+      propertyPath: _maskLight
+      value: 0.06
+      objectReference: {fileID: 0}
+    - target: {fileID: 6343557861002900910, guid: 68f86a15c60cc5844a4a1abc828baf19,
+        type: 3}
       propertyPath: _resolution
-      value: 1
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 6343557861002900910, guid: 68f86a15c60cc5844a4a1abc828baf19,
         type: 3}
@@ -219354,6 +219359,39 @@ MonoBehaviour:
   _playerBody: {fileID: 0}
   _charController: {fileID: 0}
   _newSpawnPosition: {fileID: 0}
+--- !u!21 &1030719773
+Material:
+  serializedVersion: 8
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_Name: Hidden/CRT
+  m_Shader: {fileID: 4800000, guid: 825ff68a80df47d439dbf4cf9552851c, type: 3}
+  m_Parent: {fileID: 0}
+  m_ModifiedSerializedProperties: 0
+  m_ValidKeywords: []
+  m_InvalidKeywords: []
+  m_LightmapFlags: 4
+  m_EnableInstancingVariants: 0
+  m_DoubleSidedGI: 0
+  m_CustomRenderQueue: -1
+  stringTagMap: {}
+  disabledShaderPasses: []
+  m_LockedProperties: 
+  m_SavedProperties:
+    serializedVersion: 3
+    m_TexEnvs: []
+    m_Ints: []
+    m_Floats:
+    - hardPix: 0
+    - hardScan: -1
+    - maskDark: 0.25
+    - maskLight: 0.06
+    - resScale: 2
+    m_Colors:
+    - warp: {r: 0.03125, g: 0.04166, b: 0, a: 0}
+  m_BuildTextureStacks: []
 --- !u!4 &1034058491 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: c5013fe5d13af184e8dbc29559297723,
@@ -223843,7 +223881,7 @@ Mesh:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: pb_Mesh825754
+  m_Name: pb_Mesh87630
   serializedVersion: 11
   m_SubMeshes:
   - serializedVersion: 2
@@ -225895,39 +225933,6 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!21 &1159519019
-Material:
-  serializedVersion: 8
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_Name: Hidden/CRT
-  m_Shader: {fileID: 4800000, guid: 825ff68a80df47d439dbf4cf9552851c, type: 3}
-  m_Parent: {fileID: 0}
-  m_ModifiedSerializedProperties: 0
-  m_ValidKeywords: []
-  m_InvalidKeywords: []
-  m_LightmapFlags: 4
-  m_EnableInstancingVariants: 0
-  m_DoubleSidedGI: 0
-  m_CustomRenderQueue: -1
-  stringTagMap: {}
-  disabledShaderPasses: []
-  m_LockedProperties: 
-  m_SavedProperties:
-    serializedVersion: 3
-    m_TexEnvs: []
-    m_Ints: []
-    m_Floats:
-    - hardPix: 0
-    - hardScan: -1
-    - maskDark: 0.25
-    - maskLight: 0.49
-    - resScale: 1
-    m_Colors:
-    - warp: {r: 0.03125, g: 0.04166, b: 0, a: 0}
-  m_BuildTextureStacks: []
 --- !u!1001 &1163146374
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -226166,7 +226171,7 @@ Mesh:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: pb_Mesh829092
+  m_Name: pb_Mesh90944
   serializedVersion: 11
   m_SubMeshes:
   - serializedVersion: 2
@@ -228234,7 +228239,7 @@ Mesh:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: pb_Mesh826348
+  m_Name: pb_Mesh88220
   serializedVersion: 11
   m_SubMeshes:
   - serializedVersion: 2
@@ -230177,6 +230182,39 @@ Transform:
     type: 3}
   m_PrefabInstance: {fileID: 1414827496}
   m_PrefabAsset: {fileID: 0}
+--- !u!21 &1251502945
+Material:
+  serializedVersion: 8
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_Name: Hidden/CRT
+  m_Shader: {fileID: 4800000, guid: 825ff68a80df47d439dbf4cf9552851c, type: 3}
+  m_Parent: {fileID: 0}
+  m_ModifiedSerializedProperties: 0
+  m_ValidKeywords: []
+  m_InvalidKeywords: []
+  m_LightmapFlags: 4
+  m_EnableInstancingVariants: 0
+  m_DoubleSidedGI: 0
+  m_CustomRenderQueue: -1
+  stringTagMap: {}
+  disabledShaderPasses: []
+  m_LockedProperties: 
+  m_SavedProperties:
+    serializedVersion: 3
+    m_TexEnvs: []
+    m_Ints: []
+    m_Floats:
+    - hardPix: 0
+    - hardScan: -1
+    - maskDark: 0.25
+    - maskLight: 0.06
+    - resScale: 2
+    m_Colors:
+    - warp: {r: 0.03125, g: 0.04166, b: 0, a: 0}
+  m_BuildTextureStacks: []
 --- !u!1 &1254942318 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 919132149155446097, guid: 3e43c9a7bc6efff43809820dbbddcfba,
@@ -328041,7 +328079,7 @@ Mesh:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: pb_Mesh826316
+  m_Name: pb_Mesh88188
   serializedVersion: 11
   m_SubMeshes:
   - serializedVersion: 2
@@ -368554,7 +368592,7 @@ Mesh:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: pb_Mesh828350
+  m_Name: pb_Mesh90202
   serializedVersion: 11
   m_SubMeshes:
   - serializedVersion: 2
@@ -375014,7 +375052,7 @@ Mesh:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: pb_Mesh827456
+  m_Name: pb_Mesh89314
   serializedVersion: 11
   m_SubMeshes:
   - serializedVersion: 2
@@ -426331,7 +426369,7 @@ Mesh:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: pb_Mesh829150
+  m_Name: pb_Mesh91002
   serializedVersion: 11
   m_SubMeshes:
   - serializedVersion: 2
@@ -426984,39 +427022,6 @@ PrefabInstance:
       insertIndex: -1
       addedObject: {fileID: 1592363440}
   m_SourcePrefab: {fileID: 100100000, guid: 1c0f7baf93e7d564f970e78e85fd1102, type: 3}
---- !u!21 &1919230723
-Material:
-  serializedVersion: 8
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_Name: Hidden/CRT
-  m_Shader: {fileID: 4800000, guid: 825ff68a80df47d439dbf4cf9552851c, type: 3}
-  m_Parent: {fileID: 0}
-  m_ModifiedSerializedProperties: 0
-  m_ValidKeywords: []
-  m_InvalidKeywords: []
-  m_LightmapFlags: 4
-  m_EnableInstancingVariants: 0
-  m_DoubleSidedGI: 0
-  m_CustomRenderQueue: -1
-  stringTagMap: {}
-  disabledShaderPasses: []
-  m_LockedProperties: 
-  m_SavedProperties:
-    serializedVersion: 3
-    m_TexEnvs: []
-    m_Ints: []
-    m_Floats:
-    - hardPix: 0
-    - hardScan: -1
-    - maskDark: 0.25
-    - maskLight: 0.49
-    - resScale: 1
-    m_Colors:
-    - warp: {r: 0.03125, g: 0.04166, b: 0, a: 0}
-  m_BuildTextureStacks: []
 --- !u!1001 &1920545406
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -428920,7 +428925,7 @@ Mesh:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: pb_Mesh828614
+  m_Name: pb_Mesh90462
   serializedVersion: 11
   m_SubMeshes:
   - serializedVersion: 2
@@ -435397,7 +435402,7 @@ Mesh:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: pb_Mesh826388
+  m_Name: pb_Mesh88260
   serializedVersion: 11
   m_SubMeshes:
   - serializedVersion: 2

@@ -34,6 +34,8 @@ public class TelevisionRemoteChange : MonoBehaviour
 
     private bool _tooSleepy = false;
 
+    public CRT _crt;
+
     [SerializeField] private AudioFadeOut _audioFade;
     // Start is called before the first frame update
     void Start()
@@ -115,6 +117,7 @@ public class TelevisionRemoteChange : MonoBehaviour
         _fadeAnim.SetTrigger("long");
         _tooSleepy = true;
         yield return new WaitForSeconds(2f);
+        _crt.StartBreathing();
         _camAnim.enabled = true;
         _camAnim.SetTrigger("sleep");
         yield return new WaitForSeconds(1);
