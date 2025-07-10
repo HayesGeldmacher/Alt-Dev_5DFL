@@ -20,13 +20,13 @@ RenderSettings:
   m_FogDensity: 0.002
   m_LinearFogStart: 0
   m_LinearFogEnd: 300
-  m_AmbientSkyColor: {r: 1, g: 0.92534703, b: 0.90943396, a: 1}
+  m_AmbientSkyColor: {r: 0.4743681, g: 0.47987956, b: 0.49056602, a: 1}
   m_AmbientEquatorColor: {r: 1, g: 0.86226416, b: 0.9159262, a: 1}
   m_AmbientGroundColor: {r: 0.9716981, g: 0.9270856, b: 0.83786047, a: 1}
-  m_AmbientIntensity: 0.55
-  m_AmbientMode: 0
+  m_AmbientIntensity: 0.65
+  m_AmbientMode: 3
   m_SubtractiveShadowColor: {r: 0.42, g: 0.478, b: 0.627, a: 1}
-  m_SkyboxMaterial: {fileID: 2100000, guid: 7d9ff2c97149dc5468846ea43fa04428, type: 2}
+  m_SkyboxMaterial: {fileID: 2100000, guid: fe4e130f9947345a2b213cb5038851a2, type: 2}
   m_HaloStrength: 0.5
   m_FlareStrength: 1
   m_FlareFadeSpeed: 3
@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 0.25
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 1585952577}
-  m_IndirectSpecularColor: {r: 0.112289585, g: 0.040961772, b: 0.04063706, a: 0.25}
+  m_IndirectSpecularColor: {r: 0.08214621, g: 0.06645149, b: 0.09462988, a: 0.25}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -2211,6 +2211,9 @@ MonoBehaviour:
   _soundList: []
   _soundSource: {fileID: 0}
   _currentSound: 0
+  _animates: 0
+  _animator: {fileID: 0}
+  _animKey: 
 --- !u!65 &44231834
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -2921,6 +2924,9 @@ MonoBehaviour:
   _soundList: []
   _soundSource: {fileID: 0}
   _currentSound: 0
+  _animates: 0
+  _animator: {fileID: 0}
+  _animKey: 
   _strength: 3
   _canSound: 0
   _soundWait: 0
@@ -3147,7 +3153,7 @@ Mesh:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: pb_Mesh146810
+  m_Name: pb_Mesh76278
   serializedVersion: 11
   m_SubMeshes:
   - serializedVersion: 2
@@ -3551,7 +3557,7 @@ Mesh:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: pb_Mesh146086
+  m_Name: pb_Mesh75542
   serializedVersion: 11
   m_SubMeshes:
   - serializedVersion: 2
@@ -3876,6 +3882,9 @@ MonoBehaviour:
   _soundList: []
   _soundSource: {fileID: 0}
   _currentSound: 0
+  _animates: 0
+  _animator: {fileID: 0}
+  _animKey: 
   _switchAnim: {fileID: 89062496}
   _ceilingLight: {fileID: 1714093550}
   _on: 0
@@ -5098,6 +5107,9 @@ MonoBehaviour:
   _soundList: []
   _soundSource: {fileID: 0}
   _currentSound: 0
+  _animates: 0
+  _animator: {fileID: 0}
+  _animKey: 
   _anchorPoint: {fileID: 1824786852}
   _lookPoint: {fileID: 2138890748}
   _camHolder: {fileID: 1843056511926552319}
@@ -5736,7 +5748,7 @@ Mesh:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: pb_Mesh146644
+  m_Name: pb_Mesh76110
   serializedVersion: 11
   m_SubMeshes:
   - serializedVersion: 2
@@ -5901,7 +5913,7 @@ Mesh:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: pb_Mesh146912
+  m_Name: pb_Mesh76380
   serializedVersion: 11
   m_SubMeshes:
   - serializedVersion: 2
@@ -6066,7 +6078,7 @@ Mesh:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: pb_Mesh113990
+  m_Name: pb_Mesh75188
   serializedVersion: 11
   m_SubMeshes:
   - serializedVersion: 2
@@ -6669,7 +6681,7 @@ Mesh:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: pb_Mesh147454
+  m_Name: pb_Mesh76924
   serializedVersion: 11
   m_SubMeshes:
   - serializedVersion: 2
@@ -6928,7 +6940,7 @@ Mesh:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: pb_Mesh144554
+  m_Name: pb_Mesh74016
   serializedVersion: 11
   m_SubMeshes:
   - serializedVersion: 2
@@ -7150,6 +7162,9 @@ MonoBehaviour:
   _soundList: []
   _soundSource: {fileID: 0}
   _currentSound: 0
+  _animates: 0
+  _animator: {fileID: 0}
+  _animKey: 
 --- !u!65 &154344725
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -7650,7 +7665,7 @@ Mesh:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: pb_Mesh145394
+  m_Name: pb_Mesh74850
   serializedVersion: 11
   m_SubMeshes:
   - serializedVersion: 2
@@ -9156,6 +9171,9 @@ MonoBehaviour:
   _soundList: []
   _soundSource: {fileID: 0}
   _currentSound: 0
+  _animates: 0
+  _animator: {fileID: 0}
+  _animKey: 
 --- !u!65 &215122785
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -9826,6 +9844,9 @@ MonoBehaviour:
   _soundList: []
   _soundSource: {fileID: 0}
   _currentSound: 0
+  _animates: 0
+  _animator: {fileID: 0}
+  _animKey: 
 --- !u!1 &218415074
 GameObject:
   m_ObjectHideFlags: 0
@@ -9943,6 +9964,9 @@ MonoBehaviour:
   _soundList: []
   _soundSource: {fileID: 0}
   _currentSound: 0
+  _animates: 0
+  _animator: {fileID: 0}
+  _animKey: 
 --- !u!65 &221695068
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -10730,6 +10754,9 @@ MonoBehaviour:
   _soundList: []
   _soundSource: {fileID: 0}
   _currentSound: 0
+  _animates: 0
+  _animator: {fileID: 0}
+  _animKey: 
   _strength: 3
   _canSound: 0
   _soundWait: 0
@@ -11015,7 +11042,7 @@ Mesh:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: pb_Mesh143494
+  m_Name: pb_Mesh72944
   serializedVersion: 11
   m_SubMeshes:
   - serializedVersion: 2
@@ -11917,7 +11944,7 @@ Mesh:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: pb_Mesh146592
+  m_Name: pb_Mesh76058
   serializedVersion: 11
   m_SubMeshes:
   - serializedVersion: 2
@@ -12123,6 +12150,9 @@ MonoBehaviour:
   _soundList: []
   _soundSource: {fileID: 0}
   _currentSound: 0
+  _animates: 0
+  _animator: {fileID: 0}
+  _animKey: 
 --- !u!1001 &296859056
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -13357,6 +13387,9 @@ MonoBehaviour:
   _soundList: []
   _soundSource: {fileID: 0}
   _currentSound: 0
+  _animates: 0
+  _animator: {fileID: 0}
+  _animKey: 
 --- !u!1 &337273427
 GameObject:
   m_ObjectHideFlags: 0
@@ -16929,6 +16962,9 @@ MonoBehaviour:
   _soundList: []
   _soundSource: {fileID: 0}
   _currentSound: 0
+  _animates: 0
+  _animator: {fileID: 0}
+  _animKey: 
 --- !u!65 &386019725
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -19045,7 +19081,7 @@ Mesh:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: pb_Mesh144902
+  m_Name: pb_Mesh74360
   serializedVersion: 11
   m_SubMeshes:
   - serializedVersion: 2
@@ -20664,6 +20700,9 @@ MonoBehaviour:
   _soundList: []
   _soundSource: {fileID: 0}
   _currentSound: 0
+  _animates: 0
+  _animator: {fileID: 0}
+  _animKey: 
   _switchAnim: {fileID: 501077750}
   _ceilingLight: {fileID: 453801677}
   _on: 1
@@ -21073,6 +21112,9 @@ MonoBehaviour:
   _soundList: []
   _soundSource: {fileID: 0}
   _currentSound: 0
+  _animates: 0
+  _animator: {fileID: 0}
+  _animKey: 
 --- !u!4 &508017296
 Transform:
   m_ObjectHideFlags: 0
@@ -21863,6 +21905,9 @@ MonoBehaviour:
   _soundList: []
   _soundSource: {fileID: 0}
   _currentSound: 0
+  _animates: 0
+  _animator: {fileID: 0}
+  _animKey: 
   _strength: 0
   _canSound: 0
   _soundWait: 0
@@ -22751,17 +22796,17 @@ PrefabInstance:
     - target: {fileID: -8679921383154817045, guid: 86aec732652db514eb4b8ec54e1fefbc,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: 112.22
+      value: 72.111
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 86aec732652db514eb4b8ec54e1fefbc,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: 13.922
+      value: 11.886
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 86aec732652db514eb4b8ec54e1fefbc,
         type: 3}
       propertyPath: m_LocalPosition.z
-      value: 53.557
+      value: 49.316
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 86aec732652db514eb4b8ec54e1fefbc,
         type: 3}
@@ -106817,6 +106862,9 @@ MonoBehaviour:
   _soundList: []
   _soundSource: {fileID: 0}
   _currentSound: 0
+  _animates: 0
+  _animator: {fileID: 0}
+  _animKey: 
   _disappearObjects:
   - {fileID: 1145752647}
   _appearObjects:
@@ -106877,7 +106925,7 @@ Mesh:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: pb_Mesh-93278
+  m_Name: pb_Mesh-34092
   serializedVersion: 11
   m_SubMeshes:
   - serializedVersion: 2
@@ -107275,7 +107323,7 @@ Mesh:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: pb_Mesh146018
+  m_Name: pb_Mesh75474
   serializedVersion: 11
   m_SubMeshes:
   - serializedVersion: 2
@@ -227855,7 +227903,7 @@ Mesh:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: pb_Mesh143884
+  m_Name: pb_Mesh73334
   serializedVersion: 11
   m_SubMeshes:
   - serializedVersion: 2
@@ -229642,6 +229690,9 @@ MonoBehaviour:
   _soundList: []
   _soundSource: {fileID: 0}
   _currentSound: 0
+  _animates: 0
+  _animator: {fileID: 0}
+  _animKey: 
 --- !u!4 &703746686 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: 5d52447a8b24def42bb7ccff684866d0,
@@ -232039,6 +232090,9 @@ MonoBehaviour:
   _soundList: []
   _soundSource: {fileID: 0}
   _currentSound: 0
+  _animates: 0
+  _animator: {fileID: 0}
+  _animKey: 
 --- !u!65 &763897388
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -232626,7 +232680,7 @@ Mesh:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: pb_Mesh145174
+  m_Name: pb_Mesh74630
   serializedVersion: 11
   m_SubMeshes:
   - serializedVersion: 2
@@ -232962,6 +233016,9 @@ MonoBehaviour:
   _soundList: []
   _soundSource: {fileID: 0}
   _currentSound: 0
+  _animates: 0
+  _animator: {fileID: 0}
+  _animKey: 
 --- !u!1 &791717060
 GameObject:
   m_ObjectHideFlags: 0
@@ -233787,6 +233844,9 @@ MonoBehaviour:
   _soundList: []
   _soundSource: {fileID: 0}
   _currentSound: 0
+  _animates: 0
+  _animator: {fileID: 0}
+  _animKey: 
   _switchAnim: {fileID: 808223633}
   _ceilingLight: {fileID: 453801677}
   _on: 0
@@ -234353,6 +234413,9 @@ MonoBehaviour:
   _soundList: []
   _soundSource: {fileID: 0}
   _currentSound: 0
+  _animates: 0
+  _animator: {fileID: 0}
+  _animKey: 
   _strength: 0
   _canSound: 0
   _soundWait: 0
@@ -234537,6 +234600,9 @@ MonoBehaviour:
   _soundList: []
   _soundSource: {fileID: 0}
   _currentSound: 0
+  _animates: 0
+  _animator: {fileID: 0}
+  _animKey: 
   _strength: 0
   _canSound: 0
   _soundWait: 0
@@ -234873,94 +234939,6 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 819530246}
   m_CullTransparentMesh: 1
---- !u!1001 &819738743
-PrefabInstance:
-  m_ObjectHideFlags: 0
-  serializedVersion: 2
-  m_Modification:
-    serializedVersion: 3
-    m_TransformParent: {fileID: 0}
-    m_Modifications:
-    - target: {fileID: -8679921383154817045, guid: 576e7cfdd2cafcf449744e57bab55799,
-        type: 3}
-      propertyPath: m_LocalScale.x
-      value: 9.314597
-      objectReference: {fileID: 0}
-    - target: {fileID: -8679921383154817045, guid: 576e7cfdd2cafcf449744e57bab55799,
-        type: 3}
-      propertyPath: m_LocalScale.y
-      value: 9.314597
-      objectReference: {fileID: 0}
-    - target: {fileID: -8679921383154817045, guid: 576e7cfdd2cafcf449744e57bab55799,
-        type: 3}
-      propertyPath: m_LocalScale.z
-      value: 0.15510301
-      objectReference: {fileID: 0}
-    - target: {fileID: -8679921383154817045, guid: 576e7cfdd2cafcf449744e57bab55799,
-        type: 3}
-      propertyPath: m_LocalPosition.x
-      value: 105.86
-      objectReference: {fileID: 0}
-    - target: {fileID: -8679921383154817045, guid: 576e7cfdd2cafcf449744e57bab55799,
-        type: 3}
-      propertyPath: m_LocalPosition.y
-      value: 12.4372
-      objectReference: {fileID: 0}
-    - target: {fileID: -8679921383154817045, guid: 576e7cfdd2cafcf449744e57bab55799,
-        type: 3}
-      propertyPath: m_LocalPosition.z
-      value: 48.799
-      objectReference: {fileID: 0}
-    - target: {fileID: -8679921383154817045, guid: 576e7cfdd2cafcf449744e57bab55799,
-        type: 3}
-      propertyPath: m_LocalRotation.w
-      value: 0.7071067
-      objectReference: {fileID: 0}
-    - target: {fileID: -8679921383154817045, guid: 576e7cfdd2cafcf449744e57bab55799,
-        type: 3}
-      propertyPath: m_LocalRotation.x
-      value: -0.7071068
-      objectReference: {fileID: 0}
-    - target: {fileID: -8679921383154817045, guid: 576e7cfdd2cafcf449744e57bab55799,
-        type: 3}
-      propertyPath: m_LocalRotation.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: -8679921383154817045, guid: 576e7cfdd2cafcf449744e57bab55799,
-        type: 3}
-      propertyPath: m_LocalRotation.z
-      value: -0
-      objectReference: {fileID: 0}
-    - target: {fileID: -8679921383154817045, guid: 576e7cfdd2cafcf449744e57bab55799,
-        type: 3}
-      propertyPath: m_LocalEulerAnglesHint.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: -8679921383154817045, guid: 576e7cfdd2cafcf449744e57bab55799,
-        type: 3}
-      propertyPath: m_LocalEulerAnglesHint.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: -8679921383154817045, guid: 576e7cfdd2cafcf449744e57bab55799,
-        type: 3}
-      propertyPath: m_LocalEulerAnglesHint.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: -7511558181221131132, guid: 576e7cfdd2cafcf449744e57bab55799,
-        type: 3}
-      propertyPath: 'm_Materials.Array.data[0]'
-      value: 
-      objectReference: {fileID: 2100000, guid: 1d8cf42a875e88141a9da38bea5464b8, type: 2}
-    - target: {fileID: 919132149155446097, guid: 576e7cfdd2cafcf449744e57bab55799,
-        type: 3}
-      propertyPath: m_Name
-      value: PlayngCard2
-      objectReference: {fileID: 0}
-    m_RemovedComponents: []
-    m_RemovedGameObjects: []
-    m_AddedGameObjects: []
-    m_AddedComponents: []
-  m_SourcePrefab: {fileID: 100100000, guid: 576e7cfdd2cafcf449744e57bab55799, type: 3}
 --- !u!1 &821224591
 GameObject:
   m_ObjectHideFlags: 0
@@ -235251,7 +235229,7 @@ Mesh:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: pb_Mesh145984
+  m_Name: pb_Mesh75440
   serializedVersion: 11
   m_SubMeshes:
   - serializedVersion: 2
@@ -235532,6 +235510,9 @@ MonoBehaviour:
   _soundList: []
   _soundSource: {fileID: 0}
   _currentSound: 0
+  _animates: 0
+  _animator: {fileID: 0}
+  _animKey: 
 --- !u!1 &835694668
 GameObject:
   m_ObjectHideFlags: 0
@@ -235749,94 +235730,6 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 88.841, y: -146.69, z: -0.375}
---- !u!1001 &843880929
-PrefabInstance:
-  m_ObjectHideFlags: 0
-  serializedVersion: 2
-  m_Modification:
-    serializedVersion: 3
-    m_TransformParent: {fileID: 0}
-    m_Modifications:
-    - target: {fileID: -8679921383154817045, guid: 6f5a484484e78e74fb3458225b608604,
-        type: 3}
-      propertyPath: m_LocalScale.x
-      value: 10.660032
-      objectReference: {fileID: 0}
-    - target: {fileID: -8679921383154817045, guid: 6f5a484484e78e74fb3458225b608604,
-        type: 3}
-      propertyPath: m_LocalScale.y
-      value: 10.660032
-      objectReference: {fileID: 0}
-    - target: {fileID: -8679921383154817045, guid: 6f5a484484e78e74fb3458225b608604,
-        type: 3}
-      propertyPath: m_LocalScale.z
-      value: 10.660032
-      objectReference: {fileID: 0}
-    - target: {fileID: -8679921383154817045, guid: 6f5a484484e78e74fb3458225b608604,
-        type: 3}
-      propertyPath: m_LocalPosition.x
-      value: 105.81
-      objectReference: {fileID: 0}
-    - target: {fileID: -8679921383154817045, guid: 6f5a484484e78e74fb3458225b608604,
-        type: 3}
-      propertyPath: m_LocalPosition.y
-      value: 12.415
-      objectReference: {fileID: 0}
-    - target: {fileID: -8679921383154817045, guid: 6f5a484484e78e74fb3458225b608604,
-        type: 3}
-      propertyPath: m_LocalPosition.z
-      value: 48.798
-      objectReference: {fileID: 0}
-    - target: {fileID: -8679921383154817045, guid: 6f5a484484e78e74fb3458225b608604,
-        type: 3}
-      propertyPath: m_LocalRotation.w
-      value: 0.0071663675
-      objectReference: {fileID: 0}
-    - target: {fileID: -8679921383154817045, guid: 6f5a484484e78e74fb3458225b608604,
-        type: 3}
-      propertyPath: m_LocalRotation.x
-      value: -0.0071663694
-      objectReference: {fileID: 0}
-    - target: {fileID: -8679921383154817045, guid: 6f5a484484e78e74fb3458225b608604,
-        type: 3}
-      propertyPath: m_LocalRotation.y
-      value: -0.70707047
-      objectReference: {fileID: 0}
-    - target: {fileID: -8679921383154817045, guid: 6f5a484484e78e74fb3458225b608604,
-        type: 3}
-      propertyPath: m_LocalRotation.z
-      value: 0.7070705
-      objectReference: {fileID: 0}
-    - target: {fileID: -8679921383154817045, guid: 6f5a484484e78e74fb3458225b608604,
-        type: 3}
-      propertyPath: m_LocalEulerAnglesHint.x
-      value: 88.839
-      objectReference: {fileID: 0}
-    - target: {fileID: -8679921383154817045, guid: 6f5a484484e78e74fb3458225b608604,
-        type: 3}
-      propertyPath: m_LocalEulerAnglesHint.y
-      value: -90
-      objectReference: {fileID: 0}
-    - target: {fileID: -8679921383154817045, guid: 6f5a484484e78e74fb3458225b608604,
-        type: 3}
-      propertyPath: m_LocalEulerAnglesHint.z
-      value: 90
-      objectReference: {fileID: 0}
-    - target: {fileID: -7511558181221131132, guid: 6f5a484484e78e74fb3458225b608604,
-        type: 3}
-      propertyPath: 'm_Materials.Array.data[0]'
-      value: 
-      objectReference: {fileID: 2100000, guid: ec688f6f789cc7648bebf35343e88fe2, type: 2}
-    - target: {fileID: 919132149155446097, guid: 6f5a484484e78e74fb3458225b608604,
-        type: 3}
-      propertyPath: m_Name
-      value: PlayingCardBox
-      objectReference: {fileID: 0}
-    m_RemovedComponents: []
-    m_RemovedGameObjects: []
-    m_AddedGameObjects: []
-    m_AddedComponents: []
-  m_SourcePrefab: {fileID: 100100000, guid: 6f5a484484e78e74fb3458225b608604, type: 3}
 --- !u!1 &844430484
 GameObject:
   m_ObjectHideFlags: 0
@@ -245631,6 +245524,9 @@ MonoBehaviour:
   _soundList: []
   _soundSource: {fileID: 0}
   _currentSound: 0
+  _animates: 0
+  _animator: {fileID: 0}
+  _animKey: 
 --- !u!1 &907938691
 GameObject:
   m_ObjectHideFlags: 0
@@ -250878,7 +250774,7 @@ Mesh:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: pb_Mesh145956
+  m_Name: pb_Mesh75412
   serializedVersion: 11
   m_SubMeshes:
   - serializedVersion: 2
@@ -251043,7 +250939,7 @@ Mesh:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: pb_Mesh145422
+  m_Name: pb_Mesh74878
   serializedVersion: 11
   m_SubMeshes:
   - serializedVersion: 2
@@ -251442,94 +251338,6 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 88.76, y: -148.241, z: 73.423}
---- !u!1001 &929462655
-PrefabInstance:
-  m_ObjectHideFlags: 0
-  serializedVersion: 2
-  m_Modification:
-    serializedVersion: 3
-    m_TransformParent: {fileID: 0}
-    m_Modifications:
-    - target: {fileID: -8679921383154817045, guid: 04cd50251004c014d94746a11f281a47,
-        type: 3}
-      propertyPath: m_LocalScale.x
-      value: 9.6044855
-      objectReference: {fileID: 0}
-    - target: {fileID: -8679921383154817045, guid: 04cd50251004c014d94746a11f281a47,
-        type: 3}
-      propertyPath: m_LocalScale.y
-      value: 9.6044855
-      objectReference: {fileID: 0}
-    - target: {fileID: -8679921383154817045, guid: 04cd50251004c014d94746a11f281a47,
-        type: 3}
-      propertyPath: m_LocalScale.z
-      value: 0.36341834
-      objectReference: {fileID: 0}
-    - target: {fileID: -8679921383154817045, guid: 04cd50251004c014d94746a11f281a47,
-        type: 3}
-      propertyPath: m_LocalPosition.x
-      value: 105.82708
-      objectReference: {fileID: 0}
-    - target: {fileID: -8679921383154817045, guid: 04cd50251004c014d94746a11f281a47,
-        type: 3}
-      propertyPath: m_LocalPosition.y
-      value: 12.443
-      objectReference: {fileID: 0}
-    - target: {fileID: -8679921383154817045, guid: 04cd50251004c014d94746a11f281a47,
-        type: 3}
-      propertyPath: m_LocalPosition.z
-      value: 48.80079
-      objectReference: {fileID: 0}
-    - target: {fileID: -8679921383154817045, guid: 04cd50251004c014d94746a11f281a47,
-        type: 3}
-      propertyPath: m_LocalRotation.w
-      value: 0.70619845
-      objectReference: {fileID: 0}
-    - target: {fileID: -8679921383154817045, guid: 04cd50251004c014d94746a11f281a47,
-        type: 3}
-      propertyPath: m_LocalRotation.x
-      value: -0.70619845
-      objectReference: {fileID: 0}
-    - target: {fileID: -8679921383154817045, guid: 04cd50251004c014d94746a11f281a47,
-        type: 3}
-      propertyPath: m_LocalRotation.y
-      value: -0.035829984
-      objectReference: {fileID: 0}
-    - target: {fileID: -8679921383154817045, guid: 04cd50251004c014d94746a11f281a47,
-        type: 3}
-      propertyPath: m_LocalRotation.z
-      value: -0.03582999
-      objectReference: {fileID: 0}
-    - target: {fileID: -8679921383154817045, guid: 04cd50251004c014d94746a11f281a47,
-        type: 3}
-      propertyPath: m_LocalEulerAnglesHint.x
-      value: -90
-      objectReference: {fileID: 0}
-    - target: {fileID: -8679921383154817045, guid: 04cd50251004c014d94746a11f281a47,
-        type: 3}
-      propertyPath: m_LocalEulerAnglesHint.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: -8679921383154817045, guid: 04cd50251004c014d94746a11f281a47,
-        type: 3}
-      propertyPath: m_LocalEulerAnglesHint.z
-      value: -5.809
-      objectReference: {fileID: 0}
-    - target: {fileID: -7511558181221131132, guid: 04cd50251004c014d94746a11f281a47,
-        type: 3}
-      propertyPath: 'm_Materials.Array.data[0]'
-      value: 
-      objectReference: {fileID: 2100000, guid: 80f9e48dd9b25b04eb64a21f96e08179, type: 2}
-    - target: {fileID: 919132149155446097, guid: 04cd50251004c014d94746a11f281a47,
-        type: 3}
-      propertyPath: m_Name
-      value: PlayngCard1 (1)
-      objectReference: {fileID: 0}
-    m_RemovedComponents: []
-    m_RemovedGameObjects: []
-    m_AddedGameObjects: []
-    m_AddedComponents: []
-  m_SourcePrefab: {fileID: 100100000, guid: 04cd50251004c014d94746a11f281a47, type: 3}
 --- !u!1 &929550383 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 1327126378133942587, guid: 88fdd7685dba1404abf6378f5fcb87fd,
@@ -251649,6 +251457,9 @@ MonoBehaviour:
   _soundList: []
   _soundSource: {fileID: 0}
   _currentSound: 0
+  _animates: 0
+  _animator: {fileID: 0}
+  _animKey: 
 --- !u!65 &934924556
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -253316,6 +253127,9 @@ MonoBehaviour:
   _soundList: []
   _soundSource: {fileID: 0}
   _currentSound: 0
+  _animates: 0
+  _animator: {fileID: 0}
+  _animKey: 
 --- !u!65 &966255431
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -261339,7 +261153,7 @@ Mesh:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: pb_Mesh145196
+  m_Name: pb_Mesh74652
   serializedVersion: 11
   m_SubMeshes:
   - serializedVersion: 2
@@ -262301,6 +262115,9 @@ MonoBehaviour:
   _soundList: []
   _soundSource: {fileID: 0}
   _currentSound: 0
+  _animates: 0
+  _animator: {fileID: 0}
+  _animKey: 
   _switchAnim: {fileID: 1071239096}
   _ceilingLight: {fileID: 625695548}
   _on: 0
@@ -262482,6 +262299,9 @@ MonoBehaviour:
   _soundList: []
   _soundSource: {fileID: 0}
   _currentSound: 0
+  _animates: 0
+  _animator: {fileID: 0}
+  _animKey: 
 --- !u!4 &1075251564 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: 352c4d2fa692d2e4e80e49bd36dec092,
@@ -262895,6 +262715,9 @@ MonoBehaviour:
   _soundList: []
   _soundSource: {fileID: 0}
   _currentSound: 0
+  _animates: 0
+  _animator: {fileID: 0}
+  _animKey: 
   _strength: 2
   _canSound: 1
   _soundWait: 0
@@ -267475,6 +267298,9 @@ MonoBehaviour:
   _soundList: []
   _soundSource: {fileID: 0}
   _currentSound: 0
+  _animates: 0
+  _animator: {fileID: 0}
+  _animKey: 
   _switchAnim: {fileID: 1128439544}
   _ceilingLight: {fileID: 1905580177}
   _on: 1
@@ -268961,6 +268787,9 @@ MonoBehaviour:
   _soundList: []
   _soundSource: {fileID: 0}
   _currentSound: 0
+  _animates: 0
+  _animator: {fileID: 0}
+  _animKey: 
   _switchAnim: {fileID: 1170583690}
   _ceilingLight: {fileID: 453801677}
   _on: 1
@@ -269900,13 +269729,18 @@ MonoBehaviour:
   _soundList: []
   _soundSource: {fileID: 0}
   _currentSound: 0
+  _animates: 0
+  _animator: {fileID: 0}
+  _animKey: 
   _dayAmbience: 0.55
   _nightAmbience: 2
-  _decreaseSpeed: 0.05
+  _decreaseSpeed: 0.3
+  _increaseSpeed: 0.45
   _waterLeak: {fileID: 1779472232}
   _rockingChair: {fileID: 1568800538}
   _sunLight: {fileID: 1585952574}
   _waterBoiler: {fileID: 1477753501}
+  _lightManager: {fileID: 1964211168}
 --- !u!65 &1179104262
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -270288,6 +270122,9 @@ MonoBehaviour:
   _soundList: []
   _soundSource: {fileID: 0}
   _currentSound: 0
+  _animates: 0
+  _animator: {fileID: 0}
+  _animKey: 
   _cameraPickup: {fileID: 1684355834}
   speed: 1
   _isDarkening: 0
@@ -270349,6 +270186,7 @@ MonoBehaviour:
   - {fileID: 2003569456}
   _appearObjects:
   - {fileID: 8236671741985877391}
+  _minDarkness: 0
 --- !u!65 &1189094643
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -369182,17 +369020,9 @@ MonoBehaviour:
   m_Mesh: {fileID: 121978974}
   m_VersionIndex: 44758
   m_IsSelectable: 1
-  m_SelectedFaces: bd080000
-  m_SelectedEdges:
-  - a: 8945
-    b: 8946
-  - a: 8946
-    b: 8947
-  - a: 8947
-    b: 8948
-  - a: 8948
-    b: 8945
-  m_SelectedVertices: f3220000f1220000f2220000f4220000
+  m_SelectedFaces: 
+  m_SelectedEdges: []
+  m_SelectedVertices: 
 --- !u!4 &1267855869
 Transform:
   m_ObjectHideFlags: 0
@@ -369628,6 +369458,9 @@ MonoBehaviour:
   _soundList: []
   _soundSource: {fileID: 0}
   _currentSound: 0
+  _animates: 0
+  _animator: {fileID: 0}
+  _animKey: 
 --- !u!65 &1275598068
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -370276,6 +370109,9 @@ MonoBehaviour:
   _soundList: []
   _soundSource: {fileID: 0}
   _currentSound: 0
+  _animates: 0
+  _animator: {fileID: 0}
+  _animKey: 
 --- !u!65 &1294361160
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -371721,6 +371557,9 @@ MonoBehaviour:
   _soundList: []
   _soundSource: {fileID: 0}
   _currentSound: 0
+  _animates: 0
+  _animator: {fileID: 0}
+  _animKey: 
 --- !u!65 &1331423683
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -372140,6 +371979,9 @@ MonoBehaviour:
   _soundList: []
   _soundSource: {fileID: 0}
   _currentSound: 0
+  _animates: 0
+  _animator: {fileID: 0}
+  _animKey: 
 --- !u!65 &1358327665
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -372262,6 +372104,9 @@ MonoBehaviour:
   _soundList: []
   _soundSource: {fileID: 0}
   _currentSound: 0
+  _animates: 0
+  _animator: {fileID: 0}
+  _animKey: 
   _strength: 0
   _canSound: 0
   _soundWait: 0
@@ -377696,7 +377541,7 @@ Mesh:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: pb_Mesh112636
+  m_Name: pb_Mesh73840
   serializedVersion: 11
   m_SubMeshes:
   - serializedVersion: 2
@@ -378293,6 +378138,9 @@ MonoBehaviour:
   _soundList: []
   _soundSource: {fileID: 0}
   _currentSound: 0
+  _animates: 0
+  _animator: {fileID: 0}
+  _animKey: 
   _switchAnim: {fileID: 1394762983}
   _ceilingLight: {fileID: 596734822}
   _on: 0
@@ -384012,6 +383860,9 @@ MonoBehaviour:
   _soundList: []
   _soundSource: {fileID: 0}
   _currentSound: 0
+  _animates: 0
+  _animator: {fileID: 0}
+  _animKey: 
 --- !u!65 &1466126193
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -384176,6 +384027,9 @@ MonoBehaviour:
   _soundList: []
   _soundSource: {fileID: 0}
   _currentSound: 0
+  _animates: 0
+  _animator: {fileID: 0}
+  _animKey: 
 --- !u!65 &1475922738
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -386949,6 +386803,9 @@ MonoBehaviour:
   _soundList: []
   _soundSource: {fileID: 0}
   _currentSound: 0
+  _animates: 0
+  _animator: {fileID: 0}
+  _animKey: 
 --- !u!1 &1555798299
 GameObject:
   m_ObjectHideFlags: 0
@@ -387105,6 +386962,9 @@ MonoBehaviour:
   _soundList: []
   _soundSource: {fileID: 0}
   _currentSound: 0
+  _animates: 0
+  _animator: {fileID: 0}
+  _animKey: 
   _curtainAudio: {fileID: 1559599527}
   _disappear: 0
   _disappearObject: {fileID: 0}
@@ -387611,6 +387471,9 @@ MonoBehaviour:
   _soundList: []
   _soundSource: {fileID: 0}
   _currentSound: 0
+  _animates: 0
+  _animator: {fileID: 0}
+  _animKey: 
   _disappearObjects:
   - {fileID: 1566610769}
   _appearObjects:
@@ -388071,7 +387934,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1585952574}
   serializedVersion: 2
-  m_LocalRotation: {x: -0.050504513, y: 0.62725806, z: -0.109117046, w: -0.76947385}
+  m_LocalRotation: {x: -0.037319873, y: 0.62903476, z: -0.09835926, w: -0.77022594}
   m_LocalPosition: {x: 163.6, y: -15, z: -78.6}
   m_LocalScale: {x: 0.9139687, y: 0.774385, z: 1.3511995}
   m_ConstrainProportionsScale: 0
@@ -388860,6 +388723,9 @@ MonoBehaviour:
   _soundList: []
   _soundSource: {fileID: 0}
   _currentSound: 0
+  _animates: 0
+  _animator: {fileID: 0}
+  _animKey: 
 --- !u!65 &1614819432
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -388887,7 +388753,7 @@ Mesh:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: pb_Mesh145566
+  m_Name: pb_Mesh75022
   serializedVersion: 11
   m_SubMeshes:
   - serializedVersion: 2
@@ -390281,6 +390147,9 @@ MonoBehaviour:
   _soundList: []
   _soundSource: {fileID: 0}
   _currentSound: 0
+  _animates: 0
+  _animator: {fileID: 0}
+  _animKey: 
 --- !u!65 &1668484296
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -390308,7 +390177,7 @@ Mesh:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: pb_Mesh147492
+  m_Name: pb_Mesh76962
   serializedVersion: 11
   m_SubMeshes:
   - serializedVersion: 2
@@ -390917,6 +390786,9 @@ MonoBehaviour:
   _soundList: []
   _soundSource: {fileID: 0}
   _currentSound: 0
+  _animates: 0
+  _animator: {fileID: 0}
+  _animKey: 
   _camController: {fileID: 2437077440743916354}
   _render: {fileID: 753938257}
   _bc: {fileID: 1684355838}
@@ -390930,6 +390802,7 @@ MonoBehaviour:
   _screenVHS: {fileID: 850514766}
   _ghostCam: {fileID: 8949444578214634252}
   _bodyAnim: {fileID: 395298396}
+  skipTutorial: 1
   _staticPickupSound: {fileID: 1684355844}
 --- !u!65 &1684355838
 BoxCollider:
@@ -391562,6 +391435,9 @@ MonoBehaviour:
   _soundList: []
   _soundSource: {fileID: 0}
   _currentSound: 0
+  _animates: 0
+  _animator: {fileID: 0}
+  _animKey: 
   _disappearObjects:
   - {fileID: 1277831528}
   _appearObjects:
@@ -392861,6 +392737,9 @@ MonoBehaviour:
   _soundList: []
   _soundSource: {fileID: 0}
   _currentSound: 0
+  _animates: 0
+  _animator: {fileID: 0}
+  _animKey: 
 --- !u!65 &1738462658
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -392961,7 +392840,7 @@ Mesh:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: pb_Mesh144318
+  m_Name: pb_Mesh73778
   serializedVersion: 11
   m_SubMeshes:
   - serializedVersion: 2
@@ -397290,7 +397169,7 @@ Mesh:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: pb_Mesh147550
+  m_Name: pb_Mesh77020
   serializedVersion: 11
   m_SubMeshes:
   - serializedVersion: 2
@@ -397680,7 +397559,7 @@ Mesh:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: pb_Mesh-89112
+  m_Name: pb_Mesh-33604
   serializedVersion: 11
   m_SubMeshes:
   - serializedVersion: 2
@@ -401182,6 +401061,9 @@ MonoBehaviour:
   _soundList: []
   _soundSource: {fileID: 0}
   _currentSound: 0
+  _animates: 0
+  _animator: {fileID: 0}
+  _animKey: 
 --- !u!65 &1884137858
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -401630,6 +401512,9 @@ MonoBehaviour:
   _soundList: []
   _soundSource: {fileID: 0}
   _currentSound: 0
+  _animates: 0
+  _animator: {fileID: 0}
+  _animKey: 
 --- !u!1 &1896919814
 GameObject:
   m_ObjectHideFlags: 0
@@ -401888,6 +401773,9 @@ MonoBehaviour:
   _soundList: []
   _soundSource: {fileID: 0}
   _currentSound: 0
+  _animates: 0
+  _animator: {fileID: 0}
+  _animKey: 
 --- !u!1001 &1900728519
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -401970,94 +401858,6 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: PlayngCard1 (1)
-      objectReference: {fileID: 0}
-    m_RemovedComponents: []
-    m_RemovedGameObjects: []
-    m_AddedGameObjects: []
-    m_AddedComponents: []
-  m_SourcePrefab: {fileID: 100100000, guid: 04cd50251004c014d94746a11f281a47, type: 3}
---- !u!1001 &1902217291
-PrefabInstance:
-  m_ObjectHideFlags: 0
-  serializedVersion: 2
-  m_Modification:
-    serializedVersion: 3
-    m_TransformParent: {fileID: 0}
-    m_Modifications:
-    - target: {fileID: -8679921383154817045, guid: 04cd50251004c014d94746a11f281a47,
-        type: 3}
-      propertyPath: m_LocalScale.x
-      value: 9.6044855
-      objectReference: {fileID: 0}
-    - target: {fileID: -8679921383154817045, guid: 04cd50251004c014d94746a11f281a47,
-        type: 3}
-      propertyPath: m_LocalScale.y
-      value: 9.6044855
-      objectReference: {fileID: 0}
-    - target: {fileID: -8679921383154817045, guid: 04cd50251004c014d94746a11f281a47,
-        type: 3}
-      propertyPath: m_LocalScale.z
-      value: 0.36341834
-      objectReference: {fileID: 0}
-    - target: {fileID: -8679921383154817045, guid: 04cd50251004c014d94746a11f281a47,
-        type: 3}
-      propertyPath: m_LocalPosition.x
-      value: 105.827156
-      objectReference: {fileID: 0}
-    - target: {fileID: -8679921383154817045, guid: 04cd50251004c014d94746a11f281a47,
-        type: 3}
-      propertyPath: m_LocalPosition.y
-      value: 12.4342
-      objectReference: {fileID: 0}
-    - target: {fileID: -8679921383154817045, guid: 04cd50251004c014d94746a11f281a47,
-        type: 3}
-      propertyPath: m_LocalPosition.z
-      value: 48.800816
-      objectReference: {fileID: 0}
-    - target: {fileID: -8679921383154817045, guid: 04cd50251004c014d94746a11f281a47,
-        type: 3}
-      propertyPath: m_LocalRotation.w
-      value: 0.69208944
-      objectReference: {fileID: 0}
-    - target: {fileID: -8679921383154817045, guid: 04cd50251004c014d94746a11f281a47,
-        type: 3}
-      propertyPath: m_LocalRotation.x
-      value: -0.69208956
-      objectReference: {fileID: 0}
-    - target: {fileID: -8679921383154817045, guid: 04cd50251004c014d94746a11f281a47,
-        type: 3}
-      propertyPath: m_LocalRotation.y
-      value: -0.14495562
-      objectReference: {fileID: 0}
-    - target: {fileID: -8679921383154817045, guid: 04cd50251004c014d94746a11f281a47,
-        type: 3}
-      propertyPath: m_LocalRotation.z
-      value: -0.1449556
-      objectReference: {fileID: 0}
-    - target: {fileID: -8679921383154817045, guid: 04cd50251004c014d94746a11f281a47,
-        type: 3}
-      propertyPath: m_LocalEulerAnglesHint.x
-      value: -90
-      objectReference: {fileID: 0}
-    - target: {fileID: -8679921383154817045, guid: 04cd50251004c014d94746a11f281a47,
-        type: 3}
-      propertyPath: m_LocalEulerAnglesHint.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: -8679921383154817045, guid: 04cd50251004c014d94746a11f281a47,
-        type: 3}
-      propertyPath: m_LocalEulerAnglesHint.z
-      value: -23.659
-      objectReference: {fileID: 0}
-    - target: {fileID: -7511558181221131132, guid: 04cd50251004c014d94746a11f281a47,
-        type: 3}
-      propertyPath: 'm_Materials.Array.data[0]'
-      value: 
-      objectReference: {fileID: 2100000, guid: e9b2e26dc7d0a184bb080bca9bb66b84, type: 2}
-    - target: {fileID: 919132149155446097, guid: 04cd50251004c014d94746a11f281a47,
-        type: 3}
-      propertyPath: m_Name
-      value: PlayngCard1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -402273,7 +402073,7 @@ Mesh:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: pb_Mesh143276
+  m_Name: pb_Mesh72726
   serializedVersion: 11
   m_SubMeshes:
   - serializedVersion: 2
@@ -408777,7 +408577,7 @@ Mesh:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: pb_Mesh144264
+  m_Name: pb_Mesh73724
   serializedVersion: 11
   m_SubMeshes:
   - serializedVersion: 2
@@ -409238,6 +409038,9 @@ MonoBehaviour:
   _soundList: []
   _soundSource: {fileID: 0}
   _currentSound: 0
+  _animates: 0
+  _animator: {fileID: 0}
+  _animKey: 
 --- !u!65 &1945634082
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -409480,6 +409283,9 @@ MonoBehaviour:
   _soundList: []
   _soundSource: {fileID: 0}
   _currentSound: 0
+  _animates: 0
+  _animator: {fileID: 0}
+  _animKey: 
 --- !u!65 &1954947235
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -409574,7 +409380,14 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _dayAmbience: 0.55
   _nightAmbience: 0.15
-  _decreaseSpeed: 0.05
+  _currentColor: {r: 0, g: 0, b: 0, a: 0}
+  totalSum: 0
+  _dayColor: {r: 0.7176471, g: 0.72156864, b: 0.7294118, a: 1}
+  _nightColor: {r: 0.16981131, g: 0.16981131, b: 0.16981131, a: 0}
+  _storedColor: {r: 0, g: 0, b: 0, a: 0}
+  _currentLerpValue: 0
+  _speed: 0.05
+  _dayEndSpeed: 0.05
 --- !u!1 &1967799706
 GameObject:
   m_ObjectHideFlags: 0
@@ -409626,6 +409439,9 @@ MonoBehaviour:
   _soundList: []
   _soundSource: {fileID: 0}
   _currentSound: 0
+  _animates: 0
+  _animator: {fileID: 0}
+  _animKey: 
   _phoneDay: {fileID: 1189094642}
 --- !u!65 &1967799708
 BoxCollider:
@@ -410703,6 +410519,9 @@ MonoBehaviour:
   _soundList: []
   _soundSource: {fileID: 0}
   _currentSound: 0
+  _animates: 0
+  _animator: {fileID: 0}
+  _animKey: 
   _strength: 3
   _canSound: 0
   _soundWait: 0
@@ -411836,6 +411655,9 @@ MonoBehaviour:
   _soundList: []
   _soundSource: {fileID: 0}
   _currentSound: 0
+  _animates: 0
+  _animator: {fileID: 0}
+  _animKey: 
 --- !u!65 &2003569464
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -413294,6 +413116,9 @@ MonoBehaviour:
   _soundList: []
   _soundSource: {fileID: 0}
   _currentSound: 0
+  _animates: 0
+  _animator: {fileID: 0}
+  _animKey: 
 --- !u!65 &2061383697
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -413534,7 +413359,7 @@ Mesh:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: pb_Mesh144064
+  m_Name: pb_Mesh73514
   serializedVersion: 11
   m_SubMeshes:
   - serializedVersion: 2
@@ -414557,6 +414382,9 @@ MonoBehaviour:
   _soundList: []
   _soundSource: {fileID: 0}
   _currentSound: 0
+  _animates: 0
+  _animator: {fileID: 0}
+  _animKey: 
   _switchAnim: {fileID: 2085120983}
   _fanAnim: {fileID: 834629862}
 --- !u!65 &2085120982
@@ -416349,6 +416177,9 @@ MonoBehaviour:
   _soundList: []
   _soundSource: {fileID: 0}
   _currentSound: 0
+  _animates: 0
+  _animator: {fileID: 0}
+  _animKey: 
   _strength: 3
   _canSound: 0
   _soundWait: 0
@@ -416657,7 +416488,7 @@ Mesh:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: pb_Mesh143838
+  m_Name: pb_Mesh73288
   serializedVersion: 11
   m_SubMeshes:
   - serializedVersion: 2
@@ -427722,6 +427553,9 @@ MonoBehaviour:
   _soundList: []
   _soundSource: {fileID: 0}
   _currentSound: 0
+  _animates: 0
+  _animator: {fileID: 0}
+  _animKey: 
 --- !u!224 &6456459657913209498
 RectTransform:
   m_ObjectHideFlags: 0
@@ -431165,10 +430999,6 @@ SceneRoots:
   - {fileID: 1297305523}
   - {fileID: 8720475088624858933}
   - {fileID: 563406140}
-  - {fileID: 843880929}
-  - {fileID: 1902217291}
-  - {fileID: 929462655}
-  - {fileID: 819738743}
   - {fileID: 1843479028}
   - {fileID: 1882307374}
   - {fileID: 1913130695}

@@ -34,6 +34,12 @@ public class Interactable : MonoBehaviour
     [SerializeField] protected AudioSource _soundSource;
     [SerializeField] protected int _currentSound = 0;
 
+
+    [Header("Animation Fields")]
+    public bool _animates = false;
+    public Animator _animator;
+    public string _animKey;
+
     public virtual void Start()
     {
 
@@ -120,8 +126,14 @@ public class Interactable : MonoBehaviour
                 }
             }
         }
-     
-      
+
+        if (_animates)
+        {
+            if(_animator != null)
+            {
+                _animator.SetTrigger(_animKey);
+            }
+        }
 
     }
 

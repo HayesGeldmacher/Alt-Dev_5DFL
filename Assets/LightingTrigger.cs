@@ -10,6 +10,7 @@ public class LightingTrigger : Interactable
     [SerializeField] private float _dayAmbience;
     [SerializeField] private float _nightAmbience;
     [SerializeField] private float _decreaseSpeed;
+    [SerializeField] private float _increaseSpeed;
     private float _currentAmbience;
     private float _playerDistance;
 
@@ -18,6 +19,7 @@ public class LightingTrigger : Interactable
     [SerializeField] private GameObject _sunLight;
     [SerializeField] private GameObject _waterBoiler;
     private bool _destroyedChair = false;
+    public LightingManager _lightManager;
    
 
     private bool _canCollide = true;
@@ -47,7 +49,7 @@ public class LightingTrigger : Interactable
         }
         else if (_increasing)
         {
-            _currentAmbience += 1 * _decreaseSpeed * Time.deltaTime;
+            _currentAmbience += 1 * _increaseSpeed * Time.deltaTime;
             //Debug.Log(_currentAmbience);
             RenderSettings.ambientIntensity = _currentAmbience;
 
@@ -81,8 +83,7 @@ public class LightingTrigger : Interactable
 
                 if (_playerDistance >= -0.8f)
                 {
-                    _decreasing = true;
-                    _increasing = false;
+                    _lightManager.StartDecrease(_decreaseSpeed);
                     _waterLeak.SetActive(true);
                     _waterBoiler.SetActive(true);
                     _sunLight.SetActive(false);
@@ -90,8 +91,7 @@ public class LightingTrigger : Interactable
                 }
                 else
                 {
-                    _decreasing = false;
-                    _increasing = true;
+                    _lightManager.StartIncrease(_increaseSpeed);
                     _waterLeak.SetActive(false);
                     _waterBoiler.SetActive(false);
                     _sunLight.SetActive(true);

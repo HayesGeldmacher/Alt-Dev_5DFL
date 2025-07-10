@@ -65,6 +65,8 @@ public class PhoneDaytime : Interactable
     public GameObject[] _disappearObjects;
     public GameObject[] _appearObjects;
 
+    public float _minDarkness;
+
     private void Start()
     {
         //base.Start();
@@ -233,7 +235,10 @@ public class PhoneDaytime : Interactable
             if (_dialogue == _phoneDialogue && !_hasPlayed)
             {
 
-                _anim.SetTrigger("fade");
+                if(_anim != null)
+                {
+                 _anim.SetTrigger("fade");
+                }
                 StartCoroutine(Darkness());
                 if (_garble2)
                 {
@@ -249,7 +254,7 @@ public class PhoneDaytime : Interactable
 
     private IEnumerator Darkness()
     {
-
+        Debug.Log("started darkness in scene!");
         
         foreach(GameObject appear in _appearObjects)
         {
@@ -288,7 +293,8 @@ public class PhoneDaytime : Interactable
 
         if(_lightManager != null)
         {
-            _lightManager.StartDecrease();
+            _lightManager._nightAmbience = _minDarkness;
+            _lightManager.StartDecrease(_lightManager._dayEndSpeed);
         }
     }
 

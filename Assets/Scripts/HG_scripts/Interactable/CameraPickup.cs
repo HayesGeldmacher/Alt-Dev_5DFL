@@ -20,7 +20,7 @@ public class CameraPickup : Interactable
     [SerializeField] private GameObject _screenVHS;
     [SerializeField] private GameObject _ghostCam;
     [SerializeField] private Animator _bodyAnim;
-
+    public bool skipTutorial = true;
 
 
     [SerializeField] private AudioSource _staticPickupSound;
@@ -92,6 +92,11 @@ public class CameraPickup : Interactable
                 if(_bodyAnim != null)
                 {
                     _bodyAnim.SetBool("hasCam", true);
+                }
+
+                if (skipTutorial)
+                {
+                    EndCamera();
                 }
             }
 

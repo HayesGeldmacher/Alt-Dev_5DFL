@@ -46,7 +46,7 @@ public class TitleScreenManager : MonoBehaviour
         Cursor.visible = false;
         Cursor.lockState = CursorLockMode.Locked;
         yield return new WaitForSeconds(1);
-        SceneManager.LoadScene("ComputerGamePrologue");
+        SceneManager.LoadScene("Prologue");
     }
 
     public void CallExitGame()
