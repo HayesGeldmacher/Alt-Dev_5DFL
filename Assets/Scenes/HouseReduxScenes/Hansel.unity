@@ -52920,7 +52920,7 @@ PrefabInstance:
     - target: {fileID: -8679921383154817045, guid: 8896c0c44780a4a429d37b18c988466d,
         type: 3}
       propertyPath: m_LocalScale.x
-      value: 39.010998
+      value: 32.400974
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 8896c0c44780a4a429d37b18c988466d,
         type: 3}
@@ -52935,7 +52935,7 @@ PrefabInstance:
     - target: {fileID: -8679921383154817045, guid: 8896c0c44780a4a429d37b18c988466d,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: 117
+      value: 117.02
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 8896c0c44780a4a429d37b18c988466d,
         type: 3}
@@ -52945,7 +52945,7 @@ PrefabInstance:
     - target: {fileID: -8679921383154817045, guid: 8896c0c44780a4a429d37b18c988466d,
         type: 3}
       propertyPath: m_LocalPosition.z
-      value: 93.13
+      value: 93.135
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 8896c0c44780a4a429d37b18c988466d,
         type: 3}
@@ -52982,6 +52982,21 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: -191.406
       objectReference: {fileID: 0}
+    - target: {fileID: -7511558181221131132, guid: 8896c0c44780a4a429d37b18c988466d,
+        type: 3}
+      propertyPath: 'm_Materials.Array.data[0]'
+      value: 
+      objectReference: {fileID: 2100000, guid: 3d7d17156ef411841a38f300db84e244, type: 2}
+    - target: {fileID: -7511558181221131132, guid: 8896c0c44780a4a429d37b18c988466d,
+        type: 3}
+      propertyPath: 'm_Materials.Array.data[1]'
+      value: 
+      objectReference: {fileID: 2100000, guid: 3d7d17156ef411841a38f300db84e244, type: 2}
+    - target: {fileID: -7511558181221131132, guid: 8896c0c44780a4a429d37b18c988466d,
+        type: 3}
+      propertyPath: 'm_Materials.Array.data[2]'
+      value: 
+      objectReference: {fileID: 2100000, guid: 3d7d17156ef411841a38f300db84e244, type: 2}
     - target: {fileID: 919132149155446097, guid: 8896c0c44780a4a429d37b18c988466d,
         type: 3}
       propertyPath: m_Name
@@ -171861,39 +171876,6 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 0.059553, y: 0.006891924, z: 0.055504233}
   m_Center: {x: -0.0047088135, y: 1.9684015e-16, z: 0.027702782}
---- !u!21 &666024092
-Material:
-  serializedVersion: 8
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_Name: Hidden/CRT
-  m_Shader: {fileID: 4800000, guid: 825ff68a80df47d439dbf4cf9552851c, type: 3}
-  m_Parent: {fileID: 0}
-  m_ModifiedSerializedProperties: 0
-  m_ValidKeywords: []
-  m_InvalidKeywords: []
-  m_LightmapFlags: 4
-  m_EnableInstancingVariants: 0
-  m_DoubleSidedGI: 0
-  m_CustomRenderQueue: -1
-  stringTagMap: {}
-  disabledShaderPasses: []
-  m_LockedProperties: 
-  m_SavedProperties:
-    serializedVersion: 3
-    m_TexEnvs: []
-    m_Ints: []
-    m_Floats:
-    - hardPix: 0
-    - hardScan: -1
-    - maskDark: 0.25
-    - maskLight: 0.06
-    - resScale: 2
-    m_Colors:
-    - warp: {r: 0.03125, g: 0.04166, b: 0, a: 0}
-  m_BuildTextureStacks: []
 --- !u!1001 &666339468
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -223549,6 +223531,39 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 2f0dbb151b81b1b4a8dace253c8a7b51, type: 3}
+--- !u!21 &1108477242
+Material:
+  serializedVersion: 8
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_Name: Hidden/CRT
+  m_Shader: {fileID: 4800000, guid: 825ff68a80df47d439dbf4cf9552851c, type: 3}
+  m_Parent: {fileID: 0}
+  m_ModifiedSerializedProperties: 0
+  m_ValidKeywords: []
+  m_InvalidKeywords: []
+  m_LightmapFlags: 4
+  m_EnableInstancingVariants: 0
+  m_DoubleSidedGI: 0
+  m_CustomRenderQueue: -1
+  stringTagMap: {}
+  disabledShaderPasses: []
+  m_LockedProperties: 
+  m_SavedProperties:
+    serializedVersion: 3
+    m_TexEnvs: []
+    m_Ints: []
+    m_Floats:
+    - hardPix: 0
+    - hardScan: -1
+    - maskDark: 0.25
+    - maskLight: 0.06
+    - resScale: 2
+    m_Colors:
+    - warp: {r: 0.03125, g: 0.04166, b: 0, a: 0}
+  m_BuildTextureStacks: []
 --- !u!1001 &1110106124
 PrefabInstance:
   m_ObjectHideFlags: 0
