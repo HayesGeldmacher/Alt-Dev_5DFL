@@ -36,6 +36,7 @@ public class FirstToThirdTransition : MonoBehaviour
     public bool _eliminateAudioSource = false;
     [SerializeField] private AudioSource _breatheAudio;
     [SerializeField] private AudioSource _crowdAudio;
+    [SerializeField] private AudioSource _dreamSong;
     public void OnTriggerEnter(Collider other)
     {
 
@@ -114,6 +115,7 @@ public class FirstToThirdTransition : MonoBehaviour
         if (_eliminateAudioSource)
         {
             _crowdAudio.Stop();
+            _dreamSong.Stop();
         }
     }
 

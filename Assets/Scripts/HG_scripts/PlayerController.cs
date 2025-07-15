@@ -104,6 +104,7 @@ public class PlayerController : MonoBehaviour
 
     public bool _lockedForward = false;
     public bool _lockedHorizontal = false;
+    public bool _forcedForward = false;
 
     //The below region just creates a reference of this specific controller that we can call from other scripts quickly
     #region Singleton
@@ -186,14 +187,19 @@ public class PlayerController : MonoBehaviour
             float x = Input.GetAxis("Horizontal");
             float z = Input.GetAxis("Vertical");
 
-            if (_lockedForward)
-            {
-                z = Mathf.Abs(z);
-            }
 
             if (_lockedHorizontal)
             {
                 x = 0;
+            }
+
+            if (_forcedForward)
+            {
+                z = 1;
+            }
+            else if (_lockedForward)
+            {
+                z = Mathf.Abs(z);
             }
 
             //Stores that input in a variable to be used later in function
