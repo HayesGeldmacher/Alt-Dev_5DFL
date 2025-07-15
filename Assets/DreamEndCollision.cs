@@ -77,12 +77,12 @@ public class DreamEndCollision : MonoBehaviour
         }
 
         PlayerController playerController = _player.GetComponent<PlayerController>();
-        playerController._forcedForward = true;
+        //playerController._forcedForward = true;
 
         _mosh.CallGlitch();
         _mosh.CallGlitch();
         _mosh.CallGlitch();
-        yield return new WaitForSeconds(0.5f);
+        yield return new WaitForSeconds(1.5f);
         _blackAnim.SetTrigger("quick");
         yield return new WaitForSeconds(3);
         SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
