@@ -12,6 +12,10 @@ public class CamLookLimited : MonoBehaviour
     public float _minRotationY;
     public float _maxRotationY;
 
+
+    [Header("Interaction Fields")]
+    public bool interactCapable = false;
+
     // Start is called before the first frame update
     void Start()
     {
