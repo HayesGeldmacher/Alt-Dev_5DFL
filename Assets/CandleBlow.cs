@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class CandleBlow : MonoBehaviour
 {
@@ -8,7 +9,7 @@ public class CandleBlow : MonoBehaviour
     public float clickCoolDown;
     public float _totalCoolDown;
     public bool _canClick = false;
-    public bool _tooSleepy = true;
+    public bool _tooSleepy = false;
 
     public Animator[] _fireAnims;
 
@@ -27,14 +28,34 @@ public class CandleBlow : MonoBehaviour
     public bool _started = false;
     public int _currentDialogue = 0;
     public int _totalDialogue = 2;
+    public Animator _cursor;
 
+    public  Dialogue _puppetStatements;
+    public Dialogue _blankStatements;
+
+    private bool _canStart = false;
+
+    public Animator _blackOut;
+
+    public CRT crt;
     
     // Start is called before the first frame update
     void Start()
     {
-        
+        Cursor.lockState = CursorLockMode.None;
+        Cursor.visible = false;
+        _blackOut.SetTrigger("blackInstant");
+        StartCoroutine(BeginScene());
     }
 
+    private IEnumerator BeginScene()
+    {
+        yield return new WaitForSeconds(1f);
+        _blackOut.SetTrigger("fade");
+        yield return new WaitForSeconds(3f);
+        _canStart = true;
+        _cursor.SetBool("appear", true);
+    }
  
     
     // Update is called once per frame
@@ -43,10 +64,12 @@ public class CandleBlow : MonoBehaviour
 
         if (!_started)
         {
-            if (Input.GetButtonDown("Interact"))
+            if (Input.GetButtonDown("Interact") && _canStart)
             {
                 _dialogue.Interact();
                 _currentDialogue++;
+                _cursor.SetTrigger("click");
+                _puppet.SetTrigger("trigger");
 
                 if(_currentDialogue >= _totalDialogue)
                 {
@@ -57,9 +80,7 @@ public class CandleBlow : MonoBehaviour
         else
         {
             BlowUpdate();
-        }
-            
-        
+        }   
         
     }
 
@@ -90,10 +111,12 @@ public class CandleBlow : MonoBehaviour
     }
 
     private void BlowCandle()
-    {
+    {   
         _dialogue.Interact();
         clickCoolDown = _totalCoolDown;
         _canClick = false;
+        _cursor.SetTrigger("click");
+        _cursor.SetBool("appear", false);
         
         //make the CRT breathe shit happpen!
 
@@ -104,7 +127,11 @@ public class CandleBlow : MonoBehaviour
         }
         else
         {
-            Darkness();
+            if (!_tooSleepy)
+            {
+                StartCoroutine(Darkness());
+
+            }
         }
 
     }
@@ -112,8 +139,11 @@ public class CandleBlow : MonoBehaviour
     private IEnumerator BringBack(float wait)
     {
         _candleOut = true;
+        crt.StartBreathing();
 
-
+        _dialogue._dialogue = _blankStatements;
+        _dialogue._dialogue._sentences[0] = _puppetStatements._sentences[_blowCount];
+        _currentDialogue++;
 
         yield return new WaitForSeconds(0.5f);
         foreach (Animator flame in _fireAnims)
@@ -130,15 +160,32 @@ public class CandleBlow : MonoBehaviour
         {
             flame.SetTrigger("back");
         }
+
+        crt.EndBreathing();
+        yield return new WaitForSeconds(1);
+       _dialogue.Interact();
+        
+        _cursor.SetBool("appear", true);
         _candleOut = false;
     }
          
-    private void Darkness()
+    private IEnumerator Darkness()
     {
         _tooSleepy = true;
+        crt.StartBreathing();
+        yield return new WaitForSeconds(1.5f);
         foreach(Animator flame in _fireAnims)
         {
-            flame.SetTrigger("out");
+            flame.SetTrigger("fade");
         }
+        Debug.Log("StartedDarkness!");
+        _dialogue._dialogue = _blankStatements;
+        _dialogue._dialogue._sentences[0] = _puppetStatements._sentences[_blowCount];
+        yield return new WaitForSeconds(3);
+        _dialogue.Interact();
+        yield return new WaitForSeconds(5);
+        _dialogue.Interact();
+        yield return new WaitForSeconds(3);
+        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
     }
 }

@@ -24,8 +24,8 @@ public class CRT : MonoBehaviour
     public bool _waiting = false;
 
     [Header("Stop Fields")]
-    private bool _shouldStop = false;
-    public int _endRes = 2;
+    public bool _shouldStop = false;
+    public float _endRes = 2.8f;
 
     //default values range!!
 
@@ -66,8 +66,12 @@ public class CRT : MonoBehaviour
     {
         if (_breathing)
         {
-            if(_shouldStop && (_resolution == _endRes))
+
+            float distance = _resolution - _endRes;
+            
+            if(_shouldStop && (Mathf.Abs(distance) < 0.5f))
             {
+                _resolution = _endRes;
                 _breathing = false;
             }
 
@@ -111,6 +115,7 @@ public class CRT : MonoBehaviour
 
     public void StartBreathing()
     {
+        _shouldStop = false;
         _breathing = true;
     }
 }
