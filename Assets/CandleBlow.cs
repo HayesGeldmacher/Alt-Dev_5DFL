@@ -38,6 +38,13 @@ public class CandleBlow : MonoBehaviour
     public Animator _blackOut;
 
     public CRT crt;
+
+    [Header("Audio Fields")]
+    public AudioSource _interactAudio;
+    public AudioSource _birthday;
+    public AudioSource _blowAudio;
+    public AudioSource _areYouThere;
+    
     
     // Start is called before the first frame update
     void Start()
@@ -50,8 +57,10 @@ public class CandleBlow : MonoBehaviour
 
     private IEnumerator BeginScene()
     {
+        crt.StartBreathing();
         yield return new WaitForSeconds(1f);
         _blackOut.SetTrigger("fade");
+        crt.EndBreathing();
         yield return new WaitForSeconds(3f);
         _canStart = true;
         _cursor.SetBool("appear", true);
@@ -67,6 +76,7 @@ public class CandleBlow : MonoBehaviour
             if (Input.GetButtonDown("Interact") && _canStart)
             {
                 _dialogue.Interact();
+                PlayInteractSound();
                 _currentDialogue++;
                 _cursor.SetTrigger("click");
                 _puppet.SetTrigger("trigger");
@@ -92,6 +102,7 @@ public class CandleBlow : MonoBehaviour
                 {
                     if (!_tooSleepy)
                     {
+                        PlayInteractSound();    
                         BlowCandle();
                     }    
                 }
@@ -117,6 +128,7 @@ public class CandleBlow : MonoBehaviour
         _canClick = false;
         _cursor.SetTrigger("click");
         _cursor.SetBool("appear", false);
+        PlayBlowSound();
         
         //make the CRT breathe shit happpen!
 
@@ -145,7 +157,7 @@ public class CandleBlow : MonoBehaviour
         _dialogue._dialogue._sentences[0] = _puppetStatements._sentences[_blowCount];
         _currentDialogue++;
 
-        yield return new WaitForSeconds(0.5f);
+        yield return new WaitForSeconds(3);
         foreach (Animator flame in _fireAnims)
         {
             flame.SetTrigger("fade");
@@ -173,19 +185,35 @@ public class CandleBlow : MonoBehaviour
     {
         _tooSleepy = true;
         crt.StartBreathing();
-        yield return new WaitForSeconds(1.5f);
-        foreach(Animator flame in _fireAnims)
+
+        yield return new WaitForSeconds(3);
+        _birthday.Stop();
+        foreach (Animator flame in _fireAnims)
         {
             flame.SetTrigger("fade");
         }
         Debug.Log("StartedDarkness!");
         _dialogue._dialogue = _blankStatements;
         _dialogue._dialogue._sentences[0] = _puppetStatements._sentences[_blowCount];
-        yield return new WaitForSeconds(3);
+        yield return new WaitForSeconds(6);
         _dialogue.Interact();
+        _areYouThere.Play();
         yield return new WaitForSeconds(5);
         _dialogue.Interact();
         yield return new WaitForSeconds(3);
         SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
+    }
+
+
+    private void PlayInteractSound()
+    {
+        _interactAudio.pitch = Random.Range(0.8f, 1.1f);
+        _interactAudio.Play();
+    }
+
+    private void PlayBlowSound()
+    {
+        _blowAudio.pitch = Random.Range(0.8f, 1.1f);
+        _blowAudio.Play();
     }
 }
