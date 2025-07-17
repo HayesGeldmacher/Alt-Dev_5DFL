@@ -15,12 +15,16 @@ public class CamChangeLighting : CamChangeTrigger
     [SerializeField] private bool _changeFog = false;
     [SerializeField] private float _fogDensity;
 
+    public bool _changeFogColor = false;
+    public Color _fogColor;
+
     [SerializeField] private bool _changeVol;
     [SerializeField] private float _soundVol;
 
     [SerializeField] private bool _changePan;
     [SerializeField] private float _soundPan;
 
+   
 
     // Start is called before the first frame update
     void Start()
@@ -58,6 +62,12 @@ public class CamChangeLighting : CamChangeTrigger
         {
             RenderSettings.fogDensity = _fogDensity;
         }
+
+        if (_changeFogColor)
+        {
+            RenderSettings.fogColor = _fogColor;
+        }
+
 
         if (_changePan)
         {
