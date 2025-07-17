@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Runtime.CompilerServices;
 using UnityEngine;
+using UnityEngine.Video;
 
 public class CamChangeLighting : CamChangeTrigger
 {
@@ -23,6 +24,11 @@ public class CamChangeLighting : CamChangeTrigger
 
     [SerializeField] private bool _changePan;
     [SerializeField] private float _soundPan;
+
+    [Header("Video Cut Fields")]
+    public bool _cutToVideo;
+    public float _cutLength;
+    public VideoClip _vidClip;
 
    
 
@@ -74,6 +80,13 @@ public class CamChangeLighting : CamChangeTrigger
             _sound.spatialBlend = _soundPan;
         }
 
+        if (_cutToVideo)
+        {
+            if(_vidClip != null)
+            {
+             CamChangePositions.instance.CallVideo(_cutLength, _vidClip);
+            }
+        }
         
     }
 
