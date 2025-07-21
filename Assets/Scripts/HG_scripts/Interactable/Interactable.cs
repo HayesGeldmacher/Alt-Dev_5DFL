@@ -27,6 +27,7 @@ public class Interactable : MonoBehaviour
     [SerializeField] private bool _canBeGrabbed;
 
     [HideInInspector] public Transform _player;
+    public bool _hasPlayerController = true;
 
     [Header("Sound Variables")]
     [SerializeField] protected bool _playsSound = false;
@@ -45,7 +46,11 @@ public class Interactable : MonoBehaviour
 
         
         _manager = GameManager.instance.GetComponent<DialogueManager>();
+
+        if (_hasPlayerController){
+
         _player = PlayerController.instance.transform;
+        }
 
         if (!_isIntro)
         {
@@ -97,7 +102,11 @@ public class Interactable : MonoBehaviour
         {
             if (_important)
             {
+               if(_player != null)
+                {
                 _player.GetComponent<PlayerController>()._frozen = true;
+
+                }
             }
             
             if (_isTimed)
@@ -161,7 +170,11 @@ public class Interactable : MonoBehaviour
 
         if (_important)
         {
-             _player.GetComponent<PlayerController>()._frozen = false;
+            if(_player != null)
+            {
+            _player.GetComponent<PlayerController>()._frozen = false;
+
+            } 
         }
     }
 

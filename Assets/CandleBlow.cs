@@ -45,7 +45,7 @@ public class CandleBlow : MonoBehaviour
     public AudioSource _blowAudio;
     public AudioSource _areYouThere;
     
-    
+  
     // Start is called before the first frame update
     void Start()
     {
@@ -70,6 +70,7 @@ public class CandleBlow : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        if (GameManager.instance._isPaused) return;
 
         if (!_started)
         {

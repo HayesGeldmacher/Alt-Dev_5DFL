@@ -15,10 +15,21 @@ public class CamLookLimited : MonoBehaviour
 
     [Header("Interaction Fields")]
     public bool interactCapable = false;
+    private bool _frozen = false;
 
+    public GameManager _manager;
+   
+    private void Awake()
+    {
+        GameManager.pauseInstance += FreezeCam;
+        GameManager.unPauseInstance += UnFreezeCam;
+    }
+    
     // Start is called before the first frame update
     void Start()
     {
+
+        
         Cursor.visible = false;
         Cursor.lockState = CursorLockMode.Locked;
     }
@@ -28,6 +39,9 @@ public class CamLookLimited : MonoBehaviour
     {
         //Here, we are getting the actualy mouse movement from the player and converting it to variables
         //All inputs should be multiplied Time.deltaTime in order for physics to work correctly
+
+        if (_frozen) return;
+        
         float mouseX = Input.GetAxis("ControllerX") * _mouseSensitivityX;
         float mouseY = Input.GetAxis("ControllerY") * _mouseSensitivityY;
 
@@ -47,5 +61,16 @@ public class CamLookLimited : MonoBehaviour
         
         transform.localRotation = Quaternion.Euler(_xRotation, 0, 0);
         parent.localRotation = Quaternion.Euler(0, -_yRotation, 0);
+    }
+
+
+    public void FreezeCam()
+    {
+        _frozen = true;
+    }
+
+    public void UnFreezeCam()
+    {
+        _frozen = false;
     }
 }

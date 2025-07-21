@@ -22,12 +22,13 @@ public class GameManager : MonoBehaviour
         }
 
         instance = this;
+
+
+        pauseInstance += Pause;
+        unPauseInstance += Unpause;
     }
 
     #endregion
-
-    List<int> _newList = new List<int>();
-
 
     [HideInInspector] public bool _isPaused = false;
     [SerializeField] private CameraController _controller;
@@ -40,13 +41,6 @@ public class GameManager : MonoBehaviour
     [SerializeField] private RawImage _cursorSprite;
     [SerializeField] private GameObject _ghostCam;
      
-    [Header("KillMonster variables")]
-    [SerializeField] private GameObject _killMonster;
-    [SerializeField] private Transform _spawnPoint;
-    [SerializeField] private CameraController _cam;
-    [SerializeField] private Animator _blackAnim;
-    [SerializeField] private Transform _faceDirectionPoint;
-
 
     [Header("Audio Variables")]
     [SerializeField] private float _fadeSpeed;
@@ -64,11 +58,16 @@ public class GameManager : MonoBehaviour
     [SerializeField] private TitleScreenSpriteFollowMouse _pauseCursor;
     [SerializeField] private TitleScreenSpriteFollowMouse _textCursor;
 
-   
 
+    public delegate void CallPause();
+    public static CallPause pauseInstance;
+
+    public delegate void CallUnPause();
+    public static CallUnPause unPauseInstance;
 
     private void Start()
     {
+        
         _pauseCursor.EnableCursor(false);
         _pauseButtons.SetActive(false);
         if(_darkAmbience != null)
@@ -92,12 +91,12 @@ public class GameManager : MonoBehaviour
             
             if (_isPaused )
             {
-                
-                Unpause();
+
+                unPauseInstance.Invoke();
             }
             else
             {
-                Pause();
+                pauseInstance.Invoke();
             }
 
             if(!_pausedAudio.isPlaying)
@@ -134,14 +133,14 @@ public class GameManager : MonoBehaviour
     public void ReloadLevel()
     {
         _pauseCursor.EnableCursor(false);
-        Unpause();
+        unPauseInstance.Invoke();
         SceneManager.LoadScene(SceneManager.GetActiveScene().name);
     }
 
     public void LoadMenu()
     {
         _pauseCursor.EnableCursor(false);
-        Unpause();
+        unPauseInstance.Invoke();
         SceneManager.LoadScene("TitleScreen");
     }
 
@@ -163,6 +162,8 @@ public class GameManager : MonoBehaviour
 
     public void Pause()
     {
+        
+        
         _isPaused = true;
         if(_controller != null)
         {
@@ -205,8 +206,16 @@ public class GameManager : MonoBehaviour
          _pauseButtons.SetActive(true);
         }
         _pauseButtonsText.SetActive(true);
-        _hudBorder.SetActive(false);
-        _cursorSprite.enabled = false;
+
+        if(_hudBorder != null)
+        {
+            _hudBorder.SetActive(false);
+        }
+       
+        if(_cursorSprite != null)
+        {
+            _cursorSprite.enabled = false;
+        }
 
         if(_textGameManager != null)
         {
@@ -216,6 +225,8 @@ public class GameManager : MonoBehaviour
 
     public void Unpause()
     {
+        
+        
         _isPaused = false;
         Time.timeScale = 1f;
 
@@ -258,8 +269,17 @@ public class GameManager : MonoBehaviour
 
 
         _pauseButtonsText.SetActive(false);
-        _hudBorder.SetActive(true);
+        
+        
+        if(_hudBorder != null)
+        {
+            _hudBorder.SetActive(true);
+        }
+
+        if(_cursorSprite != null)
+        {
         _cursorSprite.enabled = true;
+        }
 
         if(_textGameManager != null )
         {
@@ -273,4 +293,9 @@ public class GameManager : MonoBehaviour
         _interactSound.pitch = Random.Range(0.8f, 1.2f);
         _interactSound.Play();
     }
+
+    
+
+    
+
 }
