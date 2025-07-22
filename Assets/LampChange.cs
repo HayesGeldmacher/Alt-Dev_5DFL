@@ -26,18 +26,76 @@ public class LampChange : MonoBehaviour
     public CRT _crt;
     public Animator _camAnim;
     public Animator _blackAnim;
-    
+    public AudioSource _interactAudio;
+
+    [Header("Dialogue Fields")]
+    public Interactable _dialogue;
+    public bool _started = false;
+    public int _currentDialogue = 0;
+    public int _totalDialogue = 2;
+    public Animator _cursor;
+    private bool _canStart = false;
+
+    private bool _firstClick = false;
+
+    public Dialogue _puppetStatements;
+    public Dialogue _blankStatements;
+
 
     // Start is called before the first frame update
     void Start()
     {
-        
+        Cursor.lockState = CursorLockMode.None;
+        Cursor.visible = false;
+        _blackAnim.SetTrigger("blackInstant");
+        StartCoroutine(BeginScene());
+    }
+
+    private IEnumerator BeginScene()
+    {
+        _crt.StartBreathing();
+        yield return new WaitForSeconds(1f);
+        _blackAnim.SetTrigger("fade");
+        _crt.EndBreathing();
+        yield return new WaitForSeconds(3f);
+        _canStart = true;
+        _cursor.SetBool("appear", true);
     }
 
     // Update is called once per frame
     void Update()
     {
 
+        if (GameManager.instance._isPaused) return;
+        if (!_canStart) return;
+
+
+        if (!_started)
+        {
+            if (Input.GetButtonDown("Interact") && _canStart)
+            {
+                _dialogue.Interact();
+                PlayInteractSound();
+                _currentDialogue++;
+                _cursor.SetTrigger("click");
+
+                if (_currentDialogue >= _totalDialogue)
+                {
+                    _started = true;
+                    
+
+                }
+            }
+        }
+        else
+        {
+            LampUpdate();
+        }
+
+    }
+
+    private void LampUpdate()
+    {
         if (!_tooSleepy)
         {
             if (_canClick)
@@ -45,6 +103,17 @@ public class LampChange : MonoBehaviour
                 if (Input.GetButtonDown("Interact"))
                 {
                     StartCoroutine(LampSwitch(true));
+
+                    if (!_firstClick)
+                    {
+                        _firstClick = true;
+                        _dialogue.Interact();
+                        _currentDialogue++;
+                       
+                    }
+
+                    _cursor.SetBool("appear", false);
+                    _cursor.SetTrigger("click");
                 }
 
             }
@@ -54,11 +123,12 @@ public class LampChange : MonoBehaviour
                 if(_currentClickCoolDown <= 0)
                 {
                     _canClick = true;
+                    _cursor.SetBool("appear", true);
                 }
             }
 
         }
-        
+
     }
 
     private IEnumerator LampSwitch(bool turnOn)
@@ -109,10 +179,16 @@ public class LampChange : MonoBehaviour
         _crt.StartBreathing();
         yield return new WaitForSeconds(2.5f);
         _blackAnim.SetTrigger("long");
-        yield return new WaitForSeconds(4f);
+        yield return new WaitForSeconds(6f);
         SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
 
 
         Debug.Log("Sequence Ended!");
+    }
+
+    private void PlayInteractSound()
+    {
+        _interactAudio.pitch = Random.Range(0.8f, 1.1f);
+        _interactAudio.Play();
     }
 }

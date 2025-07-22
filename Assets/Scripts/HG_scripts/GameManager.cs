@@ -8,27 +8,7 @@ using UnityEngine.UI;
 public class GameManager : MonoBehaviour
 {
 
-    //This singleton creates a locatable script instance that can be located easily from any other script!
-    #region Singleton
-
-    public static GameManager instance;
-
-    void Awake()
-    {
-        if (instance != null)
-        {
-            Debug.LogWarning("More than one instance of Manager is present! NOT GOOD!");
-            return;
-        }
-
-        instance = this;
-
-
-        pauseInstance += Pause;
-        unPauseInstance += Unpause;
-    }
-
-    #endregion
+   
 
     [HideInInspector] public bool _isPaused = false;
     [SerializeField] private CameraController _controller;
@@ -65,9 +45,34 @@ public class GameManager : MonoBehaviour
     public delegate void CallUnPause();
     public static CallUnPause unPauseInstance;
 
+
+    //This singleton creates a locatable script instance that can be located easily from any other script!
+    #region Singleton
+
+    public static GameManager instance;
+
+    void Awake()
+    {
+
+        if (instance != null)
+        {
+            Debug.Log("More than one instance of Manager is present! NOT GOOD!");
+            return;
+        }
+
+        instance = this;
+
+
+        pauseInstance += Pause;
+        unPauseInstance += Unpause;
+    }
+
+    #endregion
+
+
     private void Start()
     {
-        
+        unPauseInstance.Invoke();
         _pauseCursor.EnableCursor(false);
         _pauseButtons.SetActive(false);
         if(_darkAmbience != null)
@@ -142,6 +147,16 @@ public class GameManager : MonoBehaviour
         _pauseCursor.EnableCursor(false);
         unPauseInstance.Invoke();
         SceneManager.LoadScene("TitleScreen");
+    }
+
+
+    private void OnDestroy()
+    {
+
+        pauseInstance -= Pause;
+        unPauseInstance -= Unpause;
+        GameManager.instance = null;
+
     }
 
 

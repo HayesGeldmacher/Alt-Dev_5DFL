@@ -51,6 +51,8 @@ public class TitleScreenSpriteFollowMouse : MonoBehaviour
     public bool _inTextGame = false;
     [SerializeField] private Vector2 _currentVirtPos;
 
+  
+    
     // Start is called before the first frame update
     void Start()
     {
@@ -60,6 +62,9 @@ public class TitleScreenSpriteFollowMouse : MonoBehaviour
         GameInputManager.OnGameDeviceChanged += OnDeviceChanged;
 
         _currentVirtPos = _virtualMouse.virtualMouse.position.value;
+
+
+        
     }
 
     // Update is called once per frame
@@ -198,5 +203,10 @@ public class TitleScreenSpriteFollowMouse : MonoBehaviour
     public void EnterTextGame(bool enter)
     {
         _inTextGame = enter;
+    }
+
+    void OnDestroy()
+    {
+        GameInputManager.OnGameDeviceChanged -= OnDeviceChanged;
     }
 }
