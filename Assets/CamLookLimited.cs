@@ -18,6 +18,8 @@ public class CamLookLimited : MonoBehaviour
     private bool _frozen = false;
 
     public GameManager _manager;
+
+    public bool _inverted = true;
    
     private void Awake()
     {
@@ -41,7 +43,7 @@ public class CamLookLimited : MonoBehaviour
         //All inputs should be multiplied Time.deltaTime in order for physics to work correctly
 
         if (_frozen) return;
-        
+    
         float mouseX = Input.GetAxis("ControllerX") * _mouseSensitivityX;
         float mouseY = Input.GetAxis("ControllerY") * _mouseSensitivityY;
 
@@ -49,18 +51,39 @@ public class CamLookLimited : MonoBehaviour
         _xRotation -= mouseY;
         _xRotation = Mathf.Clamp(_xRotation, -20, 50);
 
+        float zRot;
+        if (_inverted)
+        {
+            zRot = 180f;
+        }
+        else
+        {
+            zRot = 0f;
+        }
+
+
         _yRotation -= mouseX;
         _yRotation = Mathf.Clamp(_yRotation, _minRotationY, _maxRotationY);
 
         Transform parent = transform.parent;
 
         //parent.Rotate(Vector3.up * mouseX);
-        
+
         //float clampedRot = Mathf.Clamp(parent.localRotation.y, _minRotationY, _maxRotationY);
-       // parent.localRotation = Quaternion.Euler(parent.localRotation.x, parent.localRotation.y, parent.localRotation.z);
-        
-        transform.localRotation = Quaternion.Euler(_xRotation, 0, 0);
-        parent.localRotation = Quaternion.Euler(0, -_yRotation, 0);
+        // parent.localRotation = Quaternion.Euler(parent.localRotation.x, parent.localRotation.y, parent.localRotation.z);
+
+      
+
+        transform.localRotation = Quaternion.Euler(_xRotation, 0, zRot);
+
+        if (_inverted)
+        {
+            parent.localRotation = Quaternion.Euler(0, _yRotation, 0);
+        }
+        else
+        {
+          parent.localRotation = Quaternion.Euler(0, -_yRotation, 0);
+        }
     }
 
 

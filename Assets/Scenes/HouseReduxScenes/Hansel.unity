@@ -1285,6 +1285,39 @@ Animator:
     type: 3}
   m_PrefabInstance: {fileID: 827767471611355123}
   m_PrefabAsset: {fileID: 0}
+--- !u!21 &617725844
+Material:
+  serializedVersion: 8
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_Name: Hidden/CRT
+  m_Shader: {fileID: 4800000, guid: 825ff68a80df47d439dbf4cf9552851c, type: 3}
+  m_Parent: {fileID: 0}
+  m_ModifiedSerializedProperties: 0
+  m_ValidKeywords: []
+  m_InvalidKeywords: []
+  m_LightmapFlags: 4
+  m_EnableInstancingVariants: 0
+  m_DoubleSidedGI: 0
+  m_CustomRenderQueue: -1
+  stringTagMap: {}
+  disabledShaderPasses: []
+  m_LockedProperties: 
+  m_SavedProperties:
+    serializedVersion: 3
+    m_TexEnvs: []
+    m_Ints: []
+    m_Floats:
+    - hardPix: 0
+    - hardScan: -1
+    - maskDark: 0.25
+    - maskLight: 0.06
+    - resScale: 2
+    m_Colors:
+    - warp: {r: 0.03125, g: 0.04166, b: 0, a: 0}
+  m_BuildTextureStacks: []
 --- !u!1001 &680280937
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1622,39 +1655,6 @@ Transform:
   - {fileID: 2069496628}
   m_Father: {fileID: 543065309}
   m_LocalEulerAnglesHint: {x: 0, y: 172.001, z: 0}
---- !u!21 &874908383
-Material:
-  serializedVersion: 8
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_Name: Hidden/CRT
-  m_Shader: {fileID: 4800000, guid: 825ff68a80df47d439dbf4cf9552851c, type: 3}
-  m_Parent: {fileID: 0}
-  m_ModifiedSerializedProperties: 0
-  m_ValidKeywords: []
-  m_InvalidKeywords: []
-  m_LightmapFlags: 4
-  m_EnableInstancingVariants: 0
-  m_DoubleSidedGI: 0
-  m_CustomRenderQueue: -1
-  stringTagMap: {}
-  disabledShaderPasses: []
-  m_LockedProperties: 
-  m_SavedProperties:
-    serializedVersion: 3
-    m_TexEnvs: []
-    m_Ints: []
-    m_Floats:
-    - hardPix: 0
-    - hardScan: -1
-    - maskDark: 0.25
-    - maskLight: 0.06
-    - resScale: 2
-    m_Colors:
-    - warp: {r: 0.03125, g: 0.04166, b: 0, a: 0}
-  m_BuildTextureStacks: []
 --- !u!1 &900490483 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 5294892973005836833, guid: 68f86a15c60cc5844a4a1abc828baf19,
@@ -1931,7 +1931,7 @@ Camera:
   field of view: 95
   orthographic: 0
   orthographic size: 5
-  m_Depth: -0.24
+  m_Depth: 0.38
   m_CullingMask:
     serializedVersion: 2
     m_Bits: 2097184
@@ -2012,7 +2012,7 @@ PrefabInstance:
     - target: {fileID: 1375237425061887243, guid: 68f86a15c60cc5844a4a1abc828baf19,
         type: 3}
       propertyPath: m_Depth
-      value: -1.59
+      value: 0.14
       objectReference: {fileID: 0}
     - target: {fileID: 1426843234459096829, guid: 68f86a15c60cc5844a4a1abc828baf19,
         type: 3}
@@ -2044,7 +2044,27 @@ PrefabInstance:
       propertyPath: m_LocalPosition.z
       value: 0.67
       objectReference: {fileID: 0}
+    - target: {fileID: 1752318434819543906, guid: 68f86a15c60cc5844a4a1abc828baf19,
+        type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1752318434819543906, guid: 68f86a15c60cc5844a4a1abc828baf19,
+        type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1752318434819543906, guid: 68f86a15c60cc5844a4a1abc828baf19,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 180
+      objectReference: {fileID: 0}
     - target: {fileID: 2935560236699406018, guid: 68f86a15c60cc5844a4a1abc828baf19,
+        type: 3}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4101582761286458745, guid: 68f86a15c60cc5844a4a1abc828baf19,
         type: 3}
       propertyPath: m_Enabled
       value: 1
@@ -2073,7 +2093,7 @@ PrefabInstance:
         type: 3}
       propertyPath: material
       value: 
-      objectReference: {fileID: 874908383}
+      objectReference: {fileID: 617725844}
     - target: {fileID: 6343557861002900910, guid: 68f86a15c60cc5844a4a1abc828baf19,
         type: 3}
       propertyPath: _waitTime
@@ -2082,7 +2102,7 @@ PrefabInstance:
     - target: {fileID: 6343557861002900910, guid: 68f86a15c60cc5844a4a1abc828baf19,
         type: 3}
       propertyPath: m_Enabled
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 6343557861002900910, guid: 68f86a15c60cc5844a4a1abc828baf19,
         type: 3}
@@ -95408,6 +95428,39 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+--- !u!21 &1321195839
+Material:
+  serializedVersion: 8
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_Name: Hidden/CRT
+  m_Shader: {fileID: 4800000, guid: 825ff68a80df47d439dbf4cf9552851c, type: 3}
+  m_Parent: {fileID: 0}
+  m_ModifiedSerializedProperties: 0
+  m_ValidKeywords: []
+  m_InvalidKeywords: []
+  m_LightmapFlags: 4
+  m_EnableInstancingVariants: 0
+  m_DoubleSidedGI: 0
+  m_CustomRenderQueue: -1
+  stringTagMap: {}
+  disabledShaderPasses: []
+  m_LockedProperties: 
+  m_SavedProperties:
+    serializedVersion: 3
+    m_TexEnvs: []
+    m_Ints: []
+    m_Floats:
+    - hardPix: 0
+    - hardScan: -1
+    - maskDark: 0.25
+    - maskLight: 0.06
+    - resScale: 2
+    m_Colors:
+    - warp: {r: 0.03125, g: 0.04166, b: 0, a: 0}
+  m_BuildTextureStacks: []
 --- !u!1 &1333806829
 GameObject:
   m_ObjectHideFlags: 0
@@ -96230,7 +96283,7 @@ Mesh:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: pb_Mesh643482
+  m_Name: pb_Mesh32770
   serializedVersion: 11
   m_SubMeshes:
   - serializedVersion: 2
@@ -96715,7 +96768,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 997520311}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 0}
-  m_Enabled: 0
+  m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 8b5c4a5641fc62a4197389133101a785, type: 3}
   m_Name: 
