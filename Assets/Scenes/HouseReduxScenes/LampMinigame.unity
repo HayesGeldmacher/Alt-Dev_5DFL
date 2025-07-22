@@ -166340,39 +166340,6 @@ Transform:
   - {fileID: 88115779}
   m_Father: {fileID: 1865853308}
   m_LocalEulerAnglesHint: {x: 0, y: -178.834, z: 0}
---- !u!21 &672473802
-Material:
-  serializedVersion: 8
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_Name: Hidden/CRT
-  m_Shader: {fileID: 4800000, guid: 825ff68a80df47d439dbf4cf9552851c, type: 3}
-  m_Parent: {fileID: 0}
-  m_ModifiedSerializedProperties: 0
-  m_ValidKeywords: []
-  m_InvalidKeywords: []
-  m_LightmapFlags: 4
-  m_EnableInstancingVariants: 0
-  m_DoubleSidedGI: 0
-  m_CustomRenderQueue: -1
-  stringTagMap: {}
-  disabledShaderPasses: []
-  m_LockedProperties: 
-  m_SavedProperties:
-    serializedVersion: 3
-    m_TexEnvs: []
-    m_Ints: []
-    m_Floats:
-    - hardPix: 0
-    - hardScan: -1
-    - maskDark: 0.25
-    - maskLight: 0.06
-    - resScale: 2
-    m_Colors:
-    - warp: {r: 0.03125, g: 0.04166, b: 0, a: 0}
-  m_BuildTextureStacks: []
 --- !u!1001 &679484827
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -351556,7 +351523,7 @@ AudioSource:
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 8300000, guid: 92868648771c99a419f8c3237a2d592d, type: 3}
   m_PlayOnAwake: 0
-  m_Volume: 1
+  m_Volume: 0.7
   m_Pitch: 1
   Loop: 0
   Mute: 0
@@ -352340,6 +352307,39 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 1, y: 0.9180913, z: 6.269959}
   m_Center: {x: 1.445778e-10, y: -0.04095436, z: 1.3485335}
+--- !u!21 &1619707249
+Material:
+  serializedVersion: 8
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_Name: Hidden/CRT
+  m_Shader: {fileID: 4800000, guid: 825ff68a80df47d439dbf4cf9552851c, type: 3}
+  m_Parent: {fileID: 0}
+  m_ModifiedSerializedProperties: 0
+  m_ValidKeywords: []
+  m_InvalidKeywords: []
+  m_LightmapFlags: 4
+  m_EnableInstancingVariants: 0
+  m_DoubleSidedGI: 0
+  m_CustomRenderQueue: -1
+  stringTagMap: {}
+  disabledShaderPasses: []
+  m_LockedProperties: 
+  m_SavedProperties:
+    serializedVersion: 3
+    m_TexEnvs: []
+    m_Ints: []
+    m_Floats:
+    - hardPix: 0
+    - hardScan: -1
+    - maskDark: 0.25
+    - maskLight: 0.06
+    - resScale: 2
+    m_Colors:
+    - warp: {r: 0.03125, g: 0.04166, b: 0, a: 0}
+  m_BuildTextureStacks: []
 --- !u!1001 &1621017001
 PrefabInstance:
   m_ObjectHideFlags: 0

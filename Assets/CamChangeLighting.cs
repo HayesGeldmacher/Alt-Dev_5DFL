@@ -29,7 +29,6 @@ public class CamChangeLighting : CamChangeTrigger
     public bool _cutToVideo;
     public float _cutLength;
     public VideoClip _vidClip;
-
    
 
     // Start is called before the first frame update

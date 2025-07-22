@@ -17,7 +17,7 @@ public class CamChangePositions : MonoBehaviour
     public VideoPlayer _player;
     public Animator _vidAnimator;
 
-
+    public CamChangeTrigger _camChange;
 
 
     //This singleton creates a locatable script instance that can be located easily from any other script!
@@ -43,8 +43,12 @@ public class CamChangePositions : MonoBehaviour
     void Start()
     {
         //just for testing...
+        _camChange.CallGeneric();
         ChangePos(0);
-        StartCoroutine(TutorialMessage());
+
+
+
+        //StartCoroutine(TutorialMessage());
        
     }
 
@@ -83,6 +87,7 @@ public class CamChangePositions : MonoBehaviour
         _vidAnimator.SetTrigger("play");
         yield return new WaitForSeconds(cutTime);
         _vidAnimator.SetTrigger("stop");
+        _mosh.CallGlitch();
 
     }
 }
