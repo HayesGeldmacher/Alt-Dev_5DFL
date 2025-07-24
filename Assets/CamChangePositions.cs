@@ -43,8 +43,8 @@ public class CamChangePositions : MonoBehaviour
     void Start()
     {
         //just for testing...
-        _camChange.CallGeneric();
-        ChangePos(0);
+       // _camChange.CallGeneric();
+        ChangePos(3);
 
 
 
