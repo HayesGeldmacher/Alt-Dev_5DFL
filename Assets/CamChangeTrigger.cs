@@ -14,6 +14,7 @@ public class CamChangeTrigger : MonoBehaviour
 
     [Header("TeleportVariables")]
     [SerializeField] private protected bool _teleportPlayer;
+    [SerializeField] private protected bool _rotatePlayer;
     [SerializeField] private protected Transform _player;
     [SerializeField] private protected Transform _spawnPos;
 
@@ -97,6 +98,15 @@ public class CamChangeTrigger : MonoBehaviour
             CharacterController _controller = _player.GetComponent<CharacterController>();
             _controller.enabled = false;
             _player.position = _spawnPos.position;
+
+
+            if (_rotatePlayer)
+            {
+                Vector3 lookDir = _spawnPos.forward;
+            _player.localRotation = Quaternion.LookRotation(lookDir);
+
+            }
+           
             _controller.enabled = true;
         }
     }
