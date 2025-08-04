@@ -9,6 +9,11 @@ public class CamChangePositions : MonoBehaviour
 
     [SerializeField] private Transform _cam;
     [SerializeField] private SingleMosh _mosh;
+
+
+    //Adding list that we can call for each trigger!
+    public CamChangeTrigger[] _triggers;
+
     public Transform[] _location;
     public int _currentCam;
     public Interactable _interact;
@@ -43,9 +48,9 @@ public class CamChangePositions : MonoBehaviour
     void Start()
     {
         //just for testing...
-       // _camChange.CallGeneric();
-        ChangePos(3);
-
+        // _camChange.CallGeneric();
+        // ChangePos(0);
+        CallTrigger(0);
 
 
         //StartCoroutine(TutorialMessage());
@@ -59,12 +64,18 @@ public class CamChangePositions : MonoBehaviour
     }
 
 
+    public void CallTrigger(int newPos)
+    {
+        _triggers[newPos].CallGeneric();
+    }
+
     public void ChangePos(int newPos)
     {
         _mosh.CallGlitch();
         _currentCam = newPos;
         _cam.position = _location[newPos].position;
         _cam.rotation = _location[newPos].rotation;
+
 
     }
 

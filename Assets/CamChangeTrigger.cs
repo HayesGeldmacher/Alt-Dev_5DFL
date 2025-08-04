@@ -34,7 +34,6 @@ public class CamChangeTrigger : MonoBehaviour
         {
             if(other.tag == "Player")
             {
-               _camChange.ChangePos(_camNum); 
                _canEnter = false;
                 CallGeneric();
             }
@@ -52,7 +51,7 @@ public class CamChangeTrigger : MonoBehaviour
 
     public virtual void CallGeneric()
     {
-   
+        _camChange.ChangePos(_camNum);
 
         if (_interact)
         {
