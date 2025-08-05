@@ -90,6 +90,11 @@ public class CamChangeLighting : CamChangeTrigger
     }
 
 
+    public void ChangeFogColor()
+    {
+        RenderSettings.fogColor = _fogColor;
+    }
+
     private void ChangeVolume(float vol)
     {
         _sound.volume = vol;

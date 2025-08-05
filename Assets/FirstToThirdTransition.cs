@@ -37,6 +37,12 @@ public class FirstToThirdTransition : MonoBehaviour
     [SerializeField] private AudioSource _breatheAudio;
     [SerializeField] private AudioSource _crowdAudio;
     [SerializeField] private AudioSource _dreamSong;
+
+    [Header("FOG LIGHTING!")]
+    public bool _fogLighting = false;
+    public CamChangeLighting _fogChange;
+
+
     public void OnTriggerEnter(Collider other)
     {
 
@@ -64,6 +70,15 @@ public class FirstToThirdTransition : MonoBehaviour
     private void EnterFirstPerson(bool first)
     {
 
+        if (_fogLighting)
+        {
+            if(_fogChange != null)
+            {
+                _fogChange.ChangeFogColor();
+            }
+        }
+        
+        
         if (first)
         {
         _playerFirstPerson.SetActive(true);
