@@ -50,7 +50,7 @@ public class CamChangePositions : MonoBehaviour
         //just for testing...
         // _camChange.CallGeneric();
         // ChangePos(0);
-        CallTrigger(10);
+        CallTrigger(0);
 
 
         //StartCoroutine(TutorialMessage());
