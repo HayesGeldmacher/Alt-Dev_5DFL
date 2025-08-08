@@ -39,19 +39,26 @@ public class CameraZoom : MonoBehaviour
     {
        
         
-        if (!_camController._hasCamera) { return; }
+        if(_camController != null)
+        {
+            if (!_camController._hasCamera) { return; }
+        }
 
 
 
+        if(_flashLight != null)
+        {
             if (Input.GetButtonDown("flash") && !_handler._photoOpen)
-            {
-
-                if (_canFlash)
                 {
 
-                 _flashLight.ChangeFlashStatus();
+                    if (_canFlash)
+                    {
+
+                     _flashLight.ChangeFlashStatus();
+                    }
                 }
-            }
+
+        }  
 
 
         bool _PressingTrigger;
