@@ -149,6 +149,12 @@ public class GameManager : MonoBehaviour
         SceneManager.LoadScene("TitleScreen");
     }
 
+    public void LoadSceneSpecific(string name)
+    {
+        _pauseCursor.EnableCursor(false);
+        unPauseInstance.Invoke();
+        SceneManager.LoadScene(name);
+    }
 
     private void OnDestroy()
     {

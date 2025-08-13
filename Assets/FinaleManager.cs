@@ -16,12 +16,18 @@ public class FinaleManager : MonoBehaviour
 
     private bool _started = false;
     private bool _ended = false;
+
+    private Interactable _dialogueInteract;
     
     //scene lasts for 60 seconds, and then slowly fades out!
     // Start is called before the first frame update
     void Start()
     {
+
+        //scene starts in black and then fades into existence
+        _eyesAnim.SetTrigger("blackInstant");
         StartCoroutine(BeginScene());
+        
     }
 
     // Update is called once per frame
@@ -44,7 +50,7 @@ public class FinaleManager : MonoBehaviour
     private IEnumerator BeginScene()
     {
         yield return new WaitForSeconds(_introWait);
-        _eyesAnim.SetTrigger("open");
+        _eyesAnim.SetTrigger("fade");
         StartAudio();
         _started = true;
         //allow cam to move limited
@@ -57,6 +63,7 @@ public class FinaleManager : MonoBehaviour
         _eyesAnim.SetTrigger("close");
         yield return new WaitForSeconds(_closeTime);
         //end game, go to credits!1
+        GameManager.instance.LoadSceneSpecific("Credits");
 
     }
 
