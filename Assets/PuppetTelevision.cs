@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Video;
+using UnityEngine.SceneManagement;
 
 public class PuppetTelevision : MonoBehaviour
 {
@@ -24,15 +25,29 @@ public class PuppetTelevision : MonoBehaviour
     [Header("Video Fields")]
     [SerializeField] private Animator _roadAnim;
     [SerializeField] private AudioSource _carDreamAmbience;
-    
-    // Start is called before the first frame update
+    [SerializeField] private Animator _blackFadeIn;
+    [SerializeField] private CRT _crt;
     void Start()
     {
 
-        StartCoroutine(StartPuppetFirst());
-        StartCoroutine(StartVideoWait());
+        Cursor.lockState = CursorLockMode.Locked;
+        Cursor.visible = false;
+
+        _blackFadeIn.SetTrigger("blackInstant");
+        _crt.StartBreathing();
+        StartCoroutine(BeginScene());
     }
 
+
+    private IEnumerator BeginScene()
+    {
+        yield return new WaitForSeconds(1f);
+        _blackFadeIn.SetTrigger("fade");
+        yield return new WaitForSeconds(2f);
+        StartCoroutine(StartPuppetFirst());
+        StartCoroutine(StartVideoWait());
+
+    }
 
     public IEnumerator StartVideoWait()
     {
@@ -79,5 +94,12 @@ public class PuppetTelevision : MonoBehaviour
         _carDreamAmbience.Play();
         yield return new WaitForSeconds(16f);
         _roadAnim.SetTrigger("out");
+        yield return new WaitForSeconds(4f);
+        NextScene();
+    }
+
+    private void NextScene()
+    {
+        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
     }
 }
