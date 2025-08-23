@@ -20,10 +20,15 @@ public class PuppetTelevision : MonoBehaviour
     private bool _startedVid = false;
     private bool _finishedVid = false;
 
+
+    [Header("Video Fields")]
+    [SerializeField] private Animator _roadAnim;
+    [SerializeField] private AudioSource _carDreamAmbience;
     
     // Start is called before the first frame update
     void Start()
     {
+
         StartCoroutine(StartPuppetFirst());
         StartCoroutine(StartVideoWait());
     }
@@ -58,5 +63,21 @@ public class PuppetTelevision : MonoBehaviour
     public void StopVideo()
     {
         _CRTVideo.SetActive(true);
+    }
+
+    public void FadeOutPuppet()
+    {
+        StartCoroutine(StartRoad());
+    }
+
+    private IEnumerator StartRoad()
+    {
+        yield return new WaitForSeconds(3f);
+        _roadAnim.SetTrigger("black");
+        yield return new WaitForSeconds(3f);
+        _roadAnim.SetTrigger("in");
+        _carDreamAmbience.Play();
+        yield return new WaitForSeconds(16f);
+        _roadAnim.SetTrigger("out");
     }
 }
