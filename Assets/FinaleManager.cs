@@ -97,7 +97,7 @@ public class FinaleManager : MonoBehaviour
         if (_fadingAudio)
         {
             float currentVolume = _ambientAudio.volume;
-            currentVolume -= (_fadeSpeed * Time.deltaTime);
+            currentVolume -= (_fadeSpeed * (Time.deltaTime / 100));
             _ambientAudio.volume = currentVolume;
         }
     }
@@ -118,10 +118,11 @@ public class FinaleManager : MonoBehaviour
     private IEnumerator StartZoom()
     {
         _zooming = true;
-        yield return new WaitForSeconds(35f);
+        yield return new WaitForSeconds(20f);
         _eyesAnim.SetTrigger("veryLong");
+        yield return new WaitForSeconds(8f);
         _fadingAudio = true;
-        yield return new WaitForSeconds(10f);
+        yield return new WaitForSeconds(24f);
         StartCoroutine(EndScene());
 
     }
