@@ -80,9 +80,9 @@ public class CreditsManager : MonoBehaviour
         //then camera slowly sways away
         //then the "ritual static" logo comes up
         //then credits play
-        yield return new WaitForSeconds(4f);
+        yield return new WaitForSeconds(5f);
         _blackAnim.SetTrigger("fade");
-        yield return new WaitForSeconds(20f);
+        yield return new WaitForSeconds(5f);
         _camAnim.SetTrigger("sway");
         
     }
