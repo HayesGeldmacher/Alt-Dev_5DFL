@@ -31,7 +31,7 @@ public class chairSit : Interactable
     public bool _firstInteracted = false;
     private bool _flashOffLastFrame = false;
 
-
+    
 
     [SerializeField] private List<GameObject> _disappearObjects = new List<GameObject>();
     [SerializeField] private List<GameObject> _appearObjects = new List<GameObject>();

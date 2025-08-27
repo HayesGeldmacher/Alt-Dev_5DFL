@@ -370,7 +370,10 @@ public class CameraController : MonoBehaviour
                     else if (Input.GetButtonDown("Interact"))
                     {
                         _cursorAnim.SetTrigger("clicked");
-                        _interactAudio.PlayInteract();
+                        if(_interactAudio != null)
+                        {
+                            _interactAudio.PlayInteract();
+                        }
                         _hitInfo.transform.GetComponent<Interactable>().Interact();
                     }
 
