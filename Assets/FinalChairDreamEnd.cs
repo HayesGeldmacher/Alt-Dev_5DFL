@@ -53,7 +53,7 @@ public class FinalChairDreamEnd : Interactable
          Destroy(PlayerController.instance.transform.gameObject);
         _lerping = true;
         yield return new WaitForSeconds(10f);
-        _projectorBackground.SetTrigger("fade");
+       // _projectorBackground.SetTrigger("fade");
         _wallInvisible.SetTrigger("fade");
         yield return new WaitForSeconds(10f);
         SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
