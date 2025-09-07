@@ -9,8 +9,13 @@ public class StaticDreamManager : MonoBehaviour
     public int _currentShot;
     public int _maxShot;
     public bool _canMove = true;
+    public StartDataMosh _dataMosh;
+
 
     public Transform _player;
+
+    [Header("CountDown Fields")]
+    
 
     //The below region just creates a reference of this specific controller that we can call from other scripts quickly
     #region Singleton
@@ -35,7 +40,7 @@ public class StaticDreamManager : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        _shotPositions[0].CallPositionShot();
+        CallNextShot();
     }
 
     // Update is called once per frame
@@ -58,6 +63,7 @@ public class StaticDreamManager : MonoBehaviour
 
     public void NextShot(Transform nextPosition)
     {
+        _dataMosh.CallGlitch();
         _player.localPosition = nextPosition.localPosition;
         _player.localRotation = nextPosition.localRotation;
     }
