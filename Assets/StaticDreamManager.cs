@@ -8,13 +8,16 @@ public class StaticDreamManager : MonoBehaviour
     public StaticDreamPosition[] _shotPositions;
     public int _currentShot;
     public int _maxShot;
-    public bool _canMove = true;
     public StartDataMosh _dataMosh;
 
 
     public Transform _player;
 
+
     [Header("CountDown Fields")]
+    public float _clickCountDown = 2;
+    private float _currentClickDown = 1;
+    public bool _canClick = false;
     
 
     //The below region just creates a reference of this specific controller that we can call from other scripts quickly
@@ -41,18 +44,33 @@ public class StaticDreamManager : MonoBehaviour
     void Start()
     {
         CallNextShot();
+        _currentClickDown = _clickCountDown;
     }
 
     // Update is called once per frame
     void Update()
     {
-        if (Input.GetButtonDown("Interact"))
+
+
+        if (_canClick)
         {
-            if (_canMove)
-                {
+            if (Input.GetButtonDown("Interact"))
+            {
+                _canClick = false;
+                _currentClickDown = _clickCountDown;
                 CallNextShot();
-                } 
+            }
+
         }
+        else
+        {
+            _currentClickDown -= Time.deltaTime;
+            if(_currentClickDown <= 0)
+            {
+                _canClick = true;
+            }
+        }
+
     }
 
     private void CallNextShot()
@@ -67,4 +85,5 @@ public class StaticDreamManager : MonoBehaviour
         _player.localPosition = nextPosition.localPosition;
         _player.localRotation = nextPosition.localRotation;
     }
+
 }
