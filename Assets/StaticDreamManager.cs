@@ -18,6 +18,8 @@ public class StaticDreamManager : MonoBehaviour
     public float _clickCountDown = 2;
     private float _currentClickDown = 1;
     public bool _canClick = false;
+
+    private AudioSource _interactAudio;
     
 
     //The below region just creates a reference of this specific controller that we can call from other scripts quickly
@@ -45,6 +47,7 @@ public class StaticDreamManager : MonoBehaviour
     {
         CallNextShot();
         _currentClickDown = _clickCountDown;
+        _interactAudio = GetComponent<AudioSource>();
     }
 
     // Update is called once per frame
@@ -54,11 +57,15 @@ public class StaticDreamManager : MonoBehaviour
 
         if (_canClick)
         {
-            if (Input.GetButtonDown("Interact"))
+
+            if (!GameManager.instance._isPaused)
             {
-                _canClick = false;
-                _currentClickDown = _clickCountDown;
-                CallNextShot();
+                if (Input.GetButtonDown("Interact"))
+                {
+                    _canClick = false;
+                    _currentClickDown = _clickCountDown;
+                    CallNextShot();
+                }
             }
 
         }
@@ -75,6 +82,7 @@ public class StaticDreamManager : MonoBehaviour
 
     private void CallNextShot()
     {
+        _interactAudio.Play();
         _shotPositions[_currentShot].CallPositionShot();
         _currentShot++;
     }

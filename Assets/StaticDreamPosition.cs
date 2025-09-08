@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class StaticDreamPosition : MonoBehaviour
+public class StaticDreamPosition : Interactable
 {
 
     public GameObject[] appearObjects;
@@ -11,17 +11,19 @@ public class StaticDreamPosition : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        
+        base.Start();
     }
 
     // Update is called once per frame
     void Update()
     {
-        
+        base.Update();
     }
 
     public void CallPositionShot()
     {
+
+        base.Interact();
         if(disappearObjects.Length > 0)
         {
             DisappearObjects();
