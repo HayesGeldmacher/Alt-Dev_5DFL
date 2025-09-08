@@ -27,6 +27,7 @@ public class StaticDreamManager : MonoBehaviour
     public bool _hasEnded = false;
     public Animator _blackOut;
     public AudioFadeOut _audioFade;
+    public AudioFadeIn _audioFadeIn;
     private bool _callGlitch = false;
 
     public Animator _cursorAnim;
@@ -54,9 +55,10 @@ public class StaticDreamManager : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        StartCoroutine(StartScene());
+        _audioFade.StartFading();
         GameManager.pauseInstance += DisablePointerImage;
         GameManager.unPauseInstance += EnablePointerImage;
+        StartCoroutine(StartScene());
 
     }
 
