@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
-
+using UnityEngine.UI;
 public class StaticDreamManager : MonoBehaviour
 {
     [Header("Shot Fields")]
@@ -28,6 +28,9 @@ public class StaticDreamManager : MonoBehaviour
     public Animator _blackOut;
     public AudioFadeOut _audioFade;
     private bool _callGlitch = false;
+
+    public Animator _cursorAnim;
+    public RawImage _image;
     //The below region just creates a reference of this specific controller that we can call from other scripts quickly
     #region Singleton
 
@@ -52,6 +55,9 @@ public class StaticDreamManager : MonoBehaviour
     void Start()
     {
         StartCoroutine(StartScene());
+        GameManager.pauseInstance += DisablePointerImage;
+        GameManager.unPauseInstance += EnablePointerImage;
+
     }
 
     private IEnumerator StartScene()
@@ -84,6 +90,7 @@ public class StaticDreamManager : MonoBehaviour
                     {
                         _canClick = false;
                         _currentClickDown = _clickCountDown;
+
                         CallNextShot();
                     }
                 }
@@ -97,6 +104,7 @@ public class StaticDreamManager : MonoBehaviour
             if(_currentClickDown <= 0)
             {
                 _canClick = true;
+                _cursorAnim.SetBool("appear", true);
             }
         }
 
@@ -112,6 +120,11 @@ public class StaticDreamManager : MonoBehaviour
         {
             _hasEnded = true;
             StartCoroutine(EndScene());
+        }
+        else
+        {
+            _cursorAnim.SetTrigger("click");
+            _cursorAnim.SetBool("appear", false);
         }
     }
 
@@ -130,8 +143,20 @@ public class StaticDreamManager : MonoBehaviour
     {
         _blackOut.SetTrigger("fade");
         _audioFade.StartFading();
+        GameManager.pauseInstance -= DisablePointerImage;
+        GameManager.unPauseInstance -= EnablePointerImage;
         yield return new WaitForSeconds(_endTimeBuffer);
         SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
+    }
+
+    public void DisablePointerImage()
+    {
+        _image.enabled = false;
+    }
+
+    public void EnablePointerImage()
+    {
+        _image.enabled = true;
     }
 
 }

@@ -172,7 +172,10 @@ public class GameManager : MonoBehaviour
         Debug.Log("FUCKING STOPPED FREEZING BITCHES!");
         
         PlayerController.instance._frozen = _freeze;
-        _controller._frozen = _freeze;
+        if(_controller != null)
+        {
+            _controller._frozen = _freeze;
+        }
     }
 
    public void SetAudioBackgroundFade()
