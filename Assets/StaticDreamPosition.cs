@@ -8,6 +8,7 @@ public class StaticDreamPosition : Interactable
     public GameObject[] appearObjects;
     public GameObject[] disappearObjects;
     
+    
     // Start is called before the first frame update
     void Start()
     {

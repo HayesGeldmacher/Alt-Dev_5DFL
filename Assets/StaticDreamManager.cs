@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class StaticDreamManager : MonoBehaviour
 {
@@ -20,8 +21,13 @@ public class StaticDreamManager : MonoBehaviour
     public bool _canClick = false;
 
     private AudioSource _interactAudio;
-    
 
+    [Header("End Fields")]
+    public float _endTimeBuffer;
+    public bool _hasEnded = false;
+    public Animator _blackOut;
+    public AudioFadeOut _audioFade;
+    private bool _callGlitch = false;
     //The below region just creates a reference of this specific controller that we can call from other scripts quickly
     #region Singleton
 
@@ -45,10 +51,23 @@ public class StaticDreamManager : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        CallNextShot();
-        _currentClickDown = _clickCountDown;
-        _interactAudio = GetComponent<AudioSource>();
+        StartCoroutine(StartScene());
     }
+
+    private IEnumerator StartScene()
+    {
+
+        _blackOut.SetTrigger("blackInstant");
+        _interactAudio = GetComponent<AudioSource>();
+        _dataMosh.CallGlitch();
+        Transform nextPosition = _shotPositions[0].transform;
+        _player.localPosition = nextPosition.localPosition;
+        _player.localRotation = nextPosition.localRotation;
+        _currentClickDown = 4;
+        yield return new WaitForSeconds(2f);
+        _blackOut.SetTrigger("fade");
+    }
+
 
     // Update is called once per frame
     void Update()
@@ -57,15 +76,18 @@ public class StaticDreamManager : MonoBehaviour
 
         if (_canClick)
         {
-
-            if (!GameManager.instance._isPaused)
+            if (!_hasEnded)
             {
-                if (Input.GetButtonDown("Interact"))
+                if (!GameManager.instance._isPaused)
                 {
-                    _canClick = false;
-                    _currentClickDown = _clickCountDown;
-                    CallNextShot();
+                    if (Input.GetButtonDown("Interact"))
+                    {
+                        _canClick = false;
+                        _currentClickDown = _clickCountDown;
+                        CallNextShot();
+                    }
                 }
+
             }
 
         }
@@ -85,13 +107,31 @@ public class StaticDreamManager : MonoBehaviour
         _interactAudio.Play();
         _shotPositions[_currentShot].CallPositionShot();
         _currentShot++;
+
+        if(_currentShot >= _maxShot)
+        {
+            _hasEnded = true;
+            StartCoroutine(EndScene());
+        }
     }
 
     public void NextShot(Transform nextPosition)
     {
-        _dataMosh.CallGlitch();
+        if (_callGlitch)
+        {
+         _dataMosh.CallGlitch();
+        }
         _player.localPosition = nextPosition.localPosition;
         _player.localRotation = nextPosition.localRotation;
+        _callGlitch = true;
+    }
+
+    private IEnumerator EndScene()
+    {
+        _blackOut.SetTrigger("fade");
+        _audioFade.StartFading();
+        yield return new WaitForSeconds(_endTimeBuffer);
+        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
     }
 
 }
