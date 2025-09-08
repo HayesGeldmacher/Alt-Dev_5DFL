@@ -113,7 +113,6 @@ public class nightManager : Interactable
             base.Interact();
             _interactAudio.Play();
             _seenDialogue = false;
-            StartCoroutine(SpawnFlags());
         }
         else if(Input.GetMouseButtonDown(0) && _phoneCompletedDialogue && !_phoneEndedDialogue)
         {
@@ -163,19 +162,11 @@ public class nightManager : Interactable
         _Items[0].SetActive(true);
     }
     
-    private IEnumerator SpawnFlags()
-    {
-
-        yield return new WaitForSeconds(0.2f);
-        _flag1.SetActive(true);
-        _flag2.SetActive(true);
-    }
+   
 
 
     private IEnumerator StartDialogue()
     {
-        _flag1.SetActive(false);
-        _flag2.SetActive(false);
         yield return new WaitForSeconds(1f);
         base.Interact();
         _seenDialogue = true;
