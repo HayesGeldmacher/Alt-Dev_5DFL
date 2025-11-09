@@ -18,6 +18,9 @@ public class TextEncounter
     public bool _startScreen = false;
     public bool _freezeInput = false;
 
+    //determines if dad can play uninterrupted
+    public bool _dadAnim = false;
+
     public bool _hasSound = false;
     public AudioClip _soundClip;
 
@@ -35,6 +38,9 @@ public class TextEncounter
     public List<string> _options;
 
     public int _finalPath;
+
+
+    public bool _cardEncounter = false;
     
 
 }

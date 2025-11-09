@@ -66,7 +66,7 @@ public class DreamEndCollision : MonoBehaviour
         {
             CharacterController _controller = _player.GetComponent<CharacterController>();
             _controller.enabled = false;
-            _player.position = _spawnPos.position;
+          //  _player.position = _spawnPos.position;
     
         }
 
@@ -82,7 +82,7 @@ public class DreamEndCollision : MonoBehaviour
         _mosh.CallGlitch();
         _mosh.CallGlitch();
         _mosh.CallGlitch();
-        yield return new WaitForSeconds(1.5f);
+       // yield return new WaitForSeconds(1.5f);
         _blackAnim.SetTrigger("quick");
         yield return new WaitForSeconds(3);
         SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);

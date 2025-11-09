@@ -33,6 +33,8 @@ public class GameManager : MonoBehaviour
     [SerializeField] private AudioSource _interactSound;
 
     [SerializeField] private TextGameManager _textGameManager;
+    [SerializeField] private CardGameManager _cardGameManager;
+    public bool _cardGame = false;
     public bool _inTextGame = false;
 
     [SerializeField] private TitleScreenSpriteFollowMouse _pauseCursor;
@@ -245,6 +247,11 @@ public class GameManager : MonoBehaviour
         {
             _textGameManager.Pause();
         }
+
+        if(_cardGame && _cardGameManager != null)
+        {
+            _cardGameManager.Pause();
+        }
     }
 
     public void Unpause()
@@ -309,6 +316,12 @@ public class GameManager : MonoBehaviour
         {
             _textGameManager.UnPause();
         }
+       
+        if (_cardGame && _cardGameManager != null)
+        {
+            _cardGameManager.UnPause();
+        }
+
     }
 
 

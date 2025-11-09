@@ -175,7 +175,9 @@ public class TitleScreenSpriteFollowMouse : MonoBehaviour
                //problem LINE!!! - theres gotta be something not instantiated here
                 _currentVirtPos = _virtualMouse.virtualMouse.position.value;
             }
-            _clickImage.enabled = false;
+            _anim.ResetTrigger("appear");
+            _anim.SetTrigger("fade");
+            //_clickImage.enabled = false;
         }
         else
         {
@@ -186,7 +188,10 @@ public class TitleScreenSpriteFollowMouse : MonoBehaviour
     private IEnumerator EnableSprite()
     {
         yield return new WaitForSecondsRealtime(0.1f);
-        _clickImage.enabled = true;
+        _anim.ResetTrigger("fade");
+        _anim.ResetTrigger("fade");
+        _anim.SetTrigger("appear");
+        //_clickImage.enabled = true;
     }
 
     private void OnDeviceChanged()

@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 1585952577}
-  m_IndirectSpecularColor: {r: 0, g: 0, b: 0, a: 1}
+  m_IndirectSpecularColor: {r: 0.0056571946, g: 0.0020637517, b: 0.0020465895, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -1191,13 +1191,15 @@ MonoBehaviour:
     _sentences: []
   _important: 0
   _canBeGrabbed: 0
-  _outlined: 0
-  _isOutlined: 0
   _player: {fileID: 0}
+  _hasPlayerController: 1
   _playsSound: 0
   _soundList: []
   _soundSource: {fileID: 0}
   _currentSound: 0
+  _animates: 0
+  _animator: {fileID: 0}
+  _animKey: 
   _switchAnim: {fileID: 17582281}
   _ceilingLight: {fileID: 0}
   _on: 0
@@ -3549,13 +3551,15 @@ MonoBehaviour:
     _sentences: []
   _important: 0
   _canBeGrabbed: 0
-  _outlined: 0
-  _isOutlined: 0
   _player: {fileID: 0}
+  _hasPlayerController: 1
   _playsSound: 0
   _soundList: []
   _soundSource: {fileID: 0}
   _currentSound: 0
+  _animates: 0
+  _animator: {fileID: 0}
+  _animKey: 
   _strength: 3
   _canSound: 0
   _soundWait: 0
@@ -31534,13 +31538,15 @@ MonoBehaviour:
     - 'The wall here feels flimsy... is it caulked over? '
   _important: 0
   _canBeGrabbed: 0
-  _outlined: 0
-  _isOutlined: 0
   _player: {fileID: 0}
+  _hasPlayerController: 1
   _playsSound: 0
   _soundList: []
   _soundSource: {fileID: 0}
   _currentSound: 0
+  _animates: 0
+  _animator: {fileID: 0}
+  _animKey: 
   _glimmer: {fileID: 1571253525}
   _crumble: {fileID: 124851486}
   _crumbleAnim: {fileID: 1942534055}
@@ -32168,13 +32174,15 @@ MonoBehaviour:
     - They sure didn't bother to take any trash on the way out...
   _important: 0
   _canBeGrabbed: 0
-  _outlined: 0
-  _isOutlined: 0
   _player: {fileID: 0}
+  _hasPlayerController: 1
   _playsSound: 0
   _soundList: []
   _soundSource: {fileID: 0}
   _currentSound: 0
+  _animates: 0
+  _animator: {fileID: 0}
+  _animKey: 
 --- !u!65 &136904137
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -46259,13 +46267,15 @@ MonoBehaviour:
     _sentences: []
   _important: 0
   _canBeGrabbed: 0
-  _outlined: 0
-  _isOutlined: 0
   _player: {fileID: 0}
+  _hasPlayerController: 1
   _playsSound: 0
   _soundList: []
   _soundSource: {fileID: 0}
   _currentSound: 0
+  _animates: 0
+  _animator: {fileID: 0}
+  _animKey: 
   _strength: 3
   _canSound: 0
   _soundWait: 0
@@ -65213,13 +65223,15 @@ MonoBehaviour:
     _sentences: []
   _important: 0
   _canBeGrabbed: 0
-  _outlined: 0
-  _isOutlined: 0
   _player: {fileID: 0}
+  _hasPlayerController: 1
   _playsSound: 0
   _soundList: []
   _soundSource: {fileID: 0}
   _currentSound: 0
+  _animates: 0
+  _animator: {fileID: 0}
+  _animKey: 
   _switchAnim: {fileID: 533446615}
   _ceilingLight: {fileID: 0}
   _on: 0
@@ -65389,13 +65401,15 @@ MonoBehaviour:
     _sentences: []
   _important: 0
   _canBeGrabbed: 0
-  _outlined: 0
-  _isOutlined: 0
   _player: {fileID: 0}
+  _hasPlayerController: 1
   _playsSound: 0
   _soundList: []
   _soundSource: {fileID: 0}
   _currentSound: 0
+  _animates: 0
+  _animator: {fileID: 0}
+  _animKey: 
 --- !u!43 &537675146
 Mesh:
   m_ObjectHideFlags: 0
@@ -183446,13 +183460,24 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8b5c4a5641fc62a4197389133101a785, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  material: {fileID: 1000019056}
+  material: {fileID: 1930435365}
   _hardness: -3
   _pixHardness: 0
   _displayWarp: {x: 0.03, y: 0.03, z: 0, w: 0}
   _resolution: 1
   _maskDark: 0.63
   _maskLight: 0.87
+  _breathing: 0
+  _breathUpSpeed: 0
+  _breathDownSpeed: 0
+  _goingUp: 0
+  _maxRes: 0
+  _minRes: 0
+  _currentWaitTime: 0
+  _waitTime: 0
+  _waiting: 0
+  _shouldStop: 0
+  _endRes: 2.8
 --- !u!43 &857654524
 Mesh:
   m_ObjectHideFlags: 0
@@ -189105,13 +189130,15 @@ MonoBehaviour:
     - Go to bed...
   _important: 0
   _canBeGrabbed: 0
-  _outlined: 0
-  _isOutlined: 0
   _player: {fileID: 0}
+  _hasPlayerController: 1
   _playsSound: 0
   _soundList: []
   _soundSource: {fileID: 0}
   _currentSound: 0
+  _animates: 0
+  _animator: {fileID: 0}
+  _animKey: 
   _cameraPickup: {fileID: 0}
   speed: 0
   _isDarkening: 0
@@ -220166,13 +220193,15 @@ MonoBehaviour:
     - Do you remember my old camcorder? I left it downd
   _important: 0
   _canBeGrabbed: 0
-  _outlined: 0
-  _isOutlined: 0
   _player: {fileID: 0}
+  _hasPlayerController: 1
   _playsSound: 0
   _soundList: []
   _soundSource: {fileID: 0}
   _currentSound: 0
+  _animates: 0
+  _animator: {fileID: 0}
+  _animKey: 
 --- !u!65 &943381393
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -220306,13 +220335,15 @@ MonoBehaviour:
     _sentences: []
   _important: 0
   _canBeGrabbed: 0
-  _outlined: 0
-  _isOutlined: 0
   _player: {fileID: 0}
+  _hasPlayerController: 1
   _playsSound: 0
   _soundList: []
   _soundSource: {fileID: 0}
   _currentSound: 0
+  _animates: 0
+  _animator: {fileID: 0}
+  _animKey: 
   _cam: {fileID: 0}
   _letterAnim: {fileID: 0}
   _timesInteracted: 0
@@ -221282,39 +221313,6 @@ Mesh:
     offset: 0
     size: 0
     path: 
---- !u!21 &1000019056
-Material:
-  serializedVersion: 8
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_Name: Hidden/CRT
-  m_Shader: {fileID: 4800000, guid: 825ff68a80df47d439dbf4cf9552851c, type: 3}
-  m_Parent: {fileID: 0}
-  m_ModifiedSerializedProperties: 0
-  m_ValidKeywords: []
-  m_InvalidKeywords: []
-  m_LightmapFlags: 4
-  m_EnableInstancingVariants: 0
-  m_DoubleSidedGI: 0
-  m_CustomRenderQueue: -1
-  stringTagMap: {}
-  disabledShaderPasses: []
-  m_LockedProperties: 
-  m_SavedProperties:
-    serializedVersion: 3
-    m_TexEnvs: []
-    m_Ints: []
-    m_Floats:
-    - hardPix: 0
-    - hardScan: -3
-    - maskDark: 0.63
-    - maskLight: 0.87
-    - resScale: 1
-    m_Colors:
-    - warp: {r: 0.03, g: 0.03, b: 0, a: 0}
-  m_BuildTextureStacks: []
 --- !u!4 &1010716643 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 4732217283539082056, guid: c47ef3e2d346bee448624660c6b215d4,
@@ -227639,6 +227637,10 @@ MonoBehaviour:
   _appearItems:
   - {fileID: 1213757373}
   - {fileID: 0}
+  _teleport: 0
+  _playerBody: {fileID: 0}
+  _charController: {fileID: 0}
+  _newSpawnPosition: {fileID: 0}
 --- !u!1 &1030697779
 GameObject:
   m_ObjectHideFlags: 0
@@ -233161,13 +233163,15 @@ MonoBehaviour:
     - I can't sleep with the door open...
   _important: 0
   _canBeGrabbed: 0
-  _outlined: 0
-  _isOutlined: 0
   _player: {fileID: 0}
+  _hasPlayerController: 1
   _playsSound: 0
   _soundList: []
   _soundSource: {fileID: 0}
   _currentSound: 0
+  _animates: 0
+  _animator: {fileID: 0}
+  _animKey: 
   _anchorPoint: {fileID: 1950565590}
   _lookPoint: {fileID: 983264411}
   _camHolder: {fileID: 6677075160896486579}
@@ -233183,6 +233187,8 @@ MonoBehaviour:
   _door: {fileID: 0}
   _swivel: {fileID: 6532821420204698344}
   _watch: {fileID: 0}
+  _doorInteract: {fileID: 0}
+  _televisionOld: {fileID: 0}
 --- !u!4 &1237875421 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 6919043900124082891, guid: 96ec89877843290458854642eb9ee987,
@@ -349711,7 +349717,6 @@ GameObject:
   - component: {fileID: 1304477997}
   - component: {fileID: 1304478002}
   - component: {fileID: 1304478001}
-  - component: {fileID: 1304478003}
   m_Layer: 5
   m_Name: MainMenuUI
   m_TagString: Untagged
@@ -349860,28 +349865,6 @@ MonoBehaviour:
   m_FirstSelected: {fileID: 0}
   m_sendNavigationEvents: 1
   m_DragThreshold: 10
---- !u!95 &1304478003
-Animator:
-  serializedVersion: 7
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1304477996}
-  m_Enabled: 1
-  m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 9100000, guid: 0c6e0e0a664389e488e55cdf1fc1b442, type: 2}
-  m_CullingMode: 0
-  m_UpdateMode: 0
-  m_ApplyRootMotion: 0
-  m_LinearVelocityBlending: 0
-  m_StabilizeFeet: 0
-  m_AnimatePhysics: 0
-  m_WarningMessage: 
-  m_HasTransformHierarchy: 1
-  m_AllowConstantClipSamplingOptimization: 1
-  m_KeepAnimatorStateOnDisable: 0
-  m_WriteDefaultValuesOnDisable: 0
 --- !u!1 &1308090901 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 919132149155446097, guid: 3e43c9a7bc6efff43809820dbbddcfba,
@@ -382021,13 +382004,15 @@ MonoBehaviour:
     _sentences: []
   _important: 0
   _canBeGrabbed: 0
-  _outlined: 0
-  _isOutlined: 0
   _player: {fileID: 0}
+  _hasPlayerController: 1
   _playsSound: 0
   _soundList: []
   _soundSource: {fileID: 0}
   _currentSound: 0
+  _animates: 0
+  _animator: {fileID: 0}
+  _animKey: 
   _curtainAudio: {fileID: 1559599527}
   _disappear: 1
   _disappearObject: {fileID: 0}
@@ -389086,6 +389071,10 @@ MonoBehaviour:
   _appearItems:
   - {fileID: 0}
   - {fileID: 1966374509}
+  _teleport: 0
+  _playerBody: {fileID: 0}
+  _charController: {fileID: 0}
+  _newSpawnPosition: {fileID: 0}
 --- !u!1001 &1680675027
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -389862,13 +389851,15 @@ MonoBehaviour:
     - I should test it on the vase...
   _important: 0
   _canBeGrabbed: 0
-  _outlined: 0
-  _isOutlined: 0
   _player: {fileID: 0}
+  _hasPlayerController: 1
   _playsSound: 0
   _soundList: []
   _soundSource: {fileID: 0}
   _currentSound: 0
+  _animates: 0
+  _animator: {fileID: 0}
+  _animKey: 
   _camController: {fileID: 0}
   _render: {fileID: 0}
   _bc: {fileID: 0}
@@ -389882,6 +389873,7 @@ MonoBehaviour:
   _screenVHS: {fileID: 0}
   _ghostCam: {fileID: 5692315929005068054}
   _bodyAnim: {fileID: 0}
+  skipTutorial: 1
   _staticPickupSound: {fileID: 0}
 --- !u!65 &1684355838
 BoxCollider:
@@ -436195,8 +436187,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _camera: {fileID: 1860404147}
   _player: {fileID: 4273500330500997587}
-  _minRot: 0
-  _maxRot: 0
+  _minRotX: 0
+  _maxRotX: 0
+  _limitRotation: 0
 --- !u!114 &1860404149
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -438555,6 +438548,39 @@ Transform:
   - {fileID: 969624439}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: -79.862, z: 0}
+--- !u!21 &1930435365
+Material:
+  serializedVersion: 8
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_Name: Hidden/CRT
+  m_Shader: {fileID: 4800000, guid: 825ff68a80df47d439dbf4cf9552851c, type: 3}
+  m_Parent: {fileID: 0}
+  m_ModifiedSerializedProperties: 0
+  m_ValidKeywords: []
+  m_InvalidKeywords: []
+  m_LightmapFlags: 4
+  m_EnableInstancingVariants: 0
+  m_DoubleSidedGI: 0
+  m_CustomRenderQueue: -1
+  stringTagMap: {}
+  disabledShaderPasses: []
+  m_LockedProperties: 
+  m_SavedProperties:
+    serializedVersion: 3
+    m_TexEnvs: []
+    m_Ints: []
+    m_Floats:
+    - hardPix: 0
+    - hardScan: -3
+    - maskDark: 0.63
+    - maskLight: 0.87
+    - resScale: 1
+    m_Colors:
+    - warp: {r: 0.03, g: 0.03, b: 0, a: 0}
+  m_BuildTextureStacks: []
 --- !u!850595691 &1931332974
 LightingSettings:
   m_ObjectHideFlags: 0
@@ -445563,13 +445589,15 @@ MonoBehaviour:
     _sentences: []
   _important: 0
   _canBeGrabbed: 0
-  _outlined: 0
-  _isOutlined: 0
   _player: {fileID: 0}
+  _hasPlayerController: 1
   _playsSound: 0
   _soundList: []
   _soundSource: {fileID: 0}
   _currentSound: 0
+  _animates: 0
+  _animator: {fileID: 0}
+  _animKey: 
   _strength: 3
   _canSound: 0
   _soundWait: 0
@@ -462798,13 +462826,15 @@ MonoBehaviour:
     _sentences: []
   _important: 0
   _canBeGrabbed: 0
-  _outlined: 0
-  _isOutlined: 0
   _player: {fileID: 0}
+  _hasPlayerController: 1
   _playsSound: 0
   _soundList: []
   _soundSource: {fileID: 0}
   _currentSound: 0
+  _animates: 0
+  _animator: {fileID: 0}
+  _animKey: 
   _strength: 3
   _canSound: 0
   _soundWait: 0
@@ -466538,13 +466568,15 @@ MonoBehaviour:
       trash out!?
   _important: 0
   _canBeGrabbed: 0
-  _outlined: 0
-  _isOutlined: 0
   _player: {fileID: 0}
+  _hasPlayerController: 1
   _playsSound: 0
   _soundList: []
   _soundSource: {fileID: 0}
   _currentSound: 0
+  _animates: 0
+  _animator: {fileID: 0}
+  _animKey: 
 --- !u!1 &4560757996090261180
 GameObject:
   m_ObjectHideFlags: 0

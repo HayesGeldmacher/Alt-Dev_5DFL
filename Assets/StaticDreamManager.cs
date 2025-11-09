@@ -55,7 +55,7 @@ public class StaticDreamManager : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        _audioFade.StartFading();
+  
         GameManager.pauseInstance += DisablePointerImage;
         GameManager.unPauseInstance += EnablePointerImage;
         StartCoroutine(StartScene());
@@ -143,6 +143,8 @@ public class StaticDreamManager : MonoBehaviour
 
     private IEnumerator EndScene()
     {
+        _cursorAnim.SetBool("appear", false);
+        DisablePointerImage();
         _blackOut.SetTrigger("fade");
         _audioFade.StartFading();
         GameManager.pauseInstance -= DisablePointerImage;

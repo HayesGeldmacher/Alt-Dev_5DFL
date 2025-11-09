@@ -65,7 +65,7 @@ public class Interactable : MonoBehaviour
     }
 
 
-    protected void Update()
+    public virtual void Update()
     {
 
         if (!_important)
