@@ -14,6 +14,7 @@ public class PhoneNight1 : Interactable
 
     private Dialogue _defaultDialogue;
     public Dialogue _phoneDialogue;
+    public Dialogue _endDialogue;
     public Dialogue _phoneDialogueMorning;
     [SerializeField] private EvidenceManager _evidence;
     [SerializeField] private AudioSource _garble1;
@@ -36,7 +37,8 @@ public class PhoneNight1 : Interactable
     public float _currentMorningDialogue = 0;
     public float _totalMorningDialogue;
     [SerializeField] BedDayTime _bed;
- 
+
+    public bool openDoor = true;
     [SerializeField] private PlayerController _controller;
     [SerializeField] private CameraController _cam;
 
@@ -75,6 +77,20 @@ public class PhoneNight1 : Interactable
     [SerializeField] private Animator _phoneLightAnim;
     [SerializeField] private AudioSource _phonePutDown;
 
+    [Header("FMV Fields")]
+    [SerializeField] private bool doFMV = false;
+    [SerializeField] private Animator FMVAnim;
+    [SerializeField] private bool _interactingInFMV;
+    [SerializeField] private Animator cursorAnim;
+    [SerializeField] private float _totalWaitTime = 2f;
+    [SerializeField] private float _currentWaitTime = 0;
+    [SerializeField] private AudioSource _creepyLaughing;
+    [SerializeField] private GameObject _newPhone;
+    private float oldWaitTime = -1;
+    private bool _finishedFirstTime = false;
+    public bool _lineDead = false;
+    
+
     private void Start()
     {
         //base.Start();
@@ -88,6 +104,8 @@ public class PhoneNight1 : Interactable
         {
             _phoneLightAnim.SetTrigger("on");
         }
+
+       
     }
 
     private void Update()
@@ -95,8 +113,38 @@ public class PhoneNight1 : Interactable
 
         base.Update();
 
+        if (_interactingInFMV)
+        {
+            if (Input.GetMouseButtonDown(0) && !GameManager.instance._isPaused)
+            {
+               
+                if(_currentWaitTime <= 0)
+                {
+                    Interact();
+                    _currentWaitTime = _totalWaitTime;
+                    if (cursorAnim != null)
+                    {
+                        cursorAnim.SetTrigger("click");
+                        cursorAnim.SetBool("appear", false);
+                    }
+                }
+            }
 
 
+
+            _currentWaitTime -= Time.deltaTime;
+            if(_currentWaitTime <= 0)
+            {
+                if(oldWaitTime > 0)
+                {
+                    cursorAnim.SetBool("appear", true);
+                }
+            }
+
+
+            oldWaitTime = _currentWaitTime;
+
+        }
 
 
         if (base._startedTalking && base._isTimed)
@@ -118,6 +166,15 @@ public class PhoneNight1 : Interactable
 
     public override void Interact()
     {
+
+        Debug.Log("Interacted with Phone!!");
+        if (_finishedFirstTime && _lineDead)
+        {
+            
+            TriggerDialogue(_endDialogue);
+            return;
+        }
+        
         
         if (_ringSound.isPlaying)
         {
@@ -126,6 +183,7 @@ public class PhoneNight1 : Interactable
             if (_phoneLightAnim != null)
             {
                 _phoneLightAnim.SetTrigger("talking");
+               // _cam._frozen = true;
             }
         }
 
@@ -133,8 +191,29 @@ public class PhoneNight1 : Interactable
         if(_currentDialogueLine >= _totalDialogue)
         {
              EndDialogue();
+           
+           _finishedFirstTime = true;
             Debug.Log("ended Dialogue!");
             _currentDialogueLine = 0;
+            if(FMVAnim != null)
+            {
+             FMVAnim.SetTrigger("disappear");
+            }
+
+            if (doFMV)
+            {
+                StartCoroutine(DisableSelf());
+            }
+            _cam._frozen = false;
+            _interactingInFMV = false;
+            if (cursorAnim != null) {
+                cursorAnim.SetBool("appear", false);
+            }
+
+            if(_creepyLaughing != null)
+            {
+                _creepyLaughing.Stop();
+            }
         }
         else
         {
@@ -147,6 +226,17 @@ public class PhoneNight1 : Interactable
             {
                 _interactedFirst = true;
                 DisappearHouse();
+                if (doFMV)
+                {
+                    FMVAnim.SetTrigger("appear");
+                    _cam._frozen = true;
+                    _interactingInFMV = true;
+                    if (cursorAnim != null)
+                    {
+                        //cursorAnim.SetBool("appear", true);
+                    }
+
+                }
             }
 
 
@@ -171,7 +261,10 @@ public class PhoneNight1 : Interactable
         {
             foreach(GameObject _item in _disappearObjects)
             {
-                _item.SetActive(false);
+                if(_item != null)
+                {
+                    _item.SetActive(false);
+                }
             }
         }
 
@@ -179,7 +272,10 @@ public class PhoneNight1 : Interactable
         {
             foreach(GameObject _item in _appearObjects)
             {
-                _item.SetActive(true);
+                if(_item != null)
+                {
+                    _item.SetActive(true);
+                }
             }
         }
 
@@ -188,9 +284,19 @@ public class PhoneNight1 : Interactable
 
    private IEnumerator OpenDoor()
     {
+
         yield return new WaitForSeconds(1.5f);
+        if (_newDoorExit != null)
+        {
+            
         _newDoorExit.GetComponent<Door>().SetDirection();
-        _doorOpenSound.Play();
+        
+            if(_doorOpenSound != null)
+            {
+                _doorOpenSound.Play();
+            }
+
+        }
     }
 
 
@@ -222,8 +328,11 @@ public class PhoneNight1 : Interactable
         if (!_endedFirstTime)
         {
             _endedFirstTime = true;
-            StartCoroutine(OpenDoor());
-            Debug.Log("opened Door!");
+            if (!doFMV)
+            {
+                StartCoroutine(OpenDoor());
+                Debug.Log("opened Door!");
+            }
         }
 
         if(_phoneLightAnim != null)
@@ -271,4 +380,14 @@ public class PhoneNight1 : Interactable
         }
     }
 
+
+    private IEnumerator DisableSelf()
+    {
+        transform.GetComponent<BoxCollider>().enabled = false;
+        transform.GetChild(0).gameObject.SetActive(false);
+        yield return new WaitForSeconds(0.2f);
+        _newPhone.SetActive(true);
+        yield return new WaitForSeconds(2f);
+        gameObject.SetActive(false);
+    }
 }

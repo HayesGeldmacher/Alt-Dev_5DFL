@@ -33,7 +33,7 @@ public class newKitchenCollider : Interactable
             {
                 _canTrigger = false;
                 StartCoroutine(TriggerWait());
-                _nightManage.AddRoom(this);
+                //_nightManage.AddRoom(this);
 
                 if(_colFlag1 == _currentFlag)
                 {

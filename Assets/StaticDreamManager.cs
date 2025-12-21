@@ -32,6 +32,8 @@ public class StaticDreamManager : MonoBehaviour
 
     public Animator _cursorAnim;
     public RawImage _image;
+
+    [Header("FaceFields")]
     //The below region just creates a reference of this specific controller that we can call from other scripts quickly
     #region Singleton
 
@@ -116,9 +118,20 @@ public class StaticDreamManager : MonoBehaviour
     {
         _interactAudio.Play();
         _shotPositions[_currentShot].CallPositionShot();
-        _currentShot++;
 
-        if(_currentShot >= _maxShot)
+        if (_shotPositions[_currentShot]._animatesFace)
+        {
+            if(_shotPositions[_currentShot].animNum > _shotPositions[_currentShot].maxAnimNum)
+            {
+                _currentShot++;
+            }
+        }
+        else
+        {
+            _currentShot++;
+        }
+
+        if (_currentShot >= _maxShot)
         {
             _hasEnded = true;
             StartCoroutine(EndScene());
@@ -132,6 +145,12 @@ public class StaticDreamManager : MonoBehaviour
 
     public void NextShot(Transform nextPosition)
     {
+         if (_shotPositions[_currentShot]._animatesFace)
+        {
+            _currentShot++;
+            nextPosition = _shotPositions[_currentShot].transform;
+        }
+        
         if (_callGlitch)
         {
          _dataMosh.CallGlitch();

@@ -13,6 +13,7 @@ public class PhoneDaytime : Interactable
     [SerializeField]public Color colorEnd = Color.green;
     private DialogueManager _dialogueManager;
     [SerializeField] private SoundManager _interactAudio;
+    
 
     private Dialogue _defaultDialogue;
     public Dialogue _phoneDialogue;
@@ -28,7 +29,8 @@ public class PhoneDaytime : Interactable
     [SerializeField] private GameObject _pointWindowLight;
     [SerializeField] private GameObject _sun;
     private float t;
-    float duration = 4;
+  
+    public float duration = 4;
     private bool _hasSpawned = false;
     [SerializeField] private int diaNum = 0;
     [SerializeField] private bool _canAudio = true;
@@ -61,9 +63,20 @@ public class PhoneDaytime : Interactable
     private bool _canInteract = true;
 
     [SerializeField] private AudioSource _neutralTone;
+    public float dialogueNumberNight = 5;
 
     public GameObject[] _disappearObjects;
     public GameObject[] _appearObjects;
+
+    [Header("Last Night disable fields")]
+    public bool disableSelf = false;
+    public GameObject childMesh;
+    public BoxCollider collider;
+    public bool isDark = false;
+    public GameObject evidencePhone;
+    public bool setColorReallyDark = false;
+    [SerializeField] public Color lightStart = Color.blue;
+    [SerializeField] public Color lightEnd = Color.black;
 
     public float _minDarkness;
 
@@ -78,6 +91,7 @@ public class PhoneDaytime : Interactable
         //colorStart = _skyBoxMat.TintColor;
         _isDarkening = false;
         RenderSettings.skybox.SetColor("_Tint", colorStart);
+        lightStart = RenderSettings.ambientLight;
         t = 0;
         
         if(_phoneLightAnim != null)
@@ -118,8 +132,14 @@ public class PhoneDaytime : Interactable
            Color lerpedColor = Color.Lerp(colorStart, colorEnd, t);
             // renderer.material.color = lerpedColor
             RenderSettings.skybox.SetColor("_Tint", lerpedColor);
-            t += Time.deltaTime / duration;
 
+            if (setColorReallyDark)
+            {
+                Color darkColor = Color.Lerp(lightStart,  lightEnd, t);
+                RenderSettings.ambientLight = darkColor;
+            }
+
+            t += Time.deltaTime / duration;
            // RenderSettings.skybox.SetColor("_Tint", lerpedColor);
             //RenderSettings.skybox.SetColor("_Tint", Color.black);
         }
@@ -175,7 +195,7 @@ public class PhoneDaytime : Interactable
         {
 
             diaNum += 1;
-            if(diaNum >= 5)
+            if(diaNum >= dialogueNumberNight)
             {
                 EndDialogue();
                 diaNum = 0;
@@ -255,7 +275,7 @@ public class PhoneDaytime : Interactable
     private IEnumerator Darkness()
     {
         Debug.Log("started darkness in scene!");
-        
+        isDark = true;
         foreach(GameObject appear in _appearObjects)
         {
             if (appear != null)
@@ -272,8 +292,9 @@ public class PhoneDaytime : Interactable
             }
         }
 
-        _monitorMorning.SetActive(false);
-        _monitorNight.SetActive(true);
+     
+       // _monitorMorning.SetActive(false);
+      //  _monitorNight.SetActive(true);
         _sunLightBlockerNight.SetActive(true);
         _bed.EnableBedTime();
         yield return new WaitForSeconds(3);
@@ -323,6 +344,11 @@ public class PhoneDaytime : Interactable
             _cameraPickup.SetActive(true);
         }
 
+        if (isDark)
+        {
+            StartCoroutine(DisableSelf());
+        }
+
     }
 
     private void SunDown()
@@ -346,5 +372,15 @@ public class PhoneDaytime : Interactable
         {
             _phoneLightAnim.SetTrigger("on");
         }
+    }
+
+    private IEnumerator DisableSelf()
+    {
+        collider.enabled = false;
+        childMesh.SetActive(false);
+        evidencePhone.SetActive(true);
+        yield return new WaitForSeconds(5f);
+       // Destroy(gameObject);
+
     }
 }

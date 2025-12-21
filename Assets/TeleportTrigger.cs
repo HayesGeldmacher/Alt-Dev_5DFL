@@ -26,6 +26,7 @@ public class TeleportTrigger : MonoBehaviour
     public bool _rotatePlayer = false;
     [SerializeField] private Transform _targetRot;
     public bool _shouldChangeFlash = true;
+    public float yRotationValue;
     // Start is called before the first frame update
     void Start()
     {
@@ -93,7 +94,7 @@ public class TeleportTrigger : MonoBehaviour
             // the second argument, upwards, defaults to Vector3.up
             Quaternion rotation = Quaternion.LookRotation(relativePos, Vector3.up);
 
-            _playerParent.transform.rotation = Quaternion.Euler(_playerParent.transform.localRotation.x, rotation.y, _playerParent.transform.localRotation.z);
+            _playerParent.transform.rotation = Quaternion.Euler(_playerParent.transform.localRotation.x, yRotationValue, _playerParent.transform.localRotation.z);
         }
 
         if (_appear)

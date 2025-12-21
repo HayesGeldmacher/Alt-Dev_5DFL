@@ -285,6 +285,7 @@ public class ScreenshotHandler : MonoBehaviour
 
     private void CheckForEvidence()
     {
+        Debug.Log("hit Evidence!");
         _isEvidence = false;
 
         RaycastHit hit;
@@ -292,8 +293,48 @@ public class ScreenshotHandler : MonoBehaviour
         {
             if(hit.transform.tag == "evidence")
             {
-                
-                    _evidenceManager.PictureTaken(hit.transform.gameObject);
+
+
+
+
+                EvidencePiece piece = hit.transform.GetComponent<EvidencePiece>();
+                if (piece != null)
+                {
+
+                    if (piece.spawnObjectsOnCapture)
+                    {
+                        foreach (GameObject obj in piece.spawnObjects)
+                        {
+                            if (obj != null)
+                            {
+
+                                obj.SetActive(true);
+                            }
+
+                        }
+
+                    }
+
+                    if (piece.destroyObjectsOnCapture)
+                    {
+                        foreach (GameObject obj in piece.destroyObjects)
+                        {
+                            if (obj != null)
+                            {
+
+                                obj.SetActive(false);
+                            }
+
+                        }
+
+                    }
+
+                }
+
+
+
+
+                _evidenceManager.PictureTaken(hit.transform.gameObject);
                     _evidenceManager.StrikeOffItem(hit.transform.gameObject);
                     Debug.Log("Got a object!");
                     StartCoroutine(EvidenceDing()); 
@@ -307,6 +348,9 @@ public class ScreenshotHandler : MonoBehaviour
                 {
                     _currentKillItem = hit.transform.gameObject;
                 }
+
+
+
             }
             else
             {
@@ -317,13 +361,21 @@ public class ScreenshotHandler : MonoBehaviour
             if (hit.transform.tag == "ShootTrigger")
             {
                 hit.transform.GetComponent<ShootTrigger>().Interact();
+                bool shouldKill = hit.transform.GetComponent<ShootTrigger>().kill;
                 if (_killItems)
                 {
-                    Destroy(hit.transform.gameObject);
+                    if (shouldKill)
+                    {
+                        Destroy(hit.transform.gameObject);
+                    }
                 }
                 else
                 {
+                    if (shouldKill)
+                    {
                     _currentKillItem = hit.transform.gameObject;
+
+                    }
                 }
             }
             else
@@ -331,6 +383,7 @@ public class ScreenshotHandler : MonoBehaviour
                 Debug.Log("RAYHIT" + hit.transform.name);
 
             }
+
         }
 
         if (_showPhoto)

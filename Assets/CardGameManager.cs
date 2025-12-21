@@ -75,6 +75,16 @@ public class CardGameManager : MonoBehaviour
 
     [SerializeField] private AudioSource _cardAudio;
 
+    [Header("Teleport Variables")]
+    [SerializeField] private Transform teleportPosition;
+    [SerializeField] private CharacterController characterController;
+    [SerializeField] private Transform playerBody;
+    [SerializeField] private Transform _teleportRotation;
+    [SerializeField] private float rotationYValue;
+    [SerializeField] private bool _teleportPlayer = true;
+    [SerializeField] private AudioSource screechBreathe;
+
+
 
 
     private bool _canInteract = true;
@@ -510,6 +520,7 @@ public class CardGameManager : MonoBehaviour
         //goes from CardEncounter back to standard TextGame
     }
 
+
     private void PlaySound()
     {
         _interactSound.pitch = Random.Range(0.8f, 1.1f);
@@ -535,6 +546,11 @@ public class CardGameManager : MonoBehaviour
     private IEnumerator DisableGame()
     {
         Debug.Log("I FUCKIGN QUIT!");
+        if (_teleportPlayer)
+        {
+            TeleportPlayer();
+        }
+        yield return new WaitForSeconds(0.2f);
         _canvasAnim.SetBool("visible", false);
         _brokenMonitor.SetActive(true);
         _workingMonitor.SetActive(false);
@@ -599,5 +615,16 @@ public class CardGameManager : MonoBehaviour
     public void OptionSelected2()
     {
         ChooseOption(2);
+    }
+
+
+    public void TeleportPlayer()
+    {
+         playerBody.rotation = Quaternion.Euler(playerBody.rotation.x, rotationYValue, playerBody.rotation.z);
+
+        playerBody.gameObject.SetActive(false);
+        playerBody.position = teleportPosition.position;
+        playerBody.gameObject.SetActive(true);
+        screechBreathe.Play();
     }
 }

@@ -17,6 +17,8 @@ public class NightTVItems : ShootTrigger
     [SerializeField] private Transform _playerBody;
     [SerializeField] private CharacterController _charController;
     [SerializeField] private Transform _newSpawnPosition;
+    [SerializeField] private bool _rotateOnTeleport = false;
+    public float rotationYValue;
 
     void Start()
     {
@@ -39,6 +41,15 @@ public class NightTVItems : ShootTrigger
                 {
                     _charController.enabled = false;
                     _playerBody.position = _newSpawnPosition.position;
+                    if (_rotateOnTeleport)
+                    {
+                        
+
+                        // the second argument, upwards, defaults to Vector3.up
+                       // Quaternion rotation = Quaternion.LookRotation(_newSpawnPosition.rotation., Vector3.up);
+
+                        _playerBody.rotation = Quaternion.Euler(_playerBody.rotation.x, rotationYValue, _playerBody.rotation.z);
+                    }
                     _charController.enabled = true;
                 }
             }

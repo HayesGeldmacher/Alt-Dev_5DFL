@@ -17,6 +17,7 @@ public class LadderAtticInteract : Interactable {
 [SerializeField] private Transform _playerParent;
 [SerializeField] private PlayerController _playerController;
     [SerializeField] private CameraController _camController;
+    public float yRotTeleport = 120f;
 
 
     // Start is called before the first frame update
@@ -63,14 +64,15 @@ public class LadderAtticInteract : Interactable {
     private void TeleportPlayer()
     {
 
-        Vector3 relativePos = _teleportRotation.position - _playerParent.position;
+        //Vector3 relativePos = _teleportRotation.position - _playerParent.position;
 
         // the second argument, upwards, defaults to Vector3.up
-       Quaternion rotation = Quaternion.LookRotation(relativePos, Vector3.up);
+       //Quaternion rotation = Quaternion.LookRotation(relativePos, Vector3.up);
 
-        _playerParent.transform.localRotation = Quaternion.Euler(_playerParent.transform.localRotation.x, relativePos.y, _playerParent.transform.localRotation.z);
 
+        _playerParent.transform.rotation = Quaternion.Euler(_playerParent.transform.rotation.x, yRotTeleport, _playerParent.transform.rotation.z);
         _playerParent.gameObject.SetActive(false);
+        Debug.Log("SET THE ROTATION AFTER LADDER");
        _playerParent.position = _teleportPosition.position;
         _playerParent.gameObject.SetActive(true);
 }

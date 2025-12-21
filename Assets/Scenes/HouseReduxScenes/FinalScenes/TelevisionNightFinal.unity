@@ -656,39 +656,6 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: a30281c9e9c7aa04db11cf398681a917, type: 3}
---- !u!21 &437348876
-Material:
-  serializedVersion: 8
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_Name: Hidden/CRT
-  m_Shader: {fileID: 4800000, guid: 825ff68a80df47d439dbf4cf9552851c, type: 3}
-  m_Parent: {fileID: 0}
-  m_ModifiedSerializedProperties: 0
-  m_ValidKeywords: []
-  m_InvalidKeywords: []
-  m_LightmapFlags: 4
-  m_EnableInstancingVariants: 0
-  m_DoubleSidedGI: 0
-  m_CustomRenderQueue: -1
-  stringTagMap: {}
-  disabledShaderPasses: []
-  m_LockedProperties: 
-  m_SavedProperties:
-    serializedVersion: 3
-    m_TexEnvs: []
-    m_Ints: []
-    m_Floats:
-    - hardPix: 0
-    - hardScan: -1
-    - maskDark: 0.25
-    - maskLight: 0.49
-    - resScale: 2
-    m_Colors:
-    - warp: {r: 0.03125, g: 0.04166, b: 0, a: 0}
-  m_BuildTextureStacks: []
 --- !u!1001 &446681431
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -807,6 +774,39 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 8e7c400f18382fe4ca8189fcee14679f, type: 3}
+--- !u!21 &465542781
+Material:
+  serializedVersion: 8
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_Name: Hidden/CRT
+  m_Shader: {fileID: 4800000, guid: 825ff68a80df47d439dbf4cf9552851c, type: 3}
+  m_Parent: {fileID: 0}
+  m_ModifiedSerializedProperties: 0
+  m_ValidKeywords: []
+  m_InvalidKeywords: []
+  m_LightmapFlags: 4
+  m_EnableInstancingVariants: 0
+  m_DoubleSidedGI: 0
+  m_CustomRenderQueue: -1
+  stringTagMap: {}
+  disabledShaderPasses: []
+  m_LockedProperties: 
+  m_SavedProperties:
+    serializedVersion: 3
+    m_TexEnvs: []
+    m_Ints: []
+    m_Floats:
+    - hardPix: 0
+    - hardScan: -1
+    - maskDark: 0.25
+    - maskLight: 0.49
+    - resScale: 18
+    m_Colors:
+    - warp: {r: 0.03125, g: 0.04166, b: 0, a: 0}
+  m_BuildTextureStacks: []
 --- !u!1001 &517333349
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -8928,7 +8928,7 @@ Mesh:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: pb_Mesh78954
+  m_Name: pb_Mesh69626
   serializedVersion: 11
   m_SubMeshes:
   - serializedVersion: 2
@@ -9153,39 +9153,6 @@ GameObject:
     type: 3}
   m_PrefabInstance: {fileID: 3821269433991948673}
   m_PrefabAsset: {fileID: 0}
---- !u!21 &1931568086
-Material:
-  serializedVersion: 8
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_Name: Hidden/CRT
-  m_Shader: {fileID: 4800000, guid: 825ff68a80df47d439dbf4cf9552851c, type: 3}
-  m_Parent: {fileID: 0}
-  m_ModifiedSerializedProperties: 0
-  m_ValidKeywords: []
-  m_InvalidKeywords: []
-  m_LightmapFlags: 4
-  m_EnableInstancingVariants: 0
-  m_DoubleSidedGI: 0
-  m_CustomRenderQueue: -1
-  stringTagMap: {}
-  disabledShaderPasses: []
-  m_LockedProperties: 
-  m_SavedProperties:
-    serializedVersion: 3
-    m_TexEnvs: []
-    m_Ints: []
-    m_Floats:
-    - hardPix: 0
-    - hardScan: -1
-    - maskDark: 0.25
-    - maskLight: 0.49
-    - resScale: 2
-    m_Colors:
-    - warp: {r: 0.03125, g: 0.04166, b: 0, a: 0}
-  m_BuildTextureStacks: []
 --- !u!1 &2004346084
 GameObject:
   m_ObjectHideFlags: 0
@@ -9592,6 +9559,12 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: -2.012
       objectReference: {fileID: 0}
+    - target: {fileID: 1010959184960173529, guid: 68f86a15c60cc5844a4a1abc828baf19,
+        type: 3}
+      propertyPath: sharedProfile
+      value: 
+      objectReference: {fileID: 11400000, guid: 41aa1f2df741d4f40b1ab41602035a2c,
+        type: 2}
     - target: {fileID: 2106478957171272878, guid: 68f86a15c60cc5844a4a1abc828baf19,
         type: 3}
       propertyPath: _crt
@@ -9692,6 +9665,11 @@ PrefabInstance:
       propertyPath: _channels.Array.data[5].playSound
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 2935560236699406018, guid: 68f86a15c60cc5844a4a1abc828baf19,
+        type: 3}
+      propertyPath: blockSize
+      value: 4
+      objectReference: {fileID: 0}
     - target: {fileID: 6343557861002900910, guid: 68f86a15c60cc5844a4a1abc828baf19,
         type: 3}
       propertyPath: _maxRes
@@ -9704,13 +9682,33 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6343557861002900910, guid: 68f86a15c60cc5844a4a1abc828baf19,
         type: 3}
+      propertyPath: _goingUp
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6343557861002900910, guid: 68f86a15c60cc5844a4a1abc828baf19,
+        type: 3}
+      propertyPath: _waiting
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6343557861002900910, guid: 68f86a15c60cc5844a4a1abc828baf19,
+        type: 3}
       propertyPath: material
       value: 
-      objectReference: {fileID: 437348876}
+      objectReference: {fileID: 465542781}
+    - target: {fileID: 6343557861002900910, guid: 68f86a15c60cc5844a4a1abc828baf19,
+        type: 3}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6343557861002900910, guid: 68f86a15c60cc5844a4a1abc828baf19,
+        type: 3}
+      propertyPath: _breathing
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 6343557861002900910, guid: 68f86a15c60cc5844a4a1abc828baf19,
         type: 3}
       propertyPath: _resolution
-      value: 2
+      value: 18.409018
       objectReference: {fileID: 0}
     - target: {fileID: 6343557861002900910, guid: 68f86a15c60cc5844a4a1abc828baf19,
         type: 3}
@@ -9725,7 +9723,7 @@ PrefabInstance:
     - target: {fileID: 6343557861002900910, guid: 68f86a15c60cc5844a4a1abc828baf19,
         type: 3}
       propertyPath: _currentWaitTime
-      value: 1
+      value: -0.0336654
       objectReference: {fileID: 0}
     - target: {fileID: 7058506881501956194, guid: 68f86a15c60cc5844a4a1abc828baf19,
         type: 3}

@@ -50,7 +50,7 @@ public class KitchenEntranceTrigger : MonoBehaviour
         {
            _flash.ChangeFlashStatus();
         }
-        yield return new WaitForSeconds(1f);
+        yield return new WaitForSeconds(0.1f);
         foreach (GameObject _obj in _disappearItems)
         {
             _obj.SetActive(false);
@@ -61,9 +61,10 @@ public class KitchenEntranceTrigger : MonoBehaviour
         }
 
 
-        _spotLightSound.Play();
         transform.GetComponent<BoxCollider>().enabled = false;
-        yield return new WaitForSeconds(1f);
+        yield return new WaitForSeconds(1.5f);
+        _spotLightSound.Play();
+        _light1.SetTrigger("appear");
         Destroy(gameObject);
 
     }

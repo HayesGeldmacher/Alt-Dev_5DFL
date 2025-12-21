@@ -37,6 +37,15 @@ public class TelevisionRemoteChange : MonoBehaviour
     public CRT _crt;
 
     [SerializeField] private AudioFadeOut _audioFade;
+
+
+    [Header("Final TV Fields")]
+    public bool fadeWall = false;
+    public Animator wallFadeAnim;
+    public int clickToFadeOn = 4;
+    public int clickToFadeVid = 5;
+
+
     // Start is called before the first frame update
     void Start()
     {
@@ -101,6 +110,20 @@ public class TelevisionRemoteChange : MonoBehaviour
         _currentScreen.SetActive(true);
         _channelSound.clip = newChannel.audio;
         _channelSound.Play();
+
+
+        if (fadeWall)
+        {
+           if(_currentClicks == clickToFadeOn)
+            {
+                wallFadeAnim.SetTrigger("fade");
+            }
+
+            if (_currentClicks == clickToFadeVid)
+            {
+                wallFadeAnim.SetTrigger("open");
+            }
+        }
 
     }
 

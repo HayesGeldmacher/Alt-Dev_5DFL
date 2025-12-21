@@ -27,6 +27,10 @@ public class EvidencePiece : MonoBehaviour
     private Vector3 _bigSize;
     private float _growTime;
     private bool _hasPlayed = false;
+    public bool spawnObjectsOnCapture = false;
+    public GameObject[] spawnObjects;
+    public bool destroyObjectsOnCapture = false;
+    public GameObject[] destroyObjects;
 
     
 

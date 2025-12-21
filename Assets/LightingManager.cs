@@ -43,7 +43,7 @@ public class LightingManager : MonoBehaviour
             _currentLerpValue += ((1 * _speed )* Time.deltaTime);
             _currentColor = Color.Lerp(_storedColor, _nightColor, _currentLerpValue);
             RenderSettings.ambientLight = _currentColor;
-            if(_currentLerpValue >= 0.95f)
+            if(_currentLerpValue >= 0.99f)
             {
                 _decreasing = false;
                 _currentLerpValue = 0;

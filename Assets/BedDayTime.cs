@@ -63,7 +63,7 @@ public class BedDayTime : Interactable
             if(_monitorAudio.volume > 0)
             {
                 float currentVol = _monitorAudio.volume;
-                float newVol = currentVol - 0.1f;
+                float newVol = currentVol - _audioFadeSpeed;
                 _monitorAudio.volume = newVol;
             }
         }
@@ -146,7 +146,7 @@ public class BedDayTime : Interactable
         _monster.SetActive(true);
         }
         _blackAnim.SetTrigger("blinking");
-        yield return new WaitForSeconds(6);
+        yield return new WaitForSeconds(12);
         GameManager.instance.LoadNextLevel();
 
     }

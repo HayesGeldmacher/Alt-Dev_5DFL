@@ -34,6 +34,12 @@ public class SlidingDoorTrigger : MonoBehaviour
                 
                 if(obj != null)
                 {
+
+                    if(obj.GetComponent<ParticleSystem>() != null)
+                    {
+                        obj.GetComponent<ParticleSystem>().Stop();
+                    }
+                    
                     if(obj.GetComponent<MeshRenderer>() != null)
                     {
                     obj.GetComponent<MeshRenderer>().enabled = false;
@@ -61,9 +67,16 @@ public class SlidingDoorTrigger : MonoBehaviour
 
             foreach (Transform obj in disappearList)
             {
+               
 
                 if(obj != null)
                 {
+
+                    if (obj.GetComponent<ParticleSystem>() != null)
+                    {
+                        obj.GetComponent<ParticleSystem>().Play();
+                    }
+
                     if (obj.GetComponent<MeshRenderer>() != null)
                     {
                         obj.GetComponent<MeshRenderer>().enabled = true;
@@ -107,6 +120,14 @@ public class SlidingDoorTrigger : MonoBehaviour
 
         foreach (Transform child in parent)
             {
+
+                if (child.GetComponent<ParticleSystem>() != null)
+                {
+                    child.GetComponent<ParticleSystem>().Play();
+                }
+
+
+
                 if (child.GetComponent<MeshRenderer>() != null)
                 {
                     child.GetComponent<MeshRenderer>().enabled = true;
@@ -127,6 +148,12 @@ public class SlidingDoorTrigger : MonoBehaviour
         {
             foreach (Transform child in parent)
             {
+                if (child.GetComponent<ParticleSystem>() != null)
+                {
+                    child.GetComponent<ParticleSystem>().Stop();
+                }
+
+
                 if (child.GetComponent<MeshRenderer>() != null)
                 {
                     child.GetComponent<MeshRenderer>().enabled = false;

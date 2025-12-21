@@ -677,4 +677,5 @@ public class PlayerController : MonoBehaviour
         _virtualPerlin.m_AmplitudeGain = _currentIntensity;
         _virtualPerlin.m_FrequencyGain = _currentFrequency;
     }
+
 }
