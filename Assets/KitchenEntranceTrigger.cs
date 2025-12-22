@@ -13,6 +13,9 @@ public class KitchenEntranceTrigger : MonoBehaviour
     [SerializeField] private AudioSource _spotLightSound;
     [SerializeField] private FlashilghtRot _flash;
 
+    [SerializeField] private Transform _playerBody;
+    [SerializeField] private CharacterController _charController;
+    [SerializeField] private Transform _newSpawnPosition;
 
 
     private void Start()
@@ -60,6 +63,9 @@ public class KitchenEntranceTrigger : MonoBehaviour
             _obj.SetActive(true);
         }
 
+        _charController.enabled = false;
+        _playerBody.position = _newSpawnPosition.position;
+        _charController.enabled = true;
 
         transform.GetComponent<BoxCollider>().enabled = false;
         yield return new WaitForSeconds(1.5f);
