@@ -28,6 +28,11 @@ public class Door : Interactable
     [SerializeField] private AudioSource _openedAudio;
     [SerializeField] private List<AudioClip> _doorCreaks = new List<AudioClip>();
 
+
+    [Header("Finale Shit")]
+    private bool doneKnocking = false;
+    public bool stopKnocking = false;
+    public DoorKnocking knocking;
     
     
     // Start is called before the first frame update
@@ -63,11 +68,26 @@ public class Door : Interactable
             _lockedAudio.Play();
             CallEndDialogue();
         }
+
+
     }
 
     public void SetDirection()
     {
         if (_isLocked) return;
+        Debug.Log("Interacted with doorStopper");
+        if (stopKnocking)
+        {
+            if (!doneKnocking)
+            {
+                if(knocking != null)
+                {
+                    knocking.StopAudio();
+                    doneKnocking = true;
+
+                }
+            }
+        }
         
         Debug.Log("Direction Set!");
         _hasInteracted = true;

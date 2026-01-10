@@ -46,13 +46,35 @@ public class chairSit : Interactable
     [SerializeField] private AudioSource _darkAmbience;
 
     private bool _startedAudio = false;
+    public bool secondChair = false;
+    public float sitLengthOverride;
 
+    public GameObject[] clutterObjectsFake;
+    public GameObject[] clutterObjectsReal;
+    public Animator clutterAnim;
+    public Animator evidenceAnim;
+    public bool shouldTeleport = true;
+
+    public bool useAnimation = false;
+    public Animator houseAnim;
+    public float fadeInTime;
+    public float fadeOutTime;
+  
+      
 
     private void Start()
     {
         base.Start();
         gameObject.SetActive(false);
+        if (!secondChair)
+        {
         _totalSitTime = _chairAudio.clip.length + 6;
+
+        }
+        else
+        {
+            _totalSitTime = sitLengthOverride;
+        }
     }
 
     public override void Interact()
@@ -88,6 +110,12 @@ public class chairSit : Interactable
         _chairBC.enabled = false;
         _sat = true;
 
+        if (secondChair)
+        {
+         
+            clutterAnim.SetTrigger("fade");
+            evidenceAnim.SetTrigger("fade");
+        }
 
         if (_flashOff)
         {
@@ -196,7 +224,12 @@ public class chairSit : Interactable
 
     private IEnumerator FinishApparition()
     {
-        
+
+        if (useAnimation)
+        {
+            houseAnim.SetTrigger("endHouse");
+            yield return new WaitForSeconds(8f);
+        }
         _teddyBear.SetActive(true);
         _chairAudio.Stop();
         _chimesAudio.Play();
@@ -217,7 +250,10 @@ public class chairSit : Interactable
         _charController.enabled = true;
         _playerBC.enabled = true;
         _chairBC.enabled = true;
-        TeleportPlayer();
+        if (shouldTeleport)
+        {
+            TeleportPlayer();
+        }
 
     }
     public override void EndDialogue()
@@ -232,6 +268,11 @@ public class chairSit : Interactable
         _darkAmbience.Stop();
         yield return new WaitForSeconds(3);
         _chairAudio.Play();
+        if (useAnimation)
+        {
+            yield return new WaitForSeconds(2f);
+            houseAnim.SetTrigger("startHouse");
+        }
     }
 
     private void TeleportPlayer()

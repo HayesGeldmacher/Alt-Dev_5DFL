@@ -94,7 +94,10 @@ public class BedNight : Interactable
         }
         _blackAnim.SetTrigger("black");
         yield return new WaitForSeconds(2);
-        _television.SetActive(false);
+        if(_television != null)
+        {
+         _television.SetActive(false);
+        }
          _hud.SetActive(false);
         _cursor.SetActive(false);
         _monster.SetActive(true);

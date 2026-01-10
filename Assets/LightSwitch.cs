@@ -15,6 +15,11 @@ public class LightSwitch : Interactable
     [SerializeField] private GameObject _GarageBulb;
 
 
+    [Header("disappear SHIT")]
+    public bool manageItems = false;
+    public GameObject[] appearItems;
+    public GameObject[] disappearItems;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -48,6 +53,26 @@ public class LightSwitch : Interactable
             _ceilingLight.Flip(false);
 
                 
+            }
+
+            if (manageItems)
+            {
+                foreach(GameObject obj in appearItems)
+                {
+                    if(obj != null)
+                    {
+                        obj.SetActive(true);
+                    }
+                }
+
+                foreach(GameObject obj in disappearItems)
+                {
+                    if(obj != null)
+                    {
+                        obj.SetActive(false);
+                    }
+                }
+
             }
         }
         else

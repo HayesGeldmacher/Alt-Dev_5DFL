@@ -13,9 +13,9 @@ public class GameManager : MonoBehaviour
     [HideInInspector] public bool _isPaused = false;
     [SerializeField] private CameraController _controller;
     [SerializeField] private TMP_Text _pausedText;
-    [SerializeField] private GameObject _pauseButtons;
-    [SerializeField] private GameObject _pauseButtonsText;
-    [SerializeField] private Animator _pausedAnimator;
+    [SerializeField] public GameObject _pauseButtons;
+    [SerializeField] public GameObject _pauseButtonsText;
+    [SerializeField] public Animator _pausedAnimator;
     [SerializeField] private AudioSource _pausedAudio;
     [SerializeField] private GameObject _hudBorder;
     [SerializeField] private RawImage _cursorSprite;
@@ -37,7 +37,7 @@ public class GameManager : MonoBehaviour
     public bool _cardGame = false;
     public bool _inTextGame = false;
 
-    [SerializeField] private TitleScreenSpriteFollowMouse _pauseCursor;
+    [SerializeField] public TitleScreenSpriteFollowMouse _pauseCursor;
     [SerializeField] private TitleScreenSpriteFollowMouse _textCursor;
 
 

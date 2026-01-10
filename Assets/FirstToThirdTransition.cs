@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using TMPro;
 
 public class FirstToThirdTransition : MonoBehaviour
 {
@@ -38,6 +39,24 @@ public class FirstToThirdTransition : MonoBehaviour
     [SerializeField] private AudioSource _crowdAudio;
     [SerializeField] private AudioSource _dreamSong;
 
+    [Header("Dialogue Changes")]
+    public bool changeDialogue = false;
+    [SerializeField] private DialogueManager dialogueManager;
+    [SerializeField] private Animator firstPersonTextBox;
+    [SerializeField] private TMP_Text firstPersonDialogueText;
+    [SerializeField] private GameObject hudDream;
+    [SerializeField] private TitleScreenSpriteFollowMouse firstPersonCursor;
+    [SerializeField] private GameObject pauseButtonsFirst;
+    [SerializeField] private GameObject pauseButtonsTextFirst;
+    [SerializeField] private Animator pausedAnimatorFirst;
+    public TitleScreenSpriteFollowMouse firstPersonMouse;
+    public CamChangePositions positions;
+    public SingleMosh mosh;
+    public bool playInteractSound = false;
+
+
+
+
     [Header("FOG LIGHTING!")]
     public bool _fogLighting = false;
     public CamChangeLighting _fogChange;
@@ -70,6 +89,32 @@ public class FirstToThirdTransition : MonoBehaviour
     private void EnterFirstPerson(bool first)
     {
 
+        if (hudDream != null)
+        {
+            hudDream.SetActive(false);
+        }
+        if (changeDialogue)
+        {
+            if (dialogueManager != null)
+            {
+                if (firstPersonDialogueText != null)
+                {
+                    if (firstPersonTextBox != null)
+                    {
+                          dialogueManager._textAnim = firstPersonTextBox;
+                          dialogueManager._dialogueText = firstPersonDialogueText;
+                          GameManager.instance._pauseCursor = firstPersonCursor;
+                        GameManager.instance._pauseButtons = pauseButtonsFirst;
+                        GameManager.instance._pauseButtonsText = pauseButtonsTextFirst;
+                        GameManager.instance._pausedAnimator = pausedAnimatorFirst;
+                        //pauseButtonsFirst.GetComponent<PauseButton>().DisableCursor();
+
+                    }
+                }
+            }
+        }
+
+
         if (_fogLighting)
         {
             if(_fogChange != null)
@@ -83,8 +128,29 @@ public class FirstToThirdTransition : MonoBehaviour
         {
         _playerFirstPerson.SetActive(true);
         _playerThirdPerson.SetActive(false);
-            _camOverlayHUD.SetActive(true);
-        _HUDCanvas.worldCamera = _firstHUDCam;
+            if (changeDialogue)
+            {
+                GameManager.pauseInstance.Invoke();
+                GameManager.unPauseInstance.Invoke();
+                //firstPersonMouse.EnableCursor(false);
+                firstPersonMouse.CallKillMouseSprite();
+                Debug.Log("invoked cursor Fade!");
+                positions._mosh = mosh;
+                if (playInteractSound)
+                {
+                    GameManager.instance.PlayInteractSound();
+                }
+            }
+
+            if(_camOverlayHUD != null)
+            {
+             _camOverlayHUD.SetActive(true);
+            }
+            
+            if(_HUDCanvas != null)
+            {
+                _HUDCanvas.worldCamera = _firstHUDCam;
+            }
 
         }
         else
@@ -107,11 +173,15 @@ public class FirstToThirdTransition : MonoBehaviour
         _mosh.CallGlitch();
         _mosh.CallGlitch();
         _mosh.CallGlitch();
+        _mosh.CallGlitch();
+        _mosh.CallGlitch();
+        _mosh.CallGlitch();
 
         RenderSettings.ambientIntensity = _lightValue;
         RenderSettings.fogDensity = _fogDensity;
 
         _SunBeams.SetActive(false);
+       
 
         if (_interact)
         {
@@ -132,6 +202,8 @@ public class FirstToThirdTransition : MonoBehaviour
             _crowdAudio.Stop();
             _dreamSong.Stop();
         }
+
+
     }
 
 }

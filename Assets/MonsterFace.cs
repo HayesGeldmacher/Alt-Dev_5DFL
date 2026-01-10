@@ -19,6 +19,8 @@ public class MonsterFace : Interactable
     [SerializeField] private GameObject _chair;
     [SerializeField] private GameObject _chairCollisionReplacement;
     private bool _dead = false;
+    public int totalLines = 6;
+    
 
     // Start is called before the first frame update
     void Start()
@@ -36,7 +38,7 @@ public class MonsterFace : Interactable
             {
                 if (_canContinue)
                 {
-                   if(_lines <= 6)
+                   if(_lines <= totalLines)
                     {
                     _lines++;
                      StartCoroutine(AnimateFace());

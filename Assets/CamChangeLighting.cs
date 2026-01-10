@@ -29,6 +29,16 @@ public class CamChangeLighting : CamChangeTrigger
     public bool _cutToVideo;
     public float _cutLength;
     public VideoClip _vidClip;
+
+    [Header("video Player Fields")]
+    public bool playVideos = false;
+    public bool stopVideos = false;
+    public VideoPlayer[] vidPlayers;
+    public VideoPlayer[] vidStoppers;
+
+    public bool stopPlayingMovingBack = false;
+    private bool hasInteracted = false;
+    public bool playerInteractSound = false;
    
 
     // Start is called before the first frame update
@@ -45,6 +55,27 @@ public class CamChangeLighting : CamChangeTrigger
 
   public override void CallGeneric()
     {
+        if (stopPlayingMovingBack)
+        {
+            if (hasInteracted)
+            {
+                //do not allow player to interact a second time
+                return;
+            }
+
+            if (!hasInteracted)
+            {
+                transform.GetComponent<BoxCollider>().isTrigger = false;
+            }
+
+        }
+
+        if (playerInteractSound)
+        {
+            GameManager.instance.PlayInteractSound();
+        }
+
+        hasInteracted = true;
         base.CallGeneric();
         ChangeLighting();
 
@@ -79,11 +110,27 @@ public class CamChangeLighting : CamChangeTrigger
             _sound.spatialBlend = _soundPan;
         }
 
+
+        if (playVideos)
+        {
+            foreach (var player in vidPlayers)
+            {
+                player.Play();
+            }
+        }
+        if(stopVideos)
+        {
+            foreach (var player in vidStoppers)
+            {
+                player.Stop();
+            }
+        }
+
         if (_cutToVideo)
         {
-            if(_vidClip != null)
+            if (_vidClip != null)
             {
-             CamChangePositions.instance.CallVideo(_cutLength, _vidClip);
+                CamChangePositions.instance.CallVideo(_cutLength, _vidClip);
             }
         }
         

@@ -20,11 +20,12 @@ public class phoneFinale : Interactable
     [SerializeField] private GameObject _wallDisappear;
     [SerializeField] private Dialogue _dialogueEnd;
 
-    [SerializeField] private CameraController _camController; 
+    [SerializeField] private CameraController _camController;
+    public Animator phoneAnim;
     // Start is called before the first frame update
     void Start()
     {
-        
+        phoneAnim.SetTrigger("on");
     }
 
     // Update is called once per frame
@@ -49,6 +50,7 @@ public class phoneFinale : Interactable
             if (!_pickedUp)
             {
                 _phonePickupSound.Play();
+                phoneAnim.SetTrigger("talking");
                 _pickedUp = true;
                 _ringingSource.Stop();
                 PlayerController.instance._frozen = true;
@@ -68,6 +70,7 @@ public class phoneFinale : Interactable
     private void EndPhoneCall()
     {
         _finished = true;
+        phoneAnim.SetTrigger("off");
         _phonePutDownSound.Play();
         _wallDisappear.SetActive(false);
         PlayerController.instance._frozen = false;

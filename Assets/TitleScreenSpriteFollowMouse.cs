@@ -162,6 +162,23 @@ public class TitleScreenSpriteFollowMouse : MonoBehaviour
     }
 
 
+    public void CallKillMouseSprite()
+    {
+        StartCoroutine(KillMouseSprite());
+    }
+    public IEnumerator KillMouseSprite()
+    {
+        _clickImage.enabled = false;
+        yield return new WaitForSeconds(0.1f);
+        _anim.ResetTrigger("appear");
+        _anim.SetTrigger("fade");;
+        Debug.Log("Invoked KillMouseSprite!");
+        yield return new WaitForSeconds(1f);
+        _clickImage.enabled = true;
+
+    }
+
+
     public void EnableCursor(bool _kill)
     {
         Debug.Log("ENABLED : " + _kill);
@@ -187,6 +204,7 @@ public class TitleScreenSpriteFollowMouse : MonoBehaviour
 
     private IEnumerator EnableSprite()
     {
+        
         yield return new WaitForSecondsRealtime(0.1f);
         _anim.ResetTrigger("fade");
         _anim.ResetTrigger("fade");

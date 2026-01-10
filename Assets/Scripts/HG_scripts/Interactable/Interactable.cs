@@ -49,7 +49,7 @@ public class Interactable : MonoBehaviour
 
         if (_hasPlayerController){
 
-        _player = PlayerController.instance.transform;
+            _player = PlayerController.instance.transform;
         }
 
         if (!_isIntro)

@@ -16,6 +16,15 @@ public class PauseButton : MonoBehaviour
 
     [SerializeField] private TitleScreenSpriteFollowMouse _pauseCursor;
     
+    
+    //disables the cursor without actually doing any functionality
+    public void DisableCursor()
+    {
+        _pauseCursor.EnableCursor(false);
+        Cursor.lockState = CursorLockMode.Locked;
+        Cursor.visible = false;
+    }
+    
     public void CallReset()
     {
         _pauseCursor.EnableCursor(false);

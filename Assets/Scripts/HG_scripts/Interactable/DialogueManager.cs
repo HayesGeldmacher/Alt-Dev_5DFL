@@ -8,7 +8,7 @@ public class DialogueManager : MonoBehaviour
     private Queue<string> _sentences;
     public TMP_Text _dialogueText;
     [SerializeField] private Interactable _currentTrigger;
-    [SerializeField] private Animator _textAnim;
+    public Animator _textAnim;
 
     public bool _currentlyTalking = true;
 
