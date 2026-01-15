@@ -39,7 +39,12 @@ public class CamChangeLighting : CamChangeTrigger
     public bool stopPlayingMovingBack = false;
     private bool hasInteracted = false;
     public bool playerInteractSound = false;
-   
+
+    [Header("Audio Player Fields")]
+    public bool fadeAudio = false;
+    private bool isFading = false;
+    public AudioSource audioToFade;
+    public float fadeSpeed = 0.05f;
 
     // Start is called before the first frame update
     void Start()
@@ -50,7 +55,20 @@ public class CamChangeLighting : CamChangeTrigger
     // Update is called once per frame
     void Update()
     {
-        
+        if (isFading)
+        {
+            float oldVolume = audioToFade.volume;
+
+            if(oldVolume <= 0)
+            {
+                isFading = false;
+                return;
+            }
+
+            float newVolume = oldVolume - (fadeSpeed * Time.deltaTime);
+            audioToFade.volume = newVolume;
+
+        }
     }
 
   public override void CallGeneric()
@@ -78,6 +96,11 @@ public class CamChangeLighting : CamChangeTrigger
         hasInteracted = true;
         base.CallGeneric();
         ChangeLighting();
+
+        if (fadeAudio)
+        {
+            isFading = true;
+        }
 
 
         if (_playSound)
