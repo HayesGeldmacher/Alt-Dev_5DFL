@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.2001977, g: 0.087176345, b: 0.27062985, a: 1}
+  m_IndirectSpecularColor: {r: 0.12078255, g: 0.052596994, b: 0.16328105, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -252,10 +252,10 @@ MonoBehaviour:
   _eyesAnim: {fileID: 427817918177402069}
   _crt: {fileID: 8457194033214212645}
   _virtualCam: {fileID: 1703408223}
-  _endCamZoom: 26
+  _endCamZoom: 35
   _camZoomSpeed: 2
   _zooming: 0
-  _currentZoom: 0
+  _currentZoom: 3
   _cam: {fileID: 3527381133104869488}
   _camMovePos: {fileID: 410970457}
   _camFloatSpeed: 0.1
@@ -1109,7 +1109,7 @@ Mesh:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: pb_Mesh32746
+  m_Name: pb_Mesh257848
   serializedVersion: 11
   m_SubMeshes:
   - serializedVersion: 2
@@ -1385,6 +1385,39 @@ Transform:
     type: 3}
   m_PrefabInstance: {fileID: 1061193189}
   m_PrefabAsset: {fileID: 0}
+--- !u!21 &969508514
+Material:
+  serializedVersion: 8
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_Name: Hidden/CRT
+  m_Shader: {fileID: 4800000, guid: 825ff68a80df47d439dbf4cf9552851c, type: 3}
+  m_Parent: {fileID: 0}
+  m_ModifiedSerializedProperties: 0
+  m_ValidKeywords: []
+  m_InvalidKeywords: []
+  m_LightmapFlags: 4
+  m_EnableInstancingVariants: 0
+  m_DoubleSidedGI: 0
+  m_CustomRenderQueue: -1
+  stringTagMap: {}
+  disabledShaderPasses: []
+  m_LockedProperties: 
+  m_SavedProperties:
+    serializedVersion: 3
+    m_TexEnvs: []
+    m_Ints: []
+    m_Floats:
+    - hardPix: 0
+    - hardScan: 0
+    - maskDark: 0.73
+    - maskLight: 0.84
+    - resScale: 2
+    m_Colors:
+    - warp: {r: 0.03125, g: 0.04166, b: 0, a: 0}
+  m_BuildTextureStacks: []
 --- !u!1001 &1007611068
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -2238,39 +2271,6 @@ Light:
   m_UseViewFrustumForShadowCasterCull: 1
   m_ShadowRadius: 0
   m_ShadowAngle: 0
---- !u!21 &1593610278
-Material:
-  serializedVersion: 8
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_Name: Hidden/CRT
-  m_Shader: {fileID: 4800000, guid: 825ff68a80df47d439dbf4cf9552851c, type: 3}
-  m_Parent: {fileID: 0}
-  m_ModifiedSerializedProperties: 0
-  m_ValidKeywords: []
-  m_InvalidKeywords: []
-  m_LightmapFlags: 4
-  m_EnableInstancingVariants: 0
-  m_DoubleSidedGI: 0
-  m_CustomRenderQueue: -1
-  stringTagMap: {}
-  disabledShaderPasses: []
-  m_LockedProperties: 
-  m_SavedProperties:
-    serializedVersion: 3
-    m_TexEnvs: []
-    m_Ints: []
-    m_Floats:
-    - hardPix: 0
-    - hardScan: 0
-    - maskDark: 0.73
-    - maskLight: 0.84
-    - resScale: 2
-    m_Colors:
-    - warp: {r: 0.03125, g: 0.04166, b: 0, a: 0}
-  m_BuildTextureStacks: []
 --- !u!850595691 &1690677199
 LightingSettings:
   m_ObjectHideFlags: 0
@@ -2543,7 +2543,7 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: 0.49179253, y: 0.5129983, z: -0.5078654, w: 0.48687324}
   m_LocalPosition: {x: 135.58, y: 43.34, z: -61.03}
-  m_LocalScale: {x: 1.670678, y: 1.670678, z: 1.670678}
+  m_LocalScale: {x: 2.1875858, y: 2.1875858, z: 2.1875858}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
@@ -4309,7 +4309,7 @@ Animator:
   m_GameObject: {fileID: 8588146953088427678}
   m_Enabled: 1
   m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 9100000, guid: 05fd25f59ba195d49afd9a7c45a1af6e, type: 2}
+  m_Controller: {fileID: 9100000, guid: 97c92e77fe0c83d42aa57950da331680, type: 2}
   m_CullingMode: 0
   m_UpdateMode: 0
   m_ApplyRootMotion: 0
@@ -11104,6 +11104,8 @@ MonoBehaviour:
   _darkAmbience: {fileID: 0}
   _interactSound: {fileID: 0}
   _textGameManager: {fileID: 0}
+  _cardGameManager: {fileID: 0}
+  _cardGame: 0
   _inTextGame: 0
   _pauseCursor: {fileID: 5379448561632748226}
   _textCursor: {fileID: 0}
@@ -14086,7 +14088,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8b5c4a5641fc62a4197389133101a785, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  material: {fileID: 1593610278}
+  material: {fileID: 969508514}
   _hardness: 0
   _pixHardness: 0
   _displayWarp: {x: 0.03125, y: 0.04166, z: 0, w: 0}

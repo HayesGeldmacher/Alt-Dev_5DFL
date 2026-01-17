@@ -71,28 +71,7 @@ public class FinaleManager : MonoBehaviour
         }
 
 
-        if (_zooming)
-        {
-            _currentZoom = _virtualCam.m_Lens.FieldOfView;
-            float newZoom = _currentZoom;
-            newZoom -= (Time.deltaTime * _camZoomSpeed);
-
-            
-
-           if(_currentZoom <= _endCamZoom)
-            {
-                _zooming = false;
-            }
-
-            _virtualCam.m_Lens.FieldOfView = newZoom;
-
-
-
-            //moving the camera!
-            Vector3 currentPos = _cam.localPosition;
-            Vector3 newPos = Vector3.Lerp(currentPos, _camMovePos.localPosition, _camFloatSpeed * Time.deltaTime);
-            _cam.localPosition = newPos;
-        }
+       
 
         if (_fadingAudio)
         {
@@ -146,5 +125,31 @@ public class FinaleManager : MonoBehaviour
     private void EndAudio()
     {
 
+    }
+
+    private void LateUpdate()
+    {
+        if (_zooming)
+        {
+            _currentZoom = _virtualCam.m_Lens.FieldOfView;
+            float newZoom = _currentZoom;
+            newZoom -= (Time.deltaTime * _camZoomSpeed);
+
+
+
+            if (_currentZoom <= _endCamZoom)
+            {
+                _zooming = false;
+            }
+
+            _virtualCam.m_Lens.FieldOfView = newZoom;
+
+
+
+            //moving the camera!
+            Vector3 currentPos = _cam.localPosition;
+            Vector3 newPos = Vector3.Lerp(currentPos, _camMovePos.localPosition, _camFloatSpeed * Time.deltaTime);
+            _cam.localPosition = newPos;
+        }
     }
 }
