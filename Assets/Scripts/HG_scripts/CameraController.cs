@@ -465,7 +465,12 @@ public class CameraController : MonoBehaviour
       //This lines calls to the actual screenshot object
         _handler.GetComponent<ScreenshotHandler>().TakeScreenshot_Static(Screen.width, Screen.height);
         _whiteAnimator.SetTrigger("snap");
+
+        if (_VHS != null)
+        {
         _VHS.SetTrigger("flash");
+
+        }
 
         _camAudio.pitch = Random.Range(0.8f, 1.2f);
         _camAudio.Play();

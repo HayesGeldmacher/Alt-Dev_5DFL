@@ -93,12 +93,14 @@ public class CamChangePositions : MonoBehaviour
 
     private IEnumerator VideoCut(float cutTime, VideoClip clip)
     {
+        PlayerController3rdPerson.instance._frozen = true;
         _player.clip = clip;
         _player.Play();
         _vidAnimator.SetTrigger("play");
         yield return new WaitForSeconds(cutTime);
         _vidAnimator.SetTrigger("stop");
         _mosh.CallGlitch();
+        PlayerController3rdPerson.instance._frozen = false;
 
     }
 }
