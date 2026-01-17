@@ -86,7 +86,7 @@ public class FinalChairDreamEnd : Interactable
         Destroy(_camZoom);
         yield return new WaitForSeconds(1f);
         camAnim.SetTrigger("zoom");
-        yield return new WaitForSeconds(8f);
+        yield return new WaitForSeconds(10f);
         isFading = true;
         camAnim.SetTrigger("sleep");
         blackOutAnim.SetTrigger("sleep");
