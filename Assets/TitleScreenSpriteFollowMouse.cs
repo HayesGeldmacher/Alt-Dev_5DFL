@@ -168,19 +168,26 @@ public class TitleScreenSpriteFollowMouse : MonoBehaviour
     }
     public IEnumerator KillMouseSprite()
     {
+        
+        _anim.ResetTrigger("appear");
+        _anim.SetTrigger("fade");
         _clickImage.enabled = false;
         yield return new WaitForSeconds(0.1f);
-        _anim.ResetTrigger("appear");
-        _anim.SetTrigger("fade");;
-        Debug.Log("Invoked KillMouseSprite!");
-        yield return new WaitForSeconds(1f);
-        _clickImage.enabled = true;
+
+
+
+      // / Debug.Log("Invoked KillMouseSprite!");
+      //  yield return new WaitForSeconds(1f);
+      //  _clickImage.enabled = true;
 
     }
 
 
     public void EnableCursor(bool _kill)
     {
+        //if the click image has been disabled previously, enable here!
+        if (!_clickImage.enabled) { _clickImage.enabled = true; }
+
         Debug.Log("ENABLED : " + _kill);
 
         _active = _kill;

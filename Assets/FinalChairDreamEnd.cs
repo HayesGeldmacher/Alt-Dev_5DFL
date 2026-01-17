@@ -9,6 +9,7 @@ public class FinalChairDreamEnd : Interactable
     [Header("Lerp Cam Info")]
     [SerializeField] private Transform _camHolder;
     [SerializeField] private CameraController _camController;
+    [SerializeField] private CameraZoom _camZoom;
     [SerializeField] private Transform _anchorPoint;
     [SerializeField] private Transform _lookPoint;
     [SerializeField] private float _lerpSpeed;
@@ -74,13 +75,16 @@ public class FinalChairDreamEnd : Interactable
     {
         _camHolder.parent = null;
         _camHolder.parent = transform;
+        _camZoom._canZoom = false;
         yield return new WaitForSeconds(0.1f);
         //Destroy(_camController);
         _camController._frozen = true;
         //Destroy(PlayerController.instance.transform.gameObject);
         Destroy(playerBody);
         _lerping = true;
-        yield return new WaitForSeconds(5f);
+        yield return new WaitForSeconds(4f);
+        Destroy(_camZoom);
+        yield return new WaitForSeconds(1f);
         camAnim.SetTrigger("zoom");
         yield return new WaitForSeconds(8f);
         isFading = true;

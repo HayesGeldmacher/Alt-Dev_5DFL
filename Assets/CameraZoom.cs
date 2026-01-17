@@ -24,6 +24,7 @@ public class CameraZoom : MonoBehaviour
     private CameraController _camController;
     private float _currentFlashCharge = 0;
 
+    public bool _canZoom = true;
 
     private void Start()
     {
@@ -61,6 +62,12 @@ public class CameraZoom : MonoBehaviour
         }  
 
 
+    }
+
+    //camera zoom is done on late Update so that it isn't overridden by animation value!
+    private void LateUpdate()
+    {
+
         bool _PressingTrigger;
         if (Input.GetAxis("Zoom") >= 0.1f || Input.GetButton("Zoom"))
         {
@@ -71,7 +78,7 @@ public class CameraZoom : MonoBehaviour
             _PressingTrigger= false;
         }
 
-        if (_PressingTrigger && !_handler._photoOpen)
+        if (_PressingTrigger && !_handler._photoOpen && _canZoom)
         {
             
             _isZooming = true;
