@@ -24,6 +24,7 @@ public class FinalChairDreamEnd : Interactable
 
     [Header("Audio Fields")]
     [SerializeField] private AudioSource staticSound;
+    [SerializeField] private AudioSource roomToneSound;
     [SerializeField] private float fadeSpeed = 0.05f;
     private bool isFading = false;
 
@@ -55,10 +56,17 @@ public class FinalChairDreamEnd : Interactable
             float currentVolume = staticSound.volume;
             float newVolume = currentVolume -= (fadeSpeed * Time.deltaTime);
             staticSound.volume = newVolume;
-            if (currentVolume <= 0)
-            {
+ 
+
+            currentVolume = roomToneSound.volume;
+            newVolume = currentVolume -= (fadeSpeed * Time.deltaTime);
+            roomToneSound.volume = newVolume;
+
+            if (roomToneSound.volume <= 0 && staticSound.volume <= 0) {
+
                 isFading = false;
             }
+
         }
     }
 

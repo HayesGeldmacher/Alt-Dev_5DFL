@@ -61,6 +61,31 @@ public class FirstToThirdTransition : MonoBehaviour
     public bool _fogLighting = false;
     public CamChangeLighting _fogChange;
 
+    [Header("Audio Player Fields")]
+    public bool fadeAudio = false;
+    private bool isFading = false;
+    public AudioSource audioToFade;
+    public float fadeSpeed = 0.05f;
+
+
+    private void Update()
+    {
+        if (isFading)
+        {
+            float oldVolume = audioToFade.volume;
+
+            if (oldVolume <= 0)
+            {
+                isFading = false;
+                return;
+            }
+
+            float newVolume = oldVolume - (fadeSpeed * Time.deltaTime);
+            audioToFade.volume = newVolume;
+
+        }
+    }
+
 
     public void OnTriggerEnter(Collider other)
     {
@@ -112,6 +137,11 @@ public class FirstToThirdTransition : MonoBehaviour
                     }
                 }
             }
+        }
+
+        if (fadeAudio)
+        {
+            isFading = true;
         }
 
 
