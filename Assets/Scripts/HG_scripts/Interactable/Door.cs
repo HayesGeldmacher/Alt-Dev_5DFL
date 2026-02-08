@@ -33,8 +33,9 @@ public class Door : Interactable
     private bool doneKnocking = false;
     public bool stopKnocking = false;
     public DoorKnocking knocking;
-    
-    
+    public DoorKnocking knockingLight;
+
+
     // Start is called before the first frame update
     void Start()
     {
@@ -85,6 +86,11 @@ public class Door : Interactable
                     knocking.StopAudio();
                     doneKnocking = true;
 
+                }
+
+                if(knockingLight != null)
+                {
+                    knockingLight.StopAudio();
                 }
             }
         }

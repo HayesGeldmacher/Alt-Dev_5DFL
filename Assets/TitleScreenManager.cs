@@ -72,6 +72,35 @@ public class TitleScreenManager : MonoBehaviour
         }
     }
 
+
+    public void CallCredits()
+    {
+        if (!_startedTransition)
+        {
+            if (fadeAudio)
+            {
+                isFading = true;
+                isFadingUp = false;
+            }
+
+            _startedTransition = true;
+            _interactAudio.Play();
+            StartCoroutine(Credits());
+        }
+    }
+
+    private IEnumerator Credits()
+    {
+        CallDataGlitch();
+        _blackOutAnim.SetTrigger("fade");
+        Cursor.visible = false;
+        _cursorSprite.SetParent(null);
+        _cursorSprite.GetComponent<Animator>().SetTrigger("fade");
+        Cursor.lockState = CursorLockMode.Locked;
+        yield return new WaitForSeconds(1);
+        SceneManager.LoadScene("Credits");
+    }
+
     public void CallReturnMainMenu()
     {
         if (!_startedTransition)

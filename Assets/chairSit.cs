@@ -59,7 +59,9 @@ public class chairSit : Interactable
     public Animator houseAnim;
     public float fadeInTime;
     public float fadeOutTime;
-  
+    public bool endKnockigSound = false;
+    public DoorKnocking knockingSoundHeavy;
+    public DoorKnocking knockingSoundLight;
       
 
     private void Start()
@@ -109,6 +111,21 @@ public class chairSit : Interactable
         _playerBC.enabled = false;
         _chairBC.enabled = false;
         _sat = true;
+
+
+        if (endKnockigSound)
+        {
+            if(knockingSoundHeavy != null)
+            {
+                knockingSoundHeavy.enabled = false;
+            }
+
+            if(knockingSoundLight != null)
+            {
+                knockingSoundLight.enabled = false;
+            }
+        }
+
 
         if (secondChair)
         {
@@ -263,16 +280,12 @@ public class chairSit : Interactable
 
     private IEnumerator StartAudioTrack()
     {
+        Debug.Log("Started Audio Track!");
         _startedAudio = true;
         _ambientStatic.Stop();
         _darkAmbience.Stop();
         yield return new WaitForSeconds(3);
         _chairAudio.Play();
-        if (useAnimation)
-        {
-            yield return new WaitForSeconds(2f);
-            houseAnim.SetTrigger("startHouse");
-        }
     }
 
     private void TeleportPlayer()
@@ -294,7 +307,7 @@ public class chairSit : Interactable
 
     private void AppearObjects()
     {
-
+        if(_appearObjects.Count <= 0) { return; }
         foreach(GameObject _object in _appearObjects)
         {
             _object.SetActive(true);
@@ -303,7 +316,8 @@ public class chairSit : Interactable
 
     private void DisappearObjects()
     {
-        foreach(GameObject _object in _disappearObjects)
+        if (_appearObjects.Count <= 0) { return; }
+        foreach (GameObject _object in _disappearObjects)
         {
             _object.SetActive(false);
         }
