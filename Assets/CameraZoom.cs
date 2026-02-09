@@ -85,6 +85,7 @@ public class CameraZoom : MonoBehaviour
             
             if (!_zoomAudio.isPlaying && !_hasPlayedSound)
             {
+                _zoomAudio.pitch = Random.Range(0.8f, 1.1f);
                 _zoomAudio.Play();
                 _hasPlayedSound = true;
             }

@@ -72,6 +72,8 @@ public class CameraController : MonoBehaviour
     [SerializeField] private bool _dayTime;
     [SerializeField] private GameObject _camHud;
     [SerializeField] private AudioSource _ambience;
+    [SerializeField] private AudioClip _ambienceLight;
+    [SerializeField] private AudioClip _ambienceHeavy;
     [HideInInspector] public bool _frozen = false;
     [HideInInspector] public bool _canInteract = true;
     [SerializeField] private CameraZoom _zoom;
@@ -509,6 +511,8 @@ public class CameraController : MonoBehaviour
 
         if (_dayTime && _ambience != null)
         {
+            _ambience.clip = _ambienceHeavy;
+            _ambience.volume = 0.25f;
             _ambience.Play();
         }
     }
