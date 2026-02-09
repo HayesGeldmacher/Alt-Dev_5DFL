@@ -50,6 +50,7 @@ public class CameraPickup : Interactable
             if(_lines <= 0)
             {
                 EndCamera();
+                _interactAudio.Play();
             }
             else
             {

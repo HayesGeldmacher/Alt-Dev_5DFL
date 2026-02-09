@@ -513,7 +513,7 @@ public class CameraController : MonoBehaviour
         {
             _ambience.clip = _ambienceHeavy;
             _ambience.volume = 0.25f;
-            _ambience.Play();
+             _ambience.Play();
         }
     }
 

@@ -18,7 +18,8 @@ public class BallBounce : Interactable
     {
         _rb = GetComponent<Rigidbody>();
         _ballHit = GetComponent<AudioSource>();
-        _canSound = true;
+        _canSound = false;
+        _currentWait = 5;
     }
 
     // Update is called once per frame
