@@ -29,6 +29,12 @@ public class BedNight : Interactable
     [SerializeField] private GameObject _doorInteract;
     [SerializeField] private GameObject _televisionOld;
 
+    [Header("Fade Out Fields")]
+    public bool fadeAudio = false;
+    public bool isFading = false;
+    public AudioSource[] fadeSources;
+    public float fadeSpeed = 0.05f;
+
 
     private void Start()
     {
@@ -56,6 +62,16 @@ public class BedNight : Interactable
             _camHolder.rotation = Quaternion.Lerp(_camHolder.rotation, _lookPoint.rotation, 1 * Time.deltaTime);
 
         }
+
+        if (isFading)
+        {
+            foreach(AudioSource source in fadeSources)
+            {
+                float currentVolume = source.volume;
+                float newVolume = currentVolume - Time.deltaTime * fadeSpeed;
+                source.volume = newVolume;
+            }
+        }
     }
 
   
@@ -72,6 +88,10 @@ public class BedNight : Interactable
             else
             {
                _startedEnd = true;
+                if (fadeAudio)
+                {
+                    isFading = true;
+                }
               StartCoroutine(CompleteLevel());
             }
         }
