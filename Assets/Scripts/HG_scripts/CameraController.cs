@@ -485,6 +485,7 @@ public class CameraController : MonoBehaviour
         _hasCamera = true;
         _camHud.SetActive(true);
         _camAnimator.SetBool("still", false);
+        _zoom._canZoom = true;
 
         if(_jpgNoCam != null)
         {
