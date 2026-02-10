@@ -18,6 +18,7 @@ public class PhoneDaytime : Interactable
     private Dialogue _defaultDialogue;
     public Dialogue _phoneDialogue;
     public Dialogue _phoneDialogueMorning;
+    public Dialogue _finishedDialogue;
     [SerializeField] private EvidenceManager _evidence;
     [SerializeField] private AudioSource _garble1;
     [SerializeField] private AudioSource _garble2;
@@ -67,6 +68,7 @@ public class PhoneDaytime : Interactable
 
     public GameObject[] _disappearObjects;
     public GameObject[] _appearObjects;
+    private bool interactFinishedNight = false;
 
     [Header("Last Night disable fields")]
     public bool disableSelf = false;
@@ -79,6 +81,7 @@ public class PhoneDaytime : Interactable
     [SerializeField] public Color lightEnd = Color.black;
 
     public float _minDarkness;
+
 
     private void Start()
     {
@@ -194,10 +197,17 @@ public class PhoneDaytime : Interactable
         else if (_evidence._hasEvidence)
         {
 
+            if (interactFinishedNight)
+            {
+                TriggerDialogue(_finishedDialogue);
+                return;
+            }
+            
             diaNum += 1;
             if(diaNum >= dialogueNumberNight)
             {
                 EndDialogue();
+                interactFinishedNight = true;
                 diaNum = 0;
             }
             else
@@ -274,6 +284,8 @@ public class PhoneDaytime : Interactable
 
     private IEnumerator Darkness()
     {
+
+
         Debug.Log("started darkness in scene!");
         isDark = true;
         foreach(GameObject appear in _appearObjects)

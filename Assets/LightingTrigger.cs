@@ -84,16 +84,34 @@ public class LightingTrigger : Interactable
                 if (_playerDistance >= -0.8f)
                 {
                     _lightManager.StartDecrease(_decreaseSpeed);
-                    _waterLeak.SetActive(true);
+                   
+                    
+                    if(_waterLeak != null)
+                    {
+                        _waterLeak.SetActive(true);
+                    }
+
+                    if (_waterBoiler != null) { 
+                    
                     _waterBoiler.SetActive(true);
+                    }
+
                     _sunLight.SetActive(false);
 
                 }
                 else
                 {
+                    if(_waterLeak != null)
+                    {
+                        _waterLeak.SetActive(false);
+                    }
+
                     _lightManager.StartIncrease(_increaseSpeed);
-                    _waterLeak.SetActive(false);
-                    _waterBoiler.SetActive(false);
+
+                    if (_waterBoiler != null)
+                    {
+                        _waterBoiler.SetActive(false);
+                    }
                     _sunLight.SetActive(true);
                 }
 
