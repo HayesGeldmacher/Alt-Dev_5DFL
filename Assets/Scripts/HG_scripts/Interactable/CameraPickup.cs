@@ -24,6 +24,7 @@ public class CameraPickup : Interactable
 
 
     [SerializeField] private AudioSource _staticPickupSound;
+    [SerializeField] private GameObject newCamMesh;
 
 
     private void Awake()
@@ -94,6 +95,12 @@ public class CameraPickup : Interactable
                 {
                     _bodyAnim.SetBool("hasCam", true);
                 }
+
+                if(newCamMesh != null)
+                {
+                    newCamMesh.SetActive(false);
+                }
+
 
                 if (skipTutorial)
                 {
