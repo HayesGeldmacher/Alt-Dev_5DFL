@@ -44,6 +44,9 @@ public class CandleBlow : MonoBehaviour
     public AudioSource _birthday;
     public AudioSource _blowAudio;
     public AudioSource _areYouThere;
+    public AudioSource _ambientAudio;
+    private bool ambientFading = false;
+    [SerializeField] private float fadeSpeed = 0.1f;
     
   
     // Start is called before the first frame update
@@ -91,8 +94,16 @@ public class CandleBlow : MonoBehaviour
         else
         {
             BlowUpdate();
-        }   
-        
+        }
+
+
+        if (ambientFading)
+        {
+            float currentVolume = _ambientAudio.volume;
+            float newVolume = currentVolume - (fadeSpeed * Time.deltaTime);
+            _ambientAudio.volume = newVolume;
+            if(newVolume <= 0) { ambientFading = false; }
+        }
     }
 
     private void BlowUpdate()
@@ -201,7 +212,8 @@ public class CandleBlow : MonoBehaviour
         _areYouThere.Play();
         yield return new WaitForSeconds(5);
         _dialogue.Interact();
-        yield return new WaitForSeconds(3);
+        ambientFading = true;
+        yield return new WaitForSeconds(6);
         SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
     }
 
