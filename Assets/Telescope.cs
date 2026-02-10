@@ -10,6 +10,7 @@ public class Telescope : Interactable
     public bool _canExit = false;
     [SerializeField] private Animator _telescopeAnim;
     public BoxCollider _collider;
+    public CameraController camController;
 
 
     // Start is called before the first frame update
@@ -61,7 +62,16 @@ public class Telescope : Interactable
 
     private IEnumerator ExitTelescope()
     {
-        GameManager.instance.FreezePlayer(false);
+        if (camController != null) { 
+        camController.PlayInteractAudio();
+        
+        }
+        else
+        {
+            Debug.LogWarning("CAM CONTROLLER REF MISSING IN TELESCOPE!");
+        }
+
+            GameManager.instance.FreezePlayer(false);
         _telescopeAnim.SetTrigger("disappear");
         yield return new WaitForSeconds(0.2f);
         _collider.enabled = true;

@@ -526,5 +526,10 @@ public class CameraController : MonoBehaviour
         transform.rotation = rotation;
     }
 
+
+    public void PlayInteractAudio()
+    {
+        _interactAudio.PlayInteract();
+    }
    
 }
