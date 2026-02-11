@@ -106,6 +106,9 @@ public class PlayerController : MonoBehaviour
     public bool _lockedHorizontal = false;
     public bool _forcedForward = false;
 
+    public bool playBreathSoundOnStart = false;
+    public float newBreathVolume = 0.65f;
+
     //The below region just creates a reference of this specific controller that we can call from other scripts quickly
     #region Singleton
 
@@ -126,6 +129,12 @@ public class PlayerController : MonoBehaviour
 
     private void Start()
     {
+
+        if (playBreathSoundOnStart)
+        {
+            StartCoroutine(SetHeavyBreath());
+        }
+        
         //Getting a reference for where the camera should be when standing
         _standingYCamPoint = _cameraParent.transform.localPosition.y;
 
@@ -631,7 +640,14 @@ public class PlayerController : MonoBehaviour
     }
 
 
-
+    private IEnumerator SetHeavyBreath()
+    {
+        float oldBreath = _breathing.volume;
+        _breathing.volume = newBreathVolume;
+        _breathing.Play();
+        yield return new WaitForSeconds(2.2f);
+        _breathing.volume = oldBreath;
+    }
 
     private void CamShakeUpdate()
     {
