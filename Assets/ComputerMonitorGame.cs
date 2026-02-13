@@ -15,6 +15,12 @@ public class ComputerMonitorGame : Interactable
 
     private bool _canInteract = true;
 
+    [Header("Audio Fields")]
+    [SerializeField] private bool hasMusic = false;
+    [SerializeField] private AudioSource musicSource;
+    [SerializeField] private float fadeSpeed = 0.1f;
+    public bool isFading = false;
+   
 
 
     private void Start()
@@ -59,6 +65,11 @@ public class ComputerMonitorGame : Interactable
         Cursor.lockState = CursorLockMode.Confined;
         Cursor.visible = false;
 
+        if (hasMusic)
+        {
+            musicSource?.Play();
+        }
+
     }
 
     private IEnumerator ExitGame()
@@ -75,6 +86,10 @@ public class ComputerMonitorGame : Interactable
             _mouseCursorInteract.SetActive(true);
             Debug.Log("ENDEDTEXTGAME!!");
 
+            if (hasMusic)
+            {
+                musicSource?.Stop();
+            }
 
         }
 
