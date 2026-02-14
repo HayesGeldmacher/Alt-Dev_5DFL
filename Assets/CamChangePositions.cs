@@ -22,8 +22,15 @@ public class CamChangePositions : MonoBehaviour
     public VideoPlayer _player;
     public Animator _vidAnimator;
 
-    public CamChangeTrigger _camChange;
+    public bool _useTutorial = false;
 
+    public CamChangeTrigger _camChange;
+    public bool fadeAudio = false;
+    public AudioSource[] audioSources;
+    public float[] audioLimit;
+    private bool fading = false;
+
+    public bool callTiggerAtStart = true;
 
     //This singleton creates a locatable script instance that can be located easily from any other script!
     #region Singleton
@@ -50,17 +57,28 @@ public class CamChangePositions : MonoBehaviour
         //just for testing...
         // _camChange.CallGeneric();
         //ChangePos(0);
-        CallTrigger(0);
+
+        if (callTiggerAtStart)
+        {
+            CallTrigger(0);
+        }
 
 
-        //StartCoroutine(TutorialMessage());
+            if (_useTutorial)
+            {
+                StartCoroutine(TutorialMessage());
+
+            }
        
     }
 
     // Update is called once per frame
     void Update()
     {
-        
+        if (fading)
+        {
+
+        }
     }
 
 
