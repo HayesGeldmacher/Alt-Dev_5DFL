@@ -1379,39 +1379,6 @@ Animator:
     type: 3}
   m_PrefabInstance: {fileID: 446681431}
   m_PrefabAsset: {fileID: 0}
---- !u!21 &1381611441
-Material:
-  serializedVersion: 8
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_Name: Hidden/CRT
-  m_Shader: {fileID: 4800000, guid: 825ff68a80df47d439dbf4cf9552851c, type: 3}
-  m_Parent: {fileID: 0}
-  m_ModifiedSerializedProperties: 0
-  m_ValidKeywords: []
-  m_InvalidKeywords: []
-  m_LightmapFlags: 4
-  m_EnableInstancingVariants: 0
-  m_DoubleSidedGI: 0
-  m_CustomRenderQueue: -1
-  stringTagMap: {}
-  disabledShaderPasses: []
-  m_LockedProperties: 
-  m_SavedProperties:
-    serializedVersion: 3
-    m_TexEnvs: []
-    m_Ints: []
-    m_Floats:
-    - hardPix: 0
-    - hardScan: -1
-    - maskDark: 0.25
-    - maskLight: 0.49
-    - resScale: 2
-    m_Colors:
-    - warp: {r: 0.03125, g: 0.04166, b: 0, a: 0}
-  m_BuildTextureStacks: []
 --- !u!1 &1540775365
 GameObject:
   m_ObjectHideFlags: 0
@@ -9119,6 +9086,39 @@ MonoBehaviour:
   - {fileID: 2004346085}
   _fading: 0
   _fadeSpeed: 1
+--- !u!21 &2089107416
+Material:
+  serializedVersion: 8
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_Name: Hidden/CRT
+  m_Shader: {fileID: 4800000, guid: 825ff68a80df47d439dbf4cf9552851c, type: 3}
+  m_Parent: {fileID: 0}
+  m_ModifiedSerializedProperties: 0
+  m_ValidKeywords: []
+  m_InvalidKeywords: []
+  m_LightmapFlags: 4
+  m_EnableInstancingVariants: 0
+  m_DoubleSidedGI: 0
+  m_CustomRenderQueue: -1
+  stringTagMap: {}
+  disabledShaderPasses: []
+  m_LockedProperties: 
+  m_SavedProperties:
+    serializedVersion: 3
+    m_TexEnvs: []
+    m_Ints: []
+    m_Floats:
+    - hardPix: 0
+    - hardScan: -1
+    - maskDark: 0.25
+    - maskLight: 0.49
+    - resScale: 2
+    m_Colors:
+    - warp: {r: 0.03125, g: 0.04166, b: 0, a: 0}
+  m_BuildTextureStacks: []
 --- !u!1 &2122259531 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 919132149155446097, guid: 4f122315561c2574a843c874aa12578c,
@@ -9507,7 +9507,18 @@ PrefabInstance:
       propertyPath: m_IsActive
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 5258364385296545645, guid: c47b20c1326142141a1065107f33b623,
+        type: 3}
+      propertyPath: m_VideoClip
+      value: 
+      objectReference: {fileID: 32900000, guid: 681bf5e112d8be542b807ce82b41d684,
+        type: 3}
     - target: {fileID: 7774225653920105361, guid: c47b20c1326142141a1065107f33b623,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8190778935867018557, guid: c47b20c1326142141a1065107f33b623,
         type: 3}
       propertyPath: m_IsActive
       value: 0
