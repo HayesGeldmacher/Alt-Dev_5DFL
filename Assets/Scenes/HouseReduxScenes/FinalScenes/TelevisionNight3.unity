@@ -1252,6 +1252,39 @@ Animator:
     type: 3}
   m_PrefabInstance: {fileID: 3821269433991948673}
   m_PrefabAsset: {fileID: 0}
+--- !u!21 &865150017
+Material:
+  serializedVersion: 8
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_Name: Hidden/CRT
+  m_Shader: {fileID: 4800000, guid: 825ff68a80df47d439dbf4cf9552851c, type: 3}
+  m_Parent: {fileID: 0}
+  m_ModifiedSerializedProperties: 0
+  m_ValidKeywords: []
+  m_InvalidKeywords: []
+  m_LightmapFlags: 4
+  m_EnableInstancingVariants: 0
+  m_DoubleSidedGI: 0
+  m_CustomRenderQueue: -1
+  stringTagMap: {}
+  disabledShaderPasses: []
+  m_LockedProperties: 
+  m_SavedProperties:
+    serializedVersion: 3
+    m_TexEnvs: []
+    m_Ints: []
+    m_Floats:
+    - hardPix: 0
+    - hardScan: -1
+    - maskDark: 0.25
+    - maskLight: 0.49
+    - resScale: 2
+    m_Colors:
+    - warp: {r: 0.03125, g: 0.04166, b: 0, a: 0}
+  m_BuildTextureStacks: []
 --- !u!4 &950480455 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 6327358980507293189, guid: c47b20c1326142141a1065107f33b623,
@@ -9409,39 +9442,6 @@ Mesh:
     offset: 0
     size: 0
     path: 
---- !u!21 &1970995738
-Material:
-  serializedVersion: 8
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_Name: Hidden/CRT
-  m_Shader: {fileID: 4800000, guid: 825ff68a80df47d439dbf4cf9552851c, type: 3}
-  m_Parent: {fileID: 0}
-  m_ModifiedSerializedProperties: 0
-  m_ValidKeywords: []
-  m_InvalidKeywords: []
-  m_LightmapFlags: 4
-  m_EnableInstancingVariants: 0
-  m_DoubleSidedGI: 0
-  m_CustomRenderQueue: -1
-  stringTagMap: {}
-  disabledShaderPasses: []
-  m_LockedProperties: 
-  m_SavedProperties:
-    serializedVersion: 3
-    m_TexEnvs: []
-    m_Ints: []
-    m_Floats:
-    - hardPix: 0
-    - hardScan: -1
-    - maskDark: 0.25
-    - maskLight: 0.49
-    - resScale: 2
-    m_Colors:
-    - warp: {r: 0.03125, g: 0.04166, b: 0, a: 0}
-  m_BuildTextureStacks: []
 --- !u!1 &2004346084
 GameObject:
   m_ObjectHideFlags: 0
@@ -9898,7 +9898,7 @@ PrefabInstance:
         type: 3}
       propertyPath: _channels.Array.data[3].audio
       value: 
-      objectReference: {fileID: 8300000, guid: cfcb85d7b1206d3449e937a1bfddfbe9, type: 3}
+      objectReference: {fileID: 8300000, guid: fa1d03582cd54834a8c7d4fd13e28fdb, type: 3}
     - target: {fileID: 2106478957171272878, guid: 68f86a15c60cc5844a4a1abc828baf19,
         type: 3}
       propertyPath: _channels.Array.data[4].audio
@@ -10168,7 +10168,7 @@ PrefabInstance:
         type: 3}
       propertyPath: m_VideoClip
       value: 
-      objectReference: {fileID: 32900000, guid: 61a659ad480d1b644a9de220fe4ed305,
+      objectReference: {fileID: 32900000, guid: 7c0d07ca4cf110943affe41a1e1ba5ad,
         type: 3}
     - target: {fileID: 8968950093796706559, guid: c47b20c1326142141a1065107f33b623,
         type: 3}
