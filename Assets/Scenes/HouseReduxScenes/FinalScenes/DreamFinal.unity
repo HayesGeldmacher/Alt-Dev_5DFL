@@ -11086,6 +11086,12 @@ Mesh:
     offset: 0
     size: 0
     path: 
+--- !u!82 &392875580 stripped
+AudioSource:
+  m_CorrespondingSourceObject: {fileID: 1714268315277114119, guid: c47b20c1326142141a1065107f33b623,
+    type: 3}
+  m_PrefabInstance: {fileID: 719581979}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &395298394 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 919132149155446097, guid: d6b74363603ce6647b10eb66a5ab82d2,
@@ -167994,6 +168000,31 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9572c4bbe1a5222468dcbd0b1111465b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &1964211234
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1756306774}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3b56a0c7d1d9fc343a0a808bdb8cbfc2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  fadeSources:
+  - {fileID: 1964211214}
+  - {fileID: 392875580}
+  maxFadeVolume:
+  - 0.1
+  - 0.6
+  fadeSpeed:
+  - 0.05
+  - 0.05
+  fadingUp: 0101
+  fadeAudioUp: 1
+  fadeAudioDown: 0
+  done: 0
 --- !u!1 &1966124734
 GameObject:
   m_ObjectHideFlags: 0
@@ -315907,6 +315938,10 @@ PrefabInstance:
         type: 3}
       insertIndex: -1
       addedObject: {fileID: 1964211214}
+    - targetCorrespondingSourceObject: {fileID: 3607843361635980013, guid: 2ca7a52bb84d9614198bbafb7a40a698,
+        type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1964211234}
   m_SourcePrefab: {fileID: 100100000, guid: 2ca7a52bb84d9614198bbafb7a40a698, type: 3}
 --- !u!222 &6203531387477143113
 CanvasRenderer:
