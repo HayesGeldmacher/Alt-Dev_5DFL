@@ -1252,39 +1252,6 @@ Animator:
     type: 3}
   m_PrefabInstance: {fileID: 3821269433991948673}
   m_PrefabAsset: {fileID: 0}
---- !u!21 &865150017
-Material:
-  serializedVersion: 8
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_Name: Hidden/CRT
-  m_Shader: {fileID: 4800000, guid: 825ff68a80df47d439dbf4cf9552851c, type: 3}
-  m_Parent: {fileID: 0}
-  m_ModifiedSerializedProperties: 0
-  m_ValidKeywords: []
-  m_InvalidKeywords: []
-  m_LightmapFlags: 4
-  m_EnableInstancingVariants: 0
-  m_DoubleSidedGI: 0
-  m_CustomRenderQueue: -1
-  stringTagMap: {}
-  disabledShaderPasses: []
-  m_LockedProperties: 
-  m_SavedProperties:
-    serializedVersion: 3
-    m_TexEnvs: []
-    m_Ints: []
-    m_Floats:
-    - hardPix: 0
-    - hardScan: -1
-    - maskDark: 0.25
-    - maskLight: 0.49
-    - resScale: 2
-    m_Colors:
-    - warp: {r: 0.03125, g: 0.04166, b: 0, a: 0}
-  m_BuildTextureStacks: []
 --- !u!4 &950480455 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 6327358980507293189, guid: c47b20c1326142141a1065107f33b623,
@@ -9469,7 +9436,8 @@ AudioSource:
   m_GameObject: {fileID: 2004346084}
   m_Enabled: 1
   serializedVersion: 4
-  OutputAudioMixerGroup: {fileID: 0}
+  OutputAudioMixerGroup: {fileID: 24300002, guid: a8a8e75de4e7a5a419a0253d60b70620,
+    type: 2}
   m_audioClip: {fileID: 8300000, guid: 192ddd1b994b73b40b27c9a6039ac2e7, type: 3}
   m_PlayOnAwake: 1
   m_Volume: 0.181
@@ -9648,6 +9616,39 @@ Transform:
   - {fileID: 137995667}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!21 &2118453220
+Material:
+  serializedVersion: 8
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_Name: Hidden/CRT
+  m_Shader: {fileID: 4800000, guid: 825ff68a80df47d439dbf4cf9552851c, type: 3}
+  m_Parent: {fileID: 0}
+  m_ModifiedSerializedProperties: 0
+  m_ValidKeywords: []
+  m_InvalidKeywords: []
+  m_LightmapFlags: 4
+  m_EnableInstancingVariants: 0
+  m_DoubleSidedGI: 0
+  m_CustomRenderQueue: -1
+  stringTagMap: {}
+  disabledShaderPasses: []
+  m_LockedProperties: 
+  m_SavedProperties:
+    serializedVersion: 3
+    m_TexEnvs: []
+    m_Ints: []
+    m_Floats:
+    - hardPix: 0
+    - hardScan: -1
+    - maskDark: 0.25
+    - maskLight: 0.49
+    - resScale: 2
+    m_Colors:
+    - warp: {r: 0.03125, g: 0.04166, b: 0, a: 0}
+  m_BuildTextureStacks: []
 --- !u!1 &2122259531 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 919132149155446097, guid: 4f122315561c2574a843c874aa12578c,
@@ -9663,7 +9664,8 @@ AudioSource:
   m_GameObject: {fileID: 2122259531}
   m_Enabled: 1
   serializedVersion: 4
-  OutputAudioMixerGroup: {fileID: 0}
+  OutputAudioMixerGroup: {fileID: 24300002, guid: ad6d6d0f60f4d88478fec1879005b77b,
+    type: 2}
   m_audioClip: {fileID: 8300000, guid: 8f620ccb209a4a845ad5a2735db90065, type: 3}
   m_PlayOnAwake: 0
   m_Volume: 0.222
@@ -9813,6 +9815,12 @@ PrefabInstance:
       propertyPath: sharedProfile
       value: 
       objectReference: {fileID: 11400000, guid: 7bafc394a8b18c5428cde411166e0c79,
+        type: 2}
+    - target: {fileID: 1426843234459096829, guid: 68f86a15c60cc5844a4a1abc828baf19,
+        type: 3}
+      propertyPath: OutputAudioMixerGroup
+      value: 
+      objectReference: {fileID: 24300002, guid: f00036bb21940934d8b160010ccdda2c,
         type: 2}
     - target: {fileID: 2106478957171272878, guid: 68f86a15c60cc5844a4a1abc828baf19,
         type: 3}
@@ -10067,6 +10075,12 @@ PrefabInstance:
       propertyPath: m_IsActive
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 1714268315277114119, guid: c47b20c1326142141a1065107f33b623,
+        type: 3}
+      propertyPath: OutputAudioMixerGroup
+      value: 
+      objectReference: {fileID: 24300002, guid: ad6d6d0f60f4d88478fec1879005b77b,
+        type: 2}
     - target: {fileID: 2835247960732389146, guid: c47b20c1326142141a1065107f33b623,
         type: 3}
       propertyPath: m_Name
