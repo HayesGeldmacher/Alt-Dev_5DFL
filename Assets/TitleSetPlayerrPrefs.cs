@@ -2,11 +2,11 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Audio;
-using UnityEngine.UI;
 
-public class SettingsMenu : MonoBehaviour
+public class TitleSetPlayerrPrefs : MonoBehaviour
 {
 
+    //sits in the title screen and loads basic setttings according to player prefs
     //for all audio
     public AudioMixer masterMixer;
 
@@ -16,25 +16,19 @@ public class SettingsMenu : MonoBehaviour
     //for interact sounds
     public AudioMixer interactMixer;
 
-    public Slider masterSlider;
 
-    public Slider idleSlider;
-
-    public Slider interactSlider;
-
-
-    public void Start()
+    // Start is called before the first frame update
+    void Start()
     {
         SetAudioPrefs();
     }
 
-    //sets the audio sliders to the current mixer values
-    public void SetAudioPrefs()
+   public void SetAudioPrefs()
     {
         if (PlayerPrefs.HasKey("volume"))
         {
             float masterVolume = PlayerPrefs.GetFloat("volume");
-            masterSlider.value = (masterVolume);
+            masterMixer.SetFloat("volume", masterVolume);
             Debug.Log("Set master volume in player prefs!");
         }
         else
@@ -45,7 +39,7 @@ public class SettingsMenu : MonoBehaviour
         if (PlayerPrefs.HasKey("idleVolume"))
         {
             float idleVolume = PlayerPrefs.GetFloat("idleVolume");
-            idleSlider.value = (idleVolume);
+            idleMixer.SetFloat("idleVolume", idleVolume);
             Debug.Log("Set idle volume in player prefs!");
         }
         else
@@ -56,33 +50,12 @@ public class SettingsMenu : MonoBehaviour
         if (PlayerPrefs.HasKey("interactVolume"))
         {
             float interactAudio = PlayerPrefs.GetFloat("interactVolume");
-            interactSlider.value = (interactAudio);
+            interactMixer.SetFloat("interactVolume", interactAudio);
             Debug.Log("Set interact volume in player prefs!");
         }
         else
         {
             Debug.Log("No player pref exists for interact volume!");
         }
-    }
-
-
-
-
-    public void SetGeneralVolume(float volume)
-    {
-        PlayerPrefs.SetFloat("volume", volume);
-        masterMixer.SetFloat("volume", volume);
-    }
-
-    public void SetIdleVolume(float volume)
-    {
-        PlayerPrefs.SetFloat("idleVolume", volume);
-        idleMixer.SetFloat("idleVolume", volume);
-    }
-    
-    public void SetInteractVolume(float volume)
-    {
-        PlayerPrefs.SetFloat("interactVolume", volume);
-        interactMixer.SetFloat("interactVolume", volume);
-    }
+   }
 }

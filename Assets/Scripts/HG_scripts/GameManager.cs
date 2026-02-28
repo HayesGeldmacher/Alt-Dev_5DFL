@@ -47,6 +47,9 @@ public class GameManager : MonoBehaviour
     public delegate void CallUnPause();
     public static CallUnPause unPauseInstance;
 
+  
+
+
 
     //This singleton creates a locatable script instance that can be located easily from any other script!
     #region Singleton
@@ -86,7 +89,6 @@ public class GameManager : MonoBehaviour
         {
             _currentVolumeStatic = _staticAudio.volume;
         }
-
     }
    
     private void Update()
