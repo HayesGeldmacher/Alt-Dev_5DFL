@@ -68,6 +68,8 @@ public class TextGameManager : MonoBehaviour
     [SerializeField] private GameObject _mouseCursorInteract;
 
     private bool _canInteract = true;
+    public bool setTimeForBreathMonster = false;
+    public AudioSource breathMonster; 
     //if you must select all options, set _allOptionsList to 3
 
     //if one option is correct
@@ -345,6 +347,11 @@ public class TextGameManager : MonoBehaviour
         this.enabled = false;
         GameManager.instance._inTextGame = false;
         _mouseCursorInteract.SetActive(true);
+        yield return new WaitForSeconds(1.5f);
+        if (setTimeForBreathMonster)
+        {
+            breathMonster.Play();
+        }
         
     }
 

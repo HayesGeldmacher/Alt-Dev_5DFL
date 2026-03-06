@@ -17,6 +17,9 @@ public class ComputerGame : Interactable
 
     private bool _canInteract = true;
 
+    public bool useMusic = false;
+    [SerializeField] private AudioSource musicTrack;
+
 
     
     private void Start()
@@ -60,6 +63,11 @@ public class ComputerGame : Interactable
         _buttonParent.SetActive(true);
         Cursor.lockState = CursorLockMode.Confined;
         Cursor.visible = false;
+        yield return new WaitForSeconds(0.5f);
+        if (useMusic && musicTrack != null) { 
+            musicTrack.Play();
+        
+        }
 
     }
 
@@ -68,7 +76,11 @@ public class ComputerGame : Interactable
         if (!_hasExited)
         {
             _hasExited = true;
+            if (useMusic && musicTrack != null)
+            {
+                musicTrack.Stop();
 
+            }
             _textGameAnim.SetBool("visible", false);
             yield return new WaitForSeconds(1);
             _mouseCursorText.EnterTextGame(false);
