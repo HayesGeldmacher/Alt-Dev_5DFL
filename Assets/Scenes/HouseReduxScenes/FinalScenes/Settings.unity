@@ -287,39 +287,6 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1930012}
   m_CullTransparentMesh: 1
---- !u!21 &2693507
-Material:
-  serializedVersion: 8
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_Name: Hidden/CRT
-  m_Shader: {fileID: 4800000, guid: 825ff68a80df47d439dbf4cf9552851c, type: 3}
-  m_Parent: {fileID: 0}
-  m_ModifiedSerializedProperties: 0
-  m_ValidKeywords: []
-  m_InvalidKeywords: []
-  m_LightmapFlags: 4
-  m_EnableInstancingVariants: 0
-  m_DoubleSidedGI: 0
-  m_CustomRenderQueue: -1
-  stringTagMap: {}
-  disabledShaderPasses: []
-  m_LockedProperties: 
-  m_SavedProperties:
-    serializedVersion: 3
-    m_TexEnvs: []
-    m_Ints: []
-    m_Floats:
-    - hardPix: 0
-    - hardScan: -3
-    - maskDark: 0.63
-    - maskLight: 0.87
-    - resScale: 1
-    m_Colors:
-    - warp: {r: 0.03, g: 0.03, b: 0, a: 0}
-  m_BuildTextureStacks: []
 --- !u!224 &54881234 stripped
 RectTransform:
   m_CorrespondingSourceObject: {fileID: 7874037356008689006, guid: fd05a77f43177254b8b8a270df3a4269,
@@ -781,16 +748,16 @@ MonoBehaviour:
   m_FillRect: {fileID: 1027167782}
   m_HandleRect: {fileID: 302495575}
   m_Direction: 0
-  m_MinValue: -2
+  m_MinValue: 0.1
   m_MaxValue: 2
   m_WholeNumbers: 0
-  m_Value: 0
+  m_Value: 1
   m_OnValueChanged:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 874517515}
         m_TargetAssemblyTypeName: SettingsMenu, Assembly-CSharp
-        m_MethodName: SetGeneralVolume
+        m_MethodName: SetCamMultiplierY
         m_Mode: 0
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -1961,7 +1928,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0.25}
   m_AnchorMax: {x: 1, y: 0.75}
-  m_AnchoredPosition: {x: -217.90181, y: -143}
+  m_AnchoredPosition: {x: -217.9018, y: -143}
   m_SizeDelta: {x: -640, y: -290}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!95 &603745437
@@ -2547,7 +2514,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8b5c4a5641fc62a4197389133101a785, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  material: {fileID: 2693507}
+  material: {fileID: 1473621174}
   _hardness: -3
   _pixHardness: 0
   _displayWarp: {x: 0.03, y: 0.03, z: 0, w: 0}
@@ -2600,6 +2567,8 @@ MonoBehaviour:
   masterSlider: {fileID: 1188329694}
   idleSlider: {fileID: 1836377172}
   interactSlider: {fileID: 465679226}
+  camSliderX: {fileID: 1445585001}
+  camSliderY: {fileID: 156559706}
 --- !u!4 &874517516
 Transform:
   m_ObjectHideFlags: 0
@@ -2649,7 +2618,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: -208.90169, y: 17}
+  m_AnchoredPosition: {x: -208.90167, y: 17}
   m_SizeDelta: {x: -513.8571, y: -568.2581}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &901069578
@@ -14028,16 +13997,16 @@ MonoBehaviour:
   m_FillRect: {fileID: 1149989353}
   m_HandleRect: {fileID: 2125143594}
   m_Direction: 0
-  m_MinValue: -2
+  m_MinValue: 0.1
   m_MaxValue: 2
   m_WholeNumbers: 0
-  m_Value: 0
+  m_Value: 1
   m_OnValueChanged:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 874517515}
         m_TargetAssemblyTypeName: SettingsMenu, Assembly-CSharp
-        m_MethodName: SetGeneralVolume
+        m_MethodName: SetCamMultiplierX
         m_Mode: 0
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -14083,6 +14052,39 @@ RectTransform:
   m_AnchoredPosition: {x: -5, y: 0}
   m_SizeDelta: {x: -20, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
+--- !u!21 &1473621174
+Material:
+  serializedVersion: 8
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_Name: Hidden/CRT
+  m_Shader: {fileID: 4800000, guid: 825ff68a80df47d439dbf4cf9552851c, type: 3}
+  m_Parent: {fileID: 0}
+  m_ModifiedSerializedProperties: 0
+  m_ValidKeywords: []
+  m_InvalidKeywords: []
+  m_LightmapFlags: 4
+  m_EnableInstancingVariants: 0
+  m_DoubleSidedGI: 0
+  m_CustomRenderQueue: -1
+  stringTagMap: {}
+  disabledShaderPasses: []
+  m_LockedProperties: 
+  m_SavedProperties:
+    serializedVersion: 3
+    m_TexEnvs: []
+    m_Ints: []
+    m_Floats:
+    - hardPix: 0
+    - hardScan: -3
+    - maskDark: 0.63
+    - maskLight: 0.87
+    - resScale: 1
+    m_Colors:
+    - warp: {r: 0.03, g: 0.03, b: 0, a: 0}
+  m_BuildTextureStacks: []
 --- !u!1 &1514661172
 GameObject:
   m_ObjectHideFlags: 0
@@ -14531,7 +14533,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0.25}
   m_AnchorMax: {x: 1, y: 0.75}
-  m_AnchoredPosition: {x: -217.90176, y: 80}
+  m_AnchoredPosition: {x: -217.90173, y: 80}
   m_SizeDelta: {x: -640, y: -290}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1624253246
@@ -14703,7 +14705,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: -208.90169, y: -95}
+  m_AnchoredPosition: {x: -208.90167, y: -95}
   m_SizeDelta: {x: -513.8571, y: -568.2581}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1671827294
@@ -14839,7 +14841,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0.25}
   m_AnchorMax: {x: 1, y: 0.75}
-  m_AnchoredPosition: {x: -217.90181, y: -30}
+  m_AnchoredPosition: {x: -217.9018, y: -30}
   m_SizeDelta: {x: -640, y: -290}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!95 &1710182427
@@ -15391,7 +15393,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: -208.90169, y: 128}
+  m_AnchoredPosition: {x: -208.90167, y: 128}
   m_SizeDelta: {x: -513.8571, y: -568.2581}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1858068549
@@ -15720,7 +15722,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: -22, y: -227.8}
+  m_AnchoredPosition: {x: -22, y: -227.79999}
   m_SizeDelta: {x: -513.8571, y: -568.2581}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1920509195

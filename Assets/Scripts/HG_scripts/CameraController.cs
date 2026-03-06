@@ -101,26 +101,29 @@ public class CameraController : MonoBehaviour
 
     void SetPlayerPrefs()
     {
-        if (PlayerPrefs.HasKey("cameraSpeedX")){
+        if (PlayerPrefs.HasKey("cameraSpeedX"))
+        {
             float value = PlayerPrefs.GetFloat("cameraSpeedX");
             prefCamSpeedX = value;
             Debug.Log("Set cam speed x volume in player prefs!");
         }
         else
         {
-            Debug.Log("no cam speed x volume in player prefs");
+            Debug.Log("No player pref exists for camera speed X!");
             prefCamSpeedX = 1.0f;
-        }
 
-        if (PlayerPrefs.HasKey("cameraSpeedY")){
+        }
+        if (PlayerPrefs.HasKey("cameraSpeedY"))
+        {
             float value = PlayerPrefs.GetFloat("cameraSpeedY");
             prefCamSpeedY = value;
             Debug.Log("Set cam speed Y volume in player prefs!");
         }
         else
         {
-            Debug.Log("no cam speed Y volume in player prefs");
+            Debug.Log("No player pref exists for camera speed Y!");
             prefCamSpeedY = 1.0f;
+
         }
     }
 

@@ -75,7 +75,8 @@ public class SettingsMenu : MonoBehaviour
 
     public void SetCameraPrefs()
     {
-        if (PlayerPrefs.HasKey("cameraSpeedX")){
+        if (PlayerPrefs.HasKey("cameraSpeedX"))
+        {
             float value = PlayerPrefs.GetFloat("cameraSpeedX");
             camSliderX.value = (value);
             Debug.Log("Set cam speed x volume in player prefs!");
@@ -83,16 +84,20 @@ public class SettingsMenu : MonoBehaviour
         else
         {
             Debug.Log("No player pref exists for camera speed X!");
-        }
+            camSliderX.value = 1.0f;
 
-        if (PlayerPrefs.HasKey("cameraSpeedY")){
+        }
+        if (PlayerPrefs.HasKey("cameraSpeedY"))
+        {
             float value = PlayerPrefs.GetFloat("cameraSpeedY");
-            camSliderX.value = (value);
-            Debug.Log("Set cam speed y in player prefs!");
+            camSliderY.value = (value);
+            Debug.Log("Set cam speed Y volume in player prefs!");
         }
         else
         {
             Debug.Log("No player pref exists for camera speed Y!");
+            camSliderY.value = 1.0f;
+
         }
     }
 
