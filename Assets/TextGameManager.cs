@@ -61,7 +61,6 @@ public class TextGameManager : MonoBehaviour
     [SerializeField] private GameObject _pauseBox;
     [SerializeField] private GameObject _dialogueBox;
     [SerializeField] private GameObject _monster;
-
     [SerializeField] private AudioSource _breatheAudio;
 
     [SerializeField] private TitleScreenSpriteFollowMouse _mouseCursor;

@@ -78,6 +78,8 @@ public class CameraController : MonoBehaviour
     [HideInInspector] public bool _canInteract = true;
     [SerializeField] private CameraZoom _zoom;
 
+    [SerializeField] private float prefCamSpeedX = 1.0f;
+    [SerializeField] private float prefCamSpeedY = 1.0f;
 
     public float _camXMove;
 
@@ -93,6 +95,33 @@ public class CameraController : MonoBehaviour
 
     void Awake()
     {
+        SetPlayerPrefs();
+    }
+
+
+    void SetPlayerPrefs()
+    {
+        if (PlayerPrefs.HasKey("cameraSpeedX")){
+            float value = PlayerPrefs.GetFloat("cameraSpeedX");
+            prefCamSpeedX = value;
+            Debug.Log("Set cam speed x volume in player prefs!");
+        }
+        else
+        {
+            Debug.Log("no cam speed x volume in player prefs");
+            prefCamSpeedX = 1.0f;
+        }
+
+        if (PlayerPrefs.HasKey("cameraSpeedY")){
+            float value = PlayerPrefs.GetFloat("cameraSpeedY");
+            prefCamSpeedY = value;
+            Debug.Log("Set cam speed Y volume in player prefs!");
+        }
+        else
+        {
+            Debug.Log("no cam speed Y volume in player prefs");
+            prefCamSpeedY = 1.0f;
+        }
     }
 
     void Start()
@@ -135,8 +164,8 @@ public class CameraController : MonoBehaviour
 
         //Here, we are getting the actualy mouse movement from the player and converting it to variables
         //All inputs should be multiplied Time.deltaTime in order for physics to work correctly
-        float mouseX = Input.GetAxis("ControllerX") * _mouseSensitivityX;
-        float mouseY = Input.GetAxis("ControllerY") * _mouseSensitivityY;
+        float mouseX = Input.GetAxis("ControllerX") * _mouseSensitivityX * prefCamSpeedX;
+        float mouseY = Input.GetAxis("ControllerY") * _mouseSensitivityY * prefCamSpeedY;
 
         _camXMove = mouseX;
 

@@ -16,16 +16,24 @@ public class SettingsMenu : MonoBehaviour
     //for interact sounds
     public AudioMixer interactMixer;
 
+    //slider for general volume
     public Slider masterSlider;
 
+    //slider for idle/background volume
     public Slider idleSlider;
 
+    //slider for interaction volume
     public Slider interactSlider;
+
+    //sliders for camera sensitivity x and y axes
+    public Slider camSliderX;
+    public Slider camSliderY;
 
 
     public void Start()
     {
         SetAudioPrefs();
+        SetCameraPrefs();
     }
 
     //sets the audio sliders to the current mixer values
@@ -65,7 +73,28 @@ public class SettingsMenu : MonoBehaviour
         }
     }
 
+    public void SetCameraPrefs()
+    {
+        if (PlayerPrefs.HasKey("cameraSpeedX")){
+            float value = PlayerPrefs.GetFloat("cameraSpeedX");
+            camSliderX.value = (value);
+            Debug.Log("Set cam speed x volume in player prefs!");
+        }
+        else
+        {
+            Debug.Log("No player pref exists for camera speed X!");
+        }
 
+        if (PlayerPrefs.HasKey("cameraSpeedY")){
+            float value = PlayerPrefs.GetFloat("cameraSpeedY");
+            camSliderX.value = (value);
+            Debug.Log("Set cam speed y in player prefs!");
+        }
+        else
+        {
+            Debug.Log("No player pref exists for camera speed Y!");
+        }
+    }
 
 
     public void SetGeneralVolume(float volume)
@@ -84,5 +113,15 @@ public class SettingsMenu : MonoBehaviour
     {
         PlayerPrefs.SetFloat("interactVolume", volume);
         interactMixer.SetFloat("interactVolume", volume);
+    }
+
+    public void SetCamMultiplierX(float multiplier)
+    {
+        PlayerPrefs.SetFloat("cameraSpeedX",  multiplier);
+    }
+
+    public void SetCamMultiplierY(float multiplier)
+    {
+        PlayerPrefs.SetFloat("cameraSpeedY", multiplier);
     }
 }
