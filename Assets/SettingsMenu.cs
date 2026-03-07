@@ -2,7 +2,9 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Audio;
+using UnityEngine.Rendering.PostProcessing;
 using UnityEngine.UI;
+
 
 public class SettingsMenu : MonoBehaviour
 {
@@ -31,13 +33,19 @@ public class SettingsMenu : MonoBehaviour
 
     public Toggle invertToggle;
 
-
+    public Slider worldBrightness;
+    public PostProcessProfile worldBrightnessProfile;
+    public AutoExposure exposure;
 
     public void Start()
     {
+        worldBrightnessProfile.TryGetSettings(out exposure);
+        
+        
         SetAudioPrefs();
         SetCameraPrefs();
         SetCamPrefs();
+        SetBrightnessPrefs();
     }
 
     //sets the audio sliders to the current mixer values
@@ -121,6 +129,21 @@ public class SettingsMenu : MonoBehaviour
         }
     }
 
+    public void SetBrightnessPrefs()
+    {
+        if (PlayerPrefs.HasKey("worldBrightness"))
+        {
+            float value = PlayerPrefs.GetFloat("worldBrightness");
+            worldBrightness.value = (value);
+            Debug.Log("Set world brightness volume in player prefs!");
+        }
+        else
+        {
+            Debug.Log("No player pref exists world brightness!");
+            worldBrightness.value = 1.0f;
+
+        }
+    }
 
     public void SetGeneralVolume(float volume)
     {
@@ -161,5 +184,12 @@ public class SettingsMenu : MonoBehaviour
         {
             PlayerPrefs.SetInt("camInvert", 0);
         }
+    }
+
+    public void SetWorldBrightness(float brightness)
+    {
+        PlayerPrefs.SetFloat("worldBrightness", brightness);
+        exposure.keyValue.value = brightness;
+
     }
 }
