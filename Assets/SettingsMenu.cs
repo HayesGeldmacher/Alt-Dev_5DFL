@@ -29,11 +29,15 @@ public class SettingsMenu : MonoBehaviour
     public Slider camSliderX;
     public Slider camSliderY;
 
+    public Toggle invertToggle;
+
+
 
     public void Start()
     {
         SetAudioPrefs();
         SetCameraPrefs();
+        SetCamPrefs();
     }
 
     //sets the audio sliders to the current mixer values
@@ -101,6 +105,22 @@ public class SettingsMenu : MonoBehaviour
         }
     }
 
+    public void SetCamPrefs()
+    {
+        if (PlayerPrefs.HasKey("camInvert"))
+        {
+            int toggled = PlayerPrefs.GetInt("camInvert");
+            if (toggled == 1)
+            {
+                invertToggle.isOn = true;
+            }
+            else
+            {
+                invertToggle.isOn = false;
+            }
+        }
+    }
+
 
     public void SetGeneralVolume(float volume)
     {
@@ -128,5 +148,18 @@ public class SettingsMenu : MonoBehaviour
     public void SetCamMultiplierY(float multiplier)
     {
         PlayerPrefs.SetFloat("cameraSpeedY", multiplier);
+    }
+
+    public void SetCamToggle(bool toggle)
+    {
+        
+        if(toggle == true)
+        {
+            PlayerPrefs.SetInt("camInvert",  1);
+        }
+        else
+        {
+            PlayerPrefs.SetInt("camInvert", 0);
+        }
     }
 }

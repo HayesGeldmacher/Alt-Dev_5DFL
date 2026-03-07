@@ -80,7 +80,7 @@ public class CameraController : MonoBehaviour
 
     [SerializeField] private float prefCamSpeedX = 1.0f;
     [SerializeField] private float prefCamSpeedY = 1.0f;
-
+    private float prefCamInvertY = 1.0f;
     public float _camXMove;
 
 
@@ -125,6 +125,23 @@ public class CameraController : MonoBehaviour
             prefCamSpeedY = 1.0f;
 
         }
+        if (PlayerPrefs.HasKey("camInvert"))
+        {
+            int value = PlayerPrefs.GetInt("camInvert");
+            if(value == 1)
+            {
+                prefCamInvertY = -1.0f;
+                
+            }
+            else
+            {
+                prefCamSpeedY = 1.0f;
+            }
+        }
+        else
+        {
+            prefCamInvertY = 1.0f;
+        }
     }
 
     void Start()
@@ -168,7 +185,7 @@ public class CameraController : MonoBehaviour
         //Here, we are getting the actualy mouse movement from the player and converting it to variables
         //All inputs should be multiplied Time.deltaTime in order for physics to work correctly
         float mouseX = Input.GetAxis("ControllerX") * _mouseSensitivityX * prefCamSpeedX;
-        float mouseY = Input.GetAxis("ControllerY") * _mouseSensitivityY * prefCamSpeedY;
+        float mouseY = Input.GetAxis("ControllerY") * _mouseSensitivityY * prefCamSpeedY * prefCamInvertY;
 
         _camXMove = mouseX;
 
