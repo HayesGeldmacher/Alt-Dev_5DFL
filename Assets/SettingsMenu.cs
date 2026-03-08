@@ -33,15 +33,25 @@ public class SettingsMenu : MonoBehaviour
 
     public Toggle invertToggle;
 
+    public bool useWorldBrightness = false;
     public Slider worldBrightness;
     public PostProcessProfile worldBrightnessProfile;
     public AutoExposure exposure;
 
     public void Start()
     {
-        worldBrightnessProfile.TryGetSettings(out exposure);
+        if (useWorldBrightness)
+        {
+            worldBrightnessProfile.TryGetSettings(out exposure);
+
+        }
         
         
+       AssignPreferences();
+    }
+
+    public void AssignPreferences()
+    {
         SetAudioPrefs();
         SetCameraPrefs();
         SetCamPrefs();
@@ -189,7 +199,10 @@ public class SettingsMenu : MonoBehaviour
     public void SetWorldBrightness(float brightness)
     {
         PlayerPrefs.SetFloat("worldBrightness", brightness);
-        exposure.keyValue.value = brightness;
+        if(exposure != null)
+        {
+            exposure.keyValue.value = brightness;
+        }
 
     }
 }

@@ -40,6 +40,7 @@ public class GameManager : MonoBehaviour
     [SerializeField] public TitleScreenSpriteFollowMouse _pauseCursor;
     [SerializeField] private TitleScreenSpriteFollowMouse _textCursor;
 
+    public PauseButton pauseButtonScript;
 
     public delegate void CallPause();
     public static CallPause pauseInstance;
@@ -232,6 +233,7 @@ public class GameManager : MonoBehaviour
         if (!_inTextGame)
         {
          _pauseButtons.SetActive(true);
+           
         }
         _pauseButtonsText.SetActive(true);
 
@@ -297,8 +299,9 @@ public class GameManager : MonoBehaviour
 
         }
 
-
+        pauseButtonScript.OnEscape();
         _pauseButtons.SetActive(false);
+        
 
 
         _pauseButtonsText.SetActive(false);

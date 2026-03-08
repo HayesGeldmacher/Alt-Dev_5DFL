@@ -99,7 +99,7 @@ public class CameraController : MonoBehaviour
     }
 
 
-    void SetPlayerPrefs()
+    public void SetPlayerPrefs()
     {
         if (PlayerPrefs.HasKey("cameraSpeedX"))
         {

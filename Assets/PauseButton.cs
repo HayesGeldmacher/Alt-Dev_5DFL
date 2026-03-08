@@ -1,6 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
-using JetBrains.Annotations;
+using UnityEngine.SceneManagement;
 using UnityEngine;
 
 public class PauseButton : MonoBehaviour
@@ -15,6 +15,29 @@ public class PauseButton : MonoBehaviour
     [SerializeField] private Animator _exitText;
 
     [SerializeField] private TitleScreenSpriteFollowMouse _pauseCursor;
+    private bool inSettings = false;
+
+    public GameObject menuButtonsParent;
+
+    public GameObject settingsButtons;
+    public GameObject settingsText;
+    public SettingsAssign settingsAssign;
+
+    public SettingsMenu menu;
+
+    public void OnEscape()
+    {
+        inSettings = false;
+        settingsButtons.SetActive(false);
+        settingsText.SetActive(false);
+        _buttonSound.Play();
+        // _blackAnim.SetTrigger("black");
+        _resetText.SetTrigger("appear");
+        _menuText.SetTrigger("appear");
+        _exitText.SetTrigger("appear");
+        settingsAssign.AssignPlayerPreferences();
+        menuButtonsParent.SetActive(true);
+    }
     
     
     //disables the cursor without actually doing any functionality
@@ -49,6 +72,31 @@ public class PauseButton : MonoBehaviour
         StartCoroutine(Exit());
     }
 
+    public void CallSettings()
+    {
+        if (!inSettings)
+        {
+            StartCoroutine(Settings());
+
+        }
+    }
+
+    private IEnumerator Settings()
+    {
+        inSettings = true;
+        _buttonSound.Play();
+       // _blackAnim.SetTrigger("black");
+        _resetText.SetTrigger("fade");
+        _menuText.SetTrigger("fade");
+        _exitText.SetTrigger("fade");
+        yield return new WaitForSecondsRealtime(0.5f);
+        menuButtonsParent.SetActive(false);
+        settingsButtons.SetActive(true);
+        settingsText.SetActive(true);
+        menu.AssignPreferences();
+
+    }
+
     private IEnumerator Menu()
     {
         _buttonSound.Play();
@@ -81,4 +129,29 @@ public class PauseButton : MonoBehaviour
         yield return new WaitForSecondsRealtime(_waitTime);
         GameManager.instance.ReloadLevel();
     }
+
+    public void CallLeaveSettings()
+    {
+        if (inSettings)
+        {
+            StartCoroutine(LeaveSettings());
+        }
+    }
+
+    public IEnumerator LeaveSettings()
+    {
+        inSettings = false;
+        settingsButtons.SetActive(false);
+        settingsText.SetActive(false);
+        _buttonSound.Play();
+        // _blackAnim.SetTrigger("black");
+        _resetText.SetTrigger("appear");
+        _menuText.SetTrigger("appear");
+        _exitText.SetTrigger("appear");
+        settingsAssign.AssignPlayerPreferences();
+        yield return new WaitForSecondsRealtime(0.5f);
+        menuButtonsParent.SetActive(true);
+    }
+
+    
 }
