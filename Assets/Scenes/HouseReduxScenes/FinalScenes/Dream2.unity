@@ -11496,7 +11496,7 @@ MonoBehaviour:
   firstPersonMouse: {fileID: 0}
   positions: {fileID: 0}
   mosh: {fileID: 0}
-  playInteractSound: 0
+  playInteractSound: 1
   pauseButtonScript: {fileID: 1984571531260528107}
   hudBorder: {fileID: 359176521141513132}
   _fogLighting: 0
@@ -101139,8 +101139,8 @@ MonoBehaviour:
   stopVideos: 0
   vidPlayers: []
   vidStoppers: []
-  stopPlayingMovingBack: 0
-  playerInteractSound: 0
+  stopPlayingMovingBack: 1
+  playerInteractSound: 1
   fadeAudio: 0
   audioToFade: {fileID: 0}
   fadeSpeed: 0.05
@@ -138188,7 +138188,6 @@ GameObject:
   - component: {fileID: 1192600038}
   - component: {fileID: 1192600037}
   - component: {fileID: 1192600036}
-  - component: {fileID: 1192600035}
   m_Layer: 14
   m_Name: CamChangeTriggerHallway (12)
   m_TagString: Untagged
@@ -138196,55 +138195,6 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!114 &1192600035
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1192600034}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: df6bebe956333d0488d1bd07e04d6de1, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _camChange: {fileID: 5589591816697042237}
-  _camNum: 2
-  _disappearObjects:
-  - {fileID: 1883429666}
-  _appearObjects:
-  - {fileID: 711952803}
-  _teleportPlayer: 1
-  _rotatePlayer: 0
-  _player: {fileID: 5002890703238458015}
-  _spawnPos: {fileID: 694687072}
-  _interact: 0
-  _interactable: {fileID: 0}
-  _light: 1
-  _lightValue: 0.3
-  _playSound: 0
-  _stopSound: 0
-  _sound: {fileID: 1610005978}
-  _changeFog: 0
-  _fogDensity: 0
-  _changeFogColor: 0
-  _fogColor: {r: 0, g: 0, b: 0, a: 0}
-  _changeVol: 1
-  _soundVol: 1
-  _changePan: 1
-  _soundPan: 1
-  _cutToVideo: 0
-  _cutLength: 0
-  _vidClip: {fileID: 0}
-  playVideos: 0
-  stopVideos: 0
-  vidPlayers: []
-  vidStoppers: []
-  stopPlayingMovingBack: 0
-  playerInteractSound: 0
-  fadeAudio: 0
-  audioToFade: {fileID: 0}
-  fadeSpeed: 0.05
 --- !u!65 &1192600036
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -138260,7 +138210,7 @@ BoxCollider:
     serializedVersion: 2
     m_Bits: 0
   m_LayerOverridePriority: 0
-  m_IsTrigger: 1
+  m_IsTrigger: 0
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
@@ -138273,7 +138223,7 @@ MeshRenderer:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1192600034}
-  m_Enabled: 1
+  m_Enabled: 0
   m_CastShadows: 1
   m_ReceiveShadows: 1
   m_DynamicOccludee: 1
@@ -138325,8 +138275,8 @@ Transform:
   m_GameObject: {fileID: 1192600034}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: 0.16189726, z: -0, w: 0.98680764}
-  m_LocalPosition: {x: 72.1, y: 12.31, z: -41.45}
-  m_LocalScale: {x: 5.321069, y: 4.9256597, z: 1}
+  m_LocalPosition: {x: 74.14, y: 12.31, z: -42.14}
+  m_LocalScale: {x: 28.09152, y: 4.9256597, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
@@ -264244,7 +264194,7 @@ MonoBehaviour:
   vidPlayers: []
   vidStoppers: []
   stopPlayingMovingBack: 0
-  playerInteractSound: 0
+  playerInteractSound: 1
   fadeAudio: 0
   audioToFade: {fileID: 0}
   fadeSpeed: 0.05
@@ -264328,7 +264278,7 @@ Transform:
   m_GameObject: {fileID: 1374153228}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: 0.8109939, z: -0, w: 0.5850547}
-  m_LocalPosition: {x: 82.63, y: 12.31, z: 49.5}
+  m_LocalPosition: {x: 84.6, y: 12.31, z: 48.85}
   m_LocalScale: {x: 5.321069, y: 4.9256597, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -269061,6 +269011,37 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 90, z: 0}
+--- !u!1 &1384262428
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1384262429}
+  m_Layer: 14
+  m_Name: PlayerSpawn
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1384262429
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1384262428}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 1.9}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1610005976}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &1387824090
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -278887,7 +278868,6 @@ GameObject:
   - component: {fileID: 1559106098}
   - component: {fileID: 1559106097}
   - component: {fileID: 1559106096}
-  - component: {fileID: 1559106095}
   m_Layer: 14
   m_Name: CamChangeTriggerHallway (16)
   m_TagString: Untagged
@@ -278895,53 +278875,6 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!114 &1559106095
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1559106094}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: df6bebe956333d0488d1bd07e04d6de1, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _camChange: {fileID: 5589591816697042237}
-  _camNum: 6
-  _disappearObjects: []
-  _appearObjects: []
-  _teleportPlayer: 1
-  _rotatePlayer: 0
-  _player: {fileID: 5002890703238458015}
-  _spawnPos: {fileID: 342418214}
-  _interact: 0
-  _interactable: {fileID: 0}
-  _light: 1
-  _lightValue: 0.45
-  _playSound: 0
-  _stopSound: 0
-  _sound: {fileID: 1610005978}
-  _changeFog: 0
-  _fogDensity: 0
-  _changeFogColor: 0
-  _fogColor: {r: 0, g: 0, b: 0, a: 0}
-  _changeVol: 1
-  _soundVol: 0.95
-  _changePan: 1
-  _soundPan: 0.4
-  _cutToVideo: 0
-  _cutLength: 0
-  _vidClip: {fileID: 0}
-  playVideos: 0
-  stopVideos: 0
-  vidPlayers: []
-  vidStoppers: []
-  stopPlayingMovingBack: 0
-  playerInteractSound: 0
-  fadeAudio: 0
-  audioToFade: {fileID: 0}
-  fadeSpeed: 0.05
 --- !u!65 &1559106096
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -278957,7 +278890,7 @@ BoxCollider:
     serializedVersion: 2
     m_Bits: 0
   m_LayerOverridePriority: 0
-  m_IsTrigger: 1
+  m_IsTrigger: 0
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
@@ -278970,7 +278903,7 @@ MeshRenderer:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1559106094}
-  m_Enabled: 1
+  m_Enabled: 0
   m_CastShadows: 0
   m_ReceiveShadows: 1
   m_DynamicOccludee: 1
@@ -279023,7 +278956,7 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: 0.15784173, z: -0, w: 0.9874645}
   m_LocalPosition: {x: -9.48, y: 12.31, z: -37.7}
-  m_LocalScale: {x: 4.783597, y: 4.9256597, z: 1}
+  m_LocalScale: {x: 8.726716, y: 4.9256597, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 342418214}
@@ -279780,10 +279713,11 @@ Transform:
   m_GameObject: {fileID: 1610005971}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: 0.16189726, z: -0, w: 0.98680764}
-  m_LocalPosition: {x: 103.17, y: 12.31, z: 62.74}
+  m_LocalPosition: {x: 102.93, y: 12.31, z: 62.03}
   m_LocalScale: {x: 5.321069, y: 4.9256597, z: 1}
   m_ConstrainProportionsScale: 0
-  m_Children: []
+  m_Children:
+  - {fileID: 1384262429}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 18.634, z: 0}
 --- !u!114 &1610005977
@@ -279805,10 +279739,10 @@ MonoBehaviour:
   - {fileID: 476656372}
   _appearObjects:
   - {fileID: 1123764560}
-  _teleportPlayer: 0
+  _teleportPlayer: 1
   _rotatePlayer: 0
-  _player: {fileID: 0}
-  _spawnPos: {fileID: 0}
+  _player: {fileID: 5002890703238458015}
+  _spawnPos: {fileID: 1384262429}
   _interact: 0
   _interactable: {fileID: 0}
   _light: 1
@@ -279831,8 +279765,8 @@ MonoBehaviour:
   stopVideos: 0
   vidPlayers: []
   vidStoppers: []
-  stopPlayingMovingBack: 0
-  playerInteractSound: 0
+  stopPlayingMovingBack: 1
+  playerInteractSound: 1
   fadeAudio: 0
   audioToFade: {fileID: 0}
   fadeSpeed: 0.05
@@ -282765,7 +282699,6 @@ GameObject:
   - component: {fileID: 1752880942}
   - component: {fileID: 1752880941}
   - component: {fileID: 1752880940}
-  - component: {fileID: 1752880939}
   m_Layer: 14
   m_Name: CamChangeTriggerHallway (11)
   m_TagString: Untagged
@@ -282773,53 +282706,6 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!114 &1752880939
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1752880938}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: df6bebe956333d0488d1bd07e04d6de1, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _camChange: {fileID: 5589591816697042237}
-  _camNum: 0
-  _disappearObjects: []
-  _appearObjects: []
-  _teleportPlayer: 1
-  _rotatePlayer: 0
-  _player: {fileID: 5002890703238458015}
-  _spawnPos: {fileID: 1858297278}
-  _interact: 0
-  _interactable: {fileID: 0}
-  _light: 0
-  _lightValue: 0.55
-  _playSound: 0
-  _stopSound: 0
-  _sound: {fileID: 0}
-  _changeFog: 0
-  _fogDensity: 0
-  _changeFogColor: 0
-  _fogColor: {r: 0, g: 0, b: 0, a: 0}
-  _changeVol: 0
-  _soundVol: 0
-  _changePan: 0
-  _soundPan: 0
-  _cutToVideo: 0
-  _cutLength: 0
-  _vidClip: {fileID: 0}
-  playVideos: 0
-  stopVideos: 0
-  vidPlayers: []
-  vidStoppers: []
-  stopPlayingMovingBack: 0
-  playerInteractSound: 0
-  fadeAudio: 0
-  audioToFade: {fileID: 0}
-  fadeSpeed: 0.05
 --- !u!65 &1752880940
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -282835,7 +282721,7 @@ BoxCollider:
     serializedVersion: 2
     m_Bits: 0
   m_LayerOverridePriority: 0
-  m_IsTrigger: 1
+  m_IsTrigger: 0
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
@@ -282900,7 +282786,7 @@ Transform:
   m_GameObject: {fileID: 1752880938}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: 0.8109939, z: -0, w: 0.5850547}
-  m_LocalPosition: {x: 32.59, y: 12.31, z: 67.19}
+  m_LocalPosition: {x: 32.02, y: 12.31, z: 67.38}
   m_LocalScale: {x: 5.321069, y: 4.9256597, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -293763,7 +293649,6 @@ GameObject:
   - component: {fileID: 2020278461}
   - component: {fileID: 2020278460}
   - component: {fileID: 2020278459}
-  - component: {fileID: 2020278458}
   m_Layer: 14
   m_Name: CamChangeTriggerHallway (15)
   m_TagString: Untagged
@@ -293771,54 +293656,6 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!114 &2020278458
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2020278457}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: df6bebe956333d0488d1bd07e04d6de1, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _camChange: {fileID: 5589591816697042237}
-  _camNum: 7
-  _disappearObjects: []
-  _appearObjects:
-  - {fileID: 1883429666}
-  _teleportPlayer: 1
-  _rotatePlayer: 0
-  _player: {fileID: 5002890703238458015}
-  _spawnPos: {fileID: 550861587}
-  _interact: 0
-  _interactable: {fileID: 0}
-  _light: 1
-  _lightValue: 0.25
-  _playSound: 0
-  _stopSound: 0
-  _sound: {fileID: 1610005978}
-  _changeFog: 0
-  _fogDensity: 0
-  _changeFogColor: 0
-  _fogColor: {r: 0, g: 0, b: 0, a: 0}
-  _changeVol: 1
-  _soundVol: 0.65
-  _changePan: 1
-  _soundPan: 0.85
-  _cutToVideo: 0
-  _cutLength: 0
-  _vidClip: {fileID: 0}
-  playVideos: 0
-  stopVideos: 0
-  vidPlayers: []
-  vidStoppers: []
-  stopPlayingMovingBack: 0
-  playerInteractSound: 0
-  fadeAudio: 0
-  audioToFade: {fileID: 0}
-  fadeSpeed: 0.05
 --- !u!65 &2020278459
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -293834,7 +293671,7 @@ BoxCollider:
     serializedVersion: 2
     m_Bits: 0
   m_LayerOverridePriority: 0
-  m_IsTrigger: 1
+  m_IsTrigger: 0
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
@@ -293847,7 +293684,7 @@ MeshRenderer:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2020278457}
-  m_Enabled: 1
+  m_Enabled: 0
   m_CastShadows: 0
   m_ReceiveShadows: 1
   m_DynamicOccludee: 1
@@ -293900,7 +293737,7 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: 0.1720919, z: -0, w: 0.9850809}
   m_LocalPosition: {x: -16.92, y: 12.31, z: -57.25}
-  m_LocalScale: {x: 4.783597, y: 4.9256597, z: 1}
+  m_LocalScale: {x: 12.118286, y: 4.9256597, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 670232839}
@@ -294559,7 +294396,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!65 &2057829710
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -295636,7 +295473,7 @@ MonoBehaviour:
   vidPlayers: []
   vidStoppers: []
   stopPlayingMovingBack: 0
-  playerInteractSound: 0
+  playerInteractSound: 1
   fadeAudio: 0
   audioToFade: {fileID: 0}
   fadeSpeed: 0.05
@@ -297248,7 +297085,7 @@ MonoBehaviour:
   vidPlayers: []
   vidStoppers: []
   stopPlayingMovingBack: 0
-  playerInteractSound: 0
+  playerInteractSound: 1
   fadeAudio: 0
   audioToFade: {fileID: 0}
   fadeSpeed: 0.05
@@ -307294,7 +307131,7 @@ Transform:
   m_GameObject: {fileID: 4861618774750461413}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0.61815244, z: -0, w: 0.78605825}
-  m_LocalPosition: {x: 92.05, y: -59.74, z: -38.37}
+  m_LocalPosition: {x: 89.82, y: -59.74, z: -38.85}
   m_LocalScale: {x: 1.3198432, y: 1.319843, z: 1.3198432}
   m_ConstrainProportionsScale: 0
   m_Children:
