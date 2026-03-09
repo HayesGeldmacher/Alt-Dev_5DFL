@@ -53,6 +53,7 @@ public class SettingsAssign : MonoBehaviour
         }
 
         AssignBrightnessFromPrefs();
+        SetCameraPrefs();
     }
 
 

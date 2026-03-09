@@ -24,22 +24,33 @@ public class PauseButton : MonoBehaviour
     public SettingsAssign settingsAssign;
 
     public SettingsMenu menu;
+    public Animator settingsBlack;
 
     public void OnEscape()
     {
+        if (inSettings)
+        {
+            StartCoroutine(LeaveSettings());
+        }
+    }
+
+    private IEnumerator Escape()
+    {
         inSettings = false;
-        settingsButtons.SetActive(false);
-        settingsText.SetActive(false);
         _buttonSound.Play();
-        // _blackAnim.SetTrigger("black");
+     
+        settingsBlack.SetTrigger("fadeOut");
+        settingsAssign.AssignPlayerPreferences();
+        yield return new WaitForSecondsRealtime(0.5f);
+        settingsBlack.SetTrigger("fadeIn");
+        menuButtonsParent.SetActive(true);
+        settingsText.SetActive(false);
+        settingsButtons.SetActive(false);
         _resetText.SetTrigger("appear");
         _menuText.SetTrigger("appear");
         _exitText.SetTrigger("appear");
-        settingsAssign.AssignPlayerPreferences();
-        menuButtonsParent.SetActive(true);
     }
-    
-    
+
     //disables the cursor without actually doing any functionality
     public void DisableCursor()
     {
@@ -89,6 +100,7 @@ public class PauseButton : MonoBehaviour
         _resetText.SetTrigger("fade");
         _menuText.SetTrigger("fade");
         _exitText.SetTrigger("fade");
+        settingsBlack.SetTrigger("fadeIn");
         yield return new WaitForSecondsRealtime(0.5f);
         menuButtonsParent.SetActive(false);
         settingsButtons.SetActive(true);
@@ -141,16 +153,18 @@ public class PauseButton : MonoBehaviour
     public IEnumerator LeaveSettings()
     {
         inSettings = false;
-        settingsButtons.SetActive(false);
-        settingsText.SetActive(false);
         _buttonSound.Play();
         // _blackAnim.SetTrigger("black");
+        settingsBlack.SetTrigger("fadeOut");
+        settingsAssign.AssignPlayerPreferences();
+        yield return new WaitForSecondsRealtime(0.5f);
+        settingsBlack.SetTrigger("fadeIn");
+        menuButtonsParent.SetActive(true);
+        settingsText.SetActive(false);
+        settingsButtons.SetActive(false);
         _resetText.SetTrigger("appear");
         _menuText.SetTrigger("appear");
         _exitText.SetTrigger("appear");
-        settingsAssign.AssignPlayerPreferences();
-        yield return new WaitForSecondsRealtime(0.5f);
-        menuButtonsParent.SetActive(true);
     }
 
     

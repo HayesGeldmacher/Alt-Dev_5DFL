@@ -299,12 +299,13 @@ public class GameManager : MonoBehaviour
 
         }
 
-        pauseButtonScript.OnEscape();
         _pauseButtons.SetActive(false);
+        _pauseButtonsText.SetActive(false);
+
+        pauseButtonScript.OnEscape();
         
 
 
-        _pauseButtonsText.SetActive(false);
         
         
         if(_hudBorder != null)

@@ -80,7 +80,7 @@ public class CameraController : MonoBehaviour
 
     [SerializeField] private float prefCamSpeedX = 1.0f;
     [SerializeField] private float prefCamSpeedY = 1.0f;
-    private float prefCamInvertY = 1.0f;
+    public  float prefCamInvertY = 1.0f;
     public float _camXMove;
 
 
@@ -125,23 +125,18 @@ public class CameraController : MonoBehaviour
             prefCamSpeedY = 1.0f;
 
         }
+
+        prefCamInvertY = 1.0f;
         if (PlayerPrefs.HasKey("camInvert"))
         {
             int value = PlayerPrefs.GetInt("camInvert");
-            if(value == 1)
+            float newValue = (float)value;
+            if(newValue == -1.0f)
             {
-                prefCamInvertY = -1.0f;
-                
-            }
-            else
-            {
-                prefCamSpeedY = 1.0f;
+                prefCamInvertY = newValue;
             }
         }
-        else
-        {
-            prefCamInvertY = 1.0f;
-        }
+        Debug.Log("Set camera value to : " + prefCamInvertY);
     }
 
     void Start()

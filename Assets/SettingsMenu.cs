@@ -128,7 +128,7 @@ public class SettingsMenu : MonoBehaviour
         if (PlayerPrefs.HasKey("camInvert"))
         {
             int toggled = PlayerPrefs.GetInt("camInvert");
-            if (toggled == 1)
+            if (toggled == -1)
             {
                 invertToggle.isOn = true;
             }
@@ -188,11 +188,13 @@ public class SettingsMenu : MonoBehaviour
         
         if(toggle == true)
         {
-            PlayerPrefs.SetInt("camInvert",  1);
+            PlayerPrefs.SetInt("camInvert",  -1);
+            Debug.Log("Set cam toggle to true!");
         }
         else
         {
-            PlayerPrefs.SetInt("camInvert", 0);
+            Debug.Log("Set cam toggle to false!");
+            PlayerPrefs.SetInt("camInvert", 1);
         }
     }
 
@@ -202,6 +204,7 @@ public class SettingsMenu : MonoBehaviour
         if(exposure != null)
         {
             exposure.keyValue.value = brightness;
+
         }
 
     }
