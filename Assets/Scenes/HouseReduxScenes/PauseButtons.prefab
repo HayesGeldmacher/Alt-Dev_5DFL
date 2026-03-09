@@ -751,11 +751,11 @@ MonoBehaviour:
   _exitText: {fileID: 0}
   _pauseCursor: {fileID: 2827517820960512754}
   menuButtonsParent: {fileID: 2596235245178892222}
-  settingsButtons: {fileID: 0}
+  settingsButtons: {fileID: 4824480412650279691}
   settingsText: {fileID: 0}
   settingsAssign: {fileID: 0}
-  menu: {fileID: 0}
-  settingsBlack: {fileID: 0}
+  menu: {fileID: 9013556379165614117}
+  settingsBlack: {fileID: 9129449082603911892}
 --- !u!82 &6350740923984452098
 AudioSource:
   m_ObjectHideFlags: 0
@@ -765,7 +765,8 @@ AudioSource:
   m_GameObject: {fileID: 4884523640982853793}
   m_Enabled: 1
   serializedVersion: 4
-  OutputAudioMixerGroup: {fileID: 0}
+  OutputAudioMixerGroup: {fileID: 24300002, guid: f00036bb21940934d8b160010ccdda2c,
+    type: 2}
   m_audioClip: {fileID: 8300000, guid: b073b6b53d4449244882c536290e342f, type: 3}
   m_PlayOnAwake: 0
   m_Volume: 1
@@ -1295,6 +1296,11 @@ PrefabInstance:
       propertyPath: m_AnchorMin.x
       value: 0.9876543
       objectReference: {fileID: 0}
+    - target: {fileID: 7250065679513924553, guid: d975b4d89406a8442a672a9a57a348c9,
+        type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 7387901302228181562, guid: d975b4d89406a8442a672a9a57a348c9,
         type: 3}
       propertyPath: m_AnchorMax.x
@@ -1304,6 +1310,16 @@ PrefabInstance:
         type: 3}
       propertyPath: m_AnchorMax.y
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7673340052395674050, guid: d975b4d89406a8442a672a9a57a348c9,
+        type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8623611657800879931, guid: d975b4d89406a8442a672a9a57a348c9,
+        type: 3}
+      propertyPath: m_Enabled
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8736028579976386165, guid: d975b4d89406a8442a672a9a57a348c9,
         type: 3}
@@ -1477,6 +1493,12 @@ MonoBehaviour:
 --- !u!224 &4474388489202117143 stripped
 RectTransform:
   m_CorrespondingSourceObject: {fileID: 8738125462820112604, guid: d975b4d89406a8442a672a9a57a348c9,
+    type: 3}
+  m_PrefabInstance: {fileID: 5142044592644645579}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1 &4824480412650279691 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 409767161504264640, guid: d975b4d89406a8442a672a9a57a348c9,
     type: 3}
   m_PrefabInstance: {fileID: 5142044592644645579}
   m_PrefabAsset: {fileID: 0}
