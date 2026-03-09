@@ -8,7 +8,9 @@ public class SettingsAssign : MonoBehaviour
 {
 
     public bool assignCameraSettings = false;
+    public bool assignLimitedCameraSettings = false;
     public CameraController camController;
+    public CamLookLimited camLookLimited;
 
     public PostProcessProfile worldBrightnessProfile;
     public AutoExposure exposure;
@@ -52,8 +54,7 @@ public class SettingsAssign : MonoBehaviour
             }
         }
 
-        AssignBrightnessFromPrefs();
-        SetCameraPrefs();
+        AssignPlayerPreferences();
     }
 
 
@@ -63,6 +64,10 @@ public class SettingsAssign : MonoBehaviour
         if (assignCameraSettings)
         {
             SetCameraPrefs();
+        }
+        if (assignLimitedCameraSettings)
+        {
+            SetLimitedCameraPrefs();
         }
     }
     public void AssignBrightnessFromPrefs()
@@ -128,6 +133,11 @@ public class SettingsAssign : MonoBehaviour
     public void SetCameraPrefs()
     {
        camController.SetPlayerPrefs();
+    }
+
+    public void SetLimitedCameraPrefs()
+    {
+        camLookLimited.SetPlayerPrefs();
     }
 
 }

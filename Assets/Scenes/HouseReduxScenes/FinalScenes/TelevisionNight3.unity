@@ -884,7 +884,7 @@ Mesh:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: pb_Mesh856746
+  m_Name: pb_Mesh1049412
   serializedVersion: 11
   m_SubMeshes:
   - serializedVersion: 2
@@ -1924,7 +1924,7 @@ Mesh:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: pb_Mesh856796
+  m_Name: pb_Mesh1049462
   serializedVersion: 11
   m_SubMeshes:
   - serializedVersion: 2
@@ -9210,7 +9210,7 @@ Mesh:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: pb_Mesh903810
+  m_Name: pb_Mesh1049504
   serializedVersion: 11
   m_SubMeshes:
   - serializedVersion: 2
@@ -9409,6 +9409,39 @@ Mesh:
     offset: 0
     size: 0
     path: 
+--- !u!21 &1873814379
+Material:
+  serializedVersion: 8
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_Name: Hidden/CRT
+  m_Shader: {fileID: 4800000, guid: 825ff68a80df47d439dbf4cf9552851c, type: 3}
+  m_Parent: {fileID: 0}
+  m_ModifiedSerializedProperties: 0
+  m_ValidKeywords: []
+  m_InvalidKeywords: []
+  m_LightmapFlags: 4
+  m_EnableInstancingVariants: 0
+  m_DoubleSidedGI: 0
+  m_CustomRenderQueue: -1
+  stringTagMap: {}
+  disabledShaderPasses: []
+  m_LockedProperties: 
+  m_SavedProperties:
+    serializedVersion: 3
+    m_TexEnvs: []
+    m_Ints: []
+    m_Floats:
+    - hardPix: 0
+    - hardScan: -1
+    - maskDark: 0.25
+    - maskLight: 0.49
+    - resScale: 2
+    m_Colors:
+    - warp: {r: 0.03125, g: 0.04166, b: 0, a: 0}
+  m_BuildTextureStacks: []
 --- !u!1 &2004346084
 GameObject:
   m_ObjectHideFlags: 0
@@ -9420,6 +9453,7 @@ GameObject:
   - component: {fileID: 2004346086}
   - component: {fileID: 2004346085}
   - component: {fileID: 2004346087}
+  - component: {fileID: 2004346088}
   m_Layer: 0
   m_Name: GameManager
   m_TagString: Untagged
@@ -9559,6 +9593,32 @@ MonoBehaviour:
   - {fileID: 2004346085}
   _fading: 0
   _fadeSpeed: 1
+--- !u!114 &2004346088
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2004346084}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 47a2d6f701662f641a23c6c2597c3227, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  assignCameraSettings: 0
+  assignLimitedCameraSettings: 1
+  camController: {fileID: 0}
+  camLookLimited: {fileID: 2057205442163880297}
+  worldBrightnessProfile: {fileID: 11400000, guid: 7bafc394a8b18c5428cde411166e0c79,
+    type: 2}
+  exposure: {fileID: 0}
+  menuBrightnessProfile: {fileID: 0}
+  menuExposure: {fileID: 0}
+  hasSecondProfiles: 0
+  worldBrightnessProfile2: {fileID: 0}
+  exposure2: {fileID: 0}
+  menuBrightnessProfile2: {fileID: 0}
+  menuExposure2: {fileID: 0}
 --- !u!1 &2007866811
 GameObject:
   m_ObjectHideFlags: 0
@@ -9616,39 +9676,6 @@ Transform:
   - {fileID: 137995667}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!21 &2118453220
-Material:
-  serializedVersion: 8
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_Name: Hidden/CRT
-  m_Shader: {fileID: 4800000, guid: 825ff68a80df47d439dbf4cf9552851c, type: 3}
-  m_Parent: {fileID: 0}
-  m_ModifiedSerializedProperties: 0
-  m_ValidKeywords: []
-  m_InvalidKeywords: []
-  m_LightmapFlags: 4
-  m_EnableInstancingVariants: 0
-  m_DoubleSidedGI: 0
-  m_CustomRenderQueue: -1
-  stringTagMap: {}
-  disabledShaderPasses: []
-  m_LockedProperties: 
-  m_SavedProperties:
-    serializedVersion: 3
-    m_TexEnvs: []
-    m_Ints: []
-    m_Floats:
-    - hardPix: 0
-    - hardScan: -1
-    - maskDark: 0.25
-    - maskLight: 0.49
-    - resScale: 2
-    m_Colors:
-    - warp: {r: 0.03125, g: 0.04166, b: 0, a: 0}
-  m_BuildTextureStacks: []
 --- !u!1 &2122259531 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 919132149155446097, guid: 4f122315561c2574a843c874aa12578c,
@@ -10047,6 +10074,18 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 68f86a15c60cc5844a4a1abc828baf19, type: 3}
+--- !u!114 &2057205442163880297 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 7364043463930208609, guid: 68f86a15c60cc5844a4a1abc828baf19,
+    type: 3}
+  m_PrefabInstance: {fileID: 2057205442163880296}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9a152231ac6cc0a498f585ff4a7d83c8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &3821269433991948673
 PrefabInstance:
   m_ObjectHideFlags: 0
