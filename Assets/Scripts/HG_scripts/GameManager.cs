@@ -302,7 +302,10 @@ public class GameManager : MonoBehaviour
         _pauseButtons.SetActive(false);
         _pauseButtonsText.SetActive(false);
 
-        pauseButtonScript.OnEscape();
+        if(pauseButtonScript != null)
+        {
+            pauseButtonScript.OnEscape();
+        }
         
 
 
