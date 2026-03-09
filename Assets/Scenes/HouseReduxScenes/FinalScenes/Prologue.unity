@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 0.915
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 1585952577}
-  m_IndirectSpecularColor: {r: 0.1831809, g: 0.079766355, b: 0.24762632, a: 0.915}
+  m_IndirectSpecularColor: {r: 0.21269973, g: 0.055431396, b: 0.17208283, a: 0.915}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -117567,7 +117567,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   assignCameraSettings: 1
+  assignLimitedCameraSettings: 0
   camController: {fileID: 4635281134905057872}
+  camLookLimited: {fileID: 0}
   worldBrightnessProfile: {fileID: 11400000, guid: 082d72f9c22b5444b8a57c01e807782c,
     type: 2}
   exposure: {fileID: 0}
@@ -117578,6 +117580,19 @@ MonoBehaviour:
   exposure2: {fileID: 0}
   menuBrightnessProfile2: {fileID: 0}
   menuExposure2: {fileID: 0}
+--- !u!114 &2027713005
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1552682024}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2bdebcbaf16d9df409c2c792ac0d00b2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  loadIndex: 0
 --- !u!1 &2035189552
 GameObject:
   m_ObjectHideFlags: 0
@@ -123408,6 +123423,10 @@ PrefabInstance:
         type: 3}
       insertIndex: -1
       addedObject: {fileID: 2027713004}
+    - targetCorrespondingSourceObject: {fileID: 1152277542137410548, guid: 2f0dbb151b81b1b4a8dace253c8a7b51,
+        type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 2027713005}
   m_SourcePrefab: {fileID: 100100000, guid: 2f0dbb151b81b1b4a8dace253c8a7b51, type: 3}
 --- !u!4 &7510281646199196380 stripped
 Transform:

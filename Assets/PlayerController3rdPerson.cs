@@ -126,6 +126,11 @@ public class PlayerController3rdPerson : MonoBehaviour
             float x = Input.GetAxis("Horizontal") * _turnSensitivity;
             float z = Input.GetAxis("Vertical");
 
+            if(Mathf.Abs(x) == 0)
+            {
+            x = Input.GetAxis("ControllerX") * _turnSensitivity;
+            }
+
              _playerBody.Rotate(Vector3.up * x);
 
              //Stores that input in a variable to be used later in function

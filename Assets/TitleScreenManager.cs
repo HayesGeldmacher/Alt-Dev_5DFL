@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using TMPro;
 
 public class TitleScreenManager : MonoBehaviour
 {
@@ -15,6 +16,11 @@ public class TitleScreenManager : MonoBehaviour
     [SerializeField] private Datamosh _data;
 
 
+    [Header("Scene names")]
+    public string[] levelNames;
+    [SerializeField] private TMP_Text _continueText;
+
+
     [Header("Audio Fields")]
     public bool fadeAudio = false;
     [SerializeField] private AudioSource audioToFade;
@@ -23,7 +29,30 @@ public class TitleScreenManager : MonoBehaviour
     [SerializeField] private float minFadeUp = 0.4f;
     private bool isFading = false;
     private bool isFadingUp = false;
-   
+
+    public int loadIndex;
+
+
+    void Awake()
+    {
+
+        if (PlayerPrefs.HasKey("loadIndex"))
+        {
+            loadIndex = PlayerPrefs.GetInt("loadIndex");
+            if(_continueText.text != null)
+            {
+                _continueText.text = "Continue";
+            }
+        }
+        else
+        {
+            loadIndex = 0;
+            if(_continueText != null)
+            {
+             _continueText.text = "Enter The House";
+            }
+        }
+    }
 
     // Start is called before the first frame update
     void Start()
@@ -36,6 +65,7 @@ public class TitleScreenManager : MonoBehaviour
         {
             isFadingUp = true;
         }
+
     }
 
     // Update is called once per frame
@@ -210,6 +240,23 @@ public class TitleScreenManager : MonoBehaviour
             _startedTransition = true;
             _interactAudio.Play();
             StartCoroutine(LoadDay(day));
+        }
+    }
+
+    public void CallContinueGame()
+    {
+        string levelName = levelNames[loadIndex];
+
+        if (!_startedTransition)
+        {
+            if (fadeAudio)
+            {
+                isFading = true;
+                isFadingUp = false;
+            }
+            _startedTransition = true;
+            _interactAudio.Play();
+            StartCoroutine(LoadDay(levelName));
         }
     }
 

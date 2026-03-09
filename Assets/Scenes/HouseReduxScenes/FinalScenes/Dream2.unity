@@ -292215,6 +292215,19 @@ MonoBehaviour:
   exposure2: {fileID: 0}
   menuBrightnessProfile2: {fileID: 0}
   menuExposure2: {fileID: 0}
+--- !u!114 &1964211226
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1756306774}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2bdebcbaf16d9df409c2c792ac0d00b2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  loadIndex: 4
 --- !u!1001 &1970361963
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -312458,11 +312471,12 @@ MonoBehaviour:
   _manager: {fileID: 1964211191}
   _dialogue:
     _sentences:
-    - Press 'A' and 'D' to turn, and 'W' and 'S' to walk forward and back...
+    - Move the 'A' and 'D', or the mouse to turn, and 'W' and 'S' to walk forward
+      and back...
   _important: 0
   _canBeGrabbed: 0
   _player: {fileID: 0}
-  _hasPlayerController: 0
+  _hasPlayerController: 1
   _playsSound: 0
   _soundList: []
   _soundSource: {fileID: 0}
@@ -313118,6 +313132,10 @@ PrefabInstance:
         type: 3}
       insertIndex: -1
       addedObject: {fileID: 1964211225}
+    - targetCorrespondingSourceObject: {fileID: 3607843361635980013, guid: 2ca7a52bb84d9614198bbafb7a40a698,
+        type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1964211226}
   m_SourcePrefab: {fileID: 100100000, guid: 2ca7a52bb84d9614198bbafb7a40a698, type: 3}
 --- !u!82 &6237687924253460951
 AudioSource:

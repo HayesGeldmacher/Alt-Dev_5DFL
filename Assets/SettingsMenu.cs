@@ -208,4 +208,17 @@ public class SettingsMenu : MonoBehaviour
         }
 
     }
+
+    public void SetDefaults()
+    {
+        SetGeneralVolume(1.0f);
+        SetIdleVolume(1.0f);
+        SetInteractVolume(1.0f);
+        SetCamMultiplierX(1.0f);
+        SetCamMultiplierY(1.0f);
+        SetCamToggle(false);
+        SetWorldBrightness(1.0f);
+
+        AssignPreferences();
+    }
 }

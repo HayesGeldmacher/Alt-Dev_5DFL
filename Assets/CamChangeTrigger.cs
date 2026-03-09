@@ -22,6 +22,8 @@ public class CamChangeTrigger : MonoBehaviour
     private bool _interacted = false;
     [SerializeField] protected Interactable _interactable;
 
+    
+
      
     // Start is called before the first frame update
     void Start()
