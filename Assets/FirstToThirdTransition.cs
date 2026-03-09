@@ -54,6 +54,9 @@ public class FirstToThirdTransition : MonoBehaviour
     public SingleMosh mosh;
     public bool playInteractSound = false;
 
+    [Header("Settings Changes")]
+    public PauseButton pauseButtonScript;
+
 
 
 
@@ -66,6 +69,12 @@ public class FirstToThirdTransition : MonoBehaviour
     private bool isFading = false;
     public AudioSource audioToFade;
     public float fadeSpeed = 0.05f;
+
+    private void Start()
+    {
+        //just for testing
+        EnterFirstPerson(true);
+    }
 
 
     private void Update()
@@ -114,6 +123,9 @@ public class FirstToThirdTransition : MonoBehaviour
     private void EnterFirstPerson(bool first)
     {
 
+
+        GameManager.instance.pauseButtonScript = pauseButtonScript;
+        
         if (hudDream != null)
         {
             hudDream.SetActive(false);
