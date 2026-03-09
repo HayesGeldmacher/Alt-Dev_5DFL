@@ -56,6 +56,7 @@ public class FirstToThirdTransition : MonoBehaviour
 
     [Header("Settings Changes")]
     public PauseButton pauseButtonScript;
+    public GameObject hudBorder;
 
 
 
@@ -73,7 +74,7 @@ public class FirstToThirdTransition : MonoBehaviour
     private void Start()
     {
         //just for testing
-        EnterFirstPerson(true);
+        //EnterFirstPerson(true);
     }
 
 
@@ -125,6 +126,7 @@ public class FirstToThirdTransition : MonoBehaviour
 
 
         GameManager.instance.pauseButtonScript = pauseButtonScript;
+        GameManager.instance._hudBorder = hudBorder;
         
         if (hudDream != null)
         {

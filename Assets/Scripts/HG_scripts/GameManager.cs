@@ -17,7 +17,7 @@ public class GameManager : MonoBehaviour
     [SerializeField] public GameObject _pauseButtonsText;
     [SerializeField] public Animator _pausedAnimator;
     [SerializeField] private AudioSource _pausedAudio;
-    [SerializeField] private GameObject _hudBorder;
+    public GameObject _hudBorder;
     [SerializeField] private RawImage _cursorSprite;
     [SerializeField] private GameObject _ghostCam;
      

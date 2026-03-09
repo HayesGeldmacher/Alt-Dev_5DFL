@@ -48,8 +48,12 @@ public class FinalChairDreamEnd : Interactable
     {
         if (_lerping)
         {
-            _camHolder.localPosition = Vector3.Lerp(_camHolder.localPosition, _anchorPoint.localPosition, _lerpSpeed * Time.deltaTime);
-            _camHolder.localRotation = Quaternion.Lerp(_camHolder.localRotation, _lookPoint.localRotation, _lerpSpeed * Time.deltaTime);
+
+            Vector3 relativePos = _lookPoint.position - _camHolder.position;
+            Quaternion rotation = Quaternion.LookRotation(relativePos, Vector3.up);
+
+            _camHolder.position = Vector3.Lerp(_camHolder.position, _anchorPoint.position, _lerpSpeed * Time.deltaTime);
+           _camHolder.rotation = Quaternion.Lerp(_camHolder.rotation, rotation, _lerpSpeed * Time.deltaTime);
         }
 
         if (isFading)
