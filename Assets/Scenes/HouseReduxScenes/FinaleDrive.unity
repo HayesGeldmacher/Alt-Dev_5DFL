@@ -752,6 +752,39 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: c6a74a4224beb0845a59e945fc653e39, type: 3}
+--- !u!21 &709680586
+Material:
+  serializedVersion: 8
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_Name: Hidden/CRT
+  m_Shader: {fileID: 4800000, guid: 825ff68a80df47d439dbf4cf9552851c, type: 3}
+  m_Parent: {fileID: 0}
+  m_ModifiedSerializedProperties: 0
+  m_ValidKeywords: []
+  m_InvalidKeywords: []
+  m_LightmapFlags: 4
+  m_EnableInstancingVariants: 0
+  m_DoubleSidedGI: 0
+  m_CustomRenderQueue: -1
+  stringTagMap: {}
+  disabledShaderPasses: []
+  m_LockedProperties: 
+  m_SavedProperties:
+    serializedVersion: 3
+    m_TexEnvs: []
+    m_Ints: []
+    m_Floats:
+    - hardPix: 0
+    - hardScan: 0
+    - maskDark: 0.73
+    - maskLight: 0.84
+    - resScale: 2
+    m_Colors:
+    - warp: {r: 0.03125, g: 0.04166, b: 0, a: 0}
+  m_BuildTextureStacks: []
 --- !u!1 &766008815
 GameObject:
   m_ObjectHideFlags: 0
@@ -1111,7 +1144,7 @@ Mesh:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: pb_Mesh257848
+  m_Name: pb_Mesh1132512
   serializedVersion: 11
   m_SubMeshes:
   - serializedVersion: 2
@@ -1387,39 +1420,6 @@ Transform:
     type: 3}
   m_PrefabInstance: {fileID: 1061193189}
   m_PrefabAsset: {fileID: 0}
---- !u!21 &971079836
-Material:
-  serializedVersion: 8
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_Name: Hidden/CRT
-  m_Shader: {fileID: 4800000, guid: 825ff68a80df47d439dbf4cf9552851c, type: 3}
-  m_Parent: {fileID: 0}
-  m_ModifiedSerializedProperties: 0
-  m_ValidKeywords: []
-  m_InvalidKeywords: []
-  m_LightmapFlags: 4
-  m_EnableInstancingVariants: 0
-  m_DoubleSidedGI: 0
-  m_CustomRenderQueue: -1
-  stringTagMap: {}
-  disabledShaderPasses: []
-  m_LockedProperties: 
-  m_SavedProperties:
-    serializedVersion: 3
-    m_TexEnvs: []
-    m_Ints: []
-    m_Floats:
-    - hardPix: 0
-    - hardScan: 0
-    - maskDark: 0.73
-    - maskLight: 0.84
-    - resScale: 2
-    m_Colors:
-    - warp: {r: 0.03125, g: 0.04166, b: 0, a: 0}
-  m_BuildTextureStacks: []
 --- !u!1001 &1007611068
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -11119,6 +11119,7 @@ MonoBehaviour:
   _inTextGame: 0
   _pauseCursor: {fileID: 5379448561632748226}
   _textCursor: {fileID: 0}
+  pauseButtonScript: {fileID: 0}
 --- !u!1 &5068664966015610129
 GameObject:
   m_ObjectHideFlags: 0
@@ -12138,6 +12139,7 @@ GameObject:
   - component: {fileID: 4853657949227584439}
   - component: {fileID: 5595256776307448882}
   - component: {fileID: 70981201}
+  - component: {fileID: 8447546297781338620}
   m_Layer: 0
   m_Name: GameManagerMiniGame
   m_TagString: Untagged
@@ -12681,6 +12683,12 @@ MonoBehaviour:
   _menuText: {fileID: 4719143992824927828}
   _exitText: {fileID: 7820226235076046330}
   _pauseCursor: {fileID: 5379448561632748226}
+  menuButtonsParent: {fileID: 0}
+  settingsButtons: {fileID: 0}
+  settingsText: {fileID: 0}
+  settingsAssign: {fileID: 0}
+  menu: {fileID: 0}
+  settingsBlack: {fileID: 0}
 --- !u!224 &6822341407439727273
 RectTransform:
   m_ObjectHideFlags: 0
@@ -13970,6 +13978,32 @@ Transform:
   - {fileID: 3673563667962786114}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &8447546297781338620
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6191689870577454822}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 47a2d6f701662f641a23c6c2597c3227, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  assignCameraSettings: 0
+  assignLimitedCameraSettings: 0
+  camController: {fileID: 0}
+  camLookLimited: {fileID: 0}
+  worldBrightnessProfile: {fileID: 11400000, guid: 512e338c502ee2e43b3eaa049b7f27f4,
+    type: 2}
+  exposure: {fileID: 0}
+  menuBrightnessProfile: {fileID: 0}
+  menuExposure: {fileID: 0}
+  hasSecondProfiles: 0
+  worldBrightnessProfile2: {fileID: 0}
+  exposure2: {fileID: 0}
+  menuBrightnessProfile2: {fileID: 0}
+  menuExposure2: {fileID: 0}
 --- !u!95 &8453996829865244142
 Animator:
   serializedVersion: 7
@@ -14101,7 +14135,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8b5c4a5641fc62a4197389133101a785, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  material: {fileID: 971079836}
+  material: {fileID: 709680586}
   _hardness: 0
   _pixHardness: 0
   _displayWarp: {x: 0.03125, y: 0.04166, z: 0, w: 0}
