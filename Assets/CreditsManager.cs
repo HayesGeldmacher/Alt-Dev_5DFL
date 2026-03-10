@@ -31,7 +31,11 @@ public class CreditsManager : MonoBehaviour
     public Animator backgroundAnim;
 
     private bool startedFading = false;
+    private bool ended = false;
     [SerializeField] private AudioSource gameMusic;
+
+    public AudioFadeOut musicFade;
+    public AudioFadeOut telivisionFade;
 
     // Start is called before the first frame update
     void Start()
@@ -74,15 +78,19 @@ public class CreditsManager : MonoBehaviour
 
             if(_currentCreditsPosition >= _creditEndPosition)
             {
-                _creditsScrolling = false;
-                StartCoroutine(EndScene());
+                if (!ended)
+                {
+                    ended = true;
+                    StartCoroutine(EndScene());
+                }
             }
             else if(_currentCreditsPosition >= _creditFadePosition)
             {
-                if (startedFading)
+                if (!startedFading)
                 {
-                    startedFading = false;
+                    startedFading = true;
                     backgroundAnim.SetTrigger("fade");
+                    telivisionFade.StartFading();
                 }
             }
       
@@ -121,7 +129,8 @@ public class CreditsManager : MonoBehaviour
     {
         Debug.Log("ended scene!");
         _blackAnim.SetTrigger("long");
-        yield return new WaitForSeconds(5f);
+        musicFade.StartFading();
+        yield return new WaitForSeconds(10f);
         SceneManager.LoadScene("TitleScreen");
     }
 }
