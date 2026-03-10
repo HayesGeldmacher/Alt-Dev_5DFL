@@ -18,6 +18,8 @@ public class CreditsManager : MonoBehaviour
 
     [SerializeField] private float _creditStartPosition;
     [SerializeField] private float _creditEndPosition;
+    //fade out television sound, fade in black background
+    [SerializeField] private float _creditFadePosition;
     [SerializeField] private float _currentCreditsPosition;
 
     [SerializeField] private bool _creditsScrolling;
@@ -26,7 +28,9 @@ public class CreditsManager : MonoBehaviour
     [SerializeField] private Animator _blackAnim;
     [SerializeField] private Animator _textAnim;
 
+    public Animator backgroundAnim;
 
+    private bool startedFading = false;
     [SerializeField] private AudioSource gameMusic;
 
     // Start is called before the first frame update
@@ -73,6 +77,15 @@ public class CreditsManager : MonoBehaviour
                 _creditsScrolling = false;
                 StartCoroutine(EndScene());
             }
+            else if(_currentCreditsPosition >= _creditFadePosition)
+            {
+                if (startedFading)
+                {
+                    startedFading = false;
+                    backgroundAnim.SetTrigger("fade");
+                }
+            }
+      
 
         }
     }
@@ -97,15 +110,17 @@ public class CreditsManager : MonoBehaviour
 
     public IEnumerator BeginCreditsScrolling()
     {
-        gameMusic.Play();
         _textAnim.SetTrigger("fade");
         yield return new WaitForSeconds(5.5f);
         _creditsScrolling = true;
+        yield return new WaitForSeconds(1.5f);
+        gameMusic.Play();
     }
 
     private IEnumerator EndScene()
     {
-        _blackAnim.SetTrigger("veryLong");
+        Debug.Log("ended scene!");
+        _blackAnim.SetTrigger("long");
         yield return new WaitForSeconds(5f);
         SceneManager.LoadScene("TitleScreen");
     }
