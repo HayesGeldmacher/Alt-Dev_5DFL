@@ -255,6 +255,39 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 20477051}
   m_CullTransparentMesh: 1
+--- !u!21 &292539685
+Material:
+  serializedVersion: 8
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_Name: Hidden/CRT
+  m_Shader: {fileID: 4800000, guid: 825ff68a80df47d439dbf4cf9552851c, type: 3}
+  m_Parent: {fileID: 0}
+  m_ModifiedSerializedProperties: 0
+  m_ValidKeywords: []
+  m_InvalidKeywords: []
+  m_LightmapFlags: 4
+  m_EnableInstancingVariants: 0
+  m_DoubleSidedGI: 0
+  m_CustomRenderQueue: -1
+  stringTagMap: {}
+  disabledShaderPasses: []
+  m_LockedProperties: 
+  m_SavedProperties:
+    serializedVersion: 3
+    m_TexEnvs: []
+    m_Ints: []
+    m_Floats:
+    - hardPix: 0
+    - hardScan: -3
+    - maskDark: 0.63
+    - maskLight: 0.87
+    - resScale: 1
+    m_Colors:
+    - warp: {r: 0.03, g: 0.03, b: 0, a: 0}
+  m_BuildTextureStacks: []
 --- !u!1 &611108897
 GameObject:
   m_ObjectHideFlags: 0
@@ -614,39 +647,6 @@ Mesh:
     offset: 0
     size: 0
     path: 
---- !u!21 &995130898
-Material:
-  serializedVersion: 8
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_Name: Hidden/CRT
-  m_Shader: {fileID: 4800000, guid: 825ff68a80df47d439dbf4cf9552851c, type: 3}
-  m_Parent: {fileID: 0}
-  m_ModifiedSerializedProperties: 0
-  m_ValidKeywords: []
-  m_InvalidKeywords: []
-  m_LightmapFlags: 4
-  m_EnableInstancingVariants: 0
-  m_DoubleSidedGI: 0
-  m_CustomRenderQueue: -1
-  stringTagMap: {}
-  disabledShaderPasses: []
-  m_LockedProperties: 
-  m_SavedProperties:
-    serializedVersion: 3
-    m_TexEnvs: []
-    m_Ints: []
-    m_Floats:
-    - hardPix: 0
-    - hardScan: -3
-    - maskDark: 0.63
-    - maskLight: 0.87
-    - resScale: 1
-    m_Colors:
-    - warp: {r: 0.03, g: 0.03, b: 0, a: 0}
-  m_BuildTextureStacks: []
 --- !u!850595691 &1931332974
 LightingSettings:
   m_ObjectHideFlags: 0
@@ -8660,7 +8660,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8b5c4a5641fc62a4197389133101a785, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  material: {fileID: 995130898}
+  material: {fileID: 292539685}
   _hardness: -3
   _pixHardness: 0
   _displayWarp: {x: 0.03, y: 0.03, z: 0, w: 0}
@@ -9743,11 +9743,17 @@ MonoBehaviour:
   _cursorSprite: {fileID: 1573242031174879822}
   _spriteFollow: {fileID: 6307509487584508973}
   _data: {fileID: 2912342298308009741}
+  levelNames: []
+  _continueText: {fileID: 0}
   fadeAudio: 1
   audioToFade: {fileID: 4018157607625021083}
   fadeSpeed: 0.1
   fadeSpeedDown: 0.6
   minFadeUp: 0.3
+  loadIndex: 0
+  enterButton: {fileID: 0}
+  continueButton: {fileID: 0}
+  handleIndex: 0
 --- !u!4 &4496912665896599150
 Transform:
   m_ObjectHideFlags: 0
@@ -18849,6 +18855,16 @@ PrefabInstance:
       propertyPath: m_OnValueChanged.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
       objectReference: {fileID: 8421827641783086546}
+    - target: {fileID: 2705573852128148432, guid: d975b4d89406a8442a672a9a57a348c9,
+        type: 3}
+      propertyPath: m_SizeDelta.x
+      value: 142.6099
+      objectReference: {fileID: 0}
+    - target: {fileID: 2705573852128148432, guid: d975b4d89406a8442a672a9a57a348c9,
+        type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: 0.0302
+      objectReference: {fileID: 0}
     - target: {fileID: 2953147511548019353, guid: d975b4d89406a8442a672a9a57a348c9,
         type: 3}
       propertyPath: m_OnValueChanged.m_PersistentCalls.m_Calls.Array.data[0].m_Target
@@ -18913,6 +18929,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_AnchorMin.x
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6335108086688898289, guid: d975b4d89406a8442a672a9a57a348c9,
+        type: 3}
+      propertyPath: m_Enabled
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 6335108086688898289, guid: d975b4d89406a8442a672a9a57a348c9,
         type: 3}
