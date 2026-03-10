@@ -38,7 +38,7 @@ public class DreamEndCollision : MonoBehaviour
     [SerializeField] private AudioSource _breatheAudio;
     [SerializeField] private AudioSource _crowdAudio;
     [SerializeField] private AudioSource _dreamSong;
-
+    public AudioFadeOut audioFadeOut;
 
     public Animator _blackAnim;
     public void OnTriggerEnter(Collider other)
@@ -84,7 +84,9 @@ public class DreamEndCollision : MonoBehaviour
         _mosh.CallGlitch();
        // yield return new WaitForSeconds(1.5f);
         _blackAnim.SetTrigger("quick");
-        yield return new WaitForSeconds(3);
+        if (audioFadeOut != null) { audioFadeOut.StartFading(); }
+      
+        yield return new WaitForSeconds(6);
         SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
     }
 

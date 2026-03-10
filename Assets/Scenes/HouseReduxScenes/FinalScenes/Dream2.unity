@@ -11056,6 +11056,7 @@ GameObject:
   - component: {fileID: 391027699}
   - component: {fileID: 391027704}
   - component: {fileID: 391027705}
+  - component: {fileID: 391027706}
   m_Layer: 14
   m_Name: CamChangeTriggerHallway (10)
   m_TagString: Untagged
@@ -11285,7 +11286,24 @@ MonoBehaviour:
   _breatheAudio: {fileID: 0}
   _crowdAudio: {fileID: 0}
   _dreamSong: {fileID: 0}
+  audioFadeOut: {fileID: 391027706}
   _blackAnim: {fileID: 707444951}
+--- !u!114 &391027706
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 391027696}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 84fa63e9a9a1c504c98e88a87df53626, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _audioSources:
+  - {fileID: 391027704}
+  _fading: 0
+  _fadeSpeed: 2.5
 --- !u!1 &395298394 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 919132149155446097, guid: d6b74363603ce6647b10eb66a5ab82d2,
@@ -12825,7 +12843,7 @@ Mesh:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: pb_Mesh34888
+  m_Name: pb_Mesh269122
   serializedVersion: 11
   m_SubMeshes:
   - serializedVersion: 2
@@ -312473,7 +312491,7 @@ MonoBehaviour:
   _manager: {fileID: 1964211191}
   _dialogue:
     _sentences:
-    - Move the 'A' and 'D', or the mouse to turn, and 'W' and 'S' to walk forward
+    - Move the 'A' and 'D' keys, or the mouse to turn, and 'W' and 'S' to walk forward
       and back...
   _important: 0
   _canBeGrabbed: 0

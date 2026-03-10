@@ -146,7 +146,7 @@ public class BedDayTime : Interactable
         _monster.SetActive(true);
         }
         _blackAnim.SetTrigger("blinking");
-        yield return new WaitForSeconds(12);
+        yield return new WaitForSeconds(8);
         GameManager.instance.LoadNextLevel();
 
     }
