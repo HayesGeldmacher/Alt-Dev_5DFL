@@ -154142,6 +154142,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   assignCameraSettings: 0
   assignLimitedCameraSettings: 0
+  assignThirdCameraSettings: 0
+  thirdController: {fileID: 0}
   camController: {fileID: 0}
   camLookLimited: {fileID: 0}
   worldBrightnessProfile: {fileID: 11400000, guid: 7640ef0b36f02b844a1735cd0cd9b141,
@@ -322829,6 +322831,7 @@ MonoBehaviour:
   _fading: 0
   _fadeSpeed: 0.5
   justUsingOne: 0
+  startFadingOnStart: 0
 --- !u!1 &1638171144
 GameObject:
   m_ObjectHideFlags: 0
@@ -332841,12 +332844,52 @@ PrefabInstance:
     - target: {fileID: 2827517820960512754, guid: b0b54b64315107d499d2eba11f4f2040,
         type: 3}
       propertyPath: _constrained
-      value: 0
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2827517820960512754, guid: b0b54b64315107d499d2eba11f4f2040,
+        type: 3}
+      propertyPath: '_maxX.Array.data[0]'
+      value: 375
+      objectReference: {fileID: 0}
+    - target: {fileID: 2827517820960512754, guid: b0b54b64315107d499d2eba11f4f2040,
+        type: 3}
+      propertyPath: '_maxY.Array.data[0]'
+      value: 285
+      objectReference: {fileID: 0}
+    - target: {fileID: 2827517820960512754, guid: b0b54b64315107d499d2eba11f4f2040,
+        type: 3}
+      propertyPath: '_minX.Array.data[0]'
+      value: -380
+      objectReference: {fileID: 0}
+    - target: {fileID: 2827517820960512754, guid: b0b54b64315107d499d2eba11f4f2040,
+        type: 3}
+      propertyPath: '_minY.Array.data[0]'
+      value: -260
       objectReference: {fileID: 0}
     - target: {fileID: 2827517820960512754, guid: b0b54b64315107d499d2eba11f4f2040,
         type: 3}
       propertyPath: _controllerConstrained
-      value: 0
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2827517820960512754, guid: b0b54b64315107d499d2eba11f4f2040,
+        type: 3}
+      propertyPath: '_maxXController.Array.data[0]'
+      value: 720
+      objectReference: {fileID: 0}
+    - target: {fileID: 2827517820960512754, guid: b0b54b64315107d499d2eba11f4f2040,
+        type: 3}
+      propertyPath: '_maxYController.Array.data[0]'
+      value: 570
+      objectReference: {fileID: 0}
+    - target: {fileID: 2827517820960512754, guid: b0b54b64315107d499d2eba11f4f2040,
+        type: 3}
+      propertyPath: '_minXController.Array.data[0]'
+      value: 80
+      objectReference: {fileID: 0}
+    - target: {fileID: 2827517820960512754, guid: b0b54b64315107d499d2eba11f4f2040,
+        type: 3}
+      propertyPath: '_minYController.Array.data[0]'
+      value: 70
       objectReference: {fileID: 0}
     - target: {fileID: 3053284782999581301, guid: b0b54b64315107d499d2eba11f4f2040,
         type: 3}

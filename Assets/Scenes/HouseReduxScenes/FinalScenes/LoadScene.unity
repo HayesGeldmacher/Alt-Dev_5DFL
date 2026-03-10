@@ -2397,39 +2397,6 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!21 &579819499
-Material:
-  serializedVersion: 8
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_Name: Hidden/CRT
-  m_Shader: {fileID: 4800000, guid: 825ff68a80df47d439dbf4cf9552851c, type: 3}
-  m_Parent: {fileID: 0}
-  m_ModifiedSerializedProperties: 0
-  m_ValidKeywords: []
-  m_InvalidKeywords: []
-  m_LightmapFlags: 4
-  m_EnableInstancingVariants: 0
-  m_DoubleSidedGI: 0
-  m_CustomRenderQueue: -1
-  stringTagMap: {}
-  disabledShaderPasses: []
-  m_LockedProperties: 
-  m_SavedProperties:
-    serializedVersion: 3
-    m_TexEnvs: []
-    m_Ints: []
-    m_Floats:
-    - hardPix: 0
-    - hardScan: -3
-    - maskDark: 0.63
-    - maskLight: 0.87
-    - resScale: 1
-    m_Colors:
-    - warp: {r: 0.03, g: 0.03, b: 0, a: 0}
-  m_BuildTextureStacks: []
 --- !u!1 &616153443
 GameObject:
   m_ObjectHideFlags: 0
@@ -82553,6 +82520,39 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 691253674}
   m_CullTransparentMesh: 1
+--- !u!21 &697115953
+Material:
+  serializedVersion: 8
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_Name: Hidden/CRT
+  m_Shader: {fileID: 4800000, guid: 825ff68a80df47d439dbf4cf9552851c, type: 3}
+  m_Parent: {fileID: 0}
+  m_ModifiedSerializedProperties: 0
+  m_ValidKeywords: []
+  m_InvalidKeywords: []
+  m_LightmapFlags: 4
+  m_EnableInstancingVariants: 0
+  m_DoubleSidedGI: 0
+  m_CustomRenderQueue: -1
+  stringTagMap: {}
+  disabledShaderPasses: []
+  m_LockedProperties: 
+  m_SavedProperties:
+    serializedVersion: 3
+    m_TexEnvs: []
+    m_Ints: []
+    m_Floats:
+    - hardPix: 0
+    - hardScan: -3
+    - maskDark: 0.63
+    - maskLight: 0.87
+    - resScale: 1
+    m_Colors:
+    - warp: {r: 0.03, g: 0.03, b: 0, a: 0}
+  m_BuildTextureStacks: []
 --- !u!1 &710887892
 GameObject:
   m_ObjectHideFlags: 0
@@ -83307,7 +83307,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8b5c4a5641fc62a4197389133101a785, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  material: {fileID: 579819499}
+  material: {fileID: 697115953}
   _hardness: -3
   _pixHardness: 0
   _displayWarp: {x: 0.03, y: 0.03, z: 0, w: 0}
@@ -105465,12 +105465,12 @@ PrefabInstance:
     - target: {fileID: 6327717054966027000, guid: fd05a77f43177254b8b8a270df3a4269,
         type: 3}
       propertyPath: '_maxX.Array.data[0]'
-      value: 370
+      value: 375
       objectReference: {fileID: 0}
     - target: {fileID: 6327717054966027000, guid: fd05a77f43177254b8b8a270df3a4269,
         type: 3}
       propertyPath: '_maxY.Array.data[0]'
-      value: 280
+      value: 285
       objectReference: {fileID: 0}
     - target: {fileID: 6327717054966027000, guid: fd05a77f43177254b8b8a270df3a4269,
         type: 3}
@@ -105510,22 +105510,22 @@ PrefabInstance:
     - target: {fileID: 6327717054966027000, guid: fd05a77f43177254b8b8a270df3a4269,
         type: 3}
       propertyPath: '_maxXController.Array.data[0]'
-      value: 545
+      value: 720
       objectReference: {fileID: 0}
     - target: {fileID: 6327717054966027000, guid: fd05a77f43177254b8b8a270df3a4269,
         type: 3}
       propertyPath: '_maxYController.Array.data[0]'
-      value: 345
+      value: 570
       objectReference: {fileID: 0}
     - target: {fileID: 6327717054966027000, guid: fd05a77f43177254b8b8a270df3a4269,
         type: 3}
       propertyPath: '_minXController.Array.data[0]'
-      value: 230
+      value: 80
       objectReference: {fileID: 0}
     - target: {fileID: 6327717054966027000, guid: fd05a77f43177254b8b8a270df3a4269,
         type: 3}
       propertyPath: '_minYController.Array.data[0]'
-      value: 280
+      value: 70
       objectReference: {fileID: 0}
     - target: {fileID: 6535496075025185407, guid: fd05a77f43177254b8b8a270df3a4269,
         type: 3}
@@ -105850,6 +105850,7 @@ MonoBehaviour:
   _usingMouse: 0
   _inTextGame: 0
   _currentVirtPos: {x: 0, y: 0}
+  _currentVirtPosController: {x: 0, y: 0}
 --- !u!95 &8876975361500323822
 Animator:
   serializedVersion: 7
