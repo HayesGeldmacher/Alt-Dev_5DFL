@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.2001977, g: 0.087176345, b: 0.27062985, a: 1}
+  m_IndirectSpecularColor: {r: 0.23245871, g: 0.06058076, b: 0.18806866, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -752,39 +752,6 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: c6a74a4224beb0845a59e945fc653e39, type: 3}
---- !u!21 &709680586
-Material:
-  serializedVersion: 8
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_Name: Hidden/CRT
-  m_Shader: {fileID: 4800000, guid: 825ff68a80df47d439dbf4cf9552851c, type: 3}
-  m_Parent: {fileID: 0}
-  m_ModifiedSerializedProperties: 0
-  m_ValidKeywords: []
-  m_InvalidKeywords: []
-  m_LightmapFlags: 4
-  m_EnableInstancingVariants: 0
-  m_DoubleSidedGI: 0
-  m_CustomRenderQueue: -1
-  stringTagMap: {}
-  disabledShaderPasses: []
-  m_LockedProperties: 
-  m_SavedProperties:
-    serializedVersion: 3
-    m_TexEnvs: []
-    m_Ints: []
-    m_Floats:
-    - hardPix: 0
-    - hardScan: 0
-    - maskDark: 0.73
-    - maskLight: 0.84
-    - resScale: 2
-    m_Colors:
-    - warp: {r: 0.03125, g: 0.04166, b: 0, a: 0}
-  m_BuildTextureStacks: []
 --- !u!1 &766008815
 GameObject:
   m_ObjectHideFlags: 0
@@ -2737,6 +2704,39 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: e26629f92c568c847ba063bad4965ca2, type: 3}
+--- !u!21 &2131681283
+Material:
+  serializedVersion: 8
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_Name: Hidden/CRT
+  m_Shader: {fileID: 4800000, guid: 825ff68a80df47d439dbf4cf9552851c, type: 3}
+  m_Parent: {fileID: 0}
+  m_ModifiedSerializedProperties: 0
+  m_ValidKeywords: []
+  m_InvalidKeywords: []
+  m_LightmapFlags: 4
+  m_EnableInstancingVariants: 0
+  m_DoubleSidedGI: 0
+  m_CustomRenderQueue: -1
+  stringTagMap: {}
+  disabledShaderPasses: []
+  m_LockedProperties: 
+  m_SavedProperties:
+    serializedVersion: 3
+    m_TexEnvs: []
+    m_Ints: []
+    m_Floats:
+    - hardPix: 0
+    - hardScan: 0
+    - maskDark: 0.73
+    - maskLight: 0.84
+    - resScale: 2
+    m_Colors:
+    - warp: {r: 0.03125, g: 0.04166, b: 0, a: 0}
+  m_BuildTextureStacks: []
 --- !u!1 &70350535358643086
 GameObject:
   m_ObjectHideFlags: 0
@@ -12140,6 +12140,7 @@ GameObject:
   - component: {fileID: 5595256776307448882}
   - component: {fileID: 70981201}
   - component: {fileID: 8447546297781338620}
+  - component: {fileID: 8447546297781338621}
   m_Layer: 0
   m_Name: GameManagerMiniGame
   m_TagString: Untagged
@@ -14004,6 +14005,19 @@ MonoBehaviour:
   exposure2: {fileID: 0}
   menuBrightnessProfile2: {fileID: 0}
   menuExposure2: {fileID: 0}
+--- !u!114 &8447546297781338621
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6191689870577454822}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2bdebcbaf16d9df409c2c792ac0d00b2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  loadIndex: 17
 --- !u!95 &8453996829865244142
 Animator:
   serializedVersion: 7
@@ -14135,7 +14149,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8b5c4a5641fc62a4197389133101a785, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  material: {fileID: 709680586}
+  material: {fileID: 2131681283}
   _hardness: 0
   _pixHardness: 0
   _displayWarp: {x: 0.03125, y: 0.04166, z: 0, w: 0}

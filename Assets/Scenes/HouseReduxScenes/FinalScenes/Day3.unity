@@ -438932,6 +438932,10 @@ PrefabInstance:
         type: 3}
       insertIndex: -1
       addedObject: {fileID: 6185119457783065542}
+    - targetCorrespondingSourceObject: {fileID: 3607843361635980013, guid: 2ca7a52bb84d9614198bbafb7a40a698,
+        type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 6185119457783065543}
   m_SourcePrefab: {fileID: 100100000, guid: 2ca7a52bb84d9614198bbafb7a40a698, type: 3}
 --- !u!4 &6185119457783065539 stripped
 Transform:
@@ -438976,7 +438980,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   assignCameraSettings: 1
+  assignLimitedCameraSettings: 0
   camController: {fileID: 2437077440743916354}
+  camLookLimited: {fileID: 0}
   worldBrightnessProfile: {fileID: 11400000, guid: a9ac35c43ffa7df48a7512d76218570e,
     type: 2}
   exposure: {fileID: 0}
@@ -438988,6 +438994,19 @@ MonoBehaviour:
   exposure2: {fileID: 0}
   menuBrightnessProfile2: {fileID: 0}
   menuExposure2: {fileID: 0}
+--- !u!114 &6185119457783065543
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1756306774}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2bdebcbaf16d9df409c2c792ac0d00b2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  loadIndex: 11
 --- !u!4 &6207160540794665986
 Transform:
   m_ObjectHideFlags: 0

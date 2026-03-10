@@ -31,25 +31,46 @@ public class TitleScreenManager : MonoBehaviour
     private bool isFadingUp = false;
 
     public int loadIndex;
-
+    public GameObject enterButton;
+    public GameObject continueButton;
 
     void Awake()
     {
 
         if (PlayerPrefs.HasKey("loadIndex"))
         {
+            Debug.Log("found load index! : " + PlayerPrefs.GetInt("loadIndex"));
             loadIndex = PlayerPrefs.GetInt("loadIndex");
             if(_continueText.text != null)
             {
                 _continueText.text = "Continue";
+                if(enterButton != null)
+                {
+                    enterButton.SetActive(false);
+                }
+                if(continueButton != null)
+                {
+                    continueButton.SetActive(true);
+                }
             }
+
         }
         else
         {
+            Debug.Log("No load index is found!");
             loadIndex = 0;
             if(_continueText != null)
             {
              _continueText.text = "Enter The House";
+
+                if (enterButton != null)
+                {
+                    enterButton.SetActive(true);
+                }
+                if (continueButton != null)
+                {
+                    continueButton.SetActive(false);
+                }
             }
         }
     }

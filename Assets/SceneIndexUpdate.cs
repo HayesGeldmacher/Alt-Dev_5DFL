@@ -10,5 +10,6 @@ public class SceneIndexUpdate : MonoBehaviour
       void Awake()
       {
         PlayerPrefs.SetInt("loadIndex", loadIndex);
+        Debug.Log("set load index to: " + PlayerPrefs.GetInt("loadIndex"));
       }
 }
