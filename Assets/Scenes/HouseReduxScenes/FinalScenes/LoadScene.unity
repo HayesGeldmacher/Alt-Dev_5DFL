@@ -2397,6 +2397,39 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!21 &579819499
+Material:
+  serializedVersion: 8
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_Name: Hidden/CRT
+  m_Shader: {fileID: 4800000, guid: 825ff68a80df47d439dbf4cf9552851c, type: 3}
+  m_Parent: {fileID: 0}
+  m_ModifiedSerializedProperties: 0
+  m_ValidKeywords: []
+  m_InvalidKeywords: []
+  m_LightmapFlags: 4
+  m_EnableInstancingVariants: 0
+  m_DoubleSidedGI: 0
+  m_CustomRenderQueue: -1
+  stringTagMap: {}
+  disabledShaderPasses: []
+  m_LockedProperties: 
+  m_SavedProperties:
+    serializedVersion: 3
+    m_TexEnvs: []
+    m_Ints: []
+    m_Floats:
+    - hardPix: 0
+    - hardScan: -3
+    - maskDark: 0.63
+    - maskLight: 0.87
+    - resScale: 1
+    m_Colors:
+    - warp: {r: 0.03, g: 0.03, b: 0, a: 0}
+  m_BuildTextureStacks: []
 --- !u!1 &616153443
 GameObject:
   m_ObjectHideFlags: 0
@@ -83274,7 +83307,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8b5c4a5641fc62a4197389133101a785, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  material: {fileID: 1724782017}
+  material: {fileID: 579819499}
   _hardness: -3
   _pixHardness: 0
   _displayWarp: {x: 0.03, y: 0.03, z: 0, w: 0}
@@ -95567,39 +95600,6 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1704615082}
   m_CullTransparentMesh: 1
---- !u!21 &1724782017
-Material:
-  serializedVersion: 8
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_Name: Hidden/CRT
-  m_Shader: {fileID: 4800000, guid: 825ff68a80df47d439dbf4cf9552851c, type: 3}
-  m_Parent: {fileID: 0}
-  m_ModifiedSerializedProperties: 0
-  m_ValidKeywords: []
-  m_InvalidKeywords: []
-  m_LightmapFlags: 4
-  m_EnableInstancingVariants: 0
-  m_DoubleSidedGI: 0
-  m_CustomRenderQueue: -1
-  stringTagMap: {}
-  disabledShaderPasses: []
-  m_LockedProperties: 
-  m_SavedProperties:
-    serializedVersion: 3
-    m_TexEnvs: []
-    m_Ints: []
-    m_Floats:
-    - hardPix: 0
-    - hardScan: -3
-    - maskDark: 0.63
-    - maskLight: 0.87
-    - resScale: 1
-    m_Colors:
-    - warp: {r: 0.03, g: 0.03, b: 0, a: 0}
-  m_BuildTextureStacks: []
 --- !u!1 &1742242995
 GameObject:
   m_ObjectHideFlags: 0
@@ -101760,7 +101760,7 @@ AudioSource:
   OutputAudioMixerGroup: {fileID: 24300002, guid: f00036bb21940934d8b160010ccdda2c,
     type: 2}
   m_audioClip: {fileID: 8300000, guid: b073b6b53d4449244882c536290e342f, type: 3}
-  m_PlayOnAwake: 1
+  m_PlayOnAwake: 0
   m_Volume: 1
   m_Pitch: 1
   Loop: 0
@@ -101873,6 +101873,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   assignCameraSettings: 0
   assignLimitedCameraSettings: 0
+  assignThirdCameraSettings: 0
+  thirdController: {fileID: 0}
   camController: {fileID: 0}
   camLookLimited: {fileID: 0}
   worldBrightnessProfile: {fileID: 11400000, guid: 226e4b28a8e50964183ac4e75505a021,

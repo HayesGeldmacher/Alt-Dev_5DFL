@@ -35,6 +35,7 @@ public class TitleScreenManager : MonoBehaviour
     public GameObject continueButton;
     public bool handleIndex = true;
 
+
     void Awake()
     {
         if(!handleIndex) { return; }
