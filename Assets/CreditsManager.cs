@@ -93,8 +93,7 @@ public class CreditsManager : MonoBehaviour
                     telivisionFade.StartFading();
                 }
             }
-      
-
+     
         }
     }
 

@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 0.915
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 1585952577}
-  m_IndirectSpecularColor: {r: 0.21269973, g: 0.055431396, b: 0.17208283, a: 0.915}
+  m_IndirectSpecularColor: {r: 0.1831809, g: 0.079766355, b: 0.24762632, a: 0.915}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -528,7 +528,7 @@ PrefabInstance:
     - target: {fileID: 2827517820960512754, guid: b0b54b64315107d499d2eba11f4f2040,
         type: 3}
       propertyPath: _constrained
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 2827517820960512754, guid: b0b54b64315107d499d2eba11f4f2040,
         type: 3}
@@ -573,7 +573,7 @@ PrefabInstance:
     - target: {fileID: 2827517820960512754, guid: b0b54b64315107d499d2eba11f4f2040,
         type: 3}
       propertyPath: '_maxX.Array.data[0]'
-      value: 120
+      value: 375
       objectReference: {fileID: 0}
     - target: {fileID: 2827517820960512754, guid: b0b54b64315107d499d2eba11f4f2040,
         type: 3}
@@ -583,7 +583,7 @@ PrefabInstance:
     - target: {fileID: 2827517820960512754, guid: b0b54b64315107d499d2eba11f4f2040,
         type: 3}
       propertyPath: '_maxY.Array.data[0]'
-      value: 70
+      value: 285
       objectReference: {fileID: 0}
     - target: {fileID: 2827517820960512754, guid: b0b54b64315107d499d2eba11f4f2040,
         type: 3}
@@ -593,7 +593,7 @@ PrefabInstance:
     - target: {fileID: 2827517820960512754, guid: b0b54b64315107d499d2eba11f4f2040,
         type: 3}
       propertyPath: '_minX.Array.data[0]'
-      value: -130
+      value: -380
       objectReference: {fileID: 0}
     - target: {fileID: 2827517820960512754, guid: b0b54b64315107d499d2eba11f4f2040,
         type: 3}
@@ -603,7 +603,7 @@ PrefabInstance:
     - target: {fileID: 2827517820960512754, guid: b0b54b64315107d499d2eba11f4f2040,
         type: 3}
       propertyPath: '_minY.Array.data[0]'
-      value: -45
+      value: -260
       objectReference: {fileID: 0}
     - target: {fileID: 2827517820960512754, guid: b0b54b64315107d499d2eba11f4f2040,
         type: 3}
@@ -613,7 +613,7 @@ PrefabInstance:
     - target: {fileID: 2827517820960512754, guid: b0b54b64315107d499d2eba11f4f2040,
         type: 3}
       propertyPath: _controllerConstrained
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 2827517820960512754, guid: b0b54b64315107d499d2eba11f4f2040,
         type: 3}
@@ -117568,6 +117568,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   assignCameraSettings: 1
   assignLimitedCameraSettings: 0
+  assignThirdCameraSettings: 0
+  thirdController: {fileID: 0}
   camController: {fileID: 4635281134905057872}
   camLookLimited: {fileID: 0}
   worldBrightnessProfile: {fileID: 11400000, guid: 082d72f9c22b5444b8a57c01e807782c,
