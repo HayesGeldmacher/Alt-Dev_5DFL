@@ -121,7 +121,7 @@ public class CreditsManager : MonoBehaviour
         _textAnim.SetTrigger("fade");
         yield return new WaitForSeconds(5.5f);
         _creditsScrolling = true;
-        yield return new WaitForSeconds(1.5f);
+        yield return new WaitForSeconds(0.5f);
         gameMusic.Play();
     }
 
