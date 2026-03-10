@@ -50,9 +50,9 @@ public class TitleScreenSpriteFollowMouse : MonoBehaviour
     public bool _usingMouse;
     public bool _inTextGame = false;
     [SerializeField] private Vector2 _currentVirtPos;
+    [SerializeField] private Vector2 _currentVirtPosController;
 
-  
-    
+
     // Start is called before the first frame update
     void Start()
     {
@@ -143,6 +143,7 @@ public class TitleScreenSpriteFollowMouse : MonoBehaviour
 
                 InputState.Change(_virtualMouse.virtualMouse.position, newVirtPos);
 
+            _currentVirtPosController = newVirtPos;
             }
             else
             {
@@ -157,8 +158,8 @@ public class TitleScreenSpriteFollowMouse : MonoBehaviour
                 newVirtPos.y = Mathf.Clamp(newVirtPos.y, 0f + borderYMin, Screen.height - borderYMax);
 
                 InputState.Change(_virtualMouse.virtualMouse.position, newVirtPos);
-
-            }
+            _currentVirtPosController = newVirtPos;
+        }
     }
 
 
