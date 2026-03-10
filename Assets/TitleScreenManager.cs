@@ -33,10 +33,11 @@ public class TitleScreenManager : MonoBehaviour
     public int loadIndex;
     public GameObject enterButton;
     public GameObject continueButton;
+    public bool handleIndex = true;
 
     void Awake()
     {
-
+        if(!handleIndex) { return; }
         if (PlayerPrefs.HasKey("loadIndex"))
         {
             Debug.Log("found load index! : " + PlayerPrefs.GetInt("loadIndex"));

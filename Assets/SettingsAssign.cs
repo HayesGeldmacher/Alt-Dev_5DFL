@@ -9,6 +9,8 @@ public class SettingsAssign : MonoBehaviour
 
     public bool assignCameraSettings = false;
     public bool assignLimitedCameraSettings = false;
+    public bool assignThirdCameraSettings = false;
+    public PlayerController3rdPerson thirdController;
     public CameraController camController;
     public CamLookLimited camLookLimited;
 
@@ -68,6 +70,11 @@ public class SettingsAssign : MonoBehaviour
         if (assignLimitedCameraSettings)
         {
             SetLimitedCameraPrefs();
+        }
+        if (assignThirdCameraSettings) { 
+            
+            SetThirdCamSettings();
+        
         }
     }
     public void AssignBrightnessFromPrefs()
@@ -138,6 +145,10 @@ public class SettingsAssign : MonoBehaviour
     public void SetLimitedCameraPrefs()
     {
         camLookLimited.SetPlayerPrefs();
+    }
+    public void SetThirdCamSettings()
+    {
+        thirdController.SetPlayerPrefs();
     }
 
 }

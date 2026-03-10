@@ -64,6 +64,7 @@ public class PlayerController3rdPerson : MonoBehaviour
     [SerializeField] private Transform _castPos;
     public bool _frozen = false;
 
+    [SerializeField] private float prefCamSpeedX = 1.0f;
 
     //The below region just creates a reference of this specific controller that we can call from other scripts quickly
     #region Singleton
@@ -79,6 +80,8 @@ public class PlayerController3rdPerson : MonoBehaviour
         }
 
         instance = this;
+
+        SetPlayerPrefs();
     }
 
     #endregion
@@ -97,6 +100,24 @@ public class PlayerController3rdPerson : MonoBehaviour
         _running = false;
 
     }
+
+    public void SetPlayerPrefs()
+    {
+        if (PlayerPrefs.HasKey("cameraSpeedX"))
+        {
+            float value = PlayerPrefs.GetFloat("cameraSpeedX");
+            prefCamSpeedX = value;
+            Debug.Log("Set cam speed x volume in player prefs!");
+        }
+        else
+        {
+            Debug.Log("No player pref exists for camera speed X!");
+            prefCamSpeedX = 1.0f;
+
+        }
+    }
+
+
 
     private void Update()
     {
@@ -124,14 +145,14 @@ public class PlayerController3rdPerson : MonoBehaviour
 
             //takes the raw player input to move character 
             float x = Input.GetAxis("Horizontal") * _turnSensitivity;
-            float z = Input.GetAxis("Vertical");
+        float z = Input.GetAxis("Vertical");
 
             if(Mathf.Abs(x) == 0)
             {
             x = Input.GetAxis("ControllerX") * _turnSensitivity;
             }
 
-             _playerBody.Rotate(Vector3.up * x);
+             _playerBody.Rotate(Vector3.up * x * Time.deltaTime * 30 * prefCamSpeedX);
 
              //Stores that input in a variable to be used later in function
              Vector3 _move = (transform.forward * z);

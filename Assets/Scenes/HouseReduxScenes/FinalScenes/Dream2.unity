@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 0.25
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 1585952577}
-  m_IndirectSpecularColor: {r: 0.058114678, g: 0.01514519, b: 0.047017165, a: 0.25}
+  m_IndirectSpecularColor: {r: 0.050049424, g: 0.021794086, b: 0.06765746, a: 0.25}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -292202,6 +292202,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   assignCameraSettings: 0
   assignLimitedCameraSettings: 0
+  assignThirdCameraSettings: 1
+  thirdController: {fileID: 7711615003188051944}
   camController: {fileID: 0}
   camLookLimited: {fileID: 0}
   worldBrightnessProfile: {fileID: 11400000, guid: b8cc1b48c76234544988a94d5f613a02,
@@ -314891,6 +314893,7 @@ MonoBehaviour:
   _clickAnim: {fileID: 2033921978}
   _castPos: {fileID: 5002890703238458015}
   _frozen: 0
+  prefCamSpeedX: 1
 --- !u!82 &7711615003188051945
 AudioSource:
   m_ObjectHideFlags: 0
