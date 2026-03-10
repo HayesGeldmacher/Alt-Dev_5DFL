@@ -12,6 +12,16 @@ public class AudioFadeIn : MonoBehaviour
 
     public bool justUsingOne = false;
 
+    public bool startFadingOnStart = false;
+
+    void Start()
+    {
+        if (startFadingOnStart)
+        {
+            _fading = true;
+        }
+    }
+
     // Update is called once per frame
     void Update()
     {
@@ -25,6 +35,10 @@ public class AudioFadeIn : MonoBehaviour
                 if (source.volume < volumeLimit)
                 {
                     source.volume += (_fadeSpeed * Time.deltaTime) / 10;
+                    if(source.volume > volumeLimit)
+                    {
+                        source.volume = volumeLimit;
+                    }
                 }
 
             }
@@ -34,9 +48,13 @@ public class AudioFadeIn : MonoBehaviour
                 foreach (AudioSource source in _audioSources)
                 {
                     float volumeLimit = _audioLevels[_currentAudio];
-                    if (source.volume > volumeLimit)
+                    if (source.volume < volumeLimit)
                     {
                         source.volume += (_fadeSpeed * Time.deltaTime) / 10;
+                        if (source.volume > volumeLimit) { 
+                            source.volume = volumeLimit;
+                        }
+                        
                     }
 
                     _currentAudio++;

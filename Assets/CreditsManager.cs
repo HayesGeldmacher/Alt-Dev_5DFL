@@ -26,6 +26,9 @@ public class CreditsManager : MonoBehaviour
     [SerializeField] private Animator _blackAnim;
     [SerializeField] private Animator _textAnim;
 
+
+    [SerializeField] private AudioSource gameMusic;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -94,6 +97,7 @@ public class CreditsManager : MonoBehaviour
 
     public IEnumerator BeginCreditsScrolling()
     {
+        gameMusic.Play();
         _textAnim.SetTrigger("fade");
         yield return new WaitForSeconds(4f);
         _creditsScrolling = true;
