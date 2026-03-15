@@ -511,6 +511,39 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 2caef60d8760f9f45aaf30ee28b87fb5, type: 3}
+--- !u!21 &658314383
+Material:
+  serializedVersion: 8
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_Name: Hidden/CRT
+  m_Shader: {fileID: 4800000, guid: 825ff68a80df47d439dbf4cf9552851c, type: 3}
+  m_Parent: {fileID: 0}
+  m_ModifiedSerializedProperties: 0
+  m_ValidKeywords: []
+  m_InvalidKeywords: []
+  m_LightmapFlags: 4
+  m_EnableInstancingVariants: 0
+  m_DoubleSidedGI: 0
+  m_CustomRenderQueue: -1
+  stringTagMap: {}
+  disabledShaderPasses: []
+  m_LockedProperties: 
+  m_SavedProperties:
+    serializedVersion: 3
+    m_TexEnvs: []
+    m_Ints: []
+    m_Floats:
+    - hardPix: 0
+    - hardScan: -1
+    - maskDark: 0.25
+    - maskLight: 0.49
+    - resScale: 2
+    m_Colors:
+    - warp: {r: 0.03125, g: 0.04166, b: 0, a: 0}
+  m_BuildTextureStacks: []
 --- !u!1 &694074812
 GameObject:
   m_ObjectHideFlags: 0
@@ -1072,39 +1105,6 @@ Animator:
   m_PrefabInstance: {fileID: 446681431}
   m_PrefabAsset: {fileID: 0}
 --- !u!21 &1401346247
-Material:
-  serializedVersion: 8
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_Name: Hidden/CRT
-  m_Shader: {fileID: 4800000, guid: 825ff68a80df47d439dbf4cf9552851c, type: 3}
-  m_Parent: {fileID: 0}
-  m_ModifiedSerializedProperties: 0
-  m_ValidKeywords: []
-  m_InvalidKeywords: []
-  m_LightmapFlags: 4
-  m_EnableInstancingVariants: 0
-  m_DoubleSidedGI: 0
-  m_CustomRenderQueue: -1
-  stringTagMap: {}
-  disabledShaderPasses: []
-  m_LockedProperties: 
-  m_SavedProperties:
-    serializedVersion: 3
-    m_TexEnvs: []
-    m_Ints: []
-    m_Floats:
-    - hardPix: 0
-    - hardScan: -1
-    - maskDark: 0.25
-    - maskLight: 0.49
-    - resScale: 2
-    m_Colors:
-    - warp: {r: 0.03125, g: 0.04166, b: 0, a: 0}
-  m_BuildTextureStacks: []
---- !u!21 &1483769390
 Material:
   serializedVersion: 8
   m_ObjectHideFlags: 0
@@ -9240,6 +9240,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   assignCameraSettings: 0
   assignLimitedCameraSettings: 0
+  assignThirdCameraSettings: 0
+  thirdController: {fileID: 0}
   camController: {fileID: 0}
   camLookLimited: {fileID: 0}
   worldBrightnessProfile: {fileID: 11400000, guid: 53b6cba2fa6d26e4ebc71e8a566f4104,
@@ -9748,12 +9750,17 @@ PrefabInstance:
     - target: {fileID: 5258364385296545645, guid: c47b20c1326142141a1065107f33b623,
         type: 3}
       propertyPath: m_SkipOnDrop
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 5258364385296545645, guid: c47b20c1326142141a1065107f33b623,
         type: 3}
       propertyPath: m_PlayOnAwake
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5258364385296545645, guid: c47b20c1326142141a1065107f33b623,
+        type: 3}
+      propertyPath: m_PlaybackSpeed
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 5258364385296545645, guid: c47b20c1326142141a1065107f33b623,
         type: 3}
@@ -9763,7 +9770,37 @@ PrefabInstance:
     - target: {fileID: 5258364385296545645, guid: c47b20c1326142141a1065107f33b623,
         type: 3}
       propertyPath: m_TimeUpdateMode
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 5258364385296545645, guid: c47b20c1326142141a1065107f33b623,
+        type: 3}
+      propertyPath: m_WaitForFirstFrame
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5258364385296545645, guid: c47b20c1326142141a1065107f33b623,
+        type: 3}
+      propertyPath: m_ControlledAudioTrackCount
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5258364385296545645, guid: c47b20c1326142141a1065107f33b623,
+        type: 3}
+      propertyPath: m_DirectAudioMutes.Array.size
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5258364385296545645, guid: c47b20c1326142141a1065107f33b623,
+        type: 3}
+      propertyPath: m_DirectAudioVolumes.Array.size
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5258364385296545645, guid: c47b20c1326142141a1065107f33b623,
+        type: 3}
+      propertyPath: m_EnabledAudioTracks.Array.size
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5258364385296545645, guid: c47b20c1326142141a1065107f33b623,
+        type: 3}
+      propertyPath: m_TargetAudioSources.Array.size
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 5810369522351227812, guid: c47b20c1326142141a1065107f33b623,
         type: 3}
