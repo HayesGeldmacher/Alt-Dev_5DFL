@@ -79,8 +79,12 @@ public class PhoneDaytime : Interactable
     public bool setColorReallyDark = false;
     [SerializeField] public Color lightStart = Color.blue;
     [SerializeField] public Color lightEnd = Color.black;
+    [SerializeField] private AudioFadeOut toneFade;
+
+    public bool useIntensity = false;
 
     public float _minDarkness;
+    private float startDarkness;
 
 
     private void Start()
@@ -104,6 +108,10 @@ public class PhoneDaytime : Interactable
 
         //Test trigger day end
         //StartCoroutine(Darkness());
+        if (useIntensity)
+        {
+            startDarkness = RenderSettings.ambientIntensity;
+        }
     }
 
     private void Update()
@@ -132,20 +140,30 @@ public class PhoneDaytime : Interactable
 
         if (_isDarkening)
         {
-           Color lerpedColor = Color.Lerp(colorStart, colorEnd, t);
-            // renderer.material.color = lerpedColor
-            RenderSettings.skybox.SetColor("_Tint", lerpedColor);
 
-            if (setColorReallyDark)
+            if (useIntensity)
             {
-                Color darkColor = Color.Lerp(lightStart,  lightEnd, t);
-                RenderSettings.ambientLight = darkColor;
+                float lerpedIntensity = Mathf.Lerp(startDarkness, _minDarkness, t);
+                RenderSettings.ambientIntensity = lerpedIntensity;
             }
+            
+                Color lerpedColor = Color.Lerp(colorStart, colorEnd, t);
+                // renderer.material.color = lerpedColor
+                RenderSettings.skybox.SetColor("_Tint", lerpedColor);
+
+                if (setColorReallyDark)
+                {
+                    Color darkColor = Color.Lerp(lightStart,  lightEnd, t);
+                    RenderSettings.ambientLight = darkColor;
+                }
+
+
 
             t += Time.deltaTime / duration;
            // RenderSettings.skybox.SetColor("_Tint", lerpedColor);
             //RenderSettings.skybox.SetColor("_Tint", Color.black);
         }
+        
     }
 
     //writing "virtual" in front of a function means that children scripts can add to/edit the function
@@ -311,7 +329,10 @@ public class PhoneDaytime : Interactable
         _bed.EnableBedTime();
         yield return new WaitForSeconds(3);
         _isDarkening = true;
-        Destroy(_pointWindowLight);
+        if(_pointWindowLight != null)
+        {
+            Destroy(_pointWindowLight); 
+        }
         yield return new WaitForSeconds(1);
         RenderSettings.fogColor = Color.black;
         RenderSettings.fogDensity = 0.01f;
@@ -319,9 +340,17 @@ public class PhoneDaytime : Interactable
         Destroy(_lightShaft2);
         Destroy(_sun);
 
-        if(_neutralTone != null)
+        
+        if (toneFade != null)
         {
-            _neutralTone.Stop();
+            toneFade.StartFading();
+        }
+        else
+        {
+            if(_neutralTone != null)
+            {
+                _neutralTone.Stop();
+            }
         }
 
         if(_lightManager != null)
@@ -388,11 +417,14 @@ public class PhoneDaytime : Interactable
 
     private IEnumerator DisableSelf()
     {
-        collider.enabled = false;
-        childMesh.SetActive(false);
-        evidencePhone.SetActive(true);
-        yield return new WaitForSeconds(5f);
-       // Destroy(gameObject);
+        if (collider != null) { 
+        
+            collider.enabled = false;
+            childMesh.SetActive(false);
+            evidencePhone.SetActive(true);
+            yield return new WaitForSeconds(5f);
+           // Destroy(gameObject);
+        }
 
     }
 }

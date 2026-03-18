@@ -69,4 +69,8 @@ public class AudioFadeIn : MonoBehaviour
     {
         _fading = true;
     }
+    public void StopFading()
+    {
+        _fading = false;
+    }
 }

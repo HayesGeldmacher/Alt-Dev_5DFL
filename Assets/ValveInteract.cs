@@ -1,15 +1,20 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class ValveInteract : Interactable
 {
     [SerializeField] private Animator _anim;
     [SerializeField] private AudioSource _screechSound;
-    [SerializeField] private GameObject _grandHallGate;
 
     [SerializeField] private GameObject[] _disappearObjects;
-    
+
+    [SerializeField] private Animator blackAnim;
+    [SerializeField] private AudioSource spotlightOff;
+    [SerializeField] private AudioSource gaspAudio;
+
+    private bool hasEnded = false;
     // Start is called before the first frame update
     void Start()
     {
@@ -24,19 +29,35 @@ public class ValveInteract : Interactable
 
     public override void Interact()
     {
-        _anim.SetTrigger("turn");
-        _screechSound.Play();
-        _grandHallGate.SetActive(false);
-
-
-        if( _disappearObjects.Length > 0)
+        base.Interact();
+        if (!hasEnded)
         {
-            foreach (var obj in _disappearObjects)
-            {
-                obj.gameObject.SetActive(false);
-
-            }
+            StartCoroutine(EndEverything());
         }
 
+
+    }
+
+    private IEnumerator EndEverything()
+    {
+        //first turn it and screech
+        hasEnded = true;
+        _anim.SetTrigger("turn");
+        _screechSound.Play();
+        blackAnim.SetTrigger("black");
+        //then play the gasp sound
+        yield return new WaitForSeconds(1.0f);
+        PlayerController.instance._frozen = false;
+        foreach (var obj in _disappearObjects) { 
+            if(obj != null)
+            {
+                obj.SetActive(false);
+            }
+        }
+        spotlightOff.Play();
+        yield return new WaitForSeconds(1.0f);
+       // gaspAudio.Play();
+        yield return new WaitForSeconds(4.0f);
+        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
     }
 }

@@ -128,7 +128,7 @@ public class CameraPickup : Interactable
     private IEnumerator NextInteract()
     {
         yield return new WaitForSeconds(2);
-        _audio.Play();
+        //_audio.Play();
     }
 
     private void EndCamera()

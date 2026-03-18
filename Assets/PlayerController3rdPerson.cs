@@ -145,14 +145,14 @@ public class PlayerController3rdPerson : MonoBehaviour
 
             //takes the raw player input to move character 
             float x = Input.GetAxis("Horizontal") * _turnSensitivity;
-        float z = Input.GetAxis("Vertical");
+            float z = Input.GetAxis("Vertical");
 
             if(Mathf.Abs(x) == 0)
             {
-            x = Input.GetAxis("ControllerX") * _turnSensitivity;
+                x = Input.GetAxis("ControllerX") * _turnSensitivity * 0.5f;
             }
 
-             _playerBody.Rotate(Vector3.up * x * Time.deltaTime * 30 * prefCamSpeedX);
+             _playerBody.Rotate(Vector3.up * x * Time.deltaTime * 35 * prefCamSpeedX);
 
              //Stores that input in a variable to be used later in function
              Vector3 _move = (transform.forward * z);

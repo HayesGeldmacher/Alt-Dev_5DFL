@@ -28,6 +28,7 @@ public class BedNight : Interactable
 
     [SerializeField] private GameObject _doorInteract;
     [SerializeField] private GameObject _televisionOld;
+    public bool skipDoorShit = false;
 
     [Header("Fade Out Fields")]
     public bool fadeAudio = false;
@@ -80,7 +81,7 @@ public class BedNight : Interactable
 
         if (!_startedEnd)
         {
-            if (!_door._isOpen)
+            if (!_door._isOpen && !skipDoorShit)
             {
                base._dialogue._sentences[0] = "I can't see the TV with the door closed...";
                base.Interact();
@@ -120,12 +121,24 @@ public class BedNight : Interactable
         }
          _hud.SetActive(false);
         _cursor.SetActive(false);
-        _monster.SetActive(true);
+        if(_monster != null)
+        {
+            _monster.SetActive(true);
+
+        }
+        if(_doorInteract != null)
+        {
         _doorInteract.SetActive(false);
-        _televisionOld.SetActive(false);
+
+        }
+        if (_televisionOld != null) { 
+
+         _televisionOld.SetActive(false);
+        
+        }
         _blackAnim.SetTrigger("blinking");
         _swivel.SetTrigger("swivel");
-        yield return new WaitForSeconds(8);
+        yield return new WaitForSeconds(10f);
         GameManager.instance.LoadNextLevel();
 
     }

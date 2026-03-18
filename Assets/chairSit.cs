@@ -62,7 +62,10 @@ public class chairSit : Interactable
     public bool endKnockigSound = false;
     public DoorKnocking knockingSoundHeavy;
     public DoorKnocking knockingSoundLight;
-      
+
+    [SerializeField] private bool _rotateOnTeleport = false;
+    public float rotationYValue;
+
 
     private void Start()
     {
@@ -297,6 +300,15 @@ public class chairSit : Interactable
         //_controller._frozen = true;
         //_char.enabled = false;
         _playerParent.transform.position = _newSpawnPos.position;
+        if (_rotateOnTeleport)
+        {
+
+
+            // the second argument, upwards, defaults to Vector3.up
+            // Quaternion rotation = Quaternion.LookRotation(_newSpawnPosition.rotation., Vector3.up);
+
+            _playerParent.transform.rotation = Quaternion.Euler(_playerParent.transform.rotation.x, rotationYValue, _playerParent.transform.rotation.z);
+        }
         //Debug.Break();
         _playerParent.SetActive(true);
         PlayerController.instance._frozen = false;
