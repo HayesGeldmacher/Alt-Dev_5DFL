@@ -16,6 +16,7 @@ public class TripodInteract : Interactable
     [SerializeField] private Transform _playerBody;
     [SerializeField] private CharacterController _charController;
     [SerializeField] private Transform _newSpawnPoint;
+    [SerializeField] private AudioSource humIdle;
    
 
     private bool _startedEnd = false;
@@ -47,6 +48,10 @@ public class TripodInteract : Interactable
             if (_treeSound != null) 
             { 
                 _treeSound.Play();
+            }
+            if(humIdle != null)
+            {
+                humIdle.Stop();
             }
         }
         else
