@@ -6,13 +6,6 @@ public class nightManager : Interactable
 {
 
 
-    public float _neededRooms = 10;
-    public float _currentRooms = 0;
-    public bool _enteredRightRoom = false;
-    private bool _hasSpawnedExit = false;
-
-    [SerializeField] private newKitchenCollider _triggerKitchen;
-
     [SerializeField] private PlayerController _controller;
     [SerializeField] private List<GameObject> _Items = new List<GameObject>();
     [SerializeField] private List<AudioClip> _soundClips = new List<AudioClip>();
@@ -24,29 +17,21 @@ public class nightManager : Interactable
     [SerializeField] private AudioSource _turnOffSound;
     [SerializeField] private ScreenshotHandler _handler;
 
-    [SerializeField] private GameObject _flag1;
-    [SerializeField] private GameObject _flag2;
-
     [SerializeField] private AudioSource _spotLight;
     [SerializeField] private AudioSource _interactAudio;
 
     [SerializeField] private bool _testDontFreeze = false;
-    [SerializeField] private GameObject _remoteEvidence;
     [SerializeField] private GameObject _playerParent;
     [SerializeField] private Transform _newSpawnPos;
 
     private bool _seenDialogue = false;
 
-    [SerializeField] private GameObject _endlessKitchen;
-    [SerializeField] private GameObject _normalHouse;
-    [SerializeField] private Animator _kitchenLight;
-    [SerializeField] private Animator _stairWellLight;
+
+
     [SerializeField] private Datamosh _data;
     [SerializeField] private CharacterController _char;
-    [SerializeField] private Animator _garageLight;
 
     [SerializeField] private CameraController _camController;
-    [SerializeField] private GameObject _kitchenFakeEvidence;
 
 
     [Header("New Night Evidence Variables")]
@@ -65,7 +50,7 @@ public class nightManager : Interactable
     [SerializeField] private GameObject _bedroomHallwayBlocker;
     [SerializeField] private List<GameObject> _disappearComplete;
     [SerializeField] private List<GameObject> _appearComplete;
-
+    public Interactable dialogueInteract;
 
    // [SerializeField] private float _totaldialogueTimer;
    //[SerializeField] private float _currentDialogueTimer;
@@ -89,35 +74,39 @@ public class nightManager : Interactable
 
         _evidenceCount = 0;
 
-
-        // _audio.clip = _soundClips[0];
-
-        float _countNum = 0;
-        foreach(var item in _Items)
-        {
-              //  item.SetActive(false);
-             //   _countNum ++;
-        }
-
-        StartCoroutine(StartDialogue());
+        //just for testing
+        //StartCoroutine(StartDialogue());
+      // StartCoroutine(EvidenceCompleteDialogue());
         base.Start();
+
     }
 
     // Update is called once per frame
     void Update()
     {
        base.Update();
+
+       /*
+        if (Input.GetButtonDown("Interact"))
+        {
+            CallEvidenceCompleteDialogue();
+            _interactAudio.Play();
+        }
+        return;
+        */
+
+         
         
         if(Input.GetButtonDown("Interact") && _seenDialogue)
         {
-            base.Interact();
+            dialogueInteract.Interact();
             _interactAudio.Play();
             _seenDialogue = false;
         }
         else if(Input.GetMouseButtonDown(0) && _phoneCompletedDialogue && !_phoneEndedDialogue)
         {
             _phoneEndedDialogue = true;
-            base.Interact();
+            dialogueInteract.Interact();
             _interactAudio.Play();
 
         }
@@ -168,7 +157,7 @@ public class nightManager : Interactable
     private IEnumerator StartDialogue()
     {
         yield return new WaitForSeconds(1f);
-        base.Interact();
+        dialogueInteract.Interact();
         _seenDialogue = true;
     }
 
@@ -180,8 +169,8 @@ public class nightManager : Interactable
     private IEnumerator EvidenceCompleteDialogue()
     {
         yield return new WaitForSeconds(2); 
-        _dialogue._sentences[0] = "The phone is ringing again...";
-        base.Interact();
+        dialogueInteract._dialogue._sentences[0] = "The phone is ringing again...";
+        dialogueInteract.Interact();
         _phoneCompletedDialogue = true;
     }
 
@@ -190,58 +179,7 @@ public class nightManager : Interactable
         _controller._frozen = false;
     }
 
-    public void AddRoom(newKitchenCollider _tempKitchen)
-    {
-       
-        if(_tempKitchen == _triggerKitchen)
-        {
 
-        }
-        else
-        {
-
-            if(_currentRooms >= _neededRooms)
-            {
-                SpawnExit();
-            }       
-            _currentRooms++;
-            Debug.Log("Added A Room!");
-        }
-
-        _triggerKitchen = _tempKitchen;
-    }
-
-    private void SpawnExit()
-    {
-        if (!_hasSpawnedExit)
-        {
-            Debug.Log("SpawnedExit");
-            _hasSpawnedExit= true;
-            _remoteEvidence.SetActive(true);
-
-        }
-    }
-
-    public void CallExitKitchen()
-    {
-        StartCoroutine(ExitKitchen());       
-    }
-
-    private IEnumerator ExitKitchen()
-    {
-        //_kitchenLight.SetTrigger("fade");
-        //yield return new WaitForSeconds(2f);
-        //Destroy(_kitchenFakeEvidence);
-        //TeleportPlayer();
-        yield return new WaitForSeconds(0.1f);
-        _normalHouse.SetActive(true);
-        yield return new WaitForSeconds(0.1f);
-        _endlessKitchen.SetActive(false);
-        //_stairWellLight.SetTrigger("appear");
-        _kitchenLight.SetTrigger("appear");
-        yield return new WaitForSeconds(1.5f);
-        _garageLight.SetTrigger("appear");
-    }
 
     public void CallDataMosh()
     {
@@ -288,8 +226,15 @@ public class nightManager : Interactable
         _newPhone.SetActive(true);
         _newPhone.transform.GetComponent<PhoneNight1>().StartRinging();
 
-        _telephoneHallwayBlocker.SetActive(false);
-        _bedroomHallwayBlocker.SetActive(true);
+        if(_telephoneHallwayBlocker != null)
+        {
+            _telephoneHallwayBlocker.SetActive(false);
+        }
+        if(_bedroomHallwayBlocker != null)
+        {
+                _bedroomHallwayBlocker.SetActive(true);
+
+        }
 
         foreach(GameObject obj in _disappearComplete)
         {

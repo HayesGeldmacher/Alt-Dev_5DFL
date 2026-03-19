@@ -43,7 +43,7 @@ public class KitchenValveInteract : Interactable
     private IEnumerator DisableNightmareKitchen()
     {
         yield return new WaitForSeconds(1);
-        _nightManager.CallDataMosh();
+        //_nightManager.CallDataMosh();
         if (_disappearObjects.Length > 0)
         {
             foreach (var obj in _disappearObjects)
@@ -54,6 +54,6 @@ public class KitchenValveInteract : Interactable
         }
         yield return new WaitForSeconds(2);
         _teleport.CallTeleport();
-        _nightManager.CallExitKitchen();
+      //  _nightManager.CallExitKitchen();
     }
 }

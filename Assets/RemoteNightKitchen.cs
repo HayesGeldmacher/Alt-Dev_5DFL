@@ -12,18 +12,6 @@ public class RemoteNightKitchen : ShootTrigger
 
     public override void Interact()
     {
-        _nightManage.CallExitKitchen();
-        _nightManage.CallDataMosh();
-
-        if(_shushSound != null)
-        {
-            _nightManage.PlaySound(_shushSound);
-        }
-
-        if(_clapperInteract != null)
-        {
-            _clapperInteract.EndDialogue();
-        }
-        Destroy(_parentObject);
+      
     }
 }
