@@ -67,7 +67,7 @@ public class nightManager : Interactable
         _controller._frozen = true;
 
         }
-        _itemNum = 0;
+        //_itemNum = 0;
 
 
         _camController.GotCamera();
@@ -78,6 +78,7 @@ public class nightManager : Interactable
         //StartCoroutine(StartDialogue());
       // StartCoroutine(EvidenceCompleteDialogue());
         base.Start();
+        //CompleteEvidence();
 
     }
 
@@ -86,30 +87,31 @@ public class nightManager : Interactable
     {
        base.Update();
 
-       /*
-        if (Input.GetButtonDown("Interact"))
-        {
-            CallEvidenceCompleteDialogue();
-            _interactAudio.Play();
-        }
-        return;
-        */
+        /*
+         if (Input.GetButtonDown("Interact"))
+         {
+             CallEvidenceCompleteDialogue();
+             _interactAudio.Play();
+         }
+         return;
 
-         
+
+         if(Input.GetButtonDown("Interact") && _seenDialogue)
+         {
+             dialogueInteract.Interact();
+             _interactAudio.Play();
+             _seenDialogue = false;
+         }
+
         
-        if(Input.GetButtonDown("Interact") && _seenDialogue)
-        {
-            dialogueInteract.Interact();
-            _interactAudio.Play();
-            _seenDialogue = false;
-        }
-        else if(Input.GetMouseButtonDown(0) && _phoneCompletedDialogue && !_phoneEndedDialogue)
+        else if (Input.GetMouseButtonDown(0) && _phoneCompletedDialogue && !_phoneEndedDialogue)
         {
             _phoneEndedDialogue = true;
             dialogueInteract.Interact();
             _interactAudio.Play();
 
         }
+         */
 
 
     }
