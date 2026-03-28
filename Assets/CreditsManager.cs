@@ -30,7 +30,7 @@ public class CreditsManager : MonoBehaviour
 
     public Animator backgroundAnim;
 
-    private bool startedFading = false;
+    public bool startedFading = false;
     private bool ended = false;
     [SerializeField] private AudioSource gameMusic;
 

@@ -4,6 +4,7 @@ using UnityEngine;
 using TMPro;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
+using UnityEngine.InputSystem;
 
 public class GameManager : MonoBehaviour
 {
@@ -76,6 +77,15 @@ public class GameManager : MonoBehaviour
     #endregion
 
 
+    private void OnEnable()
+    {
+        InputSystem.onDeviceChange += OnDeviceChanged;
+    }
+    private void OnDisable()
+    {
+        InputSystem.onDeviceChange -= OnDeviceChanged;
+    }
+
     private void Start()
     {
         unPauseInstance.Invoke();
@@ -94,8 +104,6 @@ public class GameManager : MonoBehaviour
    
     private void Update()
     {
-        
-        
         if (Input.GetButtonDown("Pause"))
         {
             
@@ -131,6 +139,26 @@ public class GameManager : MonoBehaviour
             }
         }
 
+    }
+
+    private void OnDeviceChanged(InputDevice device, InputDeviceChange change)
+    {
+        switch (change)
+        {
+            case InputDeviceChange.Added:
+                // New Device.
+                break;
+            case InputDeviceChange.Disconnected:
+                Debug.Log("Controller was removed!");
+                if (!_isPaused) { Pause(); }
+                break;
+            case InputDeviceChange.Removed:
+                // Remove from Input System entirely; by default, Devices stay in the system once discovered.
+                break;
+            default:
+                // See InputDeviceChange reference for other event types.
+                break;
+        }
     }
 
     public void LoadNextLevel()
@@ -340,8 +368,8 @@ public class GameManager : MonoBehaviour
         _interactSound.Play();
     }
 
-    
 
-    
+
+   
 
 }

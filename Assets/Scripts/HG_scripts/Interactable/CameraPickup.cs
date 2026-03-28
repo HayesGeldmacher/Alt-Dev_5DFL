@@ -22,6 +22,8 @@ public class CameraPickup : Interactable
     [SerializeField] private Animator _bodyAnim;
     public bool skipTutorial = true;
 
+    public Dialogue controllerDialogue;
+    public GameInputManager gameInputManager; 
 
     [SerializeField] private AudioSource _staticPickupSound;
     [SerializeField] private GameObject newCamMesh;
@@ -80,6 +82,12 @@ public class CameraPickup : Interactable
         {
             if (!_started)
             {
+
+                if (!gameInputManager._usingMouse)
+                {
+                    base._dialogue = controllerDialogue;
+                }
+
                  _camController.GotCamera();
                 _staticPickupSound.Stop();
                 _controller._frozen = true;
@@ -106,6 +114,9 @@ public class CameraPickup : Interactable
                 {
                     EndCamera();
                 }
+
+
+
             }
 
         }

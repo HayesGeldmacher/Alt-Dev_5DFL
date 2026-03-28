@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Video;
+using UnityEngine.InputSystem;
 
 public class CamChangePositions : MonoBehaviour
 {
@@ -31,6 +32,11 @@ public class CamChangePositions : MonoBehaviour
     private bool fading = false;
 
     public bool callTiggerAtStart = true;
+
+    public bool changeController = false;
+    public GameInputManager inputManager;
+    public Dialogue controllerDialogue;
+    public Interactable interactChange;
 
     //This singleton creates a locatable script instance that can be located easily from any other script!
     #region Singleton
@@ -84,6 +90,7 @@ public class CamChangePositions : MonoBehaviour
 
     public void CallTrigger(int newPos)
     {
+      
         _triggers[newPos].CallGeneric();
     }
 
@@ -99,9 +106,10 @@ public class CamChangePositions : MonoBehaviour
 
     private IEnumerator TutorialMessage()
     {
+        
         yield return new WaitForSeconds(1.5f);
-        _interact.Interact();
-        GameManager.instance.PlayInteractSound();
+        //_interact.Interact();
+       // GameManager.instance.PlayInteractSound();
     }
 
     public void CallVideo(float cutTime, VideoClip clip)

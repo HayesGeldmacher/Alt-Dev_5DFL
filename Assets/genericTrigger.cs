@@ -7,6 +7,10 @@ public class genericTrigger : Interactable
 
     private bool _hasEncountered = false;
 
+    public bool changeController = false;
+    public GameInputManager gameInputManager;
+    public Dialogue controllerDialogue;
+
     private void Start()
     {
         base.Start();
@@ -21,9 +25,15 @@ public class genericTrigger : Interactable
     {
         if(!_hasEncountered)
         {
+
             if (other.gameObject.tag == "Player")
             {
-               _hasEncountered = true;
+              if(changeController && !gameInputManager._usingMouse)
+                {
+                    base._dialogue = controllerDialogue;
+                }
+                
+                _hasEncountered = true;
                 base.Interact();
             }
         }

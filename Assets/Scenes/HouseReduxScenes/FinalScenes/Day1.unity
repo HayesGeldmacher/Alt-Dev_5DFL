@@ -150707,7 +150707,8 @@ MonoBehaviour:
   _manager: {fileID: 0}
   _dialogue:
     _sentences:
-    - Press the middle mouse button to flash your camera light in dark places.
+    - This camera has a light attached...I can press the middle mouse button, or
+      the 'Q' key, to flash it in dark places...
   _important: 0
   _canBeGrabbed: 0
   _player: {fileID: 0}
@@ -150719,6 +150720,12 @@ MonoBehaviour:
   _animates: 0
   _animator: {fileID: 0}
   _animKey: 
+  changeController: 1
+  gameInputManager: {fileID: 1964211154}
+  controllerDialogue:
+    _sentences:
+    - This camera has a light attached...I can press the left bumper, to flash it
+      in dark places...
 --- !u!65 &763897388
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -169866,7 +169873,7 @@ MonoBehaviour:
   _manager: {fileID: 0}
   _dialogue:
     _sentences:
-    - The wind is blowing softly...
+    - The wind is blowing softly... I can hold the "shift" key to run...
   _important: 0
   _canBeGrabbed: 0
   _player: {fileID: 0}
@@ -169878,6 +169885,11 @@ MonoBehaviour:
   _animates: 0
   _animator: {fileID: 0}
   _animKey: 
+  changeController: 1
+  gameInputManager: {fileID: 1964211154}
+  controllerDialogue:
+    _sentences:
+    - The wind is blowing softly... I can hold the left controller stick to run...
 --- !u!65 &934924556
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -291535,8 +291547,8 @@ MonoBehaviour:
   _manager: {fileID: 0}
   _dialogue:
     _sentences:
-    - This crawl space is deeper than I remember... hold "CTRL" to crouch in tight
-      spaces and stay hidden.
+    - This crawl space is deeper than I remember... I can hold the 'ctrl' key to
+      crouch in tight spaces and stay hidden.
   _important: 0
   _canBeGrabbed: 0
   _player: {fileID: 0}
@@ -291548,6 +291560,12 @@ MonoBehaviour:
   _animates: 0
   _animator: {fileID: 0}
   _animKey: 
+  changeController: 1
+  gameInputManager: {fileID: 1964211154}
+  controllerDialogue:
+    _sentences:
+    - This crawl space is deeper than I remember... I can hold the right controller
+      stick to crouch in tight spaces and stay hidden.
 --- !u!65 &1358327665
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -310055,7 +310073,10 @@ MonoBehaviour:
   _manager: {fileID: 0}
   _dialogue:
     _sentences:
-    - Right click to zoom and Left click to shoot while zooming. This thing's heavy....
+    - I can zoom in by holding the left right mouse button or the 'R' key. This thing's
+      heavy...
+    - 'Once I''m zoomed in, I can take a picture by pressing the left mouse button,
+      or the ''e'' key. '
     - When taking a picture of the right item, it will disappear and play a confirmation
       sound.
     - The last picture taken is stored, and can be viewed by pressing 'tab'.
@@ -310076,7 +310097,7 @@ MonoBehaviour:
   _bc: {fileID: 1684355838}
   _audio: {fileID: 1684355836}
   _interactAudio: {fileID: 1684355835}
-  _lines: 4
+  _lines: 5
   _controller: {fileID: 1681492577946705413}
   _intro: 1
   _cam: {fileID: 2437077440743916354}
@@ -310085,6 +310106,17 @@ MonoBehaviour:
   _ghostCam: {fileID: 8949444578214634252}
   _bodyAnim: {fileID: 395298396}
   skipTutorial: 0
+  controllerDialogue:
+    _sentences:
+    - I can zoom in by holding the left trigger. This thing's heavy...
+    - 'Once I''m zoomed in, I can take a picture by pressing the right trigger, or
+      the south face button. '
+    - When taking a picture of the right item, it will disappear and play a confirmation
+      sound.
+    - The last picture taken is stored, and can be viewed by pressing the north face
+      button.
+    - I should test it on the vase...
+  gameInputManager: {fileID: 1964211154}
   _staticPickupSound: {fileID: 1684355844}
   newCamMesh: {fileID: 1170819851}
 --- !u!65 &1684355838
@@ -312083,7 +312115,7 @@ Mesh:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: pb_Mesh130716
+  m_Name: pb_Mesh-202930
   serializedVersion: 11
   m_SubMeshes:
   - serializedVersion: 2
@@ -347854,6 +347886,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   loadIndex: 1
+  forceReset: 0
 --- !u!114 &6185119457783065554
 MonoBehaviour:
   m_ObjectHideFlags: 0
