@@ -108,8 +108,16 @@ public class CamChangePositions : MonoBehaviour
     {
         
         yield return new WaitForSeconds(1.5f);
-        //_interact.Interact();
-       // GameManager.instance.PlayInteractSound();
+        if (PlayerPrefs.HasKey("device") && changeController)
+        {
+            int currentDevice = PlayerPrefs.GetInt("device");
+            if(currentDevice == 1)
+            {
+                _interact._dialogue = controllerDialogue;
+            }
+        }
+            _interact.Interact();
+        GameManager.instance.PlayInteractSound();
     }
 
     public void CallVideo(float cutTime, VideoClip clip)

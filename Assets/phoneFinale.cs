@@ -76,7 +76,7 @@ public class phoneFinale : Interactable
         float oldVolume;
         if (fadingUp)
         {
-           if(staticSound.volume >= 0.25f)
+           if(staticSound.volume >= 0.45f)
             {
                 fadingUp = false;
                 return;
@@ -109,8 +109,17 @@ public class phoneFinale : Interactable
                 _pickedUp = true;
                 _ringingSource.Stop();
                 PlayerController.instance._frozen = true;
-               // _camController._frozen = true;
-                
+                // _camController._frozen = true;
+
+                foreach (GameObject disappearObject in disappearObjects)
+                {
+
+                    if (disappearObject != null)
+                    {
+                        disappearObject.SetActive(false);
+                    }
+                }
+
             }
 
             _dialogueNum -= 1;
@@ -130,17 +139,13 @@ public class phoneFinale : Interactable
         _wallDisappear.SetActive(false);
         PlayerController.instance._frozen = false;
         _camController._frozen = false;
-        foreach (GameObject disappearObject in disappearObjects){
 
-            if (disappearObject != null){ 
-                disappearObject.SetActive(false);
-            }
-        }
         StartCoroutine(StartDark());
     }
 
     private IEnumerator StartDark()
     {
+        yield return new WaitForSeconds(1.5f);
         isDarkening = true;
         colorStart = RenderSettings.skybox.GetColor("_Tint");
         lightColorStart = light.color;

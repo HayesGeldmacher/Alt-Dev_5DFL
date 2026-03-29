@@ -28,8 +28,9 @@ public class FinalChairDreamEnd : Interactable
     [SerializeField] private AudioSource roomToneSound;
     [SerializeField] private float fadeSpeed = 0.05f;
     private bool isFading = false;
-
-
+    private Quaternion startRotation;
+    private Vector3 startPosition;
+    float timeElapsed = 0;
 
 
     public override void Interact()
@@ -49,11 +50,15 @@ public class FinalChairDreamEnd : Interactable
         if (_lerping)
         {
 
-            Vector3 relativePos = _lookPoint.position - _camHolder.position;
-            Quaternion rotation = Quaternion.LookRotation(relativePos, Vector3.up);
+            //  Vector3 relativePos = _lookPoint.position - _camHolder.position;
+            //  Quaternion rotation = Quaternion.LookRotation(relativePos, Vector3.up);
 
-            _camHolder.position = Vector3.Lerp(_camHolder.position, _anchorPoint.position, _lerpSpeed * Time.deltaTime);
-           _camHolder.rotation = Quaternion.Lerp(_camHolder.rotation, rotation, _lerpSpeed * Time.deltaTime);
+            //  _camHolder.position = Vector3.Lerp(_camHolder.position, _anchorPoint.position, _lerpSpeed * Time.deltaTime);
+            // _camHolder.rotation = Quaternion.Lerp(_camHolder.rotation, rotation, _lerpSpeed * Time.deltaTime);
+
+           // timeElapsed += 1 * Time.deltaTime * _lerpSpeed;
+            _camHolder.position = Vector3.Lerp(_camHolder.position, _anchorPoint.position,      1 * Time.deltaTime);
+            _camHolder.rotation = Quaternion.Lerp(_camHolder.rotation, _lookPoint.rotation, 1 * Time.deltaTime);
         }
 
         if (isFading)
@@ -85,6 +90,8 @@ public class FinalChairDreamEnd : Interactable
         _camController._frozen = true;
         //Destroy(PlayerController.instance.transform.gameObject);
         Destroy(playerBody);
+        startPosition = _camHolder.position;
+        startRotation = _camHolder.rotation;
         _lerping = true;
         yield return new WaitForSeconds(4f);
         Destroy(_camZoom);

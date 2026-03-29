@@ -9,7 +9,7 @@ using UnityEngine.InputSystem;
 public class GameManager : MonoBehaviour
 {
 
-   
+
 
     [HideInInspector] public bool _isPaused = false;
     [SerializeField] private CameraController _controller;
@@ -21,7 +21,7 @@ public class GameManager : MonoBehaviour
     public GameObject _hudBorder;
     [SerializeField] private RawImage _cursorSprite;
     [SerializeField] private GameObject _ghostCam;
-     
+
 
     [Header("Audio Variables")]
     [SerializeField] private float _fadeSpeed;
@@ -49,7 +49,7 @@ public class GameManager : MonoBehaviour
     public delegate void CallUnPause();
     public static CallUnPause unPauseInstance;
 
-  
+
 
 
 
@@ -72,6 +72,18 @@ public class GameManager : MonoBehaviour
 
         pauseInstance += Pause;
         unPauseInstance += Unpause;
+
+        if (Gamepad.all.Count > 0)
+        {
+            Debug.Log("Controller is being used!");
+            PlayerPrefs.SetInt("device", 1);
+
+        }
+        else
+        {
+            Debug.Log("No controller detected!");
+            PlayerPrefs.SetInt("device", 0);
+        }
     }
 
     #endregion
@@ -91,23 +103,23 @@ public class GameManager : MonoBehaviour
         unPauseInstance.Invoke();
         _pauseCursor.EnableCursor(false);
         _pauseButtons.SetActive(false);
-        if(_darkAmbience != null)
+        if (_darkAmbience != null)
         {
             _currentVolumeDarkAmbience = _darkAmbience.volume;
         }
 
-        if(_staticAudio != null)
+        if (_staticAudio != null)
         {
             _currentVolumeStatic = _staticAudio.volume;
         }
     }
-   
+
     private void Update()
     {
         if (Input.GetButtonDown("Pause"))
         {
-            
-            if (_isPaused )
+
+            if (_isPaused)
             {
 
                 unPauseInstance.Invoke();
@@ -117,22 +129,21 @@ public class GameManager : MonoBehaviour
                 pauseInstance.Invoke();
             }
 
-            if(!_pausedAudio.isPlaying)
+            if (!_pausedAudio.isPlaying)
             {
                 _pausedAudio.Play();
             }
         }
 
-
         if (_isFading)
         {
-            if(_darkAmbience != null)
+            if (_darkAmbience != null)
             {
-                 _currentVolumeDarkAmbience = Mathf.Lerp(_currentVolumeDarkAmbience, 0, _fadeSpeed * Time.deltaTime);
+                _currentVolumeDarkAmbience = Mathf.Lerp(_currentVolumeDarkAmbience, 0, _fadeSpeed * Time.deltaTime);
                 _darkAmbience.volume = _currentVolumeDarkAmbience;
             }
 
-            if(_staticAudio != null)
+            if (_staticAudio != null)
             {
                 _currentVolumeStatic = Mathf.Lerp(_currentVolumeStatic, 0, _fadeSpeed * Time.deltaTime);
                 _staticAudio.volume = _currentVolumeStatic;
@@ -140,19 +151,34 @@ public class GameManager : MonoBehaviour
         }
 
     }
-
+    // 1 = gamepad
+    // 0 = keyboard
     private void OnDeviceChanged(InputDevice device, InputDeviceChange change)
     {
         switch (change)
         {
             case InputDeviceChange.Added:
-                // New Device.
+                if (device is Gamepad)
+                {
+                    Debug.Log("Controller was added!");
+                    PlayerPrefs.SetInt("device", 1);
+                }
                 break;
             case InputDeviceChange.Disconnected:
-                Debug.Log("Controller was removed!");
-                if (!_isPaused) { Pause(); }
+                if (device is Gamepad)
+                {
+                    Debug.Log("Controller was removed!");
+                    PlayerPrefs.SetInt("device", 0);
+                    if (!_isPaused) { pauseInstance.Invoke(); }
+                }
                 break;
             case InputDeviceChange.Removed:
+                if (device is Gamepad)
+                {
+                    Debug.Log("Controller was removed!");
+                    PlayerPrefs.SetInt("device", 0);
+                    if (!_isPaused) { pauseInstance.Invoke(); }
+                }
                 // Remove from Input System entirely; by default, Devices stay in the system once discovered.
                 break;
             default:
@@ -167,7 +193,7 @@ public class GameManager : MonoBehaviour
         SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
 
     }
-    
+
     public void ReloadLevel()
     {
         _pauseCursor.EnableCursor(false);
@@ -203,15 +229,15 @@ public class GameManager : MonoBehaviour
     public void FreezePlayer(bool _freeze)
     {
         Debug.Log("FUCKING STOPPED FREEZING BITCHES!");
-        
+
         PlayerController.instance._frozen = _freeze;
-        if(_controller != null)
+        if (_controller != null)
         {
             _controller._frozen = _freeze;
         }
     }
 
-   public void SetAudioBackgroundFade()
+    public void SetAudioBackgroundFade()
     {
         _isFading = true;
     }
@@ -219,12 +245,12 @@ public class GameManager : MonoBehaviour
 
     public void Pause()
     {
-        
-        
+
+
         _isPaused = true;
-        if(_controller != null)
+        if (_controller != null)
         {
-        _controller.enabled = false;
+            _controller.enabled = false;
         }
         Time.timeScale = 0f;
 
@@ -245,13 +271,13 @@ public class GameManager : MonoBehaviour
             _textCursor.EnableCursor(false);
         }
 
-        
-        if(_controller != null)
+
+        if (_controller != null)
         {
-            if(_controller._hasCamera)
+            if (_controller._hasCamera)
             {
-            _pausedAnimator.SetBool("paused", true);
-            _pausedText.text = "PAUSED";
+                _pausedAnimator.SetBool("paused", true);
+                _pausedText.text = "PAUSED";
 
             }
 
@@ -260,27 +286,27 @@ public class GameManager : MonoBehaviour
 
         if (!_inTextGame)
         {
-         _pauseButtons.SetActive(true);
-           
+            _pauseButtons.SetActive(true);
+
         }
         _pauseButtonsText.SetActive(true);
 
-        if(_hudBorder != null)
+        if (_hudBorder != null)
         {
             _hudBorder.SetActive(false);
         }
-       
-        if(_cursorSprite != null)
+
+        if (_cursorSprite != null)
         {
             _cursorSprite.enabled = false;
         }
 
-        if(_textGameManager != null)
+        if (_textGameManager != null)
         {
             _textGameManager.Pause();
         }
 
-        if(_cardGame && _cardGameManager != null)
+        if (_cardGame && _cardGameManager != null)
         {
             _cardGameManager.Pause();
         }
@@ -288,12 +314,12 @@ public class GameManager : MonoBehaviour
 
     public void Unpause()
     {
-        
-        
+
+
         _isPaused = false;
         Time.timeScale = 1f;
 
-        if(_controller != null)
+        if (_controller != null)
         {
             _controller.enabled = true;
         }
@@ -308,15 +334,15 @@ public class GameManager : MonoBehaviour
 
         }
 
-        if(_textCursor != null)
+        if (_textCursor != null)
         {
-            if(_inTextGame)
+            if (_inTextGame)
             {
                 _textCursor.EnableCursor(true);
             }
         }
 
-        if(_controller != null)
+        if (_controller != null)
         {
             if (_controller._hasCamera)
             {
@@ -330,30 +356,30 @@ public class GameManager : MonoBehaviour
         _pauseButtons.SetActive(false);
         _pauseButtonsText.SetActive(false);
 
-        if(pauseButtonScript != null)
+        if (pauseButtonScript != null)
         {
             pauseButtonScript.OnEscape();
         }
-        
 
 
-        
-        
-        if(_hudBorder != null)
+
+
+
+        if (_hudBorder != null)
         {
             _hudBorder.SetActive(true);
         }
 
-        if(_cursorSprite != null)
+        if (_cursorSprite != null)
         {
-        _cursorSprite.enabled = true;
+            _cursorSprite.enabled = true;
         }
 
-        if(_textGameManager != null )
+        if (_textGameManager != null)
         {
             _textGameManager.UnPause();
         }
-       
+
         if (_cardGame && _cardGameManager != null)
         {
             _cardGameManager.UnPause();
@@ -370,6 +396,18 @@ public class GameManager : MonoBehaviour
 
 
 
-   
+    void OnApplicationPause(bool pauseStatus)
+    {
+        if (pauseStatus)
+        {
+            // The home button was likely pressed, or the app is going into the background.
+            Debug.Log("Application Paused (Home button pressed or app switched)");
+            if (!_isPaused)
+            {
+                pauseInstance.Invoke();
+            }
+            // Add your game pause logic here
+        }
 
+    }
 }

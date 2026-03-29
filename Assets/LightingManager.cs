@@ -13,7 +13,6 @@ public class LightingManager : MonoBehaviour
     private float _playerDistance;
     public Color _currentColor;
     public float totalSum;
-
     private bool _canCollide = true;
 
     //New lerp shit
@@ -26,19 +25,39 @@ public class LightingManager : MonoBehaviour
     [SerializeField] private float _speed;
     public float _dayEndSpeed;
 
+    public bool useFloatIntensity = false;
+    public float minIntensity = 0.2f;
+    public float maxIntensity = 0.2f;
+    public float currentIntensity = 0.0f;
+
     private void Start()
     {
         _currentAmbience = _dayAmbience;
         _dayColor = RenderSettings.ambientLight;
         _currentColor = _dayColor;
         _currentLerpValue = 0;
-    }
+        currentIntensity = RenderSettings.ambientIntensity;
+        maxIntensity = RenderSettings.ambientIntensity;
+
+}
 
     private void Update()
     {
 
         if (_decreasing)
         {
+            if (useFloatIntensity)
+            {
+                currentIntensity = RenderSettings.ambientIntensity;
+                currentIntensity -= (1 * _speed) * Time.deltaTime;
+                RenderSettings.ambientIntensity = currentIntensity;
+                if (currentIntensity <= minIntensity) {
+
+                    _decreasing = false;
+                    RenderSettings.ambientIntensity = minIntensity;
+                }
+                return;
+            }
 
             _currentLerpValue += ((1 * _speed )* Time.deltaTime);
             _currentColor = Color.Lerp(_storedColor, _nightColor, _currentLerpValue);
@@ -51,6 +70,21 @@ public class LightingManager : MonoBehaviour
         }
         else if (_increasing)
         {
+            if (useFloatIntensity)
+            {
+                currentIntensity = RenderSettings.ambientIntensity;
+                currentIntensity += (1 * _speed) * Time.deltaTime;
+                RenderSettings.ambientIntensity = currentIntensity;
+                if (currentIntensity >= maxIntensity)
+                {
+
+                    _increasing = false;
+                    RenderSettings.ambientIntensity = maxIntensity;
+                }
+                return;
+            }
+
+
             _currentLerpValue += ((1 * _speed) * Time.deltaTime);
             _currentColor = Color.Lerp(_storedColor, _dayColor, _currentLerpValue);
             RenderSettings.ambientLight = _currentColor;

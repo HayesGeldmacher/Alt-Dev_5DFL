@@ -34,6 +34,7 @@ public class GameInputManager : MonoBehaviour
         transform.parent = null;
 
         InputSystem.onActionChange += InputSystem_OnActionChange;
+        
     }
 
     private void InputSystem_OnActionChange(object arg1, InputActionChange inputActionChange)
@@ -78,6 +79,7 @@ public class GameInputManager : MonoBehaviour
         if(activeGameDevice is GameDevice.Gamepad)
         {
             _usingMouse = false;
+      
         }
         else if(activeGameDevice is GameDevice.KeyboardMouse)
         {
