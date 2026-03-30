@@ -34,7 +34,7 @@ public class MonsterFace : Interactable
     {
         if (!_dead)
         {
-            if (Input.GetMouseButtonDown(0))
+            if (Input.GetButtonDown("Interact"))
             {
                 if (_canContinue)
                 {

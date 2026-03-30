@@ -195,6 +195,7 @@ public class SettingsMenu : MonoBehaviour
         {
             Debug.Log("Set cam toggle to false!");
             PlayerPrefs.SetInt("camInvert", 1);
+   
         }
     }
 

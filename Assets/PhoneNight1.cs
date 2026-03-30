@@ -115,7 +115,7 @@ public class PhoneNight1 : Interactable
 
         if (_interactingInFMV)
         {
-            if (Input.GetMouseButtonDown(0) && !GameManager.instance._isPaused)
+            if (Input.GetButtonDown("Interact") && !GameManager.instance._isPaused)
             {
                
                 if(_currentWaitTime <= 0)

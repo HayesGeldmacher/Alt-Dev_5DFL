@@ -158,7 +158,7 @@ public class TitleScreenSpriteFollowMouse : MonoBehaviour
                 newVirtPos.y = Mathf.Clamp(newVirtPos.y, 0f + borderYMin, Screen.height - borderYMax);
 
                 InputState.Change(_virtualMouse.virtualMouse.position, newVirtPos);
-            _currentVirtPosController = newVirtPos;
+                 _currentVirtPosController = newVirtPos;
         }
     }
 

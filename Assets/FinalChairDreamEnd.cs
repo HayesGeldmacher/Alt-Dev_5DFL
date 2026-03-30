@@ -11,6 +11,8 @@ public class FinalChairDreamEnd : Interactable
     [SerializeField] private CameraController _camController;
     [SerializeField] private CameraZoom _camZoom;
     [SerializeField] private Transform _anchorPoint;
+    [SerializeField] private Transform _virtualCam;
+
     [SerializeField] private Transform _lookPoint;
     [SerializeField] private float _lerpSpeed;
     [SerializeField] private bool _lerping = false;
@@ -59,6 +61,8 @@ public class FinalChairDreamEnd : Interactable
            // timeElapsed += 1 * Time.deltaTime * _lerpSpeed;
             _camHolder.position = Vector3.Lerp(_camHolder.position, _anchorPoint.position,      1 * Time.deltaTime);
             _camHolder.rotation = Quaternion.Lerp(_camHolder.rotation, _lookPoint.rotation, 1 * Time.deltaTime);
+            _virtualCam.transform.localRotation = Quaternion.Lerp(_virtualCam.localRotation, Quaternion.Euler(0, 0, 0), 1 * Time.deltaTime);
+            //Quaternion.Lerp(_virtualCam.rotation, zeroRot, 1 * Time.deltaTime);
         }
 
         if (isFading)
@@ -87,11 +91,10 @@ public class FinalChairDreamEnd : Interactable
         _camZoom._canZoom = false;
         yield return new WaitForSeconds(0.1f);
         //Destroy(_camController);
+
         _camController._frozen = true;
-        //Destroy(PlayerController.instance.transform.gameObject);
         Destroy(playerBody);
-        startPosition = _camHolder.position;
-        startRotation = _camHolder.rotation;
+        PlayerController.instance.enabled = false;
         _lerping = true;
         yield return new WaitForSeconds(4f);
         Destroy(_camZoom);
